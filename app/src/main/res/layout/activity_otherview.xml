@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.fosung.gui.ZBanner
+            android:id="@+id/view_banner"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:indicator_height="@dimen/dimens_small"
+            app:indicator_width="@dimen/dimens_small"/>
+
+        <com.fosung.gui.ZTextSwitcher
+            android:id="@+id/view_textswitcher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_big"
+            android:background="@color/blue_mid"/>
+
+        <com.fosung.gui.ZEditTextWithClear
+            android:id="@+id/et_clear"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/gui_dimens_item_height_small"
+            android:layout_marginTop="@dimen/dimens_big"
+            android:text="带清除按钮的Edittext"/>
+
+        <com.fosung.gui.ZEditTextWithPassword
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/gui_dimens_item_height_small"
+            android:layout_marginTop="@dimen/dimens_big"
+            android:text="带密码按钮的Edittext"/>
+
+        <Button
+            android:id="@+id/btn_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ZDlgAsyncProgress"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/btn_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ZDlgProgress"
+            android:textAllCaps="false"/>
+
+        <!--def  is_bottomline=true, is_arrow=true   -->
+        <com.fosung.gui.ZKeyValueView
+            android:id="@+id/zkv_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            app:zkv_key_gravity="left"
+            app:zkv_is_arrow="true"
+            app:zkv_is_bottomline="true"
+            app:zkv_key_img="@drawable/ic_launcher"
+            app:zkv_key_text="KEY"
+            app:zkv_key_text_color="@color/black_dark"
+            app:zkv_key_text_size="20dp"
+            app:zkv_value_text="VALUE"
+            app:zkv_value_text_color="@color/black_dark"
+            app:zkv_value_text_size="20dp"/>
+
+        <!--def  is_bottomline=true, is_checked=false   -->
+        <com.fosung.gui.ZKeySwitchView
+            android:id="@+id/zkv_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            app:zksv_is_bottomline="true"
+            app:zksv_is_checked="true"
+            app:zksv_key_img="@drawable/ic_launcher"
+            app:zksv_key_text="KEY"
+            app:zksv_key_text_color="@color/black_dark"
+            app:zksv_key_text_size="20dp"/>
+
+        <!--def  is_bottomline=true, is_arrow=true   -->
+        <com.fosung.gui.ZKeyValueEditView
+            android:id="@+id/zkv_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            app:zkve_is_arrow="true"
+            app:zkve_is_bottomline="true"
+            app:zkve_key_text="KEY"
+            app:zkve_key_text_color="@color/black_dark"
+            app:zkve_key_text_size="20dp"
+            app:zkve_value_hint="这是Edittext"
+            app:zkve_value_maxline="1"/>
+    </LinearLayout>
+</ScrollView>

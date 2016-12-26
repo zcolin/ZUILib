@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true"><shape>
+            <solid android:color="@color/gui_white_light" />
+
+            <padding android:bottom="@dimen/gui_dimens_mid" android:left="@dimen/gui_dimens_big" android:right="@dimen/gui_dimens_big" android:top="@dimen/gui_dimens_mid" />
+        </shape></item>
+    <item android:state_pressed="false"><shape>
+            <solid android:color="@color/gui_transparent" />
+
+            <padding android:bottom="@dimen/gui_dimens_mid" android:left="@dimen/gui_dimens_big" android:right="@dimen/gui_dimens_big" android:top="@dimen/gui_dimens_mid" />
+        </shape></item>
+
+</selector>

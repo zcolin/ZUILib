@@ -1,0 +1,27 @@
+<resources>
+
+    <style name="Gui_TextStyle_White_Normal" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/gui_textsize_normal</item>
+    </style>
+
+    <style name="Gui_TextStyle_White_Large" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/gui_textsize_large</item>
+    </style>
+
+    <style name="Gui_TextStyle_BlackLight_Normal" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/gui_key_value_view_text</item>
+        <item name="android:textSize">@dimen/gui_textsize_normal</item>
+    </style>
+
+    <style name="Gui_TextStyle_BlackLight_Big" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/gui_key_value_view_text</item>
+        <item name="android:textSize">@dimen/gui_textsize_big</item>
+    </style>
+
+    <style name="Gui_TextStyle_GrayMid_Normal" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/gui_gray_dark</item>
+        <item name="android:textSize">@dimen/gui_textsize_normal</item>
+    </style>
+</resources>

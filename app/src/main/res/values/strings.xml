@@ -1,0 +1,13 @@
+<!--
+  ~ **********************************************************
+  ~   author   colin
+  ~   company  fosung
+  ~   email    wanglin2046@126.com
+  ~   date     16-11-1 下午2:39
+  ~ *********************************************************
+  -->
+
+<resources>
+    <string name="app_name">AllLibDemo</string>
+    <string name="load_more_text">正在加载...</string>
+</resources>

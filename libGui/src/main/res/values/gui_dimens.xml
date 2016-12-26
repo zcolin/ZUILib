@@ -1,0 +1,14 @@
+<resources>
+    <dimen name="gui_dimens_small">5dp</dimen>
+    <dimen name="gui_dimens_mid">10dp</dimen>
+    <dimen name="gui_dimens_big">15dp</dimen>
+
+    <dimen name="gui_textsize_small">14dp</dimen>
+    <dimen name="gui_textsize_normal">16dp</dimen>
+    <dimen name="gui_textsize_big">18dp</dimen>
+    <dimen name="gui_textsize_large">21dp</dimen>
+
+    <dimen name="gui_dimens_item_height_big">67dp</dimen>
+    <dimen name="gui_dimens_item_height_small">56dp</dimen>
+    <dimen name="gui_dimens_item_height_small_small">48dp</dimen>
+</resources>

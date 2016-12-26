@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ **********************************************************
+  ~   author   colin
+  ~   company  fosung
+  ~   email    wanglin2046@126.com
+  ~   date     16-11-1 下午2:39
+  ~ *********************************************************
+  -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <!--def  is_bottomline=true, is_arrow=true   -->
+        <com.fosung.gui.ZKeyValueView
+            android:id="@+id/zkv_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:zkv_key_text="KEY"/>
+
+        <com.fosung.gui.ZKeyValueView
+            android:id="@+id/zkv_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:zkv_is_arrow="false"
+            app:zkv_is_bottomline="true"
+            app:zkv_key_img="@drawable/ic_launcher"
+            app:zkv_key_text="KEY"
+            app:zkv_key_text_color="@color/colorPrimary"
+            app:zkv_value_text="VALUE"
+            app:zkv_value_text_color="@color/colorPrimary"
+            app:zkv_value_text_size="20dp"/>
+
+        <com.fosung.gui.ZKeyValueView
+            android:id="@+id/zkv_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:zkv_key_gravity="right"
+            app:zkv_key_img="@drawable/ic_launcher"
+            app:zkv_key_text="KEY"
+            app:zkv_value_gravity="left"
+            app:zkv_value_text="VALUE"/>
+
+        <com.fosung.gui.ZKeyValueView
+            android:id="@+id/zkv_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:zkv_key_ems="5"
+            app:zkv_key_gravity="right"
+            app:zkv_key_img="@drawable/ic_launcher"
+            app:zkv_key_text="KEY"
+            app:zkv_value_gravity="left"
+            app:zkv_value_text="VALUE"/>
+
+        <com.fosung.gui.ZKeyValueView
+            android:id="@+id/zkv_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:zkv_key_ems="5"
+            app:zkv_key_gravity="left"
+            app:zkv_key_img="@drawable/ic_launcher"
+            app:zkv_key_text="KEY"
+            app:zkv_value_gravity="left"
+            app:zkv_value_text="VALUE"/>
+
+        <com.fosung.gui.ZKeyValueView
+            android:id="@+id/zkv_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:zkv_is_bottomline="false"
+            app:zkv_key_img="@drawable/ic_launcher"
+            app:zkv_key_text="KEY"
+            app:zkv_key_text_color="@color/colorPrimary"
+            app:zkv_value_text="VALUE"
+            app:zkv_value_text_color="@color/colorPrimary"
+            app:zkv_value_text_size="20dp"/>
+
+        <include
+            layout="@layout/gui_view_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"/>
+
+        <com.fosung.gui.ZKeyValueEditView
+            android:id="@+id/zkv_7"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:zkve_key_text="KEY"
+            app:zkve_key_text_color="@color/gray_mid"
+            app:zkve_value_text="VALUE"
+            app:zkve_value_text_color="@color/colorPrimary"
+            app:zkve_value_text_size="20dp"/>
+
+        <com.fosung.gui.ZKeyValueEditView
+            android:id="@+id/zkv_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:zkve_key_ems="7"
+            app:zkve_key_img="@drawable/ic_launcher"
+            app:zkve_key_text="KEY"
+            app:zkve_key_text_color="@color/colorPrimary"
+            app:zkve_value_text="VALUE"
+            app:zkve_value_text_color="@color/colorPrimary"/>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 弹出框底部应用子视图 -->
+<LinearLayout android:id="@+id/changetext_llbody"
+                                  xmlns:android="http://schemas.android.com/apk/res/android"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="fill_parent"
+                                  android:gravity="center">
+
+    <TextView
+        android:id="@+id/dialog_cancelbutton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginRight="@dimen/gui_dimens_small"
+        android:layout_weight="1"
+        android:background="@drawable/gui_btn_dlg_bottom_sel"
+        android:text="取消"
+        android:textColor="@color/gui_dlg_btn_text"
+        android:textSize="@dimen/gui_textsize_normal">
+    </TextView>
+
+    <TextView
+        android:id="@+id/dialog_okbutton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginRight="@dimen/gui_dimens_small"
+        android:layout_weight="1"
+        android:background="@drawable/gui_btn_dlg_bottom_sel"
+        android:text="确定"
+        android:textColor="@color/gui_dlg_btn_text"
+        android:textSize="@dimen/gui_textsize_normal">
+    </TextView>
+
+</LinearLayout>

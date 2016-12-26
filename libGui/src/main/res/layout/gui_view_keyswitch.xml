@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/gui_dimens_item_height_small_small"
+                android:paddingLeft="@dimen/gui_dimens_mid"
+                android:paddingRight="@dimen/gui_dimens_mid">
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/gui_dimens_small"
+        android:layout_marginRight="@dimen/gui_dimens_small"/>
+
+    <TextView
+        android:id="@+id/tv_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/gui_dimens_small"
+        android:layout_toRightOf="@id/iv_img"
+        android:drawablePadding="@dimen/gui_dimens_mid"
+        android:textColor="@color/gui_key_value_view_text"
+        android:textSize="@dimen/gui_textsize_normal"/>
+
+    <com.fosung.gui.ZCheckTextView
+        android:id="@+id/switchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/gui_dimens_small"
+        android:layout_marginRight="@dimen/gui_dimens_mid"
+        android:layout_toLeftOf="@+id/iv_arrow"
+        android:layout_toRightOf="@id/tv_key"
+        android:gravity="left|center_vertical"/>
+
+    <include
+        android:id="@+id/view_bottomline"
+        layout="@layout/gui_view_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

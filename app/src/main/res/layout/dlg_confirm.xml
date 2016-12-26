@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 普通的dialog弹出框 -->
+<LinearLayout android:id="@+id/enter_llhead"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:paddingBottom="8dp"
+              android:paddingTop="24dp">
+
+    <TextView
+        android:id="@+id/dialog_tilte"
+        style="@style/Gui_TextStyle_BlackLight_Big"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/dialog_message"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:maxLines="12"
+        android:minHeight="60dp"
+        android:scrollbars="vertical"
+        android:textColor="@color/red_light"
+        android:textIsSelectable="true">
+    </TextView>
+
+    <com.fosung.gui.ZDialogBottomView
+        android:id="@+id/dialog_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        />
+
+</LinearLayout>

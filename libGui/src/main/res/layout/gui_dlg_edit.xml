@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**********************************************************
+  ~  author   colin
+  ~  company  fosung
+  ~  email    wanglin2046@126.com
+  ~  date     16-9-30 下午4:41
+  ~ **********************************************************/
+  -->
+
+<!-- 带有一个编辑框的dialog弹出框 -->
+<RelativeLayout android:id="@+id/linearLayout1"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:paddingTop="24dp">
+
+    <TextView
+        android:id="@+id/dlgeditone_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/gui_textsize_big"/>
+
+    <TextView
+        android:id="@+id/dlgeditone_instruction"
+        style="@style/Gui_TextStyle_GrayMid_Normal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dlgeditone_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/dlgeditone_edit"
+        style="@style/Gui_TextStyle_BlackLight_Big"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_below="@+id/dlgeditone_instruction"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="10dp">
+
+        <requestFocus/>
+    </EditText>
+
+    <com.fosung.gui.ZDialogBottomView
+        android:id="@+id/dlgeditone_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/dlgeditone_edit"
+        android:layout_marginTop="10dp"/>
+
+</RelativeLayout>

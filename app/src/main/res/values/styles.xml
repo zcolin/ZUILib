@@ -1,0 +1,43 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:dialogTheme">@style/style_dialog</item>
+
+        <!--gui库中的组件通用设置 其他属性看gui库中的gui_attr.xml文件-->
+        <item name="zkv_key_text_color">@color/red_light</item>
+        <item name="zkv_value_text_color">@color/green_light</item>
+        <item name="zkv_height">65dp</item>
+        <item name="zdivider_color">#99ababab</item>
+        <item name="zdivider_height_size">1px</item>
+        <item name="zkve_value_background">@color/transparent</item>
+    </style>
+
+    <!-- 弹出框风格 -->
+    <style name="style_dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowAnimationStyle">@style/style_anim_Dialog</item>
+    </style>
+
+    <!-- PopupWindow 动画 -->
+    <style name="style_anim_PopupWindow">
+        <item name="android:windowEnterAnimation">@anim/popshow_anim</item>
+        <item name="android:windowExitAnimation">@anim/pophidden_anim</item>
+    </style>
+
+    <!-- Dialog 动画 -->
+    <style name="style_anim_Dialog">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+</resources>

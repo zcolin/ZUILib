@@ -1,0 +1,82 @@
+<resources>
+    <!--EditText的通用属性，在app模块可以更改-->
+    <declare-styleable name="ZDialog">
+        <attr name="zdialog_style" format="reference"/>
+    </declare-styleable>
+    
+    <!--EditText的通用属性，在app模块可以更改-->
+    <declare-styleable name="ZEditText">
+        <attr name="zedittext_style" format="reference"/>
+    </declare-styleable>
+
+    <!--TextView的通用属性，在app模块可以更改-->
+    <declare-styleable name="ZTextView">
+        <attr name="ztextview_style" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="ZDivider">
+        <attr name="zdivider_color" format="color|reference"/>
+        <attr name="zdivider_height_size" format="dimension"/>
+        <attr name="zdivider_width_size" format="dimension"/>
+    </declare-styleable>
+
+    <!--用户在使用的时候可以直接在Theme中定义，则会全局生效，所以名字都分开了不同的前缀-->
+    <declare-styleable name="ZKeyValueView">
+        <attr name="zkv_height" format="dimension"/>
+        <attr name="zkv_key_text" format="string|reference"/>
+        <attr name="zkv_key_text_size" format="dimension"/>
+        <attr name="zkv_key_text_color" format="color|reference"/>
+        <attr name="zkv_key_style" format="reference"/>
+        <attr name="zkv_key_gravity" format="string"/>
+        <attr name="zkv_key_img" format="reference"/>
+        <attr name="zkv_key_ems" format="integer"/>
+        <attr name="zkv_value_text" format="string|reference"/>
+        <attr name="zkv_value_text_size" format="dimension"/>
+        <attr name="zkv_value_text_color" format="color|reference"/>
+        <attr name="zkv_value_style" format="reference"/>
+        <attr name="zkv_value_hint" format="string|reference"/>
+        <attr name="zkv_value_gravity" format="string"/>
+        <attr name="zkv_is_bottomline" format="boolean"/>
+        <attr name="zkv_is_arrow" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="ZKeyValueEditView">
+        <attr name="zkve_height" format="dimension"/>
+        <attr name="zkve_key_text" format="string|reference"/>
+        <attr name="zkve_key_text_size" format="dimension"/>
+        <attr name="zkve_key_text_color" format="color|reference"/>
+        <attr name="zkve_key_style" format="reference"/>
+        <attr name="zkve_key_gravity" format="string"/>
+        <attr name="zkve_key_img" format="reference"/>
+        <attr name="zkve_key_ems" format="integer"/>
+        <attr name="zkve_value_text" format="string|reference"/>
+        <attr name="zkve_value_text_size" format="dimension"/>
+        <attr name="zkve_value_text_color" format="color|reference"/>
+        <attr name="zkve_value_style" format="reference"/>
+        <attr name="zkve_value_hint" format="string|reference"/>
+        <attr name="zkve_value_maxline" format="integer"/>
+        <attr name="zkve_value_background" format="reference"/>
+        <attr name="zkve_is_bottomline" format="boolean"/>
+        <attr name="zkve_is_arrow" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="ZKeySwitchView">
+        <attr name="zksv_height" format="dimension"/>
+        <attr name="zksv_key_text" format="string|reference"/>
+        <attr name="zksv_key_text_size" format="dimension"/>
+        <attr name="zksv_key_text_color" format="color|reference"/>
+        <attr name="zksv_key_style" format="reference"/>
+        <attr name="zksv_key_img" format="reference"/>
+        <attr name="zksv_key_ems" format="integer"/>
+        <attr name="zksv_is_bottomline" format="boolean"/>
+        <attr name="zksv_is_checked" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="ZBanner">
+        <attr name="indicator_width" format="dimension"/>
+        <attr name="indicator_height" format="dimension"/>
+        <attr name="indicator_margin" format="dimension"/>
+        <attr name="indicator_drawable_selected" format="reference"/>
+        <attr name="indicator_drawable_unselected" format="reference"/>
+    </declare-styleable>
+</resources>

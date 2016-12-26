@@ -1,0 +1,22 @@
+<!--
+  ~ **********************************************************
+  ~   author   colin
+  ~   company  fosung
+  ~   email    wanglin2046@126.com
+  ~   date     16-11-1 下午2:39
+  ~ *********************************************************
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingBottom="@dimen/dimens_mid">
+
+    <com.fosung.gui.ZBanner
+        android:id="@+id/view_banner"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:indicator_height="@dimen/dimens_small"
+        app:indicator_width="@dimen/dimens_small"/>
+</LinearLayout>
