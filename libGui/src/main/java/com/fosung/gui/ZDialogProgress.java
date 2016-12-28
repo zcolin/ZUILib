@@ -54,7 +54,9 @@ public class ZDialogProgress extends ProgressDialog {
             public void onShow(DialogInterface dialog) {
                 tvMessage = (TextView) findViewById(R.id.progressBar_tv);
                 progressBar = (ProgressBar) findViewById(R.id.progressBar_pg);
-                progressBar.setIndeterminateDrawable(indeterminateDrawable);
+                if (indeterminateDrawable != null) {
+                    progressBar.setIndeterminateDrawable(indeterminateDrawable);
+                }
                 setTextMessage(strMessage);
             }
         });
@@ -76,7 +78,7 @@ public class ZDialogProgress extends ProgressDialog {
 
     @Override
     public void setIndeterminateDrawable(Drawable d) {
-        if (isShowing()) {
+        if (isShowing() && d != null) {
             setIndeterminateDrawable(d);
         }
         indeterminateDrawable = d;

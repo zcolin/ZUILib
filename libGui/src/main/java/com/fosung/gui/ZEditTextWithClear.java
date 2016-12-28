@@ -29,7 +29,8 @@ public class ZEditTextWithClear extends EditText {
     }
 
     public ZEditTextWithClear(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        init();
     }
 
     public ZEditTextWithClear(Context context, AttributeSet attrs, int defStyle) {

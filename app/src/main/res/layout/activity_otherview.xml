@@ -26,16 +26,14 @@
         <com.fosung.gui.ZEditTextWithClear
             android:id="@+id/et_clear"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/gui_dimens_item_height_small"
-            android:layout_marginTop="@dimen/dimens_big"
-            android:text="带清除按钮的Edittext"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_big"/>
 
         <com.fosung.gui.ZEditTextWithPassword
             android:id="@+id/et_password"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/gui_dimens_item_height_small"
-            android:layout_marginTop="@dimen/dimens_big"
-            android:text="带密码按钮的Edittext"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_big"/>
 
         <Button
             android:id="@+id/btn_1"

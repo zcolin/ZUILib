@@ -147,7 +147,6 @@ public class ZKeyValueEditView extends RelativeLayout {
         if (height > 0) {
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
         }
-
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 

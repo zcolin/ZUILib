@@ -71,11 +71,11 @@ public class ZKeySwitchView extends RelativeLayout {
         }
 
         if (keyTextSize > 0) {
-            switchButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, keyTextSize);
+            tvKey.setTextSize(TypedValue.COMPLEX_UNIT_PX, keyTextSize);
         }
 
         if (keyTextColor != 0) {
-            switchButton.setTextColor(keyTextColor);
+            tvKey.setTextColor(keyTextColor);
         }
 
         if (keyImg != 0) {
@@ -86,7 +86,7 @@ public class ZKeySwitchView extends RelativeLayout {
         }
 
         if (keyEms > 0) {
-            switchButton.setEms(keyEms);
+            tvKey.setEms(keyEms);
         }
 
         bottomLine.setVisibility(isBottomLine ? View.VISIBLE : View.GONE);

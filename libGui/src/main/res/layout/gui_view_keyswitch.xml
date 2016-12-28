@@ -29,13 +29,11 @@
         android:id="@+id/switchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignWithParentIfMissing="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/gui_dimens_small"
-        android:layout_marginRight="@dimen/gui_dimens_mid"
-        android:layout_toLeftOf="@+id/iv_arrow"
-        android:layout_toRightOf="@id/tv_key"
-        android:gravity="left|center_vertical"/>
+        android:layout_marginRight="@dimen/gui_dimens_mid"/>
 
     <include
         android:id="@+id/view_bottomline"

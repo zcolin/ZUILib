@@ -32,7 +32,8 @@ public class ZEditTextWithPassword extends EditText {
     }
 
     public ZEditTextWithPassword(Context context, AttributeSet attrs) {
-        this(context, null, 0);
+        super(context, attrs);
+        init();
     }
 
     public ZEditTextWithPassword(Context context, AttributeSet attrs, int defStyle) {

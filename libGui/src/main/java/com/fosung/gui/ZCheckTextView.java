@@ -50,6 +50,11 @@ public class ZCheckTextView extends TextView implements OnClickListener {
         setBackgroundResource(bg);
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
     /**
      * 初始化资源
      */

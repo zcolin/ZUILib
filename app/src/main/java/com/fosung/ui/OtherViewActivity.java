@@ -23,6 +23,8 @@ import com.fosung.frame.utils.ToastUtil;
 import com.fosung.gui.ZBanner;
 import com.fosung.gui.ZDialogAsyncProgress;
 import com.fosung.gui.ZDialogProgress;
+import com.fosung.gui.ZEditTextWithClear;
+import com.fosung.gui.ZEditTextWithPassword;
 import com.fosung.gui.ZTextSwitcher;
 
 import java.util.ArrayList;
@@ -44,6 +46,10 @@ public class OtherViewActivity extends FragmentActivity {
         setContentView(R.layout.activity_otherview);
         mActivity = this;
 
+        ZEditTextWithClear etClear = (ZEditTextWithClear) findViewById(R.id.et_clear);
+        etClear.setHint("这是Hint");
+        ZEditTextWithPassword etPassword = (ZEditTextWithPassword) findViewById(R.id.et_password);
+        etPassword.setHint("这是ZEditTextWithPassword");
         textSwitcher = (ZTextSwitcher) findViewById(R.id.view_textswitcher);
         banner = (ZBanner) findViewById(R.id.view_banner);
         btn1 = (Button) findViewById(R.id.btn_1);
