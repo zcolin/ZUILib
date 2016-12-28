@@ -12,7 +12,7 @@
     <!-- wheelview的框 -->
     <color name="gui_dlg_wheel_val">#13B8F5</color>
     <!-- 进度条文字颜色 -->
-    <color name="gui_progress_text">#111111</color>
+    <color name="gui_progress_text">#f7f7f7</color>
     <!-- keyvalue_view 文字颜色 -->
     <color name="gui_key_value_view_text">#333333</color>
     <!-- listitem 按下颜色 -->

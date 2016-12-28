@@ -12,7 +12,11 @@ package com.fosung.gui;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -22,8 +26,10 @@ import android.widget.TextView;
 public class ZDialogProgress extends ProgressDialog {
     private static int LAYOUT_ID;
 
+    protected ProgressBar  progressBar;
     protected TextView     tvMessage;
     protected CharSequence strMessage;
+    protected Drawable     indeterminateDrawable;
 
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
@@ -47,7 +53,9 @@ public class ZDialogProgress extends ProgressDialog {
             @Override
             public void onShow(DialogInterface dialog) {
                 tvMessage = (TextView) findViewById(R.id.progressBar_tv);
-                tvMessage.setText(strMessage);
+                progressBar = (ProgressBar) findViewById(R.id.progressBar_pg);
+                progressBar.setIndeterminateDrawable(indeterminateDrawable);
+                setTextMessage(strMessage);
             }
         });
     }
@@ -61,9 +69,27 @@ public class ZDialogProgress extends ProgressDialog {
     @Override
     public void setMessage(CharSequence message) {
         if (isShowing()) {
-            if (tvMessage != null)
-                tvMessage.setText(message);
+            setTextMessage(message);
         }
         strMessage = message;
+    }
+
+    @Override
+    public void setIndeterminateDrawable(Drawable d) {
+        if (isShowing()) {
+            setIndeterminateDrawable(d);
+        }
+        indeterminateDrawable = d;
+    }
+
+    private void setTextMessage(CharSequence message) {
+        if (tvMessage != null) {
+            if (TextUtils.isEmpty(message)) {
+                tvMessage.setVisibility(View.GONE);
+            } else {
+                tvMessage.setVisibility(View.VISIBLE);
+                tvMessage.setText(message);
+            }
+        }
     }
 }

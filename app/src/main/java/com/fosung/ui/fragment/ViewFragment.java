@@ -56,6 +56,7 @@ public class ViewFragment extends BaseFrameLazyLoadFrag implements View.OnClickL
         llContent = getView(R.id.ll_content);
         listButton.add(addButton("ZKVActivity"));
         listButton.add(addButton("WebViewDemo"));
+        listButton.add(addButton("WebViewVideoDemo"));
         listButton.add(addButton("DialogDemo"));
         listButton.add(addButton("其他View示例"));
 

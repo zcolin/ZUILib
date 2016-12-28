@@ -2,6 +2,7 @@
     <dimen name="gui_dimens_small">5dp</dimen>
     <dimen name="gui_dimens_mid">10dp</dimen>
     <dimen name="gui_dimens_big">15dp</dimen>
+    <dimen name="gui_dimens_large">20dp</dimen>
 
     <dimen name="gui_textsize_small">14dp</dimen>
     <dimen name="gui_textsize_normal">16dp</dimen>

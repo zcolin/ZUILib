@@ -3,11 +3,11 @@
     <style name="style_progressbar">
         <item name="android:indeterminateDrawable">@drawable/gui_progress_draw</item>
         <item name="android:indeterminateBehavior">repeat</item>
-        <item name="android:indeterminateDuration">2500</item>
-        <item name="android:minWidth">36dp</item>
-        <item name="android:maxWidth">36dp</item>
-        <item name="android:minHeight">36dp</item>
-        <item name="android:maxHeight">36dp</item>
+        <item name="android:indeterminateDuration">3600</item>
+        <item name="android:minWidth">32dp</item>
+        <item name="android:maxWidth">32dp</item>
+        <item name="android:minHeight">32dp</item>
+        <item name="android:maxHeight">32dp</item>
     </style>
 
     <!-- webview进度条风格 -->

@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="@dimen/gui_dimens_mid">
+        android:background="@drawable/gui_bg_progress"
+        android:padding="@dimen/gui_dimens_large">
 
         <ProgressBar
             android:id="@+id/progressBar_pg"
@@ -26,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/progressBar_pg"
+            android:paddingLeft="@dimen/gui_dimens_mid"
             android:gravity="center_vertical"
             android:textColor="@color/gui_progress_text"
             android:textSize="@dimen/gui_textsize_small">

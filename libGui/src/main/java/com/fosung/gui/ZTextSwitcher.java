@@ -56,7 +56,7 @@ public class ZTextSwitcher extends TextSwitcher {
         textSize = DisplayUtil.dip2px(context, 16);
 
         super.setInAnimation(context, R.anim.ztextswitcher_slide_in);
-        super.setInAnimation(context, R.anim.ztextswitcher_slide_out);
+        super.setOutAnimation(context, R.anim.ztextswitcher_slide_out);
     }
 
     @Override
@@ -260,7 +260,7 @@ public class ZTextSwitcher extends TextSwitcher {
     class TextHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
-            setText(listText.get(curPosition));
+            ZTextSwitcher.super.setText(listText.get(curPosition));
 
             /*当数据1屏时才开始循环播放*/
             if (listText.size() > 1) {

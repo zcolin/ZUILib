@@ -9,7 +9,6 @@ package com.fosung.gui;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.annotation.AnimRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StyleRes;
@@ -79,7 +78,7 @@ public class ZDialog extends Dialog {
      *
      * @param anim 弹出框显示隐藏传入动画
      */
-    public ZDialog setAnim(@AnimRes int anim) {
+    public ZDialog setAnim(@StyleRes int anim) {
         this.anim = anim;
         return this;
     }

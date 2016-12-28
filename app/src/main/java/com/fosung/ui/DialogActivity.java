@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.fosung.frame.utils.ScreenUtil;
 import com.fosung.frame.utils.ToastUtil;
 import com.fosung.gui.ZAlert;
 import com.fosung.gui.ZConfirm;
@@ -116,6 +117,9 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
                             return true;
                         }
                     })
+                    .setGravity(Gravity.BOTTOM)
+                    .setLayout(ScreenUtil.getScreenWidth(mActivity),0)
+                    .setAnim(R.style.style_anim_dialog_bottom)
                     .show();
         } else if (v == listButton.get(4)) {
             new ZDialogWheelDate(mActivity)
