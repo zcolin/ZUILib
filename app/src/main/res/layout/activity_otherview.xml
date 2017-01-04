@@ -55,9 +55,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            app:zkv_key_gravity="left"
             app:zkv_is_arrow="true"
             app:zkv_is_bottomline="true"
+            app:zkv_key_gravity="left"
             app:zkv_key_img="@drawable/ic_launcher"
             app:zkv_key_text="KEY"
             app:zkv_key_text_color="@color/black_dark"
@@ -92,5 +92,15 @@
             app:zkve_key_text_size="20dp"
             app:zkve_value_hint="这是Edittext"
             app:zkve_value_maxline="1"/>
+
+
+        <com.fosung.gui.ZTagLayout
+            android:id="@+id/tagview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_big"
+            android:background="@color/white"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/dimens_small"/>
     </LinearLayout>
 </ScrollView>

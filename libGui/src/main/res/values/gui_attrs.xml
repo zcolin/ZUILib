@@ -79,4 +79,14 @@
         <attr name="indicator_drawable_selected" format="reference"/>
         <attr name="indicator_drawable_unselected" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="ZTagLayout">
+        <attr name="lineMargin" format="dimension" />
+        <attr name="tagMargin" format="dimension" />
+        <attr name="textPadding" format="dimension" />
+        <attr name="textPaddingLeft" format="dimension" />
+        <attr name="textPaddingRight" format="dimension" />
+        <attr name="textPaddingTop" format="dimension" />
+        <attr name="textPaddingBottom" format="dimension" />
+    </declare-styleable>
 </resources>

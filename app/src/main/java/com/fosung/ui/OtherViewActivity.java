@@ -25,9 +25,12 @@ import com.fosung.gui.ZDialogAsyncProgress;
 import com.fosung.gui.ZDialogProgress;
 import com.fosung.gui.ZEditTextWithClear;
 import com.fosung.gui.ZEditTextWithPassword;
+import com.fosung.gui.ZTagLayout;
 import com.fosung.gui.ZTextSwitcher;
 
 import java.util.ArrayList;
+
+import static android.R.attr.data;
 
 
 /**
@@ -39,6 +42,7 @@ public class OtherViewActivity extends FragmentActivity {
     private ZBanner       banner;
     private Button        btn1;
     private Button        btn2;
+    private ZTagLayout    tagLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class OtherViewActivity extends FragmentActivity {
         ZEditTextWithPassword etPassword = (ZEditTextWithPassword) findViewById(R.id.et_password);
         etPassword.setHint("这是ZEditTextWithPassword");
         textSwitcher = (ZTextSwitcher) findViewById(R.id.view_textswitcher);
+        tagLayout = (ZTagLayout) findViewById(R.id.tagview);
         banner = (ZBanner) findViewById(R.id.view_banner);
         btn1 = (Button) findViewById(R.id.btn_1);
         btn2 = (Button) findViewById(R.id.btn_2);
@@ -67,6 +72,7 @@ public class OtherViewActivity extends FragmentActivity {
             }
         });
 
+        setUpTagView();
         startBanner();
         startTextSwitcher();
     }
@@ -119,6 +125,29 @@ public class OtherViewActivity extends FragmentActivity {
               })
               .setImages(listUrl)
               .startAutoPlay();
+    }
+
+    private void setUpTagView() {
+        ArrayList<ZTagLayout.Tag> listTag = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            ZTagLayout.Tag tag = tagLayout.createTag(String.format("第%d个标签", i))
+                                          .setData(data)
+                                          .setBackground(null)
+                                          .setTextColor(getResources().getColor(R.color.black_light))
+                                          .setPressTextColor(getResources().getColor(R.color.black_light))
+                                          .setSelectTextColor(getResources().getColor(R.color.colorPrimary))
+                                          .setIsSelected(i == 5);
+            listTag.add(tag);
+        }
+        tagLayout.setOnTagClickListener(new ZTagLayout.OnTagClickListener() {
+            @Override
+            public void onTagClick(int position, ZTagLayout.Tag tag) {
+                if (tag.getData() != null) {
+                    ToastUtil.toastShort(String.format("第%d个标签", position));
+                }
+            }
+        });
+        tagLayout.addTags(listTag);
     }
 
     private ArrayList<String> getListUrl() {
