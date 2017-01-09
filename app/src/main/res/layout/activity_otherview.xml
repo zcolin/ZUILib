@@ -102,5 +102,11 @@
             android:background="@color/white"
             android:gravity="center_horizontal"
             android:paddingTop="@dimen/dimens_small"/>
+
+        <com.fosung.gui.ZoomImageView
+            android:id="@+id/zoomImageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimens_big"/>
     </LinearLayout>
 </ScrollView>

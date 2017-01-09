@@ -19,6 +19,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.fosung.frame.imageloader.ImageLoaderUtils;
 import com.fosung.frame.utils.ToastUtil;
 import com.fosung.gui.ZBanner;
 import com.fosung.gui.ZDialogAsyncProgress;
@@ -27,6 +28,7 @@ import com.fosung.gui.ZEditTextWithClear;
 import com.fosung.gui.ZEditTextWithPassword;
 import com.fosung.gui.ZTagLayout;
 import com.fosung.gui.ZTextSwitcher;
+import com.fosung.gui.ZoomImageView;
 
 import java.util.ArrayList;
 
@@ -43,6 +45,7 @@ public class OtherViewActivity extends FragmentActivity {
     private Button        btn1;
     private Button        btn2;
     private ZTagLayout    tagLayout;
+    private ZoomImageView zoomImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,7 @@ public class OtherViewActivity extends FragmentActivity {
         textSwitcher = (ZTextSwitcher) findViewById(R.id.view_textswitcher);
         tagLayout = (ZTagLayout) findViewById(R.id.tagview);
         banner = (ZBanner) findViewById(R.id.view_banner);
+        zoomImageView = (ZoomImageView) findViewById(R.id.zoomImageView);
         btn1 = (Button) findViewById(R.id.btn_1);
         btn2 = (Button) findViewById(R.id.btn_2);
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +75,7 @@ public class OtherViewActivity extends FragmentActivity {
                 showDlgProgress();
             }
         });
-
+        ImageLoaderUtils.displayImage(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=214&gp=0.jpg", zoomImageView);
         setUpTagView();
         startBanner();
         startTextSwitcher();
