@@ -51,8 +51,7 @@ public class ZKeySwitchView extends RelativeLayout {
         tvKey = (TextView) findViewById(R.id.tv_key);
         View bottomLine = findViewById(R.id.view_bottomline);
 
-        TypedArray a = context.getTheme()
-                              .obtainStyledAttributes(attrs, R.styleable.ZKeySwitchView, defStyle, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ZKeySwitchView, defStyle, 0);
         height = (int) a.getDimension(R.styleable.ZKeySwitchView_zksv_height, 0);
         String keyText = a.getString(R.styleable.ZKeySwitchView_zksv_key_text);
         float keyTextSize = a.getDimension(R.styleable.ZKeySwitchView_zksv_key_text_size, 0);

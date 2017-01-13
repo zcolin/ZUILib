@@ -90,14 +90,14 @@ public class ZBanner extends FrameLayout {
     public ZBanner(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.context = context;
-        initView(context, attrs);
+        initView(context, attrs, defStyle);
     }
 
-    private void handleTypedArray(Context context, AttributeSet attrs) {
+    private void handleTypedArray(Context context, AttributeSet attrs, int defStyle) {
         if (attrs == null) {
             return;
         }
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ZBanner);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ZBanner, defStyle, 0);
         mIndicatorWidth = typedArray.getDimensionPixelSize(R.styleable.ZBanner_indicator_width, 8);
         mIndicatorHeight = typedArray.getDimensionPixelSize(R.styleable.ZBanner_indicator_height, 8);
         mIndicatorMargin = typedArray.getDimensionPixelSize(R.styleable.ZBanner_indicator_margin, 5);
@@ -106,14 +106,14 @@ public class ZBanner extends FrameLayout {
         typedArray.recycle();
     }
 
-    private void initView(Context context, AttributeSet attrs) {
+    private void initView(Context context, AttributeSet attrs, int defStyle) {
         View view = LayoutInflater.from(context)
                                   .inflate(R.layout.gui_view_banner, this, true);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         indicator = (LinearLayout) view.findViewById(R.id.indicator);
         bannerTitle = (TextView) view.findViewById(R.id.bannerTitle);
         numIndicator = (TextView) view.findViewById(R.id.numIndicator);
-        handleTypedArray(context, attrs);
+        handleTypedArray(context, attrs, defStyle);
     }
 
     public ZBanner setDelayTime(long delayTime) {

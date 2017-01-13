@@ -28,8 +28,7 @@ public class ZDivider extends View {
 
     public ZDivider(Context context, AttributeSet attr, int defStyle) {
         super(context, attr, defStyle);
-        TypedArray a = context.getTheme()
-                              .obtainStyledAttributes(attr, R.styleable.ZDivider, defStyle, 0);
+        TypedArray a = context.obtainStyledAttributes(attr, R.styleable.ZDivider, defStyle, 0);
         width = (int) a.getDimension(R.styleable.ZDivider_zdivider_width_size, 0);
         height = (int) a.getDimension(R.styleable.ZDivider_zdivider_height_size, 0);
         int color = a.getColor(R.styleable.ZDivider_zdivider_color, Color.GRAY);

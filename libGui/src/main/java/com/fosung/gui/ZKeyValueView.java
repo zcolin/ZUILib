@@ -55,8 +55,7 @@ public class ZKeyValueView extends RelativeLayout {
         ivImg = (ImageView) findViewById(R.id.iv_img);
         View bottomLine = findViewById(R.id.view_bottomline);
 
-        TypedArray a = context.getTheme()
-                              .obtainStyledAttributes(attrs, R.styleable.ZKeyValueView, defStyle, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ZKeyValueView, defStyle, 0);
         height = (int) a.getDimension(R.styleable.ZKeyValueView_zkv_height, 0);
         String keyText = a.getString(R.styleable.ZKeyValueView_zkv_key_text);
         float keyTextSize = a.getDimension(R.styleable.ZKeyValueView_zkv_key_text_size, 0);
