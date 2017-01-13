@@ -9,27 +9,27 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.fosung.gui.ZBanner
+        <com.zcolin.gui.ZBanner
             android:id="@+id/view_banner"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             app:indicator_height="@dimen/dimens_small"
             app:indicator_width="@dimen/dimens_small"/>
 
-        <com.fosung.gui.ZTextSwitcher
+        <com.zcolin.gui.ZTextSwitcher
             android:id="@+id/view_textswitcher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimens_big"
             android:background="@color/blue_mid"/>
 
-        <com.fosung.gui.ZEditTextWithClear
+        <com.zcolin.gui.ZEditTextWithClear
             android:id="@+id/et_clear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimens_big"/>
 
-        <com.fosung.gui.ZEditTextWithPassword
+        <com.zcolin.gui.ZEditTextWithPassword
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
             android:textAllCaps="false"/>
 
         <!--def  is_bottomline=true, is_arrow=true   -->
-        <com.fosung.gui.ZKeyValueView
+        <com.zcolin.gui.ZKeyValueView
             android:id="@+id/zkv_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             app:zkv_value_text_size="20dp"/>
 
         <!--def  is_bottomline=true, is_checked=false   -->
-        <com.fosung.gui.ZKeySwitchView
+        <com.zcolin.gui.ZKeySwitchView
             android:id="@+id/zkv_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             app:zksv_key_text_size="20dp"/>
 
         <!--def  is_bottomline=true, is_arrow=true   -->
-        <com.fosung.gui.ZKeyValueEditView
+        <com.zcolin.gui.ZKeyValueEditView
             android:id="@+id/zkv_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
             app:zkve_value_maxline="1"/>
 
 
-        <com.fosung.gui.ZTagLayout
+        <com.zcolin.gui.ZTagLayout
             android:id="@+id/tagview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
             android:gravity="center_horizontal"
             android:paddingTop="@dimen/dimens_small"/>
 
-        <com.fosung.gui.ZoomImageView
+        <com.zcolin.gui.ZoomImageView
             android:id="@+id/zoomImageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

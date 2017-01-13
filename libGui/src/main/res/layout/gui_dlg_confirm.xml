@@ -33,7 +33,7 @@
         android:textIsSelectable="true">
     </TextView>
 
-    <com.fosung.gui.ZDialogBottomView
+    <com.zcolin.gui.ZDialogBottomView
         android:id="@+id/dialog_bottom"
         android:layout_width="wrap_content"
         android:layout_height="48dp"

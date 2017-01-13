@@ -16,8 +16,8 @@ import android.util.TypedValue;
 
 import com.fosung.frame.app.BaseFrameFrag;
 import com.fosung.frame.utils.DisplayUtil;
-import com.fosung.gui.ZTabView;
-import com.fosung.gui.ZViewPager;
+import com.zcolin.gui.ZTabView;
+import com.zcolin.gui.ZViewPager;
 import com.fosung.ui.adapter.MainPagerAdapter;
 import com.fosung.ui.fragment.ViewFragment;
 

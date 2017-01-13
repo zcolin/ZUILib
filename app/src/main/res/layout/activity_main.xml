@@ -13,7 +13,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.fosung.gui.ZTabView
+    <com.zcolin.gui.ZTabView
         android:id="@+id/view_tabview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:layout_height="1px"
         android:layout_above="@id/view_tabview"/>
 
-    <com.fosung.gui.ZViewPager
+    <com.zcolin.gui.ZViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

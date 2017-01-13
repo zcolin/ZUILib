@@ -18,13 +18,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <!--def  is_bottomline=true, is_arrow=true   -->
-        <com.fosung.gui.ZKeyValueView
+        <com.zcolin.gui.ZKeyValueView
             android:id="@+id/zkv_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:zkv_key_text="KEY"/>
 
-        <com.fosung.gui.ZKeyValueView
+        <com.zcolin.gui.ZKeyValueView
             android:id="@+id/zkv_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             app:zkv_value_text_color="@color/colorPrimary"
             app:zkv_value_text_size="20dp"/>
 
-        <com.fosung.gui.ZKeyValueView
+        <com.zcolin.gui.ZKeyValueView
             android:id="@+id/zkv_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             app:zkv_value_gravity="left"
             app:zkv_value_text="VALUE"/>
 
-        <com.fosung.gui.ZKeyValueView
+        <com.zcolin.gui.ZKeyValueView
             android:id="@+id/zkv_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             app:zkv_value_gravity="left"
             app:zkv_value_text="VALUE"/>
 
-        <com.fosung.gui.ZKeyValueView
+        <com.zcolin.gui.ZKeyValueView
             android:id="@+id/zkv_5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             app:zkv_value_gravity="left"
             app:zkv_value_text="VALUE"/>
 
-        <com.fosung.gui.ZKeyValueView
+        <com.zcolin.gui.ZKeyValueView
             android:id="@+id/zkv_6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"/>
 
-        <com.fosung.gui.ZKeyValueEditView
+        <com.zcolin.gui.ZKeyValueEditView
             android:id="@+id/zkv_7"
             android:layout_marginBottom="30dp"
             android:layout_width="match_parent"
@@ -99,7 +99,7 @@
             app:zkve_value_text_color="@color/colorPrimary"
             app:zkve_value_text_size="20dp"/>
 
-        <com.fosung.gui.ZKeyValueEditView
+        <com.zcolin.gui.ZKeyValueEditView
             android:id="@+id/zkv_8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

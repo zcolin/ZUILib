@@ -21,14 +21,14 @@ import android.widget.Button;
 
 import com.fosung.frame.imageloader.ImageLoaderUtils;
 import com.fosung.frame.utils.ToastUtil;
-import com.fosung.gui.ZBanner;
-import com.fosung.gui.ZDialogAsyncProgress;
-import com.fosung.gui.ZDialogProgress;
-import com.fosung.gui.ZEditTextWithClear;
-import com.fosung.gui.ZEditTextWithPassword;
-import com.fosung.gui.ZTagLayout;
-import com.fosung.gui.ZTextSwitcher;
-import com.fosung.gui.ZoomImageView;
+import com.zcolin.gui.ZBanner;
+import com.zcolin.gui.ZDialogAsyncProgress;
+import com.zcolin.gui.ZDialogProgress;
+import com.zcolin.gui.ZEditTextWithClear;
+import com.zcolin.gui.ZEditTextWithPassword;
+import com.zcolin.gui.ZTagLayout;
+import com.zcolin.gui.ZTextSwitcher;
+import com.zcolin.gui.ZoomImageView;
 
 import java.util.ArrayList;
 

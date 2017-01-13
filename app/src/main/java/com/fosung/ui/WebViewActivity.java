@@ -20,9 +20,9 @@ import com.fosung.frame.jsbridge.BridgeHandler;
 import com.fosung.frame.jsbridge.CallBackFunction;
 import com.fosung.frame.jsbridge.DefaultHandler;
 import com.fosung.frame.utils.GsonUtil;
-import com.fosung.gui.ZAlert;
-import com.fosung.gui.ZDialog;
-import com.fosung.gui.webview.ZWebView;
+import com.zcolin.gui.ZAlert;
+import com.zcolin.gui.ZDialog;
+import com.zcolin.gui.webview.ZWebView;
 
 /**
  * 带JsBridge的webview的Demo

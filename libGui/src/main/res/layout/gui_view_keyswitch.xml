@@ -25,7 +25,7 @@
         android:textColor="@color/gui_key_value_view_text"
         android:textSize="@dimen/gui_textsize_normal"/>
 
-    <com.fosung.gui.ZCheckTextView
+    <com.zcolin.gui.ZCheckTextView
         android:id="@+id/switchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

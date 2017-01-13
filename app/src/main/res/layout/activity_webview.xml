@@ -22,10 +22,10 @@
         />
 
     <!-- webview 演示web调用Java -->
-    <com.fosung.gui.webview.ZWebView
+    <com.zcolin.gui.webview.ZWebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.fosung.gui.webview.ZWebView>
+    </com.zcolin.gui.webview.ZWebView>
 
 </LinearLayout>

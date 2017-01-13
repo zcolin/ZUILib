@@ -8,8 +8,8 @@
 package com.fosung.ui.app;
 
 import com.fosung.frame.app.BaseApp;
-import com.fosung.gui.ZConfirm;
-import com.fosung.gui.ZDialogBottomView;
+import com.zcolin.gui.ZConfirm;
+import com.zcolin.gui.ZDialogBottomView;
 import com.fosung.ui.R;
 
 /**

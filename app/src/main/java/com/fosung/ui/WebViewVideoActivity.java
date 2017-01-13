@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 
-import com.fosung.gui.webview.ZWebView;
+import com.zcolin.gui.webview.ZWebView;
 
 /**
  * 带JsBridge的webview的Demo

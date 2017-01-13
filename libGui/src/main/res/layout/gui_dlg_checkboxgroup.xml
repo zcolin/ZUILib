@@ -19,7 +19,7 @@
         android:visibility="gone">
     </TextView>
 
-    <com.fosung.gui.DialogFixHeightScrollView
+    <com.zcolin.gui.DialogFixHeightScrollView
         android:id="@+id/dialogcheckboxgroup_sc"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -30,9 +30,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"/>
-    </com.fosung.gui.DialogFixHeightScrollView>
+    </com.zcolin.gui.DialogFixHeightScrollView>
 
-    <com.fosung.gui.ZDialogBottomView
+    <com.zcolin.gui.ZDialogBottomView
         android:id="@+id/dialogcheckboxgroup_bottom"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
