@@ -60,7 +60,46 @@ ZKeySwitchView.initLayout(layoutId);
 ZWebView：
 ```
 webView = (ZWebView) findViewById(R.id.webView);
-webView.setSupportVideoFullScreen(this).setSupportProgressBar();
+webView.setSupportVideoFullScreen(this)
+        .setSupportProgressBar()
+        .setSupportChooeFile(activity)
+        .setSupportVideoFullScreen（activity）
+        .setSupportAutoZoom()
+        .setSupportJsBridge();
 ```
+Other
+```
+//ZTagLayout  标签控件流式布局
+ZTagLayout.Tag tag = tagLayout.createTag(String.format("第%d个标签", 0))
+                          .setData(data)
+                          .setBackground(null)
+                          .setTextColor(getResources().getColor(R.color.black_light))
+                          .setPressTextColor(getResources().getColor(R.color.black_light))
+                          .setSelectTextColor(getResources().getColor(R.color.colorPrimary))
+                          .setIsSelected(i == 5);
+tagLayout.addTag(tag);
 
+//ZoomImageView 手势放大缩小图片控件
+zoomImageView.setMinScale(0.5f);
+zoomImageView.setMaxScale(2f);
+zoomImageView.setOnPhotoTapListener(new ZoomImageView.OnPhotoTapListener() {
+    @Override
+    public void onPhotoTap(View view, float x, float y) {
+        toggleCoverView();
+    }
+});
 
+//ZBanner 导航轮播图
+banner.setBannerStyle(ZBanner.NUM_INDICATOR_TITLE)
+  .setIndicatorGravity(ZBanner.RIGHT)
+  .setBannerTitle(listTitle)
+  .setDelayTime(4000)
+  .setOnBannerClickListener(new ZBanner.OnBannerClickListener() {
+      @Override
+      public void OnBannerClick(View view, int position) {
+
+      }
+  })
+  .setImages(listUrl)
+  .startAutoPlay();
+```
