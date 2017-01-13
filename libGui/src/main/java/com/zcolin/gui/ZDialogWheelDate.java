@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.fosung.gui.R;
 import com.zcolin.gui.wheelview.adapters.AbstractWheelTextAdapter;
 import com.zcolin.gui.wheelview.views.OnWheelChangedListener;
 import com.zcolin.gui.wheelview.views.OnWheelScrollListener;

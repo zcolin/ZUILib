@@ -15,7 +15,6 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.fosung.gui.R;
 
 
 /**

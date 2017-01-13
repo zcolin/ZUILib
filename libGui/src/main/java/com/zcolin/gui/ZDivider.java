@@ -14,7 +14,6 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.fosung.gui.R;
 
 /**
  * 分隔线

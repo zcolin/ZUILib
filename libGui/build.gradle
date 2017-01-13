@@ -23,5 +23,5 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support:appcompat-v7:24.2.1'
 
-    compile 'com.github.zcolin:ZFrameTemplate:1.0.7'//程序框架 
+    compile 'com.github.zcolin:ZFrameTemplate:latest.release'//程序框架 
 }

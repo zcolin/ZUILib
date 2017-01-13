@@ -18,7 +18,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.EditText;
 
-import com.fosung.gui.R;
 
 
 /**

@@ -16,7 +16,6 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.LayoutParams;
 import android.widget.TextView;
 
-import com.fosung.gui.R;
 
 import java.util.ArrayList;
 

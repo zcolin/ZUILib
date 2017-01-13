@@ -22,7 +22,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fosung.frame.imageloader.ImageLoaderUtils;
-import com.fosung.gui.R;
 
 
 /**

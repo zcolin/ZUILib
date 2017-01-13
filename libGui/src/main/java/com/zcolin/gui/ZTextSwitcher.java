@@ -24,7 +24,6 @@ import android.widget.TextSwitcher;
 import android.widget.TextView;
 
 import com.fosung.frame.utils.DisplayUtil;
-import com.fosung.gui.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

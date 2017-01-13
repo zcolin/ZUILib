@@ -30,7 +30,7 @@ import com.fosung.frame.jsbridge.BridgeWebView;
 import com.fosung.frame.jsbridge.CallBackFunction;
 import com.fosung.frame.utils.DisplayUtil;
 import com.fosung.frame.utils.LogUtil;
-import com.fosung.gui.R;
+import com.zcolin.gui.R;
 
 
 /**

@@ -29,7 +29,6 @@ import android.widget.TextView;
 
 import com.fosung.frame.utils.DisplayUtil;
 import com.fosung.frame.utils.ScreenUtil;
-import com.fosung.gui.R;
 
 import java.util.ArrayList;
 import java.util.List;
