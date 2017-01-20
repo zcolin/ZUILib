@@ -16,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
@@ -26,6 +27,7 @@ import com.zcolin.gui.ZDialogAsyncProgress;
 import com.zcolin.gui.ZDialogProgress;
 import com.zcolin.gui.ZEditTextWithClear;
 import com.zcolin.gui.ZEditTextWithPassword;
+import com.zcolin.gui.ZPopupMenu;
 import com.zcolin.gui.ZTagLayout;
 import com.zcolin.gui.ZTextSwitcher;
 import com.zcolin.gui.ZoomImageView;
@@ -42,8 +44,6 @@ public class OtherViewActivity extends FragmentActivity {
     private Activity      mActivity;
     private ZTextSwitcher textSwitcher;
     private ZBanner       banner;
-    private Button        btn1;
-    private Button        btn2;
     private ZTagLayout    tagLayout;
     private ZoomImageView zoomImageView;
 
@@ -61,8 +61,9 @@ public class OtherViewActivity extends FragmentActivity {
         tagLayout = (ZTagLayout) findViewById(R.id.tagview);
         banner = (ZBanner) findViewById(R.id.view_banner);
         zoomImageView = (ZoomImageView) findViewById(R.id.zoomImageView);
-        btn1 = (Button) findViewById(R.id.btn_1);
-        btn2 = (Button) findViewById(R.id.btn_2);
+        Button btn1 = (Button) findViewById(R.id.btn_1);
+        Button btn2 = (Button) findViewById(R.id.btn_2);
+        final Button btn3 = (Button) findViewById(R.id.btn_3);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +74,12 @@ public class OtherViewActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 showDlgProgress();
+            }
+        });
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupMenu(btn3);
             }
         });
         ImageLoaderUtils.displayImage(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=214&gp=0.jpg", zoomImageView);
@@ -214,5 +221,23 @@ public class OtherViewActivity extends FragmentActivity {
                 progress.dismiss();
             }
         }.execute(0);
+    }
+
+    private void showPopupMenu(Button btn3) {
+        ZPopupMenu.Item item = new ZPopupMenu.Item();
+        item.setBackground(mActivity, R.drawable.gui_listitem_sel);
+        item.setText("富强福");
+        new ZPopupMenu(mActivity).addAction("和谐福")
+                                 .addAction("有善福")
+                                 .addAction("敬业福")
+                                 .addAction(item)
+                                 .setItemOnClickListener(new ZPopupMenu.OnItemOnClickListener() {
+                                     @Override
+                                     public boolean onItemClick(ZPopupMenu.Item item, int position) {
+                                         ToastUtil.toastShort(String.valueOf(item.text));
+                                         return true;
+                                     }
+                                 })
+                                 .show(btn3, -250, 0, Gravity.RIGHT);
     }
 }

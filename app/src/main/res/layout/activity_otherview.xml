@@ -49,6 +49,13 @@
             android:text="ZDlgProgress"
             android:textAllCaps="false"/>
 
+        <Button
+            android:id="@+id/btn_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ZPopupMenu"
+            android:textAllCaps="false"/>
+        
         <!--def  is_bottomline=true, is_arrow=true   -->
         <com.zcolin.gui.ZKeyValueView
             android:id="@+id/zkv_1"
