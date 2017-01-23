@@ -3,10 +3,10 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     16-12-21 下午3:16
+ *   date     17-1-23 上午10:36
  * ********************************************************
  */
-package com.fosung.ui;
+package com.zcolin.ui.demo;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,6 +20,7 @@ import com.fosung.frame.jsbridge.BridgeHandler;
 import com.fosung.frame.jsbridge.CallBackFunction;
 import com.fosung.frame.jsbridge.DefaultHandler;
 import com.fosung.frame.utils.GsonUtil;
+import com.fosung.ui.R;
 import com.zcolin.gui.ZAlert;
 import com.zcolin.gui.ZDialog;
 import com.zcolin.gui.webview.ZWebView;

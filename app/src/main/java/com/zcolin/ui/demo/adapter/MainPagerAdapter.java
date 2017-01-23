@@ -12,13 +12,13 @@
  * @date		: 2015年5月13日 
  * @version 	: V1.0
  */
-package com.fosung.ui.adapter;
+package com.zcolin.ui.demo.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.fosung.ui.MainActivity;
+import com.zcolin.ui.demo.MainActivity;
 
 
 /**

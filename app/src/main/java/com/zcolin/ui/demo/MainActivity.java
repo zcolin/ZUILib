@@ -3,11 +3,11 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     16-12-21 下午3:16
+ *   date     17-1-23 上午10:36
  * ********************************************************
  */
 
-package com.fosung.ui;
+package com.zcolin.ui.demo;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -16,10 +16,11 @@ import android.util.TypedValue;
 
 import com.fosung.frame.app.BaseFrameFrag;
 import com.fosung.frame.utils.DisplayUtil;
+import com.fosung.ui.R;
 import com.zcolin.gui.ZTabView;
 import com.zcolin.gui.ZViewPager;
-import com.fosung.ui.adapter.MainPagerAdapter;
-import com.fosung.ui.fragment.ViewFragment;
+import com.zcolin.ui.demo.adapter.MainPagerAdapter;
+import com.zcolin.ui.demo.fragment.ViewFragment;
 
 
 /**

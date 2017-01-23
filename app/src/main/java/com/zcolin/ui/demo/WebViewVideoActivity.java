@@ -3,15 +3,16 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     16-12-26 上午11:33
+ *   date     17-1-23 上午10:36
  * ********************************************************
  */
-package com.fosung.ui;
+package com.zcolin.ui.demo;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 
+import com.fosung.ui.R;
 import com.zcolin.gui.webview.ZWebView;
 
 /**

@@ -42,7 +42,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
-        android:name=".app.App"
+        android:name="com.zcolin.ui.demo.app.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -52,7 +52,7 @@
             android:name="com.fosung.frame.imageloader.SimpleGlideModule"
             android:value="GlideModule"/>
 
-        <activity android:name=".InitActivity">
+        <activity android:name="com.zcolin.ui.demo.InitActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -60,15 +60,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.zcolin.ui.demo.MainActivity"
             android:launchMode="singleTask"/>
-        <activity android:name=".ZKVViewActivity"/>
-        <activity android:name=".WebViewActivity"/>
+        <activity android:name="com.zcolin.ui.demo.ZKVViewActivity"/>
+        <activity android:name="com.zcolin.ui.demo.WebViewActivity"/>
         <activity
-            android:name=".WebViewVideoActivity"
+            android:name="com.zcolin.ui.demo.WebViewVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"/>
-        <activity android:name=".DialogActivity"/>
-        <activity android:name=".OtherViewActivity"/>
+        <activity android:name="com.zcolin.ui.demo.DialogActivity"/>
+        <activity android:name="com.zcolin.ui.demo.OtherViewActivity"/>
     </application>
 
 </manifest>

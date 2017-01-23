@@ -5,7 +5,7 @@
  * date     16-7-18 下午5:24
  **********************************************************/
 
-package com.fosung.ui.fragment;
+package com.zcolin.ui.demo.fragment;
 
 
 import android.os.Bundle;
@@ -18,11 +18,11 @@ import android.widget.LinearLayout;
 import com.fosung.frame.app.BaseFrameLazyLoadFrag;
 import com.fosung.frame.utils.ActivityUtil;
 import com.fosung.ui.R;
-import com.fosung.ui.DialogActivity;
-import com.fosung.ui.OtherViewActivity;
-import com.fosung.ui.WebViewActivity;
-import com.fosung.ui.WebViewVideoActivity;
-import com.fosung.ui.ZKVViewActivity;
+import com.zcolin.ui.demo.DialogActivity;
+import com.zcolin.ui.demo.OtherViewActivity;
+import com.zcolin.ui.demo.WebViewActivity;
+import com.zcolin.ui.demo.WebViewVideoActivity;
+import com.zcolin.ui.demo.ZKVViewActivity;
 
 import java.util.ArrayList;
 

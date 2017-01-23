@@ -3,10 +3,10 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     16-12-21 下午3:16
+ *   date     17-1-23 上午10:36
  * ********************************************************
  */
-package com.fosung.ui;
+package com.zcolin.ui.demo;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -18,8 +18,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.fosung.frame.utils.ScreenUtil;
 import com.fosung.frame.utils.ToastUtil;
+import com.fosung.ui.R;
 import com.zcolin.gui.ZAlert;
 import com.zcolin.gui.ZConfirm;
 import com.zcolin.gui.ZDialog;
@@ -117,10 +117,10 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
                             return true;
                         }
                     })
-                    .setGravity(Gravity.BOTTOM)
-                    .setLayout(ScreenUtil.getScreenWidth(mActivity),0)
-                    .setAnim(R.style.style_anim_dialog_bottom)
-                    .show();
+//                    .setGravity(Gravity.BOTTOM)
+//                    .setLayout(ScreenUtil.getScreenWidth(mActivity),0)
+//                    .setAnim(R.style.style_anim_dialog_bottom)
+                    .showFromBottom();
         } else if (v == listButton.get(4)) {
             new ZDialogWheelDate(mActivity)
                     .setTitle("ZDialogWheelDate")

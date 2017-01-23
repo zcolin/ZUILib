@@ -13,11 +13,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup.LayoutParams;
 import android.widget.TextView;
 
+import com.fosung.frame.utils.ScreenUtil;
 
 import java.util.ArrayList;
 
@@ -71,7 +73,7 @@ public class ZDialogMenu extends ZDialog {
         int padding = (int) context.getResources()
                                    .getDimension(R.dimen.gui_dimens_big);
         int paddingLR = (int) context.getResources()
-                                   .getDimension(R.dimen.gui_dimens_mid);
+                                     .getDimension(R.dimen.gui_dimens_mid);
         float textSize = context.getResources()
                                 .getDimension(R.dimen.gui_textsize_big);
         LayoutParams layout = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -82,11 +84,7 @@ public class ZDialogMenu extends ZDialog {
             String anAttrStr = arrStr[i];
             TextView tv = new TextView(context);
             tv.setText(anAttrStr);
-            if (i == 0) {
-                tv.setBackgroundResource(R.drawable.gui_dlg_menu_sel);
-            } else {
-                tv.setBackgroundResource(R.drawable.gui_listitem_sel);
-            }
+            tv.setBackgroundResource(R.drawable.gui_dlg_menu_sel);
             tv.setTextAppearance(context, R.style.Gui_TextStyle_GrayMid_Normal);
             tv.setPadding(paddingLR, padding, paddingLR, padding);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
@@ -100,8 +98,20 @@ public class ZDialogMenu extends ZDialog {
                 }
             });
             llMenu.addView(tv, layout);
+            llMenu.addView(new ZDivider(context).setHeight(1));
         }
         return this;
+    }
+
+    /**
+     * 从底部显示对话框
+     */
+    public void showFromBottom() {
+        tvTitle.setGravity(Gravity.CENTER);
+        setGravity(Gravity.BOTTOM);
+        setLayout(ScreenUtil.getScreenWidth(context), 0);
+        setAnim(R.style.style_anim_dialog_bottom);
+        show();
     }
 
     /**

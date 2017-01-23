@@ -23,6 +23,10 @@ public class ZDivider extends View {
     public int height;
     public int width;
 
+    public ZDivider(Context context) {
+        this(context, null, 0);
+    }
+
     public ZDivider(Context context, AttributeSet attr) {
         this(context, attr, 0);
     }
@@ -36,6 +40,16 @@ public class ZDivider extends View {
         a.recycle();
 
         setBackgroundColor(color);
+    }
+
+    public ZDivider setHeight(int height) {
+        this.height = height;
+        return this;
+    }
+
+    public ZDivider setWidth(int width) {
+        this.width = width;
+        return this;
     }
 
     @Override

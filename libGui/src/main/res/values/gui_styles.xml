@@ -26,4 +26,10 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
+    <!-- Dialog 底部弹出动画 -->
+    <style name="style_anim_dialog_bottom">
+        <item name="android:windowEnterAnimation">@anim/zdialog_bottom_enter</item>
+        <item name="android:windowExitAnimation">@anim/zdialog_bottom_exit</item>
+    </style>
 </resources>

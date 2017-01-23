@@ -5,7 +5,7 @@
  * date     16-7-15 上午9:54
  **********************************************************/
 
-package com.fosung.ui.app;
+package com.zcolin.ui.demo.app;
 
 import com.fosung.frame.app.BaseApp;
 import com.zcolin.gui.ZConfirm;

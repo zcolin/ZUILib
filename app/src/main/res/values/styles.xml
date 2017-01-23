@@ -47,7 +47,7 @@
 
     <!-- Dialog 底部弹出动画 -->
     <style name="style_anim_dialog_bottom">
-        <item name="android:windowEnterAnimation">@anim/dialog_bottom_enter</item>
-        <item name="android:windowExitAnimation">@anim/dialog_bottom_exit</item>
+        <item name="android:windowEnterAnimation">@anim/zdialog_bottom_enter</item>
+        <item name="android:windowExitAnimation">@anim/zdialog_bottom_exit</item>
     </style>
 </resources>
