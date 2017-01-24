@@ -97,8 +97,10 @@ public class ZDialogMenu extends ZDialog {
                     }
                 }
             });
+            if (i > 0) {
+                llMenu.addView(new ZDivider(context).setHeight(1));
+            }
             llMenu.addView(tv, layout);
-            llMenu.addView(new ZDivider(context).setHeight(1));
         }
         return this;
     }

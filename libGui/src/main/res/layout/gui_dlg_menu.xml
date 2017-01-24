@@ -15,8 +15,7 @@
         android:layout_marginRight="24dp"
         android:paddingBottom="10dp"
         android:paddingTop="16dp"
-        android:visibility="gone"
-        />
+        android:visibility="gone"/>
 
     <ScrollView
         android:layout_width="fill_parent"

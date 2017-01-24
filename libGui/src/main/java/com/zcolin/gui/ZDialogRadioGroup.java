@@ -50,8 +50,6 @@ public class ZDialogRadioGroup extends ZDialog implements View.OnClickListener {
         tvCancel = getView(R.id.dialog_cancelbutton);
         tvSubmit = getView(R.id.dialog_okbutton);
 
-        tvCancel.setText("取消");
-        tvSubmit.setText("确定");
         tvSubmit.setOnClickListener(this);
         tvCancel.setOnClickListener(this);
     }

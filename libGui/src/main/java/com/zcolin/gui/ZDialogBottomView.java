@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 
 
 /**
- * 对话框基类
+ * 对话框底部按钮通用控件
  */
 public class ZDialogBottomView extends LinearLayout {
     private static int LAYOUT_ID;

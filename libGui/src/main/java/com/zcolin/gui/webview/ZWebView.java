@@ -42,6 +42,7 @@ public class ZWebView extends BridgeWebView {
     private ZWebChromeClientWrapper webChromeClientWrapper;
     private ProgressBar             proBar;            //加载進度条
     private boolean                 isSupportJsBridge;
+    private boolean                 isSupportH5Location;
 
     public ZWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -86,12 +87,24 @@ public class ZWebView extends BridgeWebView {
         } else {
             this.webChromeClientWrapper = new ZWebChromeClientWrapper(webChromeClient);
         }
+
         webChromeClientWrapper.setProgressBar(proBar);
+        if (isSupportH5Location) {
+            webChromeClientWrapper.setSupportH5Location();
+        }
         super.setWebChromeClient(webChromeClientWrapper);
     }
 
     /**
      * 支持文件选择
+     * <p>
+     * <p>
+     * 需要在Activity的onActivityResult中调用:
+     * <pre>
+     *  public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+     *      webView.processResult(requestCode, resultCode, intent);
+     *  }
+     * </pre>
      */
     public ZWebView setSupportChooeFile(Activity activity) {
         webChromeClientWrapper = new ZChooseFileWebChromeClientWrapper(webChromeClientWrapper.getWebChromeClient(), activity);
@@ -101,6 +114,14 @@ public class ZWebView extends BridgeWebView {
 
     /**
      * 支持文件选择
+     * <p>
+     * <p>
+     * 需要在Fragment的onActivityResult中调用:
+     * <pre>
+     *  public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+     *      webView.processResult(requestCode, resultCode, intent);
+     *  }
+     * </pre>
      */
     public ZWebView setSupportChooeFile(Fragment fragment) {
         webChromeClientWrapper = new ZChooseFileWebChromeClientWrapper(webChromeClientWrapper.getWebChromeClient(), fragment);
@@ -111,7 +132,22 @@ public class ZWebView extends BridgeWebView {
     /**
      * 支持视频全屏
      * <p>
-     * 必须在Activity的manifest文件中指定 android:configChanges="keyboardHidden|orientation|screenSize"
+     * <strong>必须在Activity的manifest文件中指定 android:configChanges="keyboardHidden|orientation|screenSize"</strong>
+     * <p>
+     * <pre>
+     * <strong>在Activity的OnKeyDown中如下：</strong>
+     *  public boolean onKeyDown(int keyCode, KeyEvent event) {
+     *      if (keyCode == KeyEvent.KEYCODE_BACK) {
+     *          if (webView.hideCustomView()) {
+     *              return true;
+     *          } else if (webView.canGoBack()) {
+     *               webView.goBack();
+     *              return true;
+     *           }
+     *       }
+     *      return super.onKeyDown(keyCode, event);
+     *  }
+     * </pre>
      */
     public ZWebView setSupportVideoFullScreen(Activity activity) {
         ViewGroup group = (ViewGroup) this.getParent();
@@ -170,6 +206,21 @@ public class ZWebView extends BridgeWebView {
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setSupportZoom(true);
+    }
+
+    /**
+     * 设置是否支持H5定位
+     * <p>
+     * 需要声明权限
+     * <p>
+     * <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+     * <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+     */
+    public void setSupportH5Location() {
+        isSupportH5Location = true;
+        webChromeClientWrapper.setSupportH5Location();
+        WebSettings webSettings = getSettings();
+        webSettings.setDomStorageEnabled(true);
     }
 
     public WebViewClient getWebViewClient() {

@@ -19,4 +19,6 @@
     <color name="gui_listitem_press">#F7F7F7</color>
     <!-- 浅白 -->
     <color name="gui_white_light">#f7f7f7</color>
+    <!-- 分割线 -->
+    <color name="gui_divider"> #99ababab</color>
 </resources>

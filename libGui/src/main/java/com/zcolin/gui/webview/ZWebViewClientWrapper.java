@@ -34,7 +34,6 @@ class ZWebViewClientWrapper extends BridgeWebViewClient {
     private ProgressBar   proBar;
 
     ZWebViewClientWrapper(WebViewClient webViewClient) {
-        super();
         this.webViewClient = webViewClient;
     }
 

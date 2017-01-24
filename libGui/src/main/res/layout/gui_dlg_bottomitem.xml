@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 弹出框底部应用子视图 -->
 <LinearLayout android:id="@+id/changetext_llbody"
-                                  xmlns:android="http://schemas.android.com/apk/res/android"
-                                  android:layout_width="wrap_content"
-                                  android:layout_height="fill_parent"
-                                  android:gravity="center">
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="fill_parent"
+              android:gravity="center">
 
     <TextView
         android:id="@+id/dialog_cancelbutton"

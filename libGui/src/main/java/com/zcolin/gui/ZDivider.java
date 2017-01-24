@@ -10,7 +10,6 @@ package com.zcolin.gui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -36,7 +35,7 @@ public class ZDivider extends View {
         TypedArray a = context.obtainStyledAttributes(attr, R.styleable.ZDivider, defStyle, 0);
         width = (int) a.getDimension(R.styleable.ZDivider_zdivider_width_size, 0);
         height = (int) a.getDimension(R.styleable.ZDivider_zdivider_height_size, 0);
-        int color = a.getColor(R.styleable.ZDivider_zdivider_color, Color.GRAY);
+        int color = a.getColor(R.styleable.ZDivider_zdivider_color, getResources().getColor(R.color.gui_divider));
         a.recycle();
 
         setBackgroundColor(color);
@@ -49,6 +48,11 @@ public class ZDivider extends View {
 
     public ZDivider setWidth(int width) {
         this.width = width;
+        return this;
+    }
+
+    public ZDivider setColor(int color) {
+        setBackgroundColor(color);
         return this;
     }
 

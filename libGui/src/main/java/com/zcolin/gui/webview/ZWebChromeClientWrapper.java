@@ -38,6 +38,7 @@ class ZWebChromeClientWrapper extends WebChromeClient {
 
     private WebChromeClient webChromeClient;
     private ProgressBar     proBar;
+    private boolean         isSupportH5Location;//是否支持H5定位
 
     ZWebChromeClientWrapper(WebChromeClient webChromeClient) {
         this.webChromeClient = webChromeClient;
@@ -54,6 +55,11 @@ class ZWebChromeClientWrapper extends WebChromeClient {
 
     public WebChromeClient setProgressBar(ProgressBar bar) {
         this.proBar = bar;
+        return this;
+    }
+
+    public WebChromeClient setSupportH5Location() {
+        this.isSupportH5Location = true;
         return this;
     }
 
@@ -96,6 +102,17 @@ class ZWebChromeClientWrapper extends WebChromeClient {
         return true;
     }
 
+    /**
+     * H5定位相关
+     */
+    @Override
+    public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+        if (isSupportH5Location) {
+            callback.invoke(origin, true, false);
+        }
+        super.onGeolocationPermissionsShowPrompt(origin, callback);
+    }
+
     @Override
     public void onProgressChanged(WebView view, int newProgress) {
         if (proBar != null) {
@@ -111,7 +128,7 @@ class ZWebChromeClientWrapper extends WebChromeClient {
 
     @Override
     public void onReceivedIcon(WebView view, Bitmap icon) {
-        super.onReceivedIcon(view, icon);
+        webChromeClient.onReceivedIcon(view, icon);
     }
 
     @Override
@@ -169,10 +186,6 @@ class ZWebChromeClientWrapper extends WebChromeClient {
         webChromeClient.onReachedMaxAppCacheSize(requiredStorage, quota, quotaUpdater);
     }
 
-    @Override
-    public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
-        webChromeClient.onGeolocationPermissionsShowPrompt(origin, callback);
-    }
 
     @Override
     public void onGeolocationPermissionsHidePrompt() {
