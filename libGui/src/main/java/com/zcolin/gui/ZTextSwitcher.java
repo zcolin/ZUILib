@@ -23,7 +23,7 @@ import android.view.ViewGroup;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
-import com.fosung.frame.utils.DisplayUtil;
+import com.zcolin.gui.helper.ZUIHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -55,7 +55,7 @@ public class ZTextSwitcher extends TextSwitcher {
 
     public ZTextSwitcher(Context context, AttributeSet attr) {
         super(context, attr);
-        textSize = DisplayUtil.dip2px(context, 16);
+        textSize = ZUIHelper.dip2px(context, 16);
 
         super.setInAnimation(context, R.anim.ztextswitcher_slide_in);
         super.setOutAnimation(context, R.anim.ztextswitcher_slide_out);
@@ -74,7 +74,7 @@ public class ZTextSwitcher extends TextSwitcher {
      * 使用dp
      */
     public ZTextSwitcher setTextSize(int textSize) {
-        this.textSize = DisplayUtil.dip2px(getContext(), textSize);
+        this.textSize = ZUIHelper.dip2px(getContext(), textSize);
         mPaint.setTextSize(this.textSize);
         return this;
     }

@@ -17,6 +17,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.graphics.drawable.shapes.Shape;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -32,9 +33,7 @@ import android.widget.FrameLayout;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
-import com.fosung.frame.utils.DisplayUtil;
-import com.fosung.frame.utils.StringUtil;
-
+import com.zcolin.gui.helper.ZUIHelper;
 
 /**
  * 小红点View，如有几条更新
@@ -329,9 +328,9 @@ public class ZBadgeView extends TextView {
     private ShapeDrawable getDefaultBackground() {
 
         Shape rr;
-        if (StringUtil.isBlank(getText())) {
+        if (TextUtils.isEmpty(getText())) {
             LayoutParams params = getLayoutParams();
-            int xx = DisplayUtil.dip2px(getContext(), 12);
+            int xx = ZUIHelper.dip2px(getContext(), 12);
             params.width = xx;
             params.height = xx;
             rr = new OvalShape();

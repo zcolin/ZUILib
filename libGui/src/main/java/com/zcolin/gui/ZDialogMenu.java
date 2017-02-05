@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup.LayoutParams;
 import android.widget.TextView;
 
-import com.fosung.frame.utils.ScreenUtil;
+import com.zcolin.gui.helper.ZUIHelper;
 
 import java.util.ArrayList;
 
@@ -111,7 +111,7 @@ public class ZDialogMenu extends ZDialog {
     public void showFromBottom() {
         tvTitle.setGravity(Gravity.CENTER);
         setGravity(Gravity.BOTTOM);
-        setLayout(ScreenUtil.getScreenWidth(context), 0);
+        setLayout(ZUIHelper.getScreenWidth(context), 0);
         setAnim(R.style.style_anim_dialog_bottom);
         show();
     }

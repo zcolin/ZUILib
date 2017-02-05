@@ -27,8 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.fosung.frame.utils.DisplayUtil;
-import com.fosung.frame.utils.ScreenUtil;
+import com.zcolin.gui.helper.ZUIHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,8 +84,8 @@ public class ZTagLayout extends RelativeLayout {
     private void init(Context context, AttributeSet attrs, int defStyle, int defStyleRes) {
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        float def1 = DisplayUtil.dip2px(this.getContext(), 5);
-        float def2 = DisplayUtil.dip2px(this.getContext(), 8);
+        float def1 = ZUIHelper.dip2px(this.getContext(), 5);
+        float def2 = ZUIHelper.dip2px(this.getContext(), 8);
 
         TypedArray typeArray = context.obtainStyledAttributes(attrs, R.styleable.ZTagLayout, defStyle, defStyleRes);
         this.lineMargin = (int) typeArray.getDimension(R.styleable.ZTagLayout_lineMargin, def1);
@@ -97,7 +96,7 @@ public class ZTagLayout extends RelativeLayout {
         this.textPaddingTop = textPadding != -1 ? textPadding : (int) typeArray.getDimension(R.styleable.ZTagLayout_textPaddingTop, def1);
         this.texPaddingBottom = textPadding != -1 ? textPadding : (int) typeArray.getDimension(R.styleable.ZTagLayout_textPaddingBottom, def1);
         typeArray.recycle();
-        mWidth = ScreenUtil.getScreenWidth(context);
+        mWidth = ZUIHelper.getScreenWidth(context);
         // this.setWillNotDraw(false);
     }
 
@@ -164,7 +163,7 @@ public class ZTagLayout extends RelativeLayout {
     }
 
     public void setLineMargin(float lineMargin) {
-        this.lineMargin = DisplayUtil.dip2px(getContext(), lineMargin);
+        this.lineMargin = ZUIHelper.dip2px(getContext(), lineMargin);
     }
 
     public int getTagMargin() {
@@ -172,7 +171,7 @@ public class ZTagLayout extends RelativeLayout {
     }
 
     public void setTagMargin(float tagMargin) {
-        this.tagMargin = DisplayUtil.dip2px(getContext(), tagMargin);
+        this.tagMargin = ZUIHelper.dip2px(getContext(), tagMargin);
     }
 
     public int getTextPaddingLeft() {
@@ -180,7 +179,7 @@ public class ZTagLayout extends RelativeLayout {
     }
 
     public void setTextPaddingLeft(float textPaddingLeft) {
-        this.textPaddingLeft = DisplayUtil.dip2px(getContext(), textPaddingLeft);
+        this.textPaddingLeft = ZUIHelper.dip2px(getContext(), textPaddingLeft);
     }
 
     public int getTextPaddingRight() {
@@ -188,7 +187,7 @@ public class ZTagLayout extends RelativeLayout {
     }
 
     public void setTextPaddingRight(float textPaddingRight) {
-        this.textPaddingRight = DisplayUtil.dip2px(getContext(), textPaddingRight);
+        this.textPaddingRight = ZUIHelper.dip2px(getContext(), textPaddingRight);
     }
 
     public int getTextPaddingTop() {
@@ -196,7 +195,7 @@ public class ZTagLayout extends RelativeLayout {
     }
 
     public void setTextPaddingTop(float textPaddingTop) {
-        this.textPaddingTop = DisplayUtil.dip2px(getContext(), textPaddingTop);
+        this.textPaddingTop = ZUIHelper.dip2px(getContext(), textPaddingTop);
     }
 
     public int getTexPaddingBottom() {
@@ -204,7 +203,7 @@ public class ZTagLayout extends RelativeLayout {
     }
 
     public void setTexPaddingBottom(float texPaddingBottom) {
-        this.texPaddingBottom = DisplayUtil.dip2px(getContext(), texPaddingBottom);
+        this.texPaddingBottom = ZUIHelper.dip2px(getContext(), texPaddingBottom);
     }
 
     public void setOnTagClickListener(OnTagClickListener clickListener) {
@@ -318,7 +317,7 @@ public class ZTagLayout extends RelativeLayout {
         gd_normal.setColor(tag.layoutColor);
         gd_normal.setCornerRadius(tag.radius);
         if (tag.layoutBorderSize > 0) {
-            gd_normal.setStroke(DisplayUtil.dip2px(getContext(), tag.layoutBorderSize), tag.layoutBorderColor);
+            gd_normal.setStroke(ZUIHelper.dip2px(getContext(), tag.layoutBorderSize), tag.layoutBorderColor);
         }
         GradientDrawable gd_press = new GradientDrawable();
         gd_press.setColor(tag.layoutPressColor);

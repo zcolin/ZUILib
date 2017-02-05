@@ -25,12 +25,11 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
-import com.fosung.frame.jsbridge.BridgeHandler;
-import com.fosung.frame.jsbridge.BridgeWebView;
-import com.fosung.frame.jsbridge.CallBackFunction;
-import com.fosung.frame.utils.DisplayUtil;
-import com.fosung.frame.utils.LogUtil;
 import com.zcolin.gui.R;
+import com.zcolin.gui.helper.ZUIHelper;
+import com.zcolin.gui.webview.jsbridge.BridgeHandler;
+import com.zcolin.gui.webview.jsbridge.BridgeWebView;
+import com.zcolin.gui.webview.jsbridge.CallBackFunction;
 
 
 /**
@@ -183,7 +182,7 @@ public class ZWebView extends BridgeWebView {
         container.addView(this, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         proBar = (ProgressBar) LayoutInflater.from(getContext())
                                              .inflate(R.layout.gui_view_webview_progressbar, null);
-        container.addView(proBar, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, DisplayUtil.dip2px(getContext(), 2)));
+        container.addView(proBar, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, ZUIHelper.dip2px(getContext(), 2)));
         webChromeClientWrapper.setProgressBar(proBar);
         webViewClientWrapper.setProgressBar(proBar);
         return this;
@@ -269,7 +268,7 @@ public class ZWebView extends BridgeWebView {
                     intent.setComponent(componentName);
                     activity.startActivity(intent);
                 } catch (Exception e) {
-                    LogUtil.e("ZWebView.startActivity.handler", e);
+                    e.printStackTrace();
                 }
             }
         });

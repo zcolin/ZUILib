@@ -23,7 +23,7 @@ import android.widget.FrameLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.fosung.frame.utils.DisplayUtil;
+import com.zcolin.gui.helper.ZUIHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,7 +58,7 @@ public class ZPopupMenu {
         initUI();
 
         setBackground(R.color.gui_white_light);
-        int padding = DisplayUtil.dip2px(mContext, 10);
+        int padding = ZUIHelper.dip2px(mContext, 10);
         setPadding(padding, 0, padding, 0);
     }
 

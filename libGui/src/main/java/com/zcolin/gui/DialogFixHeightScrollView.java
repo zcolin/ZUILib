@@ -13,7 +13,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
 
-import com.fosung.frame.utils.ScreenUtil;
+import com.zcolin.gui.helper.ZUIHelper;
 
 /**
  * Dialog使用的固定高度的Scrollview
@@ -37,7 +37,7 @@ class DialogFixHeightScrollView extends ScrollView {
     }
 
     private void init(Context context) {
-        maxHeight = ScreenUtil.getScreenHeight(context) / 2;
+        maxHeight = ZUIHelper.getScreenHeight(context) / 2;
     }
 
     /**

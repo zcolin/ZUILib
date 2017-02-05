@@ -10,14 +10,14 @@
 package com.zcolin.gui;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-
-import com.fosung.frame.utils.SPUtil;
 
 
 /**
@@ -32,9 +32,11 @@ public class ZGuideHelpView {
     private Activity    activity;
     private FrameLayout rootLayout;
     private View        layoutView;
+    private SharedPreferences sharedPreferences;
 
     private ZGuideHelpView(Activity activity) {
         this.activity = activity;
+        sharedPreferences = activity.getSharedPreferences("guide_help", Context.MODE_PRIVATE);
     }
 
     /**
@@ -73,7 +75,7 @@ public class ZGuideHelpView {
      * 是否忽略已经弹出过的记录强制弹出
      */
     public void show(boolean isForce) {
-        if (isForce || !SPUtil.getBoolean(pageTag, false)) {
+        if (isForce ||!sharedPreferences.getBoolean(pageTag, false)) {
             if (TextUtils.isEmpty(this.pageTag)) {
                 throw new RuntimeException("the guide page must set page tag");
             }
@@ -117,7 +119,7 @@ public class ZGuideHelpView {
     public void cancel() {
         if (rootLayout != null && layoutView != null) {
             rootLayout.removeView(layoutView);
-            SPUtil.putBoolean(pageTag, true);
+            sharedPreferences.edit().putBoolean(pageTag, true).apply();
         }
     }
 }

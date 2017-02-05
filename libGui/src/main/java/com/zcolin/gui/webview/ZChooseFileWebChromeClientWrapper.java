@@ -17,8 +17,6 @@ import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
-import com.fosung.frame.utils.AndroidVersionUtil;
-
 /**
  * 支持文件选择的WebChormeClient
  * <p>
@@ -71,7 +69,7 @@ public class ZChooseFileWebChromeClientWrapper extends ZWebChromeClientWrapper {
     public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
         if (!super.onShowFileChooser(webView, filePathCallback, fileChooserParams)) {
             String acceptType = null;
-            if (AndroidVersionUtil.hasLollipop() && fileChooserParams != null && fileChooserParams.getAcceptTypes() != null && fileChooserParams.getAcceptTypes().length > 0) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && fileChooserParams != null && fileChooserParams.getAcceptTypes() != null && fileChooserParams.getAcceptTypes().length > 0) {
                 acceptType = fileChooserParams.getAcceptTypes()[0];
             }
             acceptType = TextUtils.isEmpty(acceptType) ? "*/*" : acceptType;

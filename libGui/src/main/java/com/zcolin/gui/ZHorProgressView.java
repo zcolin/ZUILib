@@ -18,8 +18,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.TextView;
 
-import com.fosung.frame.utils.DisplayUtil;
-
+import com.zcolin.gui.helper.ZUIHelper;
 
 /**
  * 自定义的显示百分比的View
@@ -47,10 +46,10 @@ public class ZHorProgressView extends TextView {
     public ZHorProgressView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setGravity(Gravity.RIGHT | Gravity.CENTER);
-        progressHeight = DisplayUtil.dip2px(context, 3);
+        progressHeight = ZUIHelper.dip2px(context, 3);
         fullColor = Color.rgb(235, 235, 235);
         progressColor = Color.rgb(0, 199, 229);
-        textMargin = DisplayUtil.dip2px(context, 10);
+        textMargin = ZUIHelper.dip2px(context, 10);
         if (getPaddingRight() == 0) {
             setPadding(getPaddingLeft(), getPaddingTop(), textMargin, getPaddingBottom());
         }
@@ -78,7 +77,7 @@ public class ZHorProgressView extends TextView {
      * @param progressHeight 进度条高度，单位DP
      */
     public ZHorProgressView setProgressHeight(int progressHeight) {
-        this.progressHeight = DisplayUtil.dip2px(getContext(), progressHeight);
+        this.progressHeight = ZUIHelper.dip2px(getContext(), progressHeight);
         invalidate();
         return this;
     }

@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.fosung.frame.imageloader.ImageLoaderUtils;
+import com.bumptech.glide.Glide;
 
 
 /**
@@ -190,7 +190,7 @@ public class ZKeyValueEditView extends RelativeLayout {
             ivImg.setVisibility(View.VISIBLE);
             ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources()
                                                                                 .getDimension(R.dimen.gui_dimens_small);
-            ImageLoaderUtils.displayImage(getContext(), url, ivImg);
+            Glide.with(getContext()).load(url).into(ivImg);
         } else {
             ivImg.setVisibility(View.GONE);
             ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;
