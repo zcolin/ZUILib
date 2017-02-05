@@ -7,7 +7,7 @@
 
 package com.zcolin.ui.demo.app;
 
-import com.fosung.frame.app.BaseApp;
+import com.zcolin.frame.app.BaseApp;
 import com.zcolin.gui.ZConfirm;
 import com.zcolin.gui.ZDialogBottomView;
 import com.fosung.ui.R;

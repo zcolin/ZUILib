@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.utils.ToastUtil;
 import com.fosung.ui.R;
 import com.zcolin.gui.ZAlert;
 import com.zcolin.gui.ZConfirm;

@@ -20,8 +20,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
-import com.fosung.frame.imageloader.ImageLoaderUtils;
-import com.fosung.frame.utils.ToastUtil;
+import com.zcolin.frame.imageloader.ImageLoaderUtils;
+import com.zcolin.frame.utils.ToastUtil;
 import com.fosung.ui.R;
 import com.zcolin.gui.ZBanner;
 import com.zcolin.gui.ZDialogAsyncProgress;

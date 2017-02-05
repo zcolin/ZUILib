@@ -14,8 +14,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 
-import com.fosung.frame.app.BaseFrameFrag;
-import com.fosung.frame.utils.DisplayUtil;
+import com.zcolin.frame.app.BaseFrameFrag;
+import com.zcolin.frame.utils.DisplayUtil;
 import com.fosung.ui.R;
 import com.zcolin.gui.ZTabView;
 import com.zcolin.gui.ZViewPager;

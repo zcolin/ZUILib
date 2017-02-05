@@ -12,7 +12,7 @@ package com.zcolin.ui.demo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
-import com.fosung.frame.utils.ActivityUtil;
+import com.zcolin.frame.utils.ActivityUtil;
 import com.fosung.ui.R;
 
 
