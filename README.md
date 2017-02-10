@@ -9,6 +9,24 @@
 6. wheelView。
 7. WebView, 可以设置支持进度条、视频全屏播放、js通讯、文件选择等。
 
+
+## Gradle
+app的build.gradle中添加
+```
+dependencies {
+    compile 'com.github.zcolin:ZUILib:latest.release'
+}
+```
+工程的build.gradle中添加
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
 ##USAGE
 ZDialog系列：
 ```
