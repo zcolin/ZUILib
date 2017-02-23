@@ -65,6 +65,8 @@ public class ZKeyValueView extends RelativeLayout {
         int keyStyle = a.getInt(R.styleable.ZKeyValueView_zkv_key_style, -1);
         String keyGravity = a.getString(R.styleable.ZKeyValueView_zkv_key_gravity);
         int keyImg = a.getResourceId(R.styleable.ZKeyValueView_zkv_key_img, 0);
+        int keyImageWidth = (int) a.getDimension(R.styleable.ZKeyValueView_zkv_key_img_width, 0);
+        int keyImageHeight = (int) a.getDimension(R.styleable.ZKeyValueView_zkv_key_img_height, 0);
         boolean isArrow = a.getBoolean(R.styleable.ZKeyValueView_zkv_is_arrow, true);
         boolean isBottomLine = a.getBoolean(R.styleable.ZKeyValueView_zkv_is_bottomline, true);
         int keyEms = a.getInteger(R.styleable.ZKeyValueView_zkv_key_ems, 0);
@@ -98,6 +100,12 @@ public class ZKeyValueView extends RelativeLayout {
 
         if (keyImg != 0) {
             ivImg.setImageResource(keyImg);
+            if (keyImageHeight > 0) {
+                ivImg.getLayoutParams().height = keyImageHeight;
+            }
+            if (keyImageWidth > 0) {
+                ivImg.getLayoutParams().width = keyImageWidth;
+            }
         } else {
             ivImg.setVisibility(View.GONE);
             ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;

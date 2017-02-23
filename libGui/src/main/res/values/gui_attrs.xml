@@ -29,6 +29,8 @@
         <attr name="zkv_key_style" format="reference"/>
         <attr name="zkv_key_gravity" format="string"/>
         <attr name="zkv_key_img" format="reference"/>
+        <attr name="zkv_key_img_width" format="dimension"/>
+        <attr name="zkv_key_img_height" format="dimension"/>
         <attr name="zkv_key_ems" format="integer"/>
         <attr name="zkv_value_text" format="string|reference"/>
         <attr name="zkv_value_text_size" format="dimension"/>
@@ -48,6 +50,8 @@
         <attr name="zkve_key_style" format="reference"/>
         <attr name="zkve_key_gravity" format="string"/>
         <attr name="zkve_key_img" format="reference"/>
+        <attr name="zkve_key_img_width" format="dimension"/>
+        <attr name="zkve_key_img_height" format="dimension"/>
         <attr name="zkve_key_ems" format="integer"/>
         <attr name="zkve_value_text" format="string|reference"/>
         <attr name="zkve_value_text_size" format="dimension"/>
@@ -67,6 +71,8 @@
         <attr name="zksv_key_text_color" format="color|reference"/>
         <attr name="zksv_key_style" format="reference"/>
         <attr name="zksv_key_img" format="reference"/>
+        <attr name="zksv_key_img_width" format="dimension"/>
+        <attr name="zksv_key_img_height" format="dimension"/>
         <attr name="zksv_key_ems" format="integer"/>
         <attr name="zksv_is_bottomline" format="boolean"/>
         <attr name="zksv_is_checked" format="boolean"/>

@@ -60,6 +60,8 @@ public class ZKeySwitchView extends RelativeLayout {
         int keyTextColor = a.getColor(R.styleable.ZKeySwitchView_zksv_key_text_color, 0);
         int keyStyle = a.getInt(R.styleable.ZKeySwitchView_zksv_key_style, -1);
         int keyImg = a.getResourceId(R.styleable.ZKeySwitchView_zksv_key_img, 0);
+        int keyImageWidth = (int) a.getDimension(R.styleable.ZKeySwitchView_zksv_key_img_width, 0);
+        int keyImageHeight = (int) a.getDimension(R.styleable.ZKeySwitchView_zksv_key_img_height, 0);
         int keyEms = a.getInteger(R.styleable.ZKeySwitchView_zksv_key_ems, 0);
         boolean isBottomLine = a.getBoolean(R.styleable.ZKeySwitchView_zksv_is_bottomline, true);
         boolean isChecked = a.getBoolean(R.styleable.ZKeySwitchView_zksv_is_checked, false);
@@ -81,6 +83,12 @@ public class ZKeySwitchView extends RelativeLayout {
 
         if (keyImg != 0) {
             ivImg.setImageResource(keyImg);
+            if (keyImageHeight > 0) {
+                ivImg.getLayoutParams().height = keyImageHeight;
+            }
+            if (keyImageWidth > 0) {
+                ivImg.getLayoutParams().width = keyImageWidth;
+            }
         } else {
             ivImg.setVisibility(View.GONE);
             ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;

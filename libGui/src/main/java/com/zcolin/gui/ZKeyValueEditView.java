@@ -68,6 +68,8 @@ public class ZKeyValueEditView extends RelativeLayout {
         int keyStyle = a.getInt(R.styleable.ZKeyValueEditView_zkve_key_style, -1);
         String keyGravity = a.getString(R.styleable.ZKeyValueEditView_zkve_key_gravity);
         int keyImg = a.getResourceId(R.styleable.ZKeyValueEditView_zkve_key_img, 0);
+        int keyImageWidth = (int) a.getDimension(R.styleable.ZKeyValueEditView_zkve_key_img_width, 0);
+        int keyImageHeight = (int) a.getDimension(R.styleable.ZKeyValueEditView_zkve_key_img_height, 0);
         int keyEms = a.getInteger(R.styleable.ZKeyValueEditView_zkve_key_ems, 0);
 
         String valueText = a.getString(R.styleable.ZKeyValueEditView_zkve_value_text);
@@ -103,6 +105,12 @@ public class ZKeyValueEditView extends RelativeLayout {
 
         if (keyImg != 0) {
             ivImg.setImageResource(keyImg);
+            if (keyImageHeight > 0) {
+                ivImg.getLayoutParams().height = keyImageHeight;
+            }
+            if (keyImageWidth > 0) {
+                ivImg.getLayoutParams().width = keyImageWidth;
+            }
         } else {
             ivImg.setVisibility(View.GONE);
             ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;
