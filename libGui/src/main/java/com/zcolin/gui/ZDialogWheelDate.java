@@ -10,6 +10,8 @@
 package com.zcolin.gui;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -28,8 +30,13 @@ import java.util.Calendar;
 public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, OnWheelChangedListener, OnWheelScrollListener {
     private static int LAYOUT_ID;
 
-    protected int TEXT_MAXSIZE = 18;
-    protected int TEXT_MINSIZE = 12;
+    protected int     maxTextSize  = 18;
+    protected int     minTextSize  = 12;
+    protected int     maxYear      = 2050;
+    protected int     minYear      = 1950;
+    protected boolean isCurDateMax = false;//是否设置当前时间为最大时间
+    protected int maxTextColor;
+    protected int minTextColor;
 
     protected WheelView wvYear;
     protected WheelView wvMonth;
@@ -70,16 +77,21 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
 
     public ZDialogWheelDate(Context context) {
         super(context, LAYOUT_ID == 0 ? R.layout.gui_dlg_wheel_date : LAYOUT_ID);
-        init();
+        init(context);
     }
 
 
-    private void init() {
+    private void init(Context context) {
+        maxTextColor = context.getResources()
+                              .getColor(R.color.gui_dlg_wheel_val);
+        minTextColor = context.getResources()
+                              .getColor(R.color.gui_divider);
+
         wvYear = (WheelView) findViewById(R.id.wv_birth_year);
         wvMonth = (WheelView) findViewById(R.id.wv_birth_month);
         wvDay = (WheelView) findViewById(R.id.wv_birth_day);
 
-        int[] shadowsColors = new int[]{0xeeefefef, 0xeaefefef, 0x33efefef};
+        int[] shadowsColors = new int[]{0x00000000, 0x00000000, 0x00000000};
         wvYear.setShadowsColors(shadowsColors);
         wvMonth.setShadowsColors(shadowsColors);
         wvDay.setShadowsColors(shadowsColors);
@@ -98,7 +110,7 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
         if (!issetdata) {
             initData();
         }
-        initYears();
+        initYears(isCurDateMax ? getYear() : maxYear);
         int selectedYear = setYear(currentYear);
         mYearAdapter = new CalendarTextAdapter(getContext(), arry_years, selectedYear);
         wvYear.setVisibleItems(5);
@@ -141,13 +153,97 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
         return this;
     }
 
+    /**
+     * 设置默认选中
+     */
     public ZDialogWheelDate setDefSelected(int year, int month, int day) {
         setDate(year, month, day);
         return this;
     }
 
+    /**
+     * 设置日期设置回调
+     */
     public ZDialogWheelDate setDataSubmitListener(OnDateSubmitListener onDateSubmitListener) {
         this.onDateSubmitListener = onDateSubmitListener;
+        return this;
+    }
+
+    /**
+     * 设置上下阴影
+     */
+    public ZDialogWheelDate setShadowColors(int[] shadowColors) {
+        if (shadowColors != null && shadowColors.length >= 3) {
+            wvYear.setShadowsColors(shadowColors);
+            wvMonth.setShadowsColors(shadowColors);
+            wvDay.setShadowsColors(shadowColors);
+        }
+        return this;
+    }
+
+    /**
+     * 设置选中文字的字体大小
+     */
+    public ZDialogWheelDate setMaxTextSize(int maxTextSize) {
+        this.maxTextSize = maxTextSize;
+        return this;
+    }
+
+    /**
+     * 设置未选中文字的字体大小
+     */
+    public ZDialogWheelDate setMinTextSize(int minTextSize) {
+        this.minTextSize = minTextSize;
+        return this;
+    }
+
+    /**
+     * 设置选中文字的字体颜色
+     */
+    public ZDialogWheelDate setMaxTextColor(int maxTextColor) {
+        this.maxTextColor = maxTextColor;
+        return this;
+    }
+
+    /**
+     * 设置未选中文字的字体颜色
+     */
+    public ZDialogWheelDate setMinTextColor(int minTextColor) {
+        this.minTextColor = minTextColor;
+        return this;
+    }
+
+    /**
+     * 设置最大年份，默认为当前年
+     */
+    public ZDialogWheelDate setMaxYear(int maxYear) {
+        this.maxYear = maxYear;
+        return this;
+    }
+
+    /**
+     * 设置最小年份，默认为1950
+     */
+    public ZDialogWheelDate setMinYear(int minYear) {
+        this.minYear = minYear;
+        return this;
+    }
+
+    /**
+     * 设置是否当前日期为最大值
+     */
+    public ZDialogWheelDate setIsCurDateMax(boolean curDateMax) {
+        isCurDateMax = curDateMax;
+        return this;
+    }
+
+    /**
+     * 设置中线颜色
+     */
+    public ZDialogWheelDate setCenterLineColor(@ColorInt int color) {
+        wvYear.setCenterLineColor(color);
+        wvMonth.setCenterLineColor(color);
+        wvDay.setCenterLineColor(color);
         return this;
     }
 
@@ -155,7 +251,7 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
     public void onChanged(WheelView wheel, int oldValue, int newValue) {
         if (wheel == wvYear) {
             String currentText = (String) mYearAdapter.getItemText(wheel.getCurrentItem());
-            setTextviewSize(currentText, mYearAdapter);
+            setTextViewStyle(currentText, mYearAdapter);
             currentYear = Integer.parseInt(currentText);
             setYear(currentYear);
             initMonths(month);
@@ -165,7 +261,7 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
             wvMonth.setCurrentItem(0);
         } else if (wheel == wvMonth) {
             String currentText = (String) mMonthAdapter.getItemText(wheel.getCurrentItem());
-            setTextviewSize(currentText, mMonthAdapter);
+            setTextViewStyle(currentText, mMonthAdapter);
             currentMonth = Integer.parseInt(currentText);
             setMonth(currentMonth);
             initDays(day);
@@ -175,7 +271,7 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
             wvDay.setCurrentItem(0);
         } else if (wheel == wvDay) {
             String currentText = (String) mDaydapter.getItemText(wheel.getCurrentItem());
-            setTextviewSize(currentText, mDaydapter);
+            setTextViewStyle(currentText, mDaydapter);
             currentDay = Integer.parseInt(currentText);
         }
     }
@@ -189,18 +285,18 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
     public void onScrollingFinished(WheelView wheel) {
         if (wheel == wvYear) {
             String currentText = (String) mYearAdapter.getItemText(wheel.getCurrentItem());
-            setTextviewSize(currentText, mYearAdapter);
+            setTextViewStyle(currentText, mYearAdapter);
         } else if (wheel == wvMonth) {
             String currentText = (String) mMonthAdapter.getItemText(wheel.getCurrentItem());
-            setTextviewSize(currentText, mMonthAdapter);
+            setTextViewStyle(currentText, mMonthAdapter);
         } else if (wheel == wvDay) {
             String currentText = (String) mDaydapter.getItemText(wheel.getCurrentItem());
-            setTextviewSize(currentText, mDaydapter);
+            setTextViewStyle(currentText, mDaydapter);
         }
     }
 
-    private void initYears() {
-        for (int i = getYear(); i > 1950; i--) {
+    private void initYears(int year) {
+        for (int i = year; i > minYear; i--) {
             arry_years.add(i + "");
         }
     }
@@ -224,7 +320,7 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
         ArrayList<String> list;
 
         protected CalendarTextAdapter(Context context, ArrayList<String> list, int currentItem) {
-            super(context, R.layout.gui_item_year_date, NO_RESOURCE, currentItem, TEXT_MAXSIZE, TEXT_MINSIZE);
+            super(context, R.layout.gui_item_year_date, NO_RESOURCE, currentItem, maxTextSize, minTextSize, maxTextColor, minTextColor);
             this.list = list;
             setItemTextResource(R.id.tempValue);
         }
@@ -265,7 +361,7 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
     /**
      * 设置字体大小
      */
-    private void setTextviewSize(String curriteItemText, CalendarTextAdapter adapter) {
+    private void setTextViewStyle(String curriteItemText, CalendarTextAdapter adapter) {
         ArrayList<View> arrayList = adapter.getTestViews();
         int size = arrayList.size();
         String currentText;
@@ -274,9 +370,11 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
             currentText = textvew.getText()
                                  .toString();
             if (curriteItemText.equals(currentText)) {
-                textvew.setTextSize(TEXT_MAXSIZE);
+                textvew.setTextSize(maxTextSize);
+                textvew.setTextColor(maxTextColor);
             } else {
-                textvew.setTextSize(TEXT_MINSIZE);
+                textvew.setTextSize(minTextSize);
+                textvew.setTextColor(minTextColor);
             }
         }
     }
@@ -298,8 +396,6 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
 
     private void initData() {
         setDate(getYear(), getMonth(), getDay());
-        this.currentDay = 1;
-        this.currentMonth = 1;
     }
 
     /**
@@ -310,7 +406,7 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
         this.currentYear = year;
         this.currentMonth = month;
         this.currentDay = day;
-        if (year == getYear()) {
+        if (year == getYear() && isCurDateMax) {
             this.month = getMonth();
         } else {
             this.month = 12;
@@ -322,13 +418,14 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
      * 设置年份
      */
     private int setYear(int year) {
+        int topYear = isCurDateMax ? getYear() : maxYear;
         int yearIndex = 0;
-        if (year != getYear()) {
+        if (year != getYear() || !isCurDateMax) {
             this.month = 12;
         } else {
             this.month = getMonth();
         }
-        for (int i = getYear(); i > 1950; i--) {
+        for (int i = topYear; i > minYear; i--) {
             if (i == year) {
                 return yearIndex;
             }
@@ -385,7 +482,8 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
                     break;
             }
         }
-        if (year == getYear() && month == getMonth()) {
+
+        if (year == getYear() && month == getMonth() && isCurDateMax) {
             this.day = getDay();
         }
     }
@@ -393,5 +491,25 @@ public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, O
 
     public interface OnDateSubmitListener {
         void onClick(int year, int month, int day);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        if (mYearAdapter != null && wvYear != null) {
+            String currentText = (String) mYearAdapter.getItemText(wvYear.getCurrentItem());
+            setTextViewStyle(currentText, mYearAdapter);
+        }
+
+        if (mMonthAdapter != null && wvMonth != null) {
+            String currentText = (String) mMonthAdapter.getItemText(wvMonth.getCurrentItem());
+            setTextViewStyle(currentText, mMonthAdapter);
+        }
+
+        if (mDaydapter != null && wvDay != null) {
+            String currentText = (String) mDaydapter.getItemText(wvDay.getCurrentItem());
+            setTextViewStyle(currentText, mDaydapter);
+        }
     }
 }

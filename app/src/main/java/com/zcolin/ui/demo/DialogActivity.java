@@ -18,8 +18,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.zcolin.frame.utils.ToastUtil;
 import com.fosung.ui.R;
+import com.zcolin.frame.utils.ToastUtil;
 import com.zcolin.gui.ZAlert;
 import com.zcolin.gui.ZConfirm;
 import com.zcolin.gui.ZDialog;
@@ -28,6 +28,7 @@ import com.zcolin.gui.ZDialogEdit;
 import com.zcolin.gui.ZDialogMenu;
 import com.zcolin.gui.ZDialogRadioGroup;
 import com.zcolin.gui.ZDialogWheelDate;
+import com.zcolin.gui.ZDialogWheelTime;
 
 import java.util.ArrayList;
 
@@ -57,6 +58,7 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
         listButton.add(addButton("ZDialogWheelDate"));
         listButton.add(addButton("ZDialogEdit"));
         listButton.add(addButton("ZDialogCheckBox"));
+        listButton.add(addButton("ZDialogWheelTime"));
 
         for (Button btn : listButton) {
             btn.setOnClickListener(this);
@@ -117,9 +119,9 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
                             return true;
                         }
                     })
-//                    .setGravity(Gravity.BOTTOM)
-//                    .setLayout(ScreenUtil.getScreenWidth(mActivity),0)
-//                    .setAnim(R.style.style_anim_dialog_bottom)
+                    //                    .setGravity(Gravity.BOTTOM)
+                    //                    .setLayout(ScreenUtil.getScreenWidth(mActivity),0)
+                    //                    .setAnim(R.style.style_anim_dialog_bottom)
                     .showFromBottom();
         } else if (v == listButton.get(4)) {
             new ZDialogWheelDate(mActivity)
@@ -159,6 +161,16 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
                             ToastUtil.toastShort("选中数据" + str);
 
                             return true;
+                        }
+                    })
+                    .show();
+        } else if (v == listButton.get(7)) {
+            new ZDialogWheelTime(mActivity)
+                    .setTitle("ZDialogWheelTime")
+                    .setDataSubmitListener(new ZDialogWheelTime.OnTimeSubmitListener() {
+                        @Override
+                        public void onClick(int hour, int minute) {
+                            ToastUtil.toastShort(hour + ":" + minute);
                         }
                     })
                     .show();
