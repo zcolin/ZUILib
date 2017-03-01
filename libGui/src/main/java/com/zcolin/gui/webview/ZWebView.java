@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -220,6 +222,20 @@ public class ZWebView extends BridgeWebView {
         webChromeClientWrapper.setSupportH5Location();
         WebSettings webSettings = getSettings();
         webSettings.setDomStorageEnabled(true);
+    }
+
+    /**
+     * 支持网页下载
+     */
+    public void setSupportDownLoad() {
+        setDownloadListener(new DownloadListener() {
+            @Override
+            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                getContext().startActivity(intent);
+            }
+        });
     }
 
     public WebViewClient getWebViewClient() {

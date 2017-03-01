@@ -321,6 +321,10 @@ public class ZBanner extends FrameLayout {
         }
     }
 
+    public ArrayList<Object> getListUrl() {
+        return listUrl;
+    }
+
     private final Runnable task = new Runnable() {
         @Override
         public void run() {
