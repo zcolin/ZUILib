@@ -40,6 +40,10 @@ public class ZKeySwitchView extends RelativeLayout {
         LAYOUT_ID = layoutId;
     }
 
+    public ZKeySwitchView(Context context) {
+        this(context, null);
+    }
+
     public ZKeySwitchView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }

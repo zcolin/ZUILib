@@ -43,6 +43,10 @@ public class ZKeyValueView extends RelativeLayout {
         LAYOUT_ID = layoutId;
     }
 
+    public ZKeyValueView(Context context) {
+        this(context, null);
+    }
+    
     public ZKeyValueView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
