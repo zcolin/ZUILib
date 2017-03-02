@@ -74,10 +74,10 @@
         <attr name="zksv_key_img_width" format="dimension"/>
         <attr name="zksv_key_img_height" format="dimension"/>
         <attr name="zksv_key_ems" format="integer"/>
-        <attr name="zksv_value_bg" format="reference"/>
-        <attr name="zksv_value_bg_p" format="reference"/>
-        <attr name="zksv_value_str" format="string|reference"/>
-        <attr name="zksv_value_str_p" format="string|reference"/>
+        <attr name="zksv_value_bg_on" format="reference"/>
+        <attr name="zksv_value_bg_off" format="reference"/>
+        <attr name="zksv_value_str_on" format="string|reference"/>
+        <attr name="zksv_value_str_off" format="string|reference"/>
         <attr name="zksv_is_bottomline" format="boolean"/>
         <attr name="zksv_is_checked" format="boolean"/>
     </declare-styleable>

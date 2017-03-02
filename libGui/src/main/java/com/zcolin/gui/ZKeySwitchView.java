@@ -69,10 +69,10 @@ public class ZKeySwitchView extends RelativeLayout {
         int keyEms = a.getInteger(R.styleable.ZKeySwitchView_zksv_key_ems, 0);
         boolean isBottomLine = a.getBoolean(R.styleable.ZKeySwitchView_zksv_is_bottomline, true);
         boolean isChecked = a.getBoolean(R.styleable.ZKeySwitchView_zksv_is_checked, false);
-        int valueBg = a.getInteger(R.styleable.ZKeySwitchView_zksv_value_bg, 0);
-        int valueBgP = a.getInteger(R.styleable.ZKeySwitchView_zksv_value_bg_p, 0);
-        String valueText = a.getString(R.styleable.ZKeySwitchView_zksv_value_str);
-        String valueTextP = a.getString(R.styleable.ZKeySwitchView_zksv_value_str_p);
+        int valueBgOff = a.getInteger(R.styleable.ZKeySwitchView_zksv_value_bg_off, 0);
+        int valueBgOn = a.getInteger(R.styleable.ZKeySwitchView_zksv_value_bg_on, 0);
+        String valueTextOff = a.getString(R.styleable.ZKeySwitchView_zksv_value_str_off);
+        String valueTextOn = a.getString(R.styleable.ZKeySwitchView_zksv_value_str_on);
         
         a.recycle();
 
@@ -107,12 +107,12 @@ public class ZKeySwitchView extends RelativeLayout {
             tvKey.setEms(keyEms);
         }
 
-        if (valueBg != 0 && valueBgP != 0) {
-            switchButton.initRes(valueBg, valueBgP);
+        if (valueBgOn != 0 && valueBgOff != 0) {
+            switchButton.initRes(valueBgOff, valueBgOn);
         }
 
-        if (valueText != null && valueTextP != null) {
-            switchButton.initText(valueText, valueTextP);
+        if (valueTextOn != null && valueTextOff != null) {
+            switchButton.initText(valueTextOff, valueTextOn);
         }
         
         bottomLine.setVisibility(isBottomLine ? View.VISIBLE : View.GONE);
