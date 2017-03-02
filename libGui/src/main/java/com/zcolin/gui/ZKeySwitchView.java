@@ -69,6 +69,11 @@ public class ZKeySwitchView extends RelativeLayout {
         int keyEms = a.getInteger(R.styleable.ZKeySwitchView_zksv_key_ems, 0);
         boolean isBottomLine = a.getBoolean(R.styleable.ZKeySwitchView_zksv_is_bottomline, true);
         boolean isChecked = a.getBoolean(R.styleable.ZKeySwitchView_zksv_is_checked, false);
+        int valueBg = a.getInteger(R.styleable.ZKeySwitchView_zksv_value_bg, 0);
+        int valueBgP = a.getInteger(R.styleable.ZKeySwitchView_zksv_value_bg_p, 0);
+        String valueText = a.getString(R.styleable.ZKeySwitchView_zksv_value_str);
+        String valueTextP = a.getString(R.styleable.ZKeySwitchView_zksv_value_str_p);
+        
         a.recycle();
 
         tvKey.setText(keyText);
@@ -102,6 +107,14 @@ public class ZKeySwitchView extends RelativeLayout {
             tvKey.setEms(keyEms);
         }
 
+        if (valueBg != 0 && valueBgP != 0) {
+            switchButton.initRes(valueBg, valueBgP);
+        }
+
+        if (valueText != null && valueTextP != null) {
+            switchButton.initText(valueText, valueTextP);
+        }
+        
         bottomLine.setVisibility(isBottomLine ? View.VISIBLE : View.GONE);
     }
 
@@ -135,6 +148,14 @@ public class ZKeySwitchView extends RelativeLayout {
         switchButton.setChecked(isChecked);
     }
 
+    public void setSwitchButtonRes(int bg, int bg_p) {
+        switchButton.initRes(bg, bg_p);
+    }
+
+    public void setSwitchButtonText(String str, String str_p) {
+        switchButton.initText(str, str_p);
+    }
+
     public void setOncheckedListener(ZCheckTextView.CheckedCallBack listener) {
         switchButton.addOnCheckedChangeListener(listener);
     }
@@ -143,8 +164,10 @@ public class ZKeySwitchView extends RelativeLayout {
         if (url != null) {
             ivImg.setVisibility(View.VISIBLE);
             ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources()
-                                                                                .getDimension(R.dimen.gui_dimens_small);
-            Glide.with(getContext()).load(url).into(ivImg);
+                                                                                     .getDimension(R.dimen.gui_dimens_small);
+            Glide.with(getContext())
+                 .load(url)
+                 .into(ivImg);
         } else {
             ivImg.setVisibility(View.GONE);
             ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;
