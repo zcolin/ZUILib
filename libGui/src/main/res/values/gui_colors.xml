@@ -20,5 +20,5 @@
     <!-- 浅白 -->
     <color name="gui_white_light">#f7f7f7</color>
     <!-- 分割线 -->
-    <color name="gui_divider"> #99ababab</color>
+    <color name="gui_divider">#d7d7d7</color>
 </resources>
