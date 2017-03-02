@@ -20,7 +20,7 @@ import android.widget.TextView;
 /**
  * 普遍对话框，有一个确定按钮
  */
-public class ZAlert extends ZDialog implements OnClickListener {
+public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
     private static int LAYOUT_ID;
 
     protected ZDialogSubmitInterface submitInterface;    // 点击确定按钮回调接口

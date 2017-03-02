@@ -23,7 +23,7 @@ import com.zcolin.gui.helper.ZUIHelper;
 /**
  * 对话框基类
  */
-public class ZDialog extends Dialog {
+public class ZDialog<T> extends Dialog {
     private boolean isCancelAble = true;//是否可以取消
     private int resBg;                  //对话框背景
     private int anim;                   //弹出消失动画
@@ -69,9 +69,9 @@ public class ZDialog extends Dialog {
      *
      * @param isCancelAble 点击其他地方是否可消失
      */
-    public ZDialog setIsCancelAble(boolean isCancelAble) {
+    public T setIsCancelAble(boolean isCancelAble) {
         this.isCancelAble = isCancelAble;
-        return this;
+        return (T)this;
     }
 
     /**
@@ -79,9 +79,9 @@ public class ZDialog extends Dialog {
      *
      * @param anim 弹出框显示隐藏传入动画
      */
-    public ZDialog setAnim(@StyleRes int anim) {
+    public T setAnim(@StyleRes int anim) {
         this.anim = anim;
-        return this;
+        return (T)this;
     }
 
     /**
@@ -89,9 +89,9 @@ public class ZDialog extends Dialog {
      *
      * @param resBg -1透明， 0纯白， 背景图片资源Id
      */
-    public ZDialog setDialogBackground(@DrawableRes int resBg) {
+    public T setDialogBackground(@DrawableRes int resBg) {
         this.resBg = resBg;
-        return this;
+        return (T)this;
     }
 
 
@@ -100,9 +100,9 @@ public class ZDialog extends Dialog {
      *
      * @param gravity 对齐方式
      */
-    public ZDialog setGravity(int gravity) {
+    public T setGravity(int gravity) {
         getWindow().getAttributes().gravity = gravity;
-        return this;
+        return (T)this;
     }
 
     /**
@@ -110,9 +110,9 @@ public class ZDialog extends Dialog {
      *
      * @param alpha 透明度
      */
-    public ZDialog setAlpha(int alpha) {
+    public T setAlpha(int alpha) {
         getWindow().getAttributes().alpha = alpha;
-        return this;
+        return (T)this;
     }
 
     /**
@@ -121,7 +121,7 @@ public class ZDialog extends Dialog {
      * @param x x小于0左移，大于0右移
      * @param y y小于0上移，大于0下移
      */
-    public ZDialog setWindowDeploy(int x, int y) {
+    public T setWindowDeploy(int x, int y) {
         if (x != 0 || y != 0) {
             Window window = getWindow();
             WindowManager.LayoutParams wl = window.getAttributes();
@@ -131,7 +131,7 @@ public class ZDialog extends Dialog {
             wl.y = y;
             window.setAttributes(wl);
         }
-        return this;
+        return (T)this;
     }
 
     /**
@@ -140,7 +140,7 @@ public class ZDialog extends Dialog {
      * @param width 宽
      * @param high  高
      */
-    public ZDialog setLayout(int width, int high) {
+    public T setLayout(int width, int high) {
         Window window = getWindow();
         WindowManager.LayoutParams wl = window.getAttributes();
         if (width > 0)
@@ -148,7 +148,7 @@ public class ZDialog extends Dialog {
         if (high > 0)
             wl.height = high;
         window.setAttributes(wl);
-        return this;
+        return (T)this;
     }
 
     @Override
@@ -169,22 +169,22 @@ public class ZDialog extends Dialog {
      * @param resId 资源ID
      * @return View
      */
-    protected <T> T getView(int resId) {
-        return (T) findViewById(resId);
+    protected <E> E getView(int resId) {
+        return (E) findViewById(resId);
     }
 
     /**
      * 确定回调接口
      */
-    public interface ZDialogParamSubmitInterface<T> {
-        boolean submit(T t);
+    public interface ZDialogParamSubmitInterface<E> {
+        boolean submit(E t);
     }
 
     /**
      * 取消回调接口
      */
-    public interface ZDialogParamCancelInterface<T> {
-        boolean cancel(T t);
+    public interface ZDialogParamCancelInterface<E> {
+        boolean cancel(E t);
     }
 
     /**

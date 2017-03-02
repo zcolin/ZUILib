@@ -20,7 +20,7 @@ import android.widget.TextView;
 /**
  * 普通对话框，有确定和取消按钮
  */
-public class ZConfirm extends ZDialog implements OnClickListener {
+public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
     private static int LAYOUT_ID;
 
     protected ZDialogSubmitInterface submitInterface;    // 点击确定按钮回调接口

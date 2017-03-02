@@ -27,7 +27,7 @@ import java.util.Calendar;
 /**
  * 日期选择对话框
  */
-public class ZDialogWheelDate extends ZDialog implements View.OnClickListener, OnWheelChangedListener, OnWheelScrollListener {
+public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.OnClickListener, OnWheelChangedListener, OnWheelScrollListener {
     private static int LAYOUT_ID;
 
     protected int     maxTextSize  = 18;

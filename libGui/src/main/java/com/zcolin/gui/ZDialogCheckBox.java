@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * 多选框组合弹出框
  */
-public class ZDialogCheckBox extends ZDialog implements OnClickListener {
+public class ZDialogCheckBox extends ZDialog<ZDialogCheckBox> implements OnClickListener {
     private static int LAYOUT_ID;
 
     protected TextView                                        tvTitle;        //标题

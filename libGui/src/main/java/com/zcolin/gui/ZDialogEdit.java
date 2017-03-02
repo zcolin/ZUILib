@@ -20,7 +20,7 @@ import android.widget.TextView;
 /**
  * 带有一个输入框的对话框 ，有两个按钮
  */
-public class ZDialogEdit extends ZDialog implements OnClickListener {
+public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener {
     private static int LAYOUT_ID;
 
     protected TextView tvMakeSure;            // 确定按钮

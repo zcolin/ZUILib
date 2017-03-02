@@ -27,7 +27,7 @@ import java.util.ArrayList;
 /**
  * 菜单弹出框
  */
-public class ZDialogMenu extends ZDialog {
+public class ZDialogMenu extends ZDialog<ZDialogMenu> {
     private static int LAYOUT_ID;
 
     protected LinearLayout                         llMenu;        //菜单容器布局

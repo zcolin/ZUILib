@@ -22,7 +22,7 @@ import java.util.ArrayList;
 /**
  * 单选框组合弹出框
  */
-public class ZDialogRadioGroup extends ZDialog implements View.OnClickListener {
+public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements View.OnClickListener {
     private static int LAYOUT_ID;
 
     protected TextView                             tvTitle;        //标题
