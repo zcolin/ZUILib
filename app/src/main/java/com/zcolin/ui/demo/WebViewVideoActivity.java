@@ -9,7 +9,7 @@
 package com.zcolin.ui.demo;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
 import com.fosung.ui.R;
@@ -18,7 +18,7 @@ import com.zcolin.gui.webview.ZWebView;
 /**
  * 带JsBridge的webview的Demo
  */
-public class WebViewVideoActivity extends FragmentActivity {
+public class WebViewVideoActivity extends AppCompatActivity {
     private ZWebView webView;
 
     @Override
@@ -27,9 +27,9 @@ public class WebViewVideoActivity extends FragmentActivity {
         setContentView(R.layout.activity_webview_video);
 
         webView = (ZWebView) findViewById(R.id.webView);
-        webView.setSupportVideoFullScreen(this).setSupportProgressBar();
+        webView.setSupportVideoFullScreen(this);
         
-        webView.loadUrl("http://dt.85ido.com:8080/r/cms/qilu/qilu/jty/gbxxpt/video-new.html");
+        webView.loadUrl("http://dyjy.85ido.com:8080/");
     }
 
     @Override

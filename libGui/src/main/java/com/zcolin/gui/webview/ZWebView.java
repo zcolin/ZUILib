@@ -53,7 +53,14 @@ public class ZWebView extends BridgeWebView {
     //网页属性设置
     @SuppressLint({"SetJavaScriptEnabled"})
     private void initWebView() {
-        setWebViewClient(new WebViewClient());
+        setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+
         setWebChromeClient(new WebChromeClient());
 
         WebSettings webSettings = getSettings();
@@ -64,8 +71,13 @@ public class ZWebView extends BridgeWebView {
         setHorizontalScrollbarOverlay(true);
         setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 
+        // webview从5.0开始默认不允许混合模式,https中不能加载http资源,需要设置开启。
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            WebView.setWebContentsDebuggingEnabled(true);
+            setWebContentsDebuggingEnabled(true);
         }
     }
 

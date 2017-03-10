@@ -25,13 +25,13 @@ import android.widget.FrameLayout;
  * webview默认的chromeClient是{@link ZWebChromeClientWrapper}
  */
 class ZVideoFullScreenWebChromeClient extends ZWebChromeClientWrapper {
-    private View                               videoProgressView;
-    private View                               customView;
-    private WebView                            webView;
-    private FrameLayout                        customViewContainer;
-    private CustomViewCallback customViewCallback;
-    private CustomViewShowStateListener        customViewShowStateListener;
-    private Activity                           activity;
+    private View                        videoProgressView;
+    private View                        customView;
+    private WebView                     webView;
+    private FrameLayout                 customViewContainer;
+    private CustomViewCallback          customViewCallback;
+    private CustomViewShowStateListener customViewShowStateListener;
+    private Activity                    activity;
 
     ZVideoFullScreenWebChromeClient(WebChromeClient webChromeClient, Activity activity, WebView webView, FrameLayout customViewContainer, View videoProgressView) {
         super(webChromeClient);
@@ -57,14 +57,13 @@ class ZVideoFullScreenWebChromeClient extends ZWebChromeClientWrapper {
     @Override
     public void onShowCustomView(View view, CustomViewCallback callback) {
         super.onShowCustomView(view, callback);
-
+        webView.setVisibility(View.INVISIBLE);
         if (customView != null) {
             callback.onCustomViewHidden();
             return;
         }
 
         customView = view;
-        webView.setVisibility(View.INVISIBLE);
         customViewContainer.setVisibility(View.VISIBLE);
         customViewContainer.addView(customView);
         customViewCallback = callback;
@@ -107,12 +106,23 @@ class ZVideoFullScreenWebChromeClient extends ZWebChromeClientWrapper {
         activity.setRequestedOrientation(isShowCustomView ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         //actionBar显示状态
-        ActionBar supportActionBar = ((AppCompatActivity) this.activity).getSupportActionBar();
-        if (supportActionBar != null) {
-            if (isShowCustomView) {
-                supportActionBar.hide();
-            } else {
-                supportActionBar.show();
+        if (activity instanceof AppCompatActivity) {
+            ActionBar supportActionBar = ((AppCompatActivity) this.activity).getSupportActionBar();
+            if (supportActionBar != null) {
+                if (isShowCustomView) {
+                    supportActionBar.hide();
+                } else {
+                    supportActionBar.show();
+                }
+            }
+        } else if (activity instanceof Activity) {
+            android.app.ActionBar actionBar = activity.getActionBar();
+            if (actionBar != null) {
+                if (isShowCustomView) {
+                    actionBar.hide();
+                } else {
+                    actionBar.show();
+                }
             }
         }
 

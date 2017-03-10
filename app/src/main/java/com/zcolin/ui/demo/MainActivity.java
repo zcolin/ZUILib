@@ -10,13 +10,13 @@
 package com.zcolin.ui.demo;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 
+import com.fosung.ui.R;
 import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.utils.DisplayUtil;
-import com.fosung.ui.R;
 import com.zcolin.gui.ZTabView;
 import com.zcolin.gui.ZViewPager;
 import com.zcolin.ui.demo.adapter.MainPagerAdapter;
@@ -26,7 +26,7 @@ import com.zcolin.ui.demo.fragment.ViewFragment;
 /**
  * 程序主页面
  */
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends AppCompatActivity {
     public static final int[] TAB_POSITION = new int[]{0, 1, 2};
 
     private BaseFrameFrag[] arrTabFrag = new BaseFrameFrag[TAB_POSITION.length];
