@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class BridgeUtil {
+	final static String IOS_SCHEME = "wvjbscheme://__BRIDGE_LOADED__";
 	final static String YY_OVERRIDE_SCHEMA = "yy://";
 	final static String YY_RETURN_DATA = YY_OVERRIDE_SCHEMA + "return/";//格式为   yy://return/{function}/returncontent
 	final static String YY_FETCH_QUEUE = YY_RETURN_DATA + "_fetchQueue/";
