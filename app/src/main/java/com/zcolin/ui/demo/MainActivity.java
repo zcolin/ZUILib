@@ -17,6 +17,7 @@ import android.util.TypedValue;
 import com.fosung.ui.R;
 import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.utils.DisplayUtil;
+import com.zcolin.gui.ZIndicator;
 import com.zcolin.gui.ZTabView;
 import com.zcolin.gui.ZViewPager;
 import com.zcolin.ui.demo.adapter.MainPagerAdapter;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private BaseFrameFrag[] arrTabFrag = new BaseFrameFrag[TAB_POSITION.length];
     private ZViewPager mViewPager;
     private ZTabView   tabView;
+    private ZIndicator indicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +52,13 @@ public class MainActivity extends AppCompatActivity {
     private void initRes() {
         mViewPager = (ZViewPager) findViewById(R.id.view_pager);
         tabView = (ZTabView) findViewById(R.id.view_tabview);
+        indicator = (ZIndicator) findViewById(R.id.indicator);
     }
 
     private void initData() {
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(this, getSupportFragmentManager());
         mViewPager.setAdapter(mainPagerAdapter);
+        indicator.setUpWithViewPager(mViewPager);
         setUpTab();
     }
 

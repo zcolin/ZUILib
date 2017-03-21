@@ -99,4 +99,12 @@
         <attr name="textPaddingTop" format="dimension" />
         <attr name="textPaddingBottom" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="ZIndicator">
+        <attr name="zindicator_width" format="dimension"/>
+        <attr name="zindicator_height" format="dimension"/>
+        <attr name="zindicator_margin" format="dimension"/>
+        <attr name="zindicator_drawable_selected" format="reference"/>
+        <attr name="zindicator_drawable_unselected" format="reference"/>
+    </declare-styleable>
 </resources>

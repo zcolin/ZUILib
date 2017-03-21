@@ -10,6 +10,7 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -32,5 +33,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/divider"/>
+
+    <com.zcolin.gui.ZIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimens_common_margin"
+        app:zindicator_drawable_selected="@drawable/indicator_red_radius"
+        app:zindicator_drawable_unselected="@drawable/indicator_gray_radius"/>
 
 </RelativeLayout>
