@@ -430,6 +430,13 @@ public class ZPopupMenu {
                     }
                 }
             });
+            
+            //此代码是为了使用ZRecyclerView中的ZRecycleViewDivider的时候，最后一条不画线，如果使用自定义的Divider，可以自己处理
+            if (position == getItemCount()-1) {
+                holder.itemView.setTag("reservedView");
+            }else{
+                holder.itemView.setTag(null);
+            }
         }
 
         @Override
