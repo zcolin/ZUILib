@@ -4,16 +4,19 @@
     <item android:state_selected="true">
         <shape>
             <solid android:color="@color/gui_dlg_btn_text"/>
+            <padding android:bottom="@dimen/gui_dimens_small" android:left="@dimen/gui_dimens_big" android:right="@dimen/gui_dimens_big" android:top="@dimen/gui_dimens_small"/>
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape>
             <solid android:color="@color/gui_white_light"/>
+            <padding android:bottom="@dimen/gui_dimens_small" android:left="@dimen/gui_dimens_big" android:right="@dimen/gui_dimens_big" android:top="@dimen/gui_dimens_small"/>
         </shape>
     </item>
     <item>
         <shape>
             <solid android:color="@color/gui_transparent"/>
+            <padding android:bottom="@dimen/gui_dimens_small" android:left="@dimen/gui_dimens_big" android:right="@dimen/gui_dimens_big" android:top="@dimen/gui_dimens_small"/>
         </shape>
     </item>
 </selector>

@@ -60,7 +60,7 @@ public class ZPopupMenu {
 
         setBackgroundColor(Color.WHITE);
         int padding = ZUIHelper.dip2px(mContext, 10);
-        setPadding(padding, 0, padding, 0);
+        setPadding(0, padding, 0, padding);
     }
 
     /**
@@ -291,10 +291,10 @@ public class ZPopupMenu {
         int      textColor;
         boolean  isSelected;
 
-        int paddingLeft   = 10;
-        int paddingRight  = 10;
-        int paddingTop    = 5;
-        int paddingBottom = 5;
+        int paddingLeft   = 0;
+        int paddingRight  = 0;
+        int paddingTop    = 0;
+        int paddingBottom = 0;
 
         public Item setDrawableLeft(Drawable drawableLeft) {
             this.drawableLeft = drawableLeft;
@@ -345,7 +345,7 @@ public class ZPopupMenu {
         }
 
         /**
-         * 单位dp
+         * 单位sp
          */
         public Item setTextSize(int textSize) {
             this.textSize = textSize;
@@ -393,14 +393,14 @@ public class ZPopupMenu {
             holder.textView.setPadding(item.paddingLeft, item.paddingTop, item.paddingRight, item.paddingBottom);
             holder.textView.setTextColor(item.textColor == 0 ? mContext.getResources()
                                                                        .getColor(R.color.gui_black_light) : item.textColor);
-            holder.textView.setTextSize(item.textSize == 0 ? ZUIHelper.dip2px(context, 16) : ZUIHelper.dip2px(context, item.textSize));
+            holder.textView.setTextSize(item.textSize == 0 ? 16 : item.textSize);
             holder.textView.setGravity(item.gravity == 0 ? Gravity.CENTER : item.gravity);
             holder.textView.setSingleLine(true);
             holder.textView.setText(item.text);
             holder.textView.setCompoundDrawablePadding(ZUIHelper.dip2px(context, item.drawablePadding));
             if (item.isSetBackground) {
                 holder.textView.setBackgroundDrawable(item.background);
-            }else{
+            } else {
                 holder.textView.setBackgroundResource(R.drawable.gui_listitem_popup_sel);
             }
             holder.textView.setCompoundDrawablesWithIntrinsicBounds(item.drawableLeft, null, null, null);
