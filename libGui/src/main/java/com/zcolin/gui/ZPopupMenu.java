@@ -392,7 +392,7 @@ public class ZPopupMenu {
             item.paddingBottom = ZUIHelper.dip2px(context, item.paddingBottom);
             holder.textView.setPadding(item.paddingLeft, item.paddingTop, item.paddingRight, item.paddingBottom);
             holder.textView.setTextColor(item.textColor == 0 ? mContext.getResources()
-                                                                       .getColor(R.color.gui_black_light) : item.textColor);
+                                                                       .getColor(R.color.gui_listitem_popup_sel) : item.textColor);
             holder.textView.setTextSize(item.textSize == 0 ? 16 : item.textSize);
             holder.textView.setGravity(item.gravity == 0 ? Gravity.CENTER : item.gravity);
             holder.textView.setSingleLine(true);
