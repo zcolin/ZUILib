@@ -10,6 +10,7 @@
 package com.zcolin.gui;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -59,7 +60,7 @@ public class ZPopupMenu {
         initUI();
 
         setBackgroundColor(Color.WHITE);
-        int padding = ZUIHelper.dip2px(mContext, 10);
+        int padding = ZUIHelper.dip2px(mContext, 3);
         setPadding(0, padding, 0, padding);
     }
 
@@ -282,14 +283,15 @@ public class ZPopupMenu {
      */
     public static class Item {
         public CharSequence text;
-        Drawable drawableLeft;
-        int      drawablePadding;
-        Drawable background;
-        boolean  isSetBackground;//是否用户主动设置了background的标志
-        int      gravity;
-        float    textSize;
-        int      textColor;
-        boolean  isSelected;
+        Drawable       drawableLeft;
+        int            drawablePadding;
+        Drawable       background;
+        boolean        isSetBackground;//是否用户主动设置了background的标志
+        int            gravity;
+        float          textSize;
+        int            textColor;
+        ColorStateList colorStateList;
+        boolean        isSelected;
 
         int paddingLeft   = 0;
         int paddingRight  = 0;
@@ -357,6 +359,11 @@ public class ZPopupMenu {
             return this;
         }
 
+        public Item setTextColorStateList(ColorStateList colorStateList) {
+            this.colorStateList = colorStateList;
+            return this;
+        }
+
         /**
          * 单位DP
          */
@@ -391,8 +398,14 @@ public class ZPopupMenu {
             item.paddingTop = ZUIHelper.dip2px(context, item.paddingTop);
             item.paddingBottom = ZUIHelper.dip2px(context, item.paddingBottom);
             holder.textView.setPadding(item.paddingLeft, item.paddingTop, item.paddingRight, item.paddingBottom);
-            holder.textView.setTextColor(item.textColor == 0 ? mContext.getResources()
-                                                                       .getColor(R.color.gui_listitem_popup_sel) : item.textColor);
+            if (item.colorStateList != null) {
+                holder.textView.setTextColor(item.colorStateList);
+            } else if (item.textColor == 0) {
+                holder.textView.setTextColor(mContext.getResources()
+                                                     .getColorStateList(R.color.gui_listitem_popup_sel));
+            } else {
+                holder.textView.setTextColor(item.textColor);
+            }
             holder.textView.setTextSize(item.textSize == 0 ? 16 : item.textSize);
             holder.textView.setGravity(item.gravity == 0 ? Gravity.CENTER : item.gravity);
             holder.textView.setSingleLine(true);
