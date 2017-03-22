@@ -10,6 +10,7 @@
 package com.zcolin.gui;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -57,7 +58,7 @@ public class ZPopupMenu {
 
         initUI();
 
-        setBackground(R.color.gui_white_light);
+        setBackgroundColor(Color.WHITE);
         int padding = ZUIHelper.dip2px(mContext, 10);
         setPadding(padding, 0, padding, 0);
     }
@@ -106,6 +107,22 @@ public class ZPopupMenu {
     }
 
     /**
+     * 设置分割线
+     */
+    public ZPopupMenu addItemDecoration(RecyclerView.ItemDecoration itemDecoration) {
+        recyclerView.addItemDecoration(itemDecoration);
+        return this;
+    }
+
+    /**
+     * 设置分割线
+     */
+    public ZPopupMenu addItemDecoration(RecyclerView.ItemDecoration itemDecoration, int index) {
+        recyclerView.addItemDecoration(itemDecoration, index);
+        return this;
+    }
+
+    /**
      * 显示弹窗列表界面
      */
     public void show(View view) {
@@ -144,23 +161,50 @@ public class ZPopupMenu {
      * 添加子类项
      */
     public ZPopupMenu addAction(String action) {
-        Item item = new Item();
-        item.setText(action);
-        addAction(item);
-        return this;
+        return addAction(action, false);
     }
 
     /**
      * 添加子类项
      */
+    public ZPopupMenu addAction(String action, boolean isSelected) {
+        Item item = new Item();
+        item.setText(action);
+        item.isSelected = isSelected;
+        addAction(item);
+        return this;
+    }
+
+    /**
+     * 添加子类项集合
+     */
     public ZPopupMenu addActions(String[] action) {
+        return addActions(action, -1);
+    }
+
+    /**
+     * 添加子类项集合
+     */
+    public ZPopupMenu addActions(String[] action, int selectedIndex) {
         if (action != null) {
-            Item[] item = new Item[action.length];
-            for (int i = 0; i < action.length; i++) {
-                item[i] = new Item();
-                item[i].setText(action[i]);
+            addActions((ArrayList<String>) Arrays.asList(action), selectedIndex);
+        }
+        return this;
+    }
+
+    /**
+     * 添加子类项集合
+     */
+    public ZPopupMenu addActions(ArrayList<String> listAction, int selectedIndex) {
+        if (listAction != null) {
+            for (int i = 0; i < listAction.size(); i++) {
+                Item item = new Item();
+                item.setText(listAction.get(i));
+                if (i == selectedIndex) {
+                    item.isSelected = true;
+                }
+                addAction(item);
             }
-            addActions(item);
         }
         return this;
     }
@@ -238,29 +282,47 @@ public class ZPopupMenu {
      */
     public static class Item {
         public CharSequence text;
-        Drawable drawable;
+        Drawable drawableLeft;
+        int      drawablePadding;
         Drawable background;
+        boolean  isSetBackground;//是否用户主动设置了background的标志
         int      gravity;
         float    textSize;
         int      textColor;
+        boolean  isSelected;
 
-        public Item setDrawable(Drawable drawable) {
-            this.drawable = drawable;
+        int paddingLeft   = 10;
+        int paddingRight  = 10;
+        int paddingTop    = 5;
+        int paddingBottom = 5;
+
+        public Item setDrawableLeft(Drawable drawableLeft) {
+            this.drawableLeft = drawableLeft;
             return this;
         }
 
-        public Item setDrawable(Context context, int drawable) {
-            this.drawable = context.getResources()
-                                   .getDrawable(drawable);
+        public Item setDrawableLeft(Context context, int drawableLeft) {
+            this.drawableLeft = context.getResources()
+                                       .getDrawable(drawableLeft);
+            return this;
+        }
+
+        /**
+         * 单位dp
+         */
+        public Item setDrawablePadding(int padding) {
+            this.drawablePadding = padding;
             return this;
         }
 
         public Item setBackground(Drawable drawable) {
+            isSetBackground = true;
             this.background = drawable;
             return this;
         }
 
         public Item setBackground(Context context, int drawable) {
+            isSetBackground = true;
             this.background = context.getResources()
                                      .getDrawable(drawable);
             return this;
@@ -282,6 +344,9 @@ public class ZPopupMenu {
             return this;
         }
 
+        /**
+         * 单位dp
+         */
         public Item setTextSize(int textSize) {
             this.textSize = textSize;
             return this;
@@ -289,6 +354,22 @@ public class ZPopupMenu {
 
         public Item setTextColor(int textColor) {
             this.textColor = textColor;
+            return this;
+        }
+
+        /**
+         * 单位DP
+         */
+        public Item setPadding(int left, int top, int right, int bottom) {
+            this.paddingLeft = left;
+            this.paddingRight = right;
+            this.paddingTop = top;
+            this.paddingBottom = bottom;
+            return this;
+        }
+
+        public Item setSelected(boolean isSelected) {
+            this.isSelected = isSelected;
             return this;
         }
     }
@@ -303,16 +384,27 @@ public class ZPopupMenu {
         @Override
         public void onBindViewHolder(MYViewHolder holder, final int position) {
             Item item = listAction.get(position);
+
+            Context context = holder.itemView.getContext();
+            item.paddingLeft = ZUIHelper.dip2px(context, item.paddingLeft);
+            item.paddingRight = ZUIHelper.dip2px(context, item.paddingRight);
+            item.paddingTop = ZUIHelper.dip2px(context, item.paddingTop);
+            item.paddingBottom = ZUIHelper.dip2px(context, item.paddingBottom);
+            holder.textView.setPadding(item.paddingLeft, item.paddingTop, item.paddingRight, item.paddingBottom);
             holder.textView.setTextColor(item.textColor == 0 ? mContext.getResources()
                                                                        .getColor(R.color.gui_black_light) : item.textColor);
-            holder.textView.setTextSize(item.textSize == 0 ? 16 : item.textSize);
+            holder.textView.setTextSize(item.textSize == 0 ? ZUIHelper.dip2px(context, 16) : ZUIHelper.dip2px(context, item.textSize));
             holder.textView.setGravity(item.gravity == 0 ? Gravity.CENTER : item.gravity);
-            holder.textView.setPadding(0, 10, 0, 10);
             holder.textView.setSingleLine(true);
             holder.textView.setText(item.text);
-            holder.textView.setCompoundDrawablePadding(10);
-            holder.textView.setBackgroundDrawable(item.background);
-            holder.textView.setCompoundDrawablesWithIntrinsicBounds(item.drawable, null, null, null);
+            holder.textView.setCompoundDrawablePadding(ZUIHelper.dip2px(context, item.drawablePadding));
+            if (item.isSetBackground) {
+                holder.textView.setBackgroundDrawable(item.background);
+            }else{
+                holder.textView.setBackgroundResource(R.drawable.gui_listitem_popup_sel);
+            }
+            holder.textView.setCompoundDrawablesWithIntrinsicBounds(item.drawableLeft, null, null, null);
+            holder.textView.setSelected(item.isSelected);
             holder.textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
