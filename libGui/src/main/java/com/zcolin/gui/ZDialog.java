@@ -160,6 +160,7 @@ public class ZDialog<T> extends Dialog {
             getWindow().setBackgroundDrawableResource(resBg);
         }
         setCanceledOnTouchOutside(isCancelAble);// 设置触摸对话框以外的地方取消对话框
+        setCancelable(isCancelAble);
         super.show();
     }
 
