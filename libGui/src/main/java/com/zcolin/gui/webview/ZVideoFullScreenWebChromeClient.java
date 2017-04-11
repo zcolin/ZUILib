@@ -24,7 +24,7 @@ import android.widget.FrameLayout;
  * <p>
  * webview默认的chromeClient是{@link ZWebChromeClientWrapper}
  */
-class ZVideoFullScreenWebChromeClient extends ZWebChromeClientWrapper {
+public class ZVideoFullScreenWebChromeClient extends ZWebChromeClientWrapper {
     private View                        videoProgressView;
     private View                        customView;
     private WebView                     webView;
