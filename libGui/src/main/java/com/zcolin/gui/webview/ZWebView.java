@@ -183,6 +183,12 @@ public class ZWebView extends BridgeWebView {
         setWebChromeClient(webChromeClientWrapper.getWebChromeClient());
         return this;
     }
+    
+    public void setCustomViewShowStateListener(ZVideoFullScreenWebChromeClient.CustomViewShowStateListener customViewShowStateListener){
+        if (webChromeClientWrapper != null && webChromeClientWrapper instanceof ZVideoFullScreenWebChromeClient) {
+            ((ZVideoFullScreenWebChromeClient) webChromeClientWrapper).setCustomViewShowStateListener(customViewShowStateListener);
+        }
+    }
 
     /**
      * 支持显示进度条

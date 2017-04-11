@@ -41,7 +41,7 @@ class ZVideoFullScreenWebChromeClient extends ZWebChromeClientWrapper {
         this.activity = activity;
     }
 
-    public void addCustomViewShowStateListener(CustomViewShowStateListener customViewShowStateListener) {
+    public void setCustomViewShowStateListener(CustomViewShowStateListener customViewShowStateListener) {
         this.customViewShowStateListener = customViewShowStateListener;
     }
 
