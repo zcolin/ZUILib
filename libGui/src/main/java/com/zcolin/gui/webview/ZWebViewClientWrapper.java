@@ -60,6 +60,16 @@ class ZWebViewClientWrapper extends BridgeWebViewClient {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+        if (super.shouldOverrideUrlLoading(view, request)) {
+            return true;
+        } else {
+            return webViewClient.shouldOverrideUrlLoading(view, request);
+        }
+    }
+
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
@@ -82,12 +92,6 @@ class ZWebViewClientWrapper extends BridgeWebViewClient {
     public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
         super.onReceivedError(view, errorCode, description, failingUrl);
         webViewClient.onReceivedError(view, errorCode, description, failingUrl);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-        return webViewClient.shouldOverrideUrlLoading(view, request);
     }
 
     @Override

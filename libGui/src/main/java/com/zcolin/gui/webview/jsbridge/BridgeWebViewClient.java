@@ -31,24 +31,38 @@ public class BridgeWebViewClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        if (processJs(view, url)) {
-            return true;
+        if (isSupportJsBridge) {
+            try {
+                url = URLDecoder.decode(url, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            if (view instanceof BridgeWebView) {
+                BridgeWebView webView = (BridgeWebView) view;
+                if (url.startsWith(BridgeUtil.YY_RETURN_DATA)) { // 如果是返回数据
+                    webView.handlerReturnData(url);
+                    return true;
+                } else if (url.startsWith(BridgeUtil.YY_OVERRIDE_SCHEMA)) { //
+                    webView.flushMessageQueue();
+                    return true;
+                } else if (url.startsWith(BridgeUtil.IOS_SCHEME)){
+                    return true;
+                }
+            }
         }
         return super.shouldOverrideUrlLoading(view, url);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-        return shouldOverrideUrlLoading(view, request.getUrl()
-                                                     .toString());
+        return shouldOverrideUrlLoading(view, request.getUrl().toString());
     }
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        if (!processJs(view, url)) {
-            super.onPageStarted(view, url, favicon);
-        }
+        super.onPageStarted(view, url, favicon);
     }
 
     @Override
@@ -72,29 +86,5 @@ public class BridgeWebViewClient extends WebViewClient {
     @Override
     public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
         super.onReceivedError(view, errorCode, description, failingUrl);
-    }
-
-    private boolean processJs(WebView view, String url) {
-        if (isSupportJsBridge) {
-            try {
-                url = URLDecoder.decode(url, "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
-            if (view instanceof BridgeWebView) {
-                BridgeWebView webView = (BridgeWebView) view;
-                if (url.startsWith(BridgeUtil.YY_RETURN_DATA)) { // 如果是返回数据
-                    webView.handlerReturnData(url);
-                    return true;
-                } else if (url.startsWith(BridgeUtil.YY_OVERRIDE_SCHEMA)) { //
-                    webView.flushMessageQueue();
-                    return true;
-                } else if (url.startsWith(BridgeUtil.IOS_SCHEME)) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }
