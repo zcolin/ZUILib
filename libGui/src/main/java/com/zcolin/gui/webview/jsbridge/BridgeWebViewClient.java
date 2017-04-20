@@ -7,6 +7,9 @@
 package com.zcolin.gui.webview.jsbridge;
 
 import android.graphics.Bitmap;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -49,6 +52,12 @@ public class BridgeWebViewClient extends WebViewClient {
             }
         }
         return super.shouldOverrideUrlLoading(view, url);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+        return shouldOverrideUrlLoading(view, request.getUrl().toString());
     }
 
     @Override
