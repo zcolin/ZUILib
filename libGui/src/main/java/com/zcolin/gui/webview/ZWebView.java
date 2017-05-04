@@ -183,8 +183,8 @@ public class ZWebView extends BridgeWebView {
         setWebChromeClient(webChromeClientWrapper.getWebChromeClient());
         return this;
     }
-    
-    public void setCustomViewShowStateListener(ZVideoFullScreenWebChromeClient.CustomViewShowStateListener customViewShowStateListener){
+
+    public void setCustomViewShowStateListener(ZVideoFullScreenWebChromeClient.CustomViewShowStateListener customViewShowStateListener) {
         if (webChromeClientWrapper != null && webChromeClientWrapper instanceof ZVideoFullScreenWebChromeClient) {
             ((ZVideoFullScreenWebChromeClient) webChromeClientWrapper).setCustomViewShowStateListener(customViewShowStateListener);
         }
@@ -284,6 +284,18 @@ public class ZWebView extends BridgeWebView {
                 client.onHideCustomView();
                 return true;
             }
+        }
+        return false;
+    }
+
+
+    /**
+     * 是否在全屏播放页面
+     */
+    public boolean isVideoFullScreen() {
+        if (webChromeClientWrapper instanceof ZVideoFullScreenWebChromeClient) {
+            ZVideoFullScreenWebChromeClient client = ((ZVideoFullScreenWebChromeClient) webChromeClientWrapper);
+            return client.isCustomViewShow();
         }
         return false;
     }
