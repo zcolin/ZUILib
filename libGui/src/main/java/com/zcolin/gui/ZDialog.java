@@ -14,6 +14,7 @@ import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StyleRes;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -24,7 +25,8 @@ import com.zcolin.gui.helper.ZUIHelper;
  * 对话框基类
  */
 public class ZDialog<T> extends Dialog {
-    private boolean isCancelAble = true;//是否可以取消
+    private final SparseArray<View> mViews       = new SparseArray<>();
+    private       boolean           isCancelAble = true;//是否可以取消
     private int resBg;                  //对话框背景
     private int anim;                   //弹出消失动画
 
@@ -71,7 +73,7 @@ public class ZDialog<T> extends Dialog {
      */
     public T setIsCancelAble(boolean isCancelAble) {
         this.isCancelAble = isCancelAble;
-        return (T)this;
+        return (T) this;
     }
 
     /**
@@ -81,7 +83,7 @@ public class ZDialog<T> extends Dialog {
      */
     public T setAnim(@StyleRes int anim) {
         this.anim = anim;
-        return (T)this;
+        return (T) this;
     }
 
     /**
@@ -91,7 +93,7 @@ public class ZDialog<T> extends Dialog {
      */
     public T setDialogBackground(@DrawableRes int resBg) {
         this.resBg = resBg;
-        return (T)this;
+        return (T) this;
     }
 
 
@@ -102,7 +104,7 @@ public class ZDialog<T> extends Dialog {
      */
     public T setGravity(int gravity) {
         getWindow().getAttributes().gravity = gravity;
-        return (T)this;
+        return (T) this;
     }
 
     /**
@@ -112,7 +114,7 @@ public class ZDialog<T> extends Dialog {
      */
     public T setAlpha(int alpha) {
         getWindow().getAttributes().alpha = alpha;
-        return (T)this;
+        return (T) this;
     }
 
     /**
@@ -131,7 +133,7 @@ public class ZDialog<T> extends Dialog {
             wl.y = y;
             window.setAttributes(wl);
         }
-        return (T)this;
+        return (T) this;
     }
 
     /**
@@ -148,7 +150,7 @@ public class ZDialog<T> extends Dialog {
         if (high > 0)
             wl.height = high;
         window.setAttributes(wl);
-        return (T)this;
+        return (T) this;
     }
 
     @Override
@@ -170,8 +172,13 @@ public class ZDialog<T> extends Dialog {
      * @param resId 资源ID
      * @return View
      */
-    protected <E> E getView(int resId) {
-        return (E) findViewById(resId);
+    public <E extends View> E getView(int resId) {
+        E view = (E) mViews.get(resId);
+        if (view == null) {
+            view = (E) findViewById(resId);
+            mViews.put(resId, view);
+        }
+        return view;
     }
 
     /**
