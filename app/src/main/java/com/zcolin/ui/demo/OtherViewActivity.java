@@ -20,9 +20,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
+import com.fosung.ui.R;
 import com.zcolin.frame.imageloader.ImageLoaderUtils;
 import com.zcolin.frame.utils.ToastUtil;
-import com.fosung.ui.R;
 import com.zcolin.gui.ZBanner;
 import com.zcolin.gui.ZDialogAsyncProgress;
 import com.zcolin.gui.ZDialogProgress;
@@ -182,17 +182,17 @@ public class OtherViewActivity extends FragmentActivity {
             @Override
             public ZDialogAsyncProgress.ProcessInfo onDoInback() {
                 SystemClock.sleep(1000);
-                dlg.setMessageInBack("执行第二步");
+                dlg.setMessage("执行第二步");
                 SystemClock.sleep(2000);
 
                 ZDialogAsyncProgress.ProcessInfo info = new ZDialogAsyncProgress.ProcessInfo();
-                info.setMsg("执行结果：success");
+                info.msg = "执行结果：success";
                 return info;
             }
 
             @Override
             public void onPostExecute(ZDialogAsyncProgress.ProcessInfo info) {
-                ToastUtil.toastShort(info.getMsg());
+                ToastUtil.toastShort(info.msg);
             }
         });
         dlg.execute(0);

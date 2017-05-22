@@ -58,8 +58,9 @@ public class ZDialogAsyncProgress extends AsyncTask<Integer, Integer, ZDialogAsy
     /**
      * 添加任务回调接口
      */
-    public void setDoInterface(DoInterface doInter) {
+    public ZDialogAsyncProgress setDoInterface(DoInterface doInter) {
         this.doInter = doInter;
+        return this;
     }
 
     /**
@@ -67,11 +68,12 @@ public class ZDialogAsyncProgress extends AsyncTask<Integer, Integer, ZDialogAsy
      *
      * @param message 进度条显示信息
      */
-    public void setMessageInBack(String message) {
+    public ZDialogAsyncProgress setMessage(String message) {
         Message msg = handler.obtainMessage();
         msg.arg1 = 0;
         msg.obj = message;
         handler.sendMessage(msg);
+        return this;
     }
 
     /**
@@ -116,51 +118,10 @@ public class ZDialogAsyncProgress extends AsyncTask<Integer, Integer, ZDialogAsy
      * 处理信息携带类
      */
     public static class ProcessInfo {
-
-        private int       id;        //id
-        private String    msg;      //描述
-        private Exception e;        //异常
-        private boolean   flag;    //扩展boolean
-        private Object    info;    //扩展对象
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public boolean isFlag() {
-            return flag;
-        }
-
-        public void setFlag(boolean flag) {
-            this.flag = flag;
-        }
-
-        public String getMsg() {
-            return msg;
-        }
-
-        public void setMsg(String msg) {
-            this.msg = msg;
-        }
-
-        public Exception getE() {
-            return e;
-        }
-
-        public void setE(Exception e) {
-            this.e = e;
-        }
-
-        public Object getInfo() {
-            return info;
-        }
-
-        public void setInfo(Object info) {
-            this.info = info;
-        }
+        public int       id;        //id
+        public String    msg;      //描述
+        public Exception e;        //异常
+        public boolean   flag;    //扩展boolean
+        public Object    info;    //扩展对象
     }
 }
