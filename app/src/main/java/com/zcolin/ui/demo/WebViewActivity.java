@@ -51,6 +51,7 @@ public class WebViewActivity extends FragmentActivity implements OnClickListener
 
     public void initWebView() {
         webView.setDefaultHandler(new DefaultHandler());//如果JS调用send方法，会走到DefaultHandler里
+        webView.setSupportChooseFile(mActivity);
         webView.registerHandler("submitFromWeb", new BridgeHandler() {
             @Override
             public void handler(String data, final CallBackFunction function) {
@@ -87,6 +88,7 @@ public class WebViewActivity extends FragmentActivity implements OnClickListener
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
         webView.processResult(requestCode, resultCode, intent);
     }
 

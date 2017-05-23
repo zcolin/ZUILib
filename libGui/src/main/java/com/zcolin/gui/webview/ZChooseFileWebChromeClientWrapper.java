@@ -98,17 +98,19 @@ public class ZChooseFileWebChromeClientWrapper extends ZWebChromeClientWrapper {
      * 在Activity或者fragment的onActivityResult中调用此函数
      */
     public boolean processResult(int requestCode, int resultCode, Intent intent) {
+        Uri result = null;
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE && intent != null) {
-            Uri result = intent.getData();
-            if (mUploadMessage != null) {
-                mUploadMessage.onReceiveValue(result);
-                mUploadMessage = null;
-            } else if (mUploadMessages != null) {
-                mUploadMessages.onReceiveValue(new Uri[]{result});
-                mUploadMessages = null;
-            }
-            return true;
+            result = intent.getData();
         }
-        return false;
+
+        if (mUploadMessage != null) {
+            mUploadMessage.onReceiveValue(result);
+            mUploadMessage = null;
+        } else if (mUploadMessages != null) {
+            mUploadMessages.onReceiveValue(result == null ? null : new Uri[]{result});
+            mUploadMessages = null;
+        }
+
+        return result != null;
     }
 }

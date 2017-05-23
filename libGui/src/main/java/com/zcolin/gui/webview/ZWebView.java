@@ -115,11 +115,12 @@ public class ZWebView extends BridgeWebView {
      * 需要在Activity的onActivityResult中调用:
      * <pre>
      *  public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+     *       super.onActivityResult(requestCode, resultCode, intent);
      *      webView.processResult(requestCode, resultCode, intent);
      *  }
      * </pre>
      */
-    public ZWebView setSupportChooeFile(Activity activity) {
+    public ZWebView setSupportChooseFile(Activity activity) {
         webChromeClientWrapper = new ZChooseFileWebChromeClientWrapper(webChromeClientWrapper.getWebChromeClient(), activity);
         setWebChromeClient(webChromeClientWrapper.getWebChromeClient());
         return this;
@@ -136,7 +137,7 @@ public class ZWebView extends BridgeWebView {
      *  }
      * </pre>
      */
-    public ZWebView setSupportChooeFile(Fragment fragment) {
+    public ZWebView setSupportChooseFile(Fragment fragment) {
         webChromeClientWrapper = new ZChooseFileWebChromeClientWrapper(webChromeClientWrapper.getWebChromeClient(), fragment);
         setWebChromeClient(webChromeClientWrapper.getWebChromeClient());
         return this;
