@@ -18,7 +18,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:paddingTop="5dip"
-        android:text="loading"
-        android:textColor="?android:attr/textColorPrimary"
+        android:text="loading……"
         android:textSize="14sp"/>
 </LinearLayout>
