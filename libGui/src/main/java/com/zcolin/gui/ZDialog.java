@@ -36,7 +36,7 @@ public class ZDialog<T> extends Dialog {
     public ZDialog(Context context, @LayoutRes int layResID) {
         super(context);
         setContentView(layResID);
-        setLayout(ZUIHelper.getScreenWidth(context) / 8 * 7, 0);
+        setLayout(ZUIHelper.getScreenWidth(context) / 6 * 5, 0);
     }
 
     /**
@@ -45,7 +45,7 @@ public class ZDialog<T> extends Dialog {
     public ZDialog(Context context, View view) {
         super(context);
         setContentView(view);
-        setLayout(ZUIHelper.getScreenWidth(context) /  8 * 7, 0);
+        setLayout(ZUIHelper.getScreenWidth(context) / 6 * 5, 0);
     }
 
     /**
@@ -54,7 +54,7 @@ public class ZDialog<T> extends Dialog {
     public ZDialog(Context context, @LayoutRes int layResID, @StyleRes int theme) {
         super(context, theme);
         setContentView(layResID);
-        setLayout(ZUIHelper.getScreenWidth(context) /  8 * 7, 0);
+        setLayout(ZUIHelper.getScreenWidth(context) / 6 * 5, 0);
     }
 
     /**
@@ -63,7 +63,7 @@ public class ZDialog<T> extends Dialog {
     public ZDialog(Context context, View view, @StyleRes int theme) {
         super(context, theme);
         setContentView(view);
-        setLayout(ZUIHelper.getScreenWidth(context) /  8 * 7, 0);
+        setLayout(ZUIHelper.getScreenWidth(context) / 6 * 5, 0);
     }
 
     /**

@@ -152,6 +152,11 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
 
 
     @Override
+    public void show() {
+        super.show();
+    }
+
+    @Override
     public void onClick(View v) {
         if (v == tvMakeSure) {
             if (submitInterface != null) {
