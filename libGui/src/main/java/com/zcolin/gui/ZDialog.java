@@ -36,7 +36,7 @@ public class ZDialog<T> extends Dialog {
     public ZDialog(Context context, @LayoutRes int layResID) {
         super(context);
         setContentView(layResID);
-        setLayout(ZUIHelper.getScreenWidth(context) / 6 * 5, 0);
+        setLayout(ZUIHelper.getScreenWidth(context) / 8 * 7, 0);
     }
 
     /**
