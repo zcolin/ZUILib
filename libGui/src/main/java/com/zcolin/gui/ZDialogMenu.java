@@ -9,7 +9,6 @@
 
 package com.zcolin.gui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -43,7 +42,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
         LAYOUT_ID = layoutId;
     }
 
-    public ZDialogMenu(Activity context) {
+    public ZDialogMenu(Context context) {
         super(context, LAYOUT_ID == 0 ? R.layout.gui_dlg_menu : LAYOUT_ID);
         this.context = context;
         initRes();
