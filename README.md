@@ -73,7 +73,25 @@ ZDialogProgress.initLayout(layoutId);
 ZKeyValueEditView.initLayout(layoutId);
 ZKeyValueView.initLayout(layoutId);
 ZKeySwitchView.initLayout(layoutId);
+
+//以下方式可以重写构造继承重定义控件
+ZAlert(Context context, int layout);
+ZConfirm(Context context, int layout);
+ZDialogCheckBox(Context context, int layout);
+ZDialogEdit(Context context, int layout);
+ZDialogMenu(Context context, int layout);
+ZDialogProgress(Context context, int layout);
+ZDialogRadioGroup(Context context, int layout);
+ZDialogWheelDate(Context context, int layout);
+ZDialogWheelTime(Context context, int layout);
+
+//以下方式可以实现函数继承重定义控件
+ZKeySwitchView#getSelfLayoutId()
+ZKeySwitchEditView#getSelfLayoutId()
+ZKeyValueView#getSelfLayoutId()
 ```
+
+
 
 ZWebView：
 ```

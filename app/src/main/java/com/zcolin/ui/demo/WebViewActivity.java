@@ -16,8 +16,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.zcolin.frame.utils.GsonUtil;
 import com.fosung.ui.R;
+import com.zcolin.frame.util.GsonUtil;
 import com.zcolin.gui.ZAlert;
 import com.zcolin.gui.ZDialog;
 import com.zcolin.gui.webview.ZWebView;

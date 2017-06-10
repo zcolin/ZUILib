@@ -16,7 +16,7 @@ import android.util.TypedValue;
 
 import com.fosung.ui.R;
 import com.zcolin.frame.app.BaseFrameFrag;
-import com.zcolin.frame.utils.DisplayUtil;
+import com.zcolin.frame.util.DisplayUtil;
 import com.zcolin.gui.ZIndicator;
 import com.zcolin.gui.ZTabView;
 import com.zcolin.gui.ZViewPager;

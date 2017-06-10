@@ -10,6 +10,7 @@ package com.zcolin.gui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -56,8 +57,9 @@ public class ZKeyValueEditView extends RelativeLayout {
         super(context, attrs, defStyle);
         setFocusable(true);
         setFocusableInTouchMode(true);
+        int layoutId = getSelfLayoutId() == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_view_keyvalueedit : LAYOUT_ID) : getSelfLayoutId();
         LayoutInflater.from(context)
-                      .inflate(LAYOUT_ID == 0 ? R.layout.gui_view_keyvalueedit : LAYOUT_ID, this);
+                      .inflate(layoutId, this);
         tvKey = (TextView) findViewById(R.id.tv_key);
         etValue = (EditText) findViewById(R.id.et_value);
         ivArrow = (ImageView) findViewById(R.id.iv_arrow);
@@ -154,13 +156,20 @@ public class ZKeyValueEditView extends RelativeLayout {
         ivArrow.setVisibility(isArrow ? View.VISIBLE : View.GONE);
     }
 
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (height > 0) {
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    /**
+     * 如果用户需要自己使用布局替代此xml文件，则需要在此函数中返回自定义的LayoutId，
+     * 但layout中的所有控件Id必须与本xml的Id相同，可以增加控件，不可以删除掉控件, 此函数返回的LayoutId的优先级高于{@link #initLayout(int)}
+     */
+    protected @LayoutRes int getSelfLayoutId(){
+        return 0;
     }
 
     public void setKeyText(String key) {

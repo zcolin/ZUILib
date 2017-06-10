@@ -12,6 +12,7 @@ package com.zcolin.gui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
+import android.support.annotation.LayoutRes;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -76,10 +77,15 @@ public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.
     }
 
     public ZDialogWheelDate(Context context) {
-        super(context, LAYOUT_ID == 0 ? R.layout.gui_dlg_wheel_date : LAYOUT_ID);
+        this(context, 0);
+    }
+    /**
+     * @param context
+     */
+    public ZDialogWheelDate(Context context, @LayoutRes int layoutId) {
+        super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_wheel_date : LAYOUT_ID) : layoutId);
         init(context);
     }
-
 
     private void init(Context context) {
         maxTextColor = context.getResources()

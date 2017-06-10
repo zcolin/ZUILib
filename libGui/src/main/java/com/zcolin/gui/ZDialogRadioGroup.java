@@ -9,6 +9,8 @@
 package com.zcolin.gui;
 
 import android.app.Activity;
+import android.content.Context;
+import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.RadioButton;
@@ -40,7 +42,13 @@ public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements Vie
     }
 
     public ZDialogRadioGroup(Activity context) {
-        super(context, LAYOUT_ID == 0 ? R.layout.gui_dlg_radiogroup : LAYOUT_ID);
+        this(context, 0);
+    }
+    /**
+     * @param context
+     */
+    public ZDialogRadioGroup(Context context, @LayoutRes int layoutId) {
+        super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_radiogroup : LAYOUT_ID) : layoutId);
         initRes();
     }
 

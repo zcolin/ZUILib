@@ -22,7 +22,7 @@ import android.widget.Button;
 
 import com.fosung.ui.R;
 import com.zcolin.frame.imageloader.ImageLoaderUtils;
-import com.zcolin.frame.utils.ToastUtil;
+import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.gui.ZBanner;
 import com.zcolin.gui.ZDialogAsyncProgress;
 import com.zcolin.gui.ZDialogProgress;

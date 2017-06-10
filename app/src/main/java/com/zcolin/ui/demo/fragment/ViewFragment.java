@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 
 import com.fosung.ui.R;
 import com.zcolin.frame.app.BaseFrameFrag;
-import com.zcolin.frame.utils.ActivityUtil;
+import com.zcolin.frame.util.ActivityUtil;
 import com.zcolin.ui.demo.DialogActivity;
 import com.zcolin.ui.demo.OtherViewActivity;
 import com.zcolin.ui.demo.WebViewActivity;

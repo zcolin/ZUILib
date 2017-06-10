@@ -10,6 +10,7 @@ package com.zcolin.gui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -46,15 +47,16 @@ public class ZKeyValueView extends RelativeLayout {
     public ZKeyValueView(Context context) {
         this(context, null);
     }
-    
+
     public ZKeyValueView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
     public ZKeyValueView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        int layoutId = getSelfLayoutId() == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_view_keyvalue : LAYOUT_ID) : getSelfLayoutId();
         LayoutInflater.from(context)
-                      .inflate(LAYOUT_ID == 0 ? R.layout.gui_view_keyvalue : LAYOUT_ID, this);
+                      .inflate(layoutId, this);
         tvKey = (TextView) findViewById(R.id.tv_key);
         tvValue = (TextView) findViewById(R.id.tv_value);
         ivArrow = (ImageView) findViewById(R.id.iv_arrow);
@@ -155,6 +157,16 @@ public class ZKeyValueView extends RelativeLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
+    /**
+     * 如果用户需要自己使用布局替代此xml文件，则需要在此函数中返回自定义的LayoutId，
+     * 但layout中的所有控件Id必须与本xml的Id相同，可以增加控件，不可以删除掉控件, 此函数返回的LayoutId的优先级高于{@link #initLayout(int)}
+     */
+    protected
+    @LayoutRes
+    int getSelfLayoutId() {
+        return 0;
+    }
+
     public void setKeyText(String key) {
         tvKey.setText(key);
     }
@@ -190,7 +202,9 @@ public class ZKeyValueView extends RelativeLayout {
             ivImg.setVisibility(View.VISIBLE);
             ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources()
                                                                                      .getDimension(R.dimen.gui_dimens_small);
-            Glide.with(getContext()).load(url).into(ivImg);
+            Glide.with(getContext())
+                 .load(url)
+                 .into(ivImg);
         } else {
             ivImg.setVisibility(View.GONE);
             ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;

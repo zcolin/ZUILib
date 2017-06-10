@@ -10,6 +10,7 @@ package com.zcolin.gui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -50,8 +51,9 @@ public class ZKeySwitchView extends RelativeLayout {
 
     public ZKeySwitchView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        int layoutId = getSelfLayoutId() == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_view_keyswitch : LAYOUT_ID) : getSelfLayoutId();
         LayoutInflater.from(context)
-                      .inflate(LAYOUT_ID == 0 ? R.layout.gui_view_keyswitch : LAYOUT_ID, this);
+                      .inflate(layoutId, this);
         switchButton = (ZCheckTextView) findViewById(R.id.switchButton);
         ivImg = (ImageView) findViewById(R.id.iv_img);
         tvKey = (TextView) findViewById(R.id.tv_key);
@@ -126,7 +128,14 @@ public class ZKeySwitchView extends RelativeLayout {
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
-
+    /**
+     * 如果用户需要自己使用布局替代此xml文件，则需要在此函数中返回自定义的LayoutId，
+     * 但layout中的所有控件Id必须与本xml的Id相同，可以增加控件，不可以删除掉控件, 此函数返回的LayoutId的优先级高于{@link #initLayout(int)}
+     */
+    protected @LayoutRes
+    int getSelfLayoutId(){
+        return 0;
+    }
     public String getKeyText() {
         return tvKey.getText()
                     .toString();

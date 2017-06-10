@@ -9,6 +9,8 @@
 package com.zcolin.gui;
 
 import android.app.Activity;
+import android.content.Context;
+import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,7 +45,14 @@ public class ZDialogCheckBox extends ZDialog<ZDialogCheckBox> implements OnClick
     }
 
     public ZDialogCheckBox(Activity context) {
-        super(context, LAYOUT_ID == 0 ? R.layout.gui_dlg_checkboxgroup : LAYOUT_ID);
+        this(context, 0);
+    }
+
+    /**
+     * @param context
+     */
+    public ZDialogCheckBox(Context context, @LayoutRes int layoutId) {
+        super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_checkboxgroup : LAYOUT_ID) : layoutId);
         initRes();
     }
 

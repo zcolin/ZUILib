@@ -12,6 +12,7 @@ package com.zcolin.gui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
+import android.support.annotation.LayoutRes;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -62,10 +63,16 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
     }
 
     public ZDialogWheelTime(Context context) {
-        super(context, LAYOUT_ID == 0 ? R.layout.gui_dlg_wheel_time : LAYOUT_ID);
-        init(context);
+        this(context, 0);
     }
 
+    /**
+     * @param context
+     */
+    public ZDialogWheelTime(Context context, @LayoutRes int layoutId) {
+        super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_wheel_time : LAYOUT_ID) : layoutId);
+        init(context);
+    }
 
     private void init(Context context) {
         maxTextColor = context.getResources()
@@ -190,8 +197,6 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
 
     /**
      * 设置中线颜色
-     * @param color
-     * @return
      */
     public ZDialogWheelTime setCenterLineColor(@ColorInt int color) {
         wvHour.setCenterLineColor(color);

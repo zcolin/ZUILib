@@ -10,11 +10,11 @@
 package com.zcolin.gui;
 
 import android.content.Context;
+import android.support.annotation.LayoutRes;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
-
 
 
 /**
@@ -39,7 +39,14 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
     }
 
     public ZConfirm(Context context) {
-        super(context, LAYOUT_ID == 0 ? R.layout.gui_dlg_confirm : LAYOUT_ID);
+        this(context, 0);
+    }
+
+    /**
+     * @param context
+     */
+    public ZConfirm(Context context, @LayoutRes int layoutId) {
+        super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_confirm : LAYOUT_ID) : layoutId);
         initRes();
     }
 

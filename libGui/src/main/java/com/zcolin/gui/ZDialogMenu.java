@@ -10,6 +10,7 @@
 package com.zcolin.gui;
 
 import android.content.Context;
+import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -43,7 +44,14 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
     }
 
     public ZDialogMenu(Context context) {
-        super(context, LAYOUT_ID == 0 ? R.layout.gui_dlg_menu : LAYOUT_ID);
+        this(context, 0);
+    }
+
+    /**
+     * @param context
+     */
+    public ZDialogMenu(Context context, @LayoutRes int layoutId) {
+        super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_menu : LAYOUT_ID) : layoutId);
         this.context = context;
         initRes();
     }

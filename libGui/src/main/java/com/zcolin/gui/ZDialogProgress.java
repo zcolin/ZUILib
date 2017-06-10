@@ -14,11 +14,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 
 
 /**
@@ -31,6 +31,7 @@ public class ZDialogProgress extends ProgressDialog {
     protected TextView     tvMessage;
     protected CharSequence strMessage;
     protected Drawable     indeterminateDrawable;
+    private   int          layoutId;
 
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
@@ -41,15 +42,23 @@ public class ZDialogProgress extends ProgressDialog {
     }
 
     public ZDialogProgress(Context context) {
+        this(context, 0);
+    }
+
+    /**
+     * @param context
+     */
+    public ZDialogProgress(Context context, @LayoutRes int layoutId) {
         super(context);
         setCancelable(false);
         getWindow().setBackgroundDrawableResource(R.color.gui_transparent);
+        this.layoutId = layoutId;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(LAYOUT_ID == 0 ? R.layout.gui_view_progress : LAYOUT_ID);
+        setContentView(layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_view_progress : LAYOUT_ID) : layoutId);
         this.setOnShowListener(new OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
