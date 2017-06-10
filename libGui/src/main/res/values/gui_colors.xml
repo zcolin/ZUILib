@@ -8,6 +8,8 @@
     <!-- 弹出框信息文字颜色 -->
     <color name="gui_gray_dark">#535353</color>
     <!-- 弹出框信息按钮文字颜色 -->
+    <color name="gui_dlg_btn_cancel_text">#909090</color>
+    <!-- 弹出框信息按钮文字颜色 -->
     <color name="gui_dlg_btn_text">#13B8F5</color>
     <!-- wheelview的框 -->
     <color name="gui_dlg_wheel_val">#4aa9ff</color>

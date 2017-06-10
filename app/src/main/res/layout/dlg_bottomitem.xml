@@ -15,7 +15,7 @@
         android:layout_weight="1"
         android:background="@drawable/gui_btn_dlg_bottom_sel"
         android:text="取消"
-        android:textColor="@color/gray_dark"
+        android:textColor="#909090"
         android:textSize="@dimen/gui_textsize_normal">
     </TextView>
 

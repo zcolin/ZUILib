@@ -74,7 +74,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
         int paddingLR = (int) context.getResources()
                                      .getDimension(R.dimen.gui_dimens_mid);
         float textSize = context.getResources()
-                                .getDimension(R.dimen.gui_textsize_big);
+                                .getDimension(R.dimen.gui_textsize_normal);
         LayoutParams layout = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
         llMenu.removeAllViews();

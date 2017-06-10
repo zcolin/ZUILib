@@ -122,7 +122,7 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
                     //                    .setGravity(Gravity.BOTTOM)
                     //                    .setLayout(ScreenUtil.getScreenWidth(mActivity),0)
                     //                    .setAnim(R.style.style_anim_dialog_bottom)
-                    .showFromBottom();
+                    .show();
         } else if (v == listButton.get(4)) {
             new ZDialogWheelDate(mActivity)
                     .setTitle("ZDialogWheelDate")

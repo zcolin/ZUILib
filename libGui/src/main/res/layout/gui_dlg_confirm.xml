@@ -28,7 +28,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center_vertical"
         android:maxLines="12"
-        android:minHeight="60dp"
+        android:minHeight="25dp"
         android:scrollbars="vertical"
         android:textIsSelectable="true">
     </TextView>
