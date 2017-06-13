@@ -95,7 +95,7 @@ public class ZDialogCheckBox extends ZDialog<ZDialogCheckBox> implements OnClick
         for (int i = 0; i < arrStr.length; i++) {
             arrCheckBox[i] = new CheckBox(getContext());
             arrCheckBox[i].setText(arrStr[i]);
-            arrCheckBox[i].setTextAppearance(getContext(), R.style.Gui_TextStyle_GrayMid_Normal);
+            arrCheckBox[i].setTextAppearance(getContext(), R.style.Gui_TextStyle_GrayDark_Normal);
             arrCheckBox[i].setPadding(0, paddingVer, 0, paddingVer);
             arrCheckBox[i].setBackgroundResource(R.drawable.gui_dlg_radio_sel);
             arrCheckBox[i].setId(i + 100);

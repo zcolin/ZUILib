@@ -27,7 +27,7 @@
 
     <TextView
         android:id="@+id/dlgeditone_instruction"
-        style="@style/Gui_TextStyle_GrayMid_Normal"
+        style="@style/Gui_TextStyle_GrayDark_Normal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dlgeditone_title"

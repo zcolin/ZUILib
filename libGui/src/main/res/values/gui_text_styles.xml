@@ -20,7 +20,7 @@
         <item name="android:textSize">@dimen/gui_textsize_big</item>
     </style>
 
-    <style name="Gui_TextStyle_GrayMid_Normal" parent="@android:style/Widget.TextView">
+    <style name="Gui_TextStyle_GrayDark_Normal" parent="@android:style/Widget.TextView">
         <item name="android:textColor">@color/gui_gray_dark</item>
         <item name="android:textSize">@dimen/gui_textsize_normal</item>
     </style>

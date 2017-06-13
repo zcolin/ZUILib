@@ -90,7 +90,7 @@ public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements Vie
         for (int i = 0; i < attrStr.length; i++) {
             RadioButton btn = new RadioButton(getContext());
             btn.setText(attrStr[i]);
-            btn.setTextAppearance(getContext(), R.style.Gui_TextStyle_GrayMid_Normal);
+            btn.setTextAppearance(getContext(), R.style.Gui_TextStyle_GrayDark_Normal);
             btn.setPadding(0, paddingVer, 0, paddingVer);
             btn.setBackgroundResource(R.drawable.gui_dlg_radio_sel);
             btn.setId(i + 100);

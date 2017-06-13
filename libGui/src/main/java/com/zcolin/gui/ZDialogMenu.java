@@ -10,6 +10,7 @@
 package com.zcolin.gui;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -72,11 +73,23 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
     }
 
     public ZDialogMenu setDatas(ArrayList<String> listData) {
-        setDatas(listData.toArray(new String[listData.size()]));
-        return this;
+        return setDatas(listData, null);
     }
 
     public ZDialogMenu setDatas(String[] arrStr) {
+        return setDatas(arrStr, null);
+    }
+
+    public ZDialogMenu setDatas(ArrayList<String> listData, String defSelected) {
+        return setDatas(listData.toArray(new String[listData.size()]), defSelected);
+    }
+
+    public ZDialogMenu setDatas(String[] arrStr, String defSelected) {
+        return setDatas(arrStr, defSelected, getContext().getResources()
+                                                         .getColorStateList(R.color.gui_listitem_dialogmenu_sel));
+    }
+
+    public ZDialogMenu setDatas(String[] arrStr, String defSelected, ColorStateList colorStateList) {
         int padding = (int) context.getResources()
                                    .getDimension(R.dimen.gui_dimens_big);
         int paddingLR = (int) context.getResources()
@@ -92,9 +105,14 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
             TextView tv = new TextView(context);
             tv.setText(anAttrStr);
             tv.setBackgroundResource(R.drawable.gui_dlg_menu_sel);
-            tv.setTextAppearance(context, R.style.Gui_TextStyle_GrayMid_Normal);
+            tv.setTextSize(getContext().getResources()
+                                       .getDimension(R.dimen.gui_textsize_normal));
+            tv.setTextColor(colorStateList);
             tv.setPadding(paddingLR, padding, paddingLR, padding);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+            if (anAttrStr != null && anAttrStr.equals(defSelected)) {
+                tv.setSelected(true);
+            }
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -111,6 +129,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
         }
         return this;
     }
+
 
     /**
      * 从底部显示对话框
