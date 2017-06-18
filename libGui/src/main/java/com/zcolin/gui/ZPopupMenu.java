@@ -43,6 +43,7 @@ public class ZPopupMenu {
     private RecyclerView recyclerView;
     private FrameLayout  rootLayout;
     private Context      mContext;
+    private int          itemWidth;
 
     public ZPopupMenu(Context context) {
         this(context, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -50,6 +51,7 @@ public class ZPopupMenu {
 
     public ZPopupMenu(Context context, int width, int height) {
         this.mContext = context;
+        itemWidth = width;
         popupWindow = new PopupWindow();
         popupWindow.setWidth(width);
         popupWindow.setHeight(height);
@@ -431,13 +433,15 @@ public class ZPopupMenu {
                     }
                 }
             });
-            
+
             //此代码是为了使用ZRecyclerView中的ZRecycleViewDivider的时候，最后一条不画线，如果使用自定义的Divider，可以自己处理
-            if (position == getItemCount()-1) {
+            if (position == getItemCount() - 1) {
                 holder.itemView.setTag("reservedView");
-            }else{
+            } else {
                 holder.itemView.setTag(null);
             }
+
+
         }
 
         @Override
@@ -456,6 +460,7 @@ public class ZPopupMenu {
             public MYViewHolder(View itemView) {
                 super(itemView);
                 textView = (TextView) itemView;
+                textView.setLayoutParams(new RecyclerView.LayoutParams(itemWidth, LayoutParams.WRAP_CONTENT));
             }
         }
     }
