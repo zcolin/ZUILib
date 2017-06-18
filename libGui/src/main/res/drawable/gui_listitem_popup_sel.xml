@@ -15,7 +15,7 @@
     </item>
     <item>
         <shape>
-            <solid android:color="@color/gui_transparent"/>
+            <solid android:color="@android:color/white"/>
             <padding android:bottom="@dimen/gui_dimens_small" android:left="@dimen/gui_dimens_big" android:right="@dimen/gui_dimens_big" android:top="@dimen/gui_dimens_small"/>
         </shape>
     </item>

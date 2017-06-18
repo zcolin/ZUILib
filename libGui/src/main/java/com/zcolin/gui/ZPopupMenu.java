@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -43,7 +44,7 @@ public class ZPopupMenu {
     private ArrayList<Item> listAction = new ArrayList<>();
     private PopupWindow  popupWindow;
     private RecyclerView recyclerView;
-    private FrameLayout  rootLayout;
+    private LinearLayout rootLayout;
     private Context      mContext;
     private int          itemWidth;
     private boolean      isDim;
@@ -74,24 +75,28 @@ public class ZPopupMenu {
      * 初始化弹窗列表
      */
     private void initUI() {
-        rootLayout = new FrameLayout(mContext);
+        rootLayout = new LinearLayout(mContext);
         recyclerView = new RecyclerView(mContext);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        rootLayout.addView(recyclerView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        popupWindow.setContentView(rootLayout);
-    }
+        rootLayout.addView(recyclerView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
-    /**
-     * 改变背景颜色
-     */
-    private void darkenBackground(Activity activity, Float dimProgress) {
-        WindowManager.LayoutParams lp = activity.getWindow()
-                                                .getAttributes();
-        lp.alpha = dimProgress;
-        activity.getWindow()
-                .addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        activity.getWindow()
-                .setAttributes(lp);
+        LinearLayout ll = new LinearLayout(mContext);
+        ll.setOrientation(LinearLayout.VERTICAL);
+        ll.setBackgroundColor(Color.parseColor("#55000000"));
+        ll.addView(rootLayout, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+
+        if (isDim) {
+            View dismissView = new View(mContext);
+            ll.addView(dismissView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            dismissView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    popupWindow.dismiss();
+                }
+            });
+        }
+
+        popupWindow.setContentView(ll);
     }
 
     /**
@@ -168,19 +173,6 @@ public class ZPopupMenu {
      * 显示弹窗列表界面
      */
     public void show(View view, int xoff, int yoff, int gravity) {
-        if (isDim) {
-            if (view.getContext() instanceof Activity) {
-                final Activity activity = ((Activity) view.getContext());
-                darkenBackground(activity, 0.2f);
-                popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                    @Override
-                    public void onDismiss() {
-                        darkenBackground(activity, 1f);
-                    }
-                });
-            }
-        }
-
         recyclerView.setAdapter(new MYAdapter());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             popupWindow.showAsDropDown(view, xoff, yoff, gravity);
@@ -193,19 +185,6 @@ public class ZPopupMenu {
      * 显示弹窗列表界面
      */
     public void showAtLocation(View view, int xoff, int yoff, int gravity) {
-        if (isDim) {
-            if (view.getContext() instanceof Activity) {
-                final Activity activity = ((Activity) view.getContext());
-                darkenBackground(activity, 0.2f);
-                popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                    @Override
-                    public void onDismiss() {
-                        darkenBackground(activity, 1f);
-                    }
-                });
-            }
-        }
-
         recyclerView.setAdapter(new MYAdapter());
         popupWindow.showAtLocation(view, xoff, yoff, gravity);
     }
