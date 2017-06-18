@@ -238,7 +238,7 @@ public class OtherViewActivity extends FragmentActivity {
                                          ToastUtil.toastShort(String.valueOf(item.text));
                                          return true;
                                      }
-                                 })
+                                 }).setBackgroundDim(true)
                                  .show(btn3, -250, 0, Gravity.RIGHT);
     }
 }
