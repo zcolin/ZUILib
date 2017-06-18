@@ -29,6 +29,7 @@ import com.zcolin.gui.helper.ZUIHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 功能按钮弹出
@@ -188,7 +189,7 @@ public class ZPopupMenu {
      */
     public ZPopupMenu addActions(String[] action, int selectedIndex) {
         if (action != null) {
-            addActions((ArrayList<String>) Arrays.asList(action), selectedIndex);
+            addActions(Arrays.asList(action), selectedIndex);
         }
         return this;
     }
@@ -196,7 +197,7 @@ public class ZPopupMenu {
     /**
      * 添加子类项集合
      */
-    public ZPopupMenu addActions(ArrayList<String> listAction, int selectedIndex) {
+    public ZPopupMenu addActions(List<String> listAction, int selectedIndex) {
         if (listAction != null) {
             for (int i = 0; i < listAction.size(); i++) {
                 Item item = new Item();
