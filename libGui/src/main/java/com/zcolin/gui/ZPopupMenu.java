@@ -9,7 +9,6 @@
 
 package com.zcolin.gui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -22,7 +21,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -47,6 +45,7 @@ public class ZPopupMenu {
     private LinearLayout rootLayout;
     private Context      mContext;
     private int          itemWidth;
+    private boolean      isAddDimView;
     private boolean      isDim;
 
     public ZPopupMenu(Context context) {
@@ -84,17 +83,6 @@ public class ZPopupMenu {
         ll.setOrientation(LinearLayout.VERTICAL);
         ll.setBackgroundColor(Color.parseColor("#55000000"));
         ll.addView(rootLayout, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-
-        if (isDim) {
-            View dismissView = new View(mContext);
-            ll.addView(dismissView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-            dismissView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    popupWindow.dismiss();
-                }
-            });
-        }
 
         popupWindow.setContentView(ll);
     }
@@ -150,7 +138,7 @@ public class ZPopupMenu {
     /**
      * 设置背景是否变暗
      */
-    public ZPopupMenu setBackgroundDim(boolean isDim) {
+    public ZPopupMenu setIsDim(boolean isDim) {
         this.isDim = isDim;
         return this;
     }
@@ -173,6 +161,18 @@ public class ZPopupMenu {
      * 显示弹窗列表界面
      */
     public void show(View view, int xoff, int yoff, int gravity) {
+        if (isDim && !isAddDimView) {
+            View dismissView = new View(mContext);
+            ((LinearLayout) popupWindow.getContentView()).addView(dismissView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            dismissView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    popupWindow.dismiss();
+                }
+            });
+            isAddDimView = true;
+        }
+
         recyclerView.setAdapter(new MYAdapter());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             popupWindow.showAsDropDown(view, xoff, yoff, gravity);
@@ -185,6 +185,18 @@ public class ZPopupMenu {
      * 显示弹窗列表界面
      */
     public void showAtLocation(View view, int xoff, int yoff, int gravity) {
+        if (isDim && !isAddDimView) {
+            View dismissView = new View(mContext);
+            ((LinearLayout) popupWindow.getContentView()).addView(dismissView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            dismissView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    popupWindow.dismiss();
+                }
+            });
+            isAddDimView = true;
+        }
+        
         recyclerView.setAdapter(new MYAdapter());
         popupWindow.showAtLocation(view, xoff, yoff, gravity);
     }
