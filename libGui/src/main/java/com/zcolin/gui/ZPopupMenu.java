@@ -196,7 +196,7 @@ public class ZPopupMenu {
             });
             isAddDimView = true;
         }
-        
+
         recyclerView.setAdapter(new MYAdapter());
         popupWindow.showAtLocation(view, xoff, yoff, gravity);
     }
@@ -305,8 +305,13 @@ public class ZPopupMenu {
     /**
      * 设置监听事件
      */
-    public ZPopupMenu setItemOnClickListener(OnItemOnClickListener onItemOnClickListener) {
+    public ZPopupMenu setOnItemClickListener(OnItemOnClickListener onItemOnClickListener) {
         this.mItemOnClickListener = onItemOnClickListener;
+        return this;
+    }
+
+    public ZPopupMenu setOnDismissListener(PopupWindow.OnDismissListener onDismissListener) {
+        popupWindow.setOnDismissListener(onDismissListener);
         return this;
     }
 
