@@ -40,7 +40,7 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
         LAYOUT_ID = layoutId;
     }
 
-    public ZDialogEdit(Activity context) {
+    public ZDialogEdit(Context context) {
         this(context, 0);
     }
 
