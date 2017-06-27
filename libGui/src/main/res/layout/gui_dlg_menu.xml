@@ -17,7 +17,7 @@
         android:paddingTop="16dp"
         android:visibility="gone"/>
 
-    <ScrollView
+    <com.zcolin.gui.DialogFixHeightScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
@@ -28,5 +28,5 @@
             android:orientation="vertical"
             android:paddingLeft="14dp"
             android:paddingRight="14dp"/>
-    </ScrollView>
+    </com.zcolin.gui.DialogFixHeightScrollView>
 </LinearLayout>
