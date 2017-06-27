@@ -67,6 +67,13 @@ public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.
 
     protected OnDateSubmitListener onDateSubmitListener;
 
+    public static ZDialogWheelDate instance(Context context) {
+        return new ZDialogWheelDate(context);
+    }
+
+    public static ZDialogWheelDate instance(Context context, @LayoutRes int layoutId) {
+        return new ZDialogWheelDate(context, layoutId);
+    }
 
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
@@ -79,6 +86,7 @@ public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.
     public ZDialogWheelDate(Context context) {
         this(context, 0);
     }
+
     /**
      * @param context
      */

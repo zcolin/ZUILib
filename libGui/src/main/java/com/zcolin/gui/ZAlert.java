@@ -28,6 +28,14 @@ public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
     protected TextView               tvMessage;           // 消息内容
     protected TextView               tvTitle;
 
+    public static ZAlert instance(Context context) {
+        return new ZAlert(context);
+    }
+
+    public static ZAlert instance(Context context, @LayoutRes int layoutId) {
+        return new ZAlert(context, layoutId);
+    }
+
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
      * 传入自定义的Layout，layout中的所有Id必须与本xml的Id相同
@@ -46,7 +54,7 @@ public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
     /**
      * @param context
      */
-    public ZAlert(Context context, @LayoutRes  int layoutId) {
+    public ZAlert(Context context, @LayoutRes int layoutId) {
         super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_alert : LAYOUT_ID) : layoutId);
         initRes();
     }

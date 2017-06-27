@@ -26,6 +26,10 @@ public class ZDialogAsyncProgress extends AsyncTask<Integer, Integer, ZDialogAsy
     private DoInterface     doInter;
     private MyHandler       handler;
 
+    public static ZDialogAsyncProgress instance(Context context) {
+        return new ZDialogAsyncProgress(context);
+    }
+
     public ZDialogAsyncProgress(Context context) {
         processBar = new ZDialogProgress(context);
         handler = new MyHandler(this);

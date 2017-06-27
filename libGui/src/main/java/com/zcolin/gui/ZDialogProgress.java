@@ -33,6 +33,14 @@ public class ZDialogProgress extends ProgressDialog {
     protected Drawable     indeterminateDrawable;
     private   int          layoutId;
 
+    public static ZDialogProgress instance(Context context) {
+        return new ZDialogProgress(context);
+    }
+
+    public static ZDialogProgress instance(Context context, @LayoutRes int layoutId) {
+        return new ZDialogProgress(context, layoutId);
+    }
+
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
      * 传入自定义的Layout，layout中的所有Id必须与本xml的Id相同

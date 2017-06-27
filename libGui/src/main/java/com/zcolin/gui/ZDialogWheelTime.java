@@ -53,6 +53,13 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
 
     protected OnTimeSubmitListener onTimeSubmitListener;
 
+    public static ZDialogWheelTime instance(Context context) {
+        return new ZDialogWheelTime(context);
+    }
+
+    public static ZDialogWheelTime instance(Context context, @LayoutRes int layoutId) {
+        return new ZDialogWheelTime(context, layoutId);
+    }
 
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，

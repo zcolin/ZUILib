@@ -48,6 +48,14 @@ public class ZPopupMenu {
     private boolean      isAddDimView;
     private boolean      isDim;
 
+    public static ZPopupMenu instance(Context context) {
+        return new ZPopupMenu(context);
+    }
+
+    public static ZPopupMenu instance(Context context, int width, int height) {
+        return new ZPopupMenu(context, width, height);
+    }
+
     public ZPopupMenu(Context context) {
         this(context, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     }

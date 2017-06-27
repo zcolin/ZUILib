@@ -30,6 +30,14 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
     protected TextView               tvCancel;            // 取消按钮
     protected TextView               tvMessage;            // 消息内容
 
+    public static ZConfirm instance(Context context) {
+        return new ZConfirm(context);
+    }
+
+    public static ZConfirm instance(Context context, @LayoutRes int layoutId) {
+        return new ZConfirm(context, layoutId);
+    }
+
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
      * 传入自定义的Layout，layout中的所有Id必须与本xml的Id相同

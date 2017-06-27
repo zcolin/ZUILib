@@ -8,7 +8,6 @@
  */
 package com.zcolin.gui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.text.InputFilter;
@@ -31,6 +30,14 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
 
     private ZDialogParamSubmitInterface<String> submitInterface;
     private ZDialogCancelInterface              cancelInterface;
+
+    public static ZDialogEdit instance(Context context) {
+        return new ZDialogEdit(context);
+    }
+
+    public static ZDialogEdit instance(Context context, @LayoutRes int layoutId) {
+        return new ZDialogEdit(context, layoutId);
+    }
 
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，

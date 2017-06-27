@@ -36,6 +36,14 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
     protected ZDialogParamSubmitInterface<Integer> submitInter;    // 点击确定按钮回调接口
     protected Context                              context;
 
+    public static ZDialogMenu instance(Context context) {
+        return new ZDialogMenu(context);
+    }
+
+    public static ZDialogMenu instance(Context context, @LayoutRes int layoutId) {
+        return new ZDialogMenu(context, layoutId);
+    }
+
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
      * 传入自定义的Layout，layout中的所有Id必须与本xml的Id相同

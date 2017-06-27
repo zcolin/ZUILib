@@ -8,7 +8,6 @@
  */
 package com.zcolin.gui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
@@ -17,7 +16,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.LayoutParams;
 import android.widget.TextView;
-
 
 import java.util.ArrayList;
 
@@ -33,6 +31,14 @@ public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements Vie
     protected TextView                             tvCancel;
     protected TextView                             tvSubmit;
 
+    public static ZDialogRadioGroup instance(Context context) {
+        return new ZDialogRadioGroup(context);
+    }
+
+    public static ZDialogRadioGroup instance(Context context, @LayoutRes int layoutId) {
+        return new ZDialogRadioGroup(context, layoutId);
+    }
+
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
      * 传入自定义的Layout，layout中的所有Id必须与本xml的Id相同
@@ -41,9 +47,10 @@ public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements Vie
         LAYOUT_ID = layoutId;
     }
 
-    public ZDialogRadioGroup(Activity context) {
+    public ZDialogRadioGroup(Context context) {
         this(context, 0);
     }
+
     /**
      * @param context
      */
