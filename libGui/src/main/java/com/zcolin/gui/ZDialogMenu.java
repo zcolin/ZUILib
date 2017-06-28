@@ -94,7 +94,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
 
     public ZDialogMenu setDatas(String[] arrStr, String defSelected) {
         return setDatas(arrStr, defSelected, getContext().getResources()
-                                                         .getColorStateList(R.color.gui_listitem_dialogmenu_sel));
+                                                         .getColorStateList(R.color.gui_listitem_dialogmenu_selector));
     }
 
     public ZDialogMenu setDatas(String[] arrStr, String defSelected, ColorStateList colorStateList) {
@@ -112,7 +112,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
             String anAttrStr = arrStr[i];
             TextView tv = new TextView(context);
             tv.setText(anAttrStr);
-            tv.setBackgroundResource(R.drawable.gui_dlg_menu_sel);
+            tv.setBackgroundResource(R.drawable.gui_dlg_menu_selector);
             tv.setTextSize(getContext().getResources()
                                        .getDimension(R.dimen.gui_textsize_normal));
             tv.setTextColor(colorStateList);

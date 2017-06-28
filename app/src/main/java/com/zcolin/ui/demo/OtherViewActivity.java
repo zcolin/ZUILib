@@ -226,13 +226,13 @@ public class OtherViewActivity extends FragmentActivity {
 
     private void showPopupMenu(Button btn3) {
         ZPopupMenu.Item item = new ZPopupMenu.Item();
-        item.setBackground(mActivity, R.drawable.gui_listitem_sel);
+        item.setBackground(mActivity, R.drawable.gui_listitem_selector);
         item.setText("富强福");
         new ZPopupMenu(mActivity).addAction("和谐福")
                                  .addAction("有善福")
                                  .addAction("敬业福")
                                  .addAction(item)
-                                 .setItemOnClickListener(new ZPopupMenu.OnItemOnClickListener() {
+                                 .setOnItemClickListener(new ZPopupMenu.OnItemOnClickListener() {
                                      @Override
                                      public boolean onItemClick(ZPopupMenu.Item item, int position) {
                                          ToastUtil.toastShort(String.valueOf(item.text));

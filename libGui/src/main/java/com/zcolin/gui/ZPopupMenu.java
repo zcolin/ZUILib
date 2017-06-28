@@ -458,7 +458,7 @@ public class ZPopupMenu {
                 holder.textView.setTextColor(item.colorStateList);
             } else if (item.textColor == 0) {
                 holder.textView.setTextColor(mContext.getResources()
-                                                     .getColorStateList(R.color.gui_listitem_popup_sel));
+                                                     .getColorStateList(R.color.gui_listitem_popup_selector));
             } else {
                 holder.textView.setTextColor(item.textColor);
             }
@@ -470,7 +470,7 @@ public class ZPopupMenu {
             if (item.isSetBackground) {
                 holder.textView.setBackgroundDrawable(item.background);
             } else {
-                holder.textView.setBackgroundResource(R.drawable.gui_listitem_popup_sel);
+                holder.textView.setBackgroundResource(R.drawable.gui_listitem_popup_selector);
             }
             holder.textView.setCompoundDrawablesWithIntrinsicBounds(item.drawableLeft, null, null, null);
             holder.textView.setSelected(item.isSelected);
