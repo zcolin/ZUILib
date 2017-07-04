@@ -449,10 +449,6 @@ public class ZPopupMenu {
             Item item = listAction.get(position);
 
             Context context = holder.itemView.getContext();
-            item.paddingLeft = ZUIHelper.dip2px(context, item.paddingLeft);
-            item.paddingRight = ZUIHelper.dip2px(context, item.paddingRight);
-            item.paddingTop = ZUIHelper.dip2px(context, item.paddingTop);
-            item.paddingBottom = ZUIHelper.dip2px(context, item.paddingBottom);
             holder.textView.setPadding(item.paddingLeft, item.paddingTop, item.paddingRight, item.paddingBottom);
             if (item.colorStateList != null) {
                 holder.textView.setTextColor(item.colorStateList);
