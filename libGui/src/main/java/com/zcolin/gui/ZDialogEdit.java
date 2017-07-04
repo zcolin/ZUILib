@@ -64,6 +64,7 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
         tvCancel = getView(R.id.dialog_cancelbutton);
         tvTitle = getView(R.id.dlgeditone_title);
         etEdit = getView(R.id.dlgeditone_edit);
+        etEdit.requestFocus();
         tvMakeSure.setOnClickListener(this);
         tvCancel.setOnClickListener(this);
     }
@@ -75,6 +76,7 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
 
     public ZDialogEdit setEditText(String str) {
         etEdit.setText(str);
+        etEdit.setSelection(etEdit.getText().length());
         return this;
     }
 
