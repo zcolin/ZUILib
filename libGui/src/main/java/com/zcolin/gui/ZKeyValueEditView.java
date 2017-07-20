@@ -202,6 +202,14 @@ public class ZKeyValueEditView extends RelativeLayout {
         return etValue;
     }
 
+    public ImageView getArrow() {
+        return ivArrow;
+    }
+
+    public ImageView getKeyImage() {
+        return ivImg;
+    }
+
     public void setSelection(int index) {
         etValue.setSelection(index);
     }

@@ -197,6 +197,10 @@ public class ZKeyValueView extends RelativeLayout {
         return ivImg;
     }
 
+    public ImageView getArrow() {
+        return ivArrow;
+    }
+
     public void setKeyImage(String url) {
         if (url != null) {
             ivImg.setVisibility(View.VISIBLE);
