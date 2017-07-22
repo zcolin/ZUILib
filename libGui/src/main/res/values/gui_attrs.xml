@@ -60,6 +60,7 @@
         <attr name="zkve_value_hint" format="string|reference"/>
         <attr name="zkve_value_maxline" format="integer"/>
         <attr name="zkve_value_background" format="reference"/>
+        <attr name="zkve_value_gravity" format="string"/>
         <attr name="zkve_is_bottomline" format="boolean"/>
         <attr name="zkve_is_arrow" format="boolean"/>
     </declare-styleable>

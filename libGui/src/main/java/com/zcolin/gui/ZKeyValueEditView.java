@@ -36,6 +36,7 @@ public class ZKeyValueEditView extends RelativeLayout {
     private ImageView ivArrow;
     private ImageView ivImg;
     private int       height;
+    private View      bottomLine;
 
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
@@ -48,7 +49,7 @@ public class ZKeyValueEditView extends RelativeLayout {
     public ZKeyValueEditView(Context context) {
         this(context, null);
     }
-    
+
     public ZKeyValueEditView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
@@ -64,7 +65,7 @@ public class ZKeyValueEditView extends RelativeLayout {
         etValue = (EditText) findViewById(R.id.et_value);
         ivArrow = (ImageView) findViewById(R.id.iv_arrow);
         ivImg = (ImageView) findViewById(R.id.iv_img);
-        View bottomLine = findViewById(R.id.view_bottomline);
+        bottomLine = findViewById(R.id.view_bottomline);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ZKeyValueEditView, defStyle, 0);
         height = (int) a.getDimension(R.styleable.ZKeyValueEditView_zkve_height, 0);
@@ -79,6 +80,7 @@ public class ZKeyValueEditView extends RelativeLayout {
         int keyEms = a.getInteger(R.styleable.ZKeyValueEditView_zkve_key_ems, 0);
 
         String valueText = a.getString(R.styleable.ZKeyValueEditView_zkve_value_text);
+        String valueGravity = a.getString(R.styleable.ZKeyValueEditView_zkve_value_gravity);
         float valueTextSize = a.getDimension(R.styleable.ZKeyValueEditView_zkve_value_text_size, 0);
         int valueTextColor = a.getColor(R.styleable.ZKeyValueEditView_zkve_value_text_color, 0);
         int valueStyle = a.getInt(R.styleable.ZKeyValueEditView_zkve_value_style, -1);
@@ -107,6 +109,12 @@ public class ZKeyValueEditView extends RelativeLayout {
             tvKey.setGravity(Gravity.RIGHT);
         } else {
             tvKey.setGravity(Gravity.LEFT);
+        }
+
+        if ("right".equals(valueGravity)) {
+            etValue.setGravity(Gravity.RIGHT);
+        } else {
+            etValue.setGravity(Gravity.LEFT);
         }
 
         if (keyImg != 0) {
@@ -168,7 +176,9 @@ public class ZKeyValueEditView extends RelativeLayout {
      * 如果用户需要自己使用布局替代此xml文件，则需要在此函数中返回自定义的LayoutId，
      * 但layout中的所有控件Id必须与本xml的Id相同，可以增加控件，不可以删除掉控件, 此函数返回的LayoutId的优先级高于{@link #initLayout(int)}
      */
-    protected @LayoutRes int getSelfLayoutId(){
+    protected
+    @LayoutRes
+    int getSelfLayoutId() {
         return 0;
     }
 
@@ -182,6 +192,28 @@ public class ZKeyValueEditView extends RelativeLayout {
 
     public void setValueHintText(String valueHintText) {
         etValue.setHint(valueHintText);
+    }
+
+    public void setIsBottomLine(boolean isBottomLine) {
+        bottomLine.setVisibility(isBottomLine ? View.VISIBLE : View.GONE);
+    }
+
+    public void setSelection(int index) {
+        etValue.setSelection(index);
+    }
+
+    public void setKeyImage(String url) {
+        if (url != null) {
+            ivImg.setVisibility(View.VISIBLE);
+            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources()
+                                                                                     .getDimension(R.dimen.gui_dimens_small);
+            Glide.with(getContext())
+                 .load(url)
+                 .into(ivImg);
+        } else {
+            ivImg.setVisibility(View.GONE);
+            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;
+        }
     }
 
     public String getKeyText() {
@@ -202,27 +234,15 @@ public class ZKeyValueEditView extends RelativeLayout {
         return etValue;
     }
 
-    public ImageView getArrow() {
+    public ImageView getIvArrow() {
         return ivArrow;
     }
 
-    public ImageView getKeyImage() {
+    public ImageView getIvKeyImage() {
         return ivImg;
     }
 
-    public void setSelection(int index) {
-        etValue.setSelection(index);
-    }
-
-    public void setKeyImage(String url) {
-        if (url != null) {
-            ivImg.setVisibility(View.VISIBLE);
-            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources()
-                                                                                .getDimension(R.dimen.gui_dimens_small);
-            Glide.with(getContext()).load(url).into(ivImg);
-        } else {
-            ivImg.setVisibility(View.GONE);
-            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;
-        }
+    public View getBottomLine() {
+        return bottomLine;
     }
 }

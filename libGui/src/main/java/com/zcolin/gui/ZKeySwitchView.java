@@ -32,6 +32,7 @@ public class ZKeySwitchView extends RelativeLayout {
     private ImageView      ivImg;
     private TextView       tvKey;
     private int            height;
+    private View           bottomLine;
 
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
@@ -57,7 +58,7 @@ public class ZKeySwitchView extends RelativeLayout {
         switchButton = (ZCheckTextView) findViewById(R.id.switchButton);
         ivImg = (ImageView) findViewById(R.id.iv_img);
         tvKey = (TextView) findViewById(R.id.tv_key);
-        View bottomLine = findViewById(R.id.view_bottomline);
+        bottomLine = findViewById(R.id.view_bottomline);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ZKeySwitchView, defStyle, 0);
         height = (int) a.getDimension(R.styleable.ZKeySwitchView_zksv_height, 0);
@@ -75,7 +76,7 @@ public class ZKeySwitchView extends RelativeLayout {
         int valueBgOn = a.getResourceId(R.styleable.ZKeySwitchView_zksv_value_bg_on, 0);
         String valueTextOff = a.getString(R.styleable.ZKeySwitchView_zksv_value_str_off);
         String valueTextOn = a.getString(R.styleable.ZKeySwitchView_zksv_value_str_on);
-        
+
         a.recycle();
 
         tvKey.setText(keyText);
@@ -116,7 +117,7 @@ public class ZKeySwitchView extends RelativeLayout {
         if (valueTextOn != null && valueTextOff != null) {
             switchButton.initText(valueTextOff, valueTextOn);
         }
-        
+
         bottomLine.setVisibility(isBottomLine ? View.VISIBLE : View.GONE);
     }
 
@@ -128,25 +129,21 @@ public class ZKeySwitchView extends RelativeLayout {
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
+
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在此函数中返回自定义的LayoutId，
      * 但layout中的所有控件Id必须与本xml的Id相同，可以增加控件，不可以删除掉控件, 此函数返回的LayoutId的优先级高于{@link #initLayout(int)}
      */
-    protected @LayoutRes
-    int getSelfLayoutId(){
+    protected
+    @LayoutRes
+    int getSelfLayoutId() {
         return 0;
     }
-    public String getKeyText() {
-        return tvKey.getText()
-                    .toString();
-    }
+
+
 
     public void setKeyText(String key) {
         tvKey.setText(key);
-    }
-
-    public ZCheckTextView getSwitchButton() {
-        return switchButton;
     }
 
     public boolean isChecked() {
@@ -181,5 +178,25 @@ public class ZKeySwitchView extends RelativeLayout {
             ivImg.setVisibility(View.GONE);
             ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;
         }
+    }
+    public String getKeyText() {
+        return tvKey.getText()
+                    .toString();
+    }
+
+    public TextView getTvKey() {
+        return tvKey;
+    }
+
+    public ZCheckTextView getSwitchButton() {
+        return switchButton;
+    }
+
+    public ImageView getIvKeyImage() {
+        return ivImg;
+    }
+
+    public View getBottomLine() {
+        return bottomLine;
     }
 }

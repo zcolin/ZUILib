@@ -35,6 +35,7 @@ public class ZKeyValueView extends RelativeLayout {
     private ImageView ivArrow;
     private ImageView ivImg;
     private int       height;
+    private View      bottomLine;
 
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
@@ -61,7 +62,7 @@ public class ZKeyValueView extends RelativeLayout {
         tvValue = (TextView) findViewById(R.id.tv_value);
         ivArrow = (ImageView) findViewById(R.id.iv_arrow);
         ivImg = (ImageView) findViewById(R.id.iv_img);
-        View bottomLine = findViewById(R.id.view_bottomline);
+        bottomLine = findViewById(R.id.view_bottomline);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ZKeyValueView, defStyle, 0);
         height = (int) a.getDimension(R.styleable.ZKeyValueView_zkv_height, 0);
@@ -175,6 +176,21 @@ public class ZKeyValueView extends RelativeLayout {
         tvValue.setText(valueText);
     }
 
+
+    public void setKeyImage(String url) {
+        if (url != null) {
+            ivImg.setVisibility(View.VISIBLE);
+            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources()
+                                                                                     .getDimension(R.dimen.gui_dimens_small);
+            Glide.with(getContext())
+                 .load(url)
+                 .into(ivImg);
+        } else {
+            ivImg.setVisibility(View.GONE);
+            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;
+        }
+    }
+
     public String getKeyText() {
         return tvKey.getText()
                     .toString();
@@ -193,25 +209,16 @@ public class ZKeyValueView extends RelativeLayout {
         return tvValue;
     }
 
-    public ImageView getKeyImage() {
-        return ivImg;
-    }
-
-    public ImageView getArrow() {
+    public ImageView getIvArrow() {
         return ivArrow;
     }
 
-    public void setKeyImage(String url) {
-        if (url != null) {
-            ivImg.setVisibility(View.VISIBLE);
-            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources()
-                                                                                     .getDimension(R.dimen.gui_dimens_small);
-            Glide.with(getContext())
-                 .load(url)
-                 .into(ivImg);
-        } else {
-            ivImg.setVisibility(View.GONE);
-            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;
-        }
+    public ImageView getIvKeyImage() {
+        return ivImg;
     }
+
+    public View getBottomLine() {
+        return bottomLine;
+    }
+
 }
