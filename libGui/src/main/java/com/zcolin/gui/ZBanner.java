@@ -175,7 +175,8 @@ public class ZBanner extends FrameLayout {
             case NUM_INDICATOR:
                 numIndicator.setVisibility(View.VISIBLE);
                 numIndicator.setBackgroundResource(R.drawable.gui_bg_banner_numindicator);
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams
+                        .WRAP_CONTENT);
                 layoutParams.setMargins(0, 0, 10, 10);
                 layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 numIndicator.setLayoutParams(layoutParams);
@@ -233,8 +234,10 @@ public class ZBanner extends FrameLayout {
      * 程序外部调用StartPlay
      */
     public void startAutoPlay() {
-        isAutoPlay = true;
-        resumePaly();
+        if (listUrl.size() > 1) {
+            isAutoPlay = true;
+            resumePaly();
+        }
     }
 
     /**
