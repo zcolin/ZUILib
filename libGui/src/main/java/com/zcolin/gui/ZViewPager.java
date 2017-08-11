@@ -61,7 +61,7 @@ public class ZViewPager extends ViewPager {
             }
             return false;
         } else {
-            return isCanScroll && super.onInterceptTouchEvent(ev);
+            return isCanScroll && super.onTouchEvent(ev);
         }
     }
 }
