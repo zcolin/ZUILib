@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 public class ZViewPager extends ViewPager {
 
     private boolean isCanScroll = true;
+    private boolean isCatch     = false;
 
     public ZViewPager(Context context) {
         super(context);
@@ -32,14 +33,35 @@ public class ZViewPager extends ViewPager {
         this.isCanScroll = isCanScroll;
     }
 
+    public void setCatchTouchException(boolean isCatch) {
+        this.isCatch = isCatch;
+    }
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return isCanScroll && super.onInterceptTouchEvent(ev);
+        if (isCatch) {
+            try {
+                return isCanScroll && super.onInterceptTouchEvent(ev);
+            } catch (IllegalArgumentException ex) {
+                ex.printStackTrace();
+            }
+            return false;
+        } else {
+            return isCanScroll && super.onInterceptTouchEvent(ev);
+        }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        return isCanScroll && super.onTouchEvent(ev);
+        if (isCatch) {
+            try {
+                return isCanScroll && super.onTouchEvent(ev);
+            } catch (IllegalArgumentException ex) {
+                ex.printStackTrace();
+            }
+            return false;
+        } else {
+            return isCanScroll && super.onInterceptTouchEvent(ev);
+        }
     }
-
 }
