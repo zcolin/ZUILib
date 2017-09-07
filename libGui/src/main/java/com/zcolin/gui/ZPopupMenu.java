@@ -182,10 +182,17 @@ public class ZPopupMenu {
         }
 
         recyclerView.setAdapter(new MYAdapter());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            popupWindow.showAsDropDown(view, xoff, yoff);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             popupWindow.showAsDropDown(view, xoff, yoff, gravity);
         } else {
-            popupWindow.showAsDropDown(view, xoff, yoff);
+            int[] location = new int[2];
+            // 获取控件在屏幕的位置
+            view.getLocationOnScreen(location);
+            popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, location[0] + xoff, location[1] + view.getHeight() + yoff);
         }
     }
 
