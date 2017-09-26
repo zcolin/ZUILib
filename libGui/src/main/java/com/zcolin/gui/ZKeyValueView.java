@@ -82,7 +82,7 @@ public class ZKeyValueView extends RelativeLayout {
         int valueStyle = a.getInt(R.styleable.ZKeyValueView_zkv_value_style, -1);
         String valueGravity = a.getString(R.styleable.ZKeyValueView_zkv_value_gravity);
         String valueHintText = a.getString(R.styleable.ZKeyValueView_zkv_value_hint);
-        int maxline = a.getInt(R.styleable.ZKeyValueEditView_zkve_value_maxline, 1);
+        int maxline = a.getInt(R.styleable.ZKeyValueView_zkv_value_maxline, 1);
         a.recycle();
 
         tvKey.setText(keyText);
