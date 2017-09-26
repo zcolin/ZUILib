@@ -3,7 +3,7 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     17-1-13 上午11:31
+ *   date     17-9-26 上午11:18
  * ********************************************************
  */
 package com.zcolin.gui;
@@ -34,7 +34,6 @@ public class ZKeyValueView extends RelativeLayout {
     private TextView  tvValue;
     private ImageView ivArrow;
     private ImageView ivImg;
-    private int       height;
     private View      bottomLine;
 
     /**
@@ -65,7 +64,6 @@ public class ZKeyValueView extends RelativeLayout {
         bottomLine = findViewById(R.id.view_bottomline);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ZKeyValueView, defStyle, 0);
-        height = (int) a.getDimension(R.styleable.ZKeyValueView_zkv_height, 0);
         String keyText = a.getString(R.styleable.ZKeyValueView_zkv_key_text);
         float keyTextSize = a.getDimension(R.styleable.ZKeyValueView_zkv_key_text_size, 0);
         int keyTextColor = a.getColor(R.styleable.ZKeyValueView_zkv_key_text_color, 0);
@@ -84,6 +82,7 @@ public class ZKeyValueView extends RelativeLayout {
         int valueStyle = a.getInt(R.styleable.ZKeyValueView_zkv_value_style, -1);
         String valueGravity = a.getString(R.styleable.ZKeyValueView_zkv_value_gravity);
         String valueHintText = a.getString(R.styleable.ZKeyValueView_zkv_value_hint);
+        int maxline = a.getInt(R.styleable.ZKeyValueEditView_zkve_value_maxline, 1);
         a.recycle();
 
         tvKey.setText(keyText);
@@ -140,6 +139,11 @@ public class ZKeyValueView extends RelativeLayout {
             tvValue.setTextColor(valueTextColor);
         }
 
+        if (maxline > 0) {
+            tvValue.setMaxLines(maxline);
+            tvValue.setEllipsize(TextUtils.TruncateAt.END);
+        }
+
         if ("left".equals(valueGravity)) {
             tvValue.setGravity(Gravity.LEFT);
         } else {
@@ -147,15 +151,6 @@ public class ZKeyValueView extends RelativeLayout {
         }
         bottomLine.setVisibility(isBottomLine ? View.VISIBLE : View.GONE);
         ivArrow.setVisibility(isArrow ? View.VISIBLE : View.INVISIBLE);
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (height > 0) {
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
-        }
-
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     /**

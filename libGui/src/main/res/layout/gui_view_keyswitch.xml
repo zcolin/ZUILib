@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/gui_dimens_item_height_small_small"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/gui_dimens_item_height_small"
                 android:paddingLeft="@dimen/gui_dimens_mid"
                 android:paddingRight="@dimen/gui_dimens_mid">
 
@@ -25,7 +26,7 @@
         android:textColor="@color/gui_key_value_view_text"
         android:textSize="@dimen/gui_textsize_normal"/>
 
-    <com.zcolin.gui.ZCheckTextView
+    <com.fosung.gui.ZCheckTextView
         android:id="@+id/switchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

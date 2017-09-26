@@ -22,7 +22,6 @@
 
     <!--用户在使用的时候可以直接在Theme中定义，则会全局生效，所以名字都分开了不同的前缀-->
     <declare-styleable name="ZKeyValueView">
-        <attr name="zkv_height" format="dimension"/>
         <attr name="zkv_key_text" format="string|reference"/>
         <attr name="zkv_key_text_size" format="dimension"/>
         <attr name="zkv_key_text_color" format="color|reference"/>
@@ -37,13 +36,13 @@
         <attr name="zkv_value_text_color" format="color|reference"/>
         <attr name="zkv_value_style" format="reference"/>
         <attr name="zkv_value_hint" format="string|reference"/>
+        <attr name="zkv_value_maxline" format="integer"/>
         <attr name="zkv_value_gravity" format="string"/>
         <attr name="zkv_is_bottomline" format="boolean"/>
         <attr name="zkv_is_arrow" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="ZKeyValueEditView">
-        <attr name="zkve_height" format="dimension"/>
         <attr name="zkve_key_text" format="string|reference"/>
         <attr name="zkve_key_text_size" format="dimension"/>
         <attr name="zkve_key_text_color" format="color|reference"/>
@@ -66,7 +65,6 @@
     </declare-styleable>
 
     <declare-styleable name="ZKeySwitchView">
-        <attr name="zksv_height" format="dimension"/>
         <attr name="zksv_key_text" format="string|reference"/>
         <attr name="zksv_key_text_size" format="dimension"/>
         <attr name="zksv_key_text_color" format="color|reference"/>

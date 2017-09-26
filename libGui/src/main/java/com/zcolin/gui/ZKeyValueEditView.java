@@ -3,7 +3,7 @@
  *   author   colin
  *   company  fosung
  *   email    wanglin2046@126.com
- *   date     17-1-13 上午11:31
+ *   date     17-9-26 上午11:18
  * ********************************************************
  */
 package com.zcolin.gui;
@@ -35,7 +35,6 @@ public class ZKeyValueEditView extends RelativeLayout {
     private EditText  etValue;
     private ImageView ivArrow;
     private ImageView ivImg;
-    private int       height;
     private View      bottomLine;
 
     /**
@@ -68,7 +67,6 @@ public class ZKeyValueEditView extends RelativeLayout {
         bottomLine = findViewById(R.id.view_bottomline);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ZKeyValueEditView, defStyle, 0);
-        height = (int) a.getDimension(R.styleable.ZKeyValueEditView_zkve_height, 0);
         String keyText = a.getString(R.styleable.ZKeyValueEditView_zkve_key_text);
         float keyTextSize = a.getDimension(R.styleable.ZKeyValueEditView_zkve_key_text_size, 0);
         int keyTextColor = a.getColor(R.styleable.ZKeyValueEditView_zkve_key_text_color, 0);
@@ -154,6 +152,7 @@ public class ZKeyValueEditView extends RelativeLayout {
 
         if (maxline > 0) {
             etValue.setMaxLines(maxline);
+            etValue.setEllipsize(TextUtils.TruncateAt.END);
         }
 
         if (valueBackground != 0) {
@@ -164,13 +163,6 @@ public class ZKeyValueEditView extends RelativeLayout {
         ivArrow.setVisibility(isArrow ? View.VISIBLE : View.GONE);
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (height > 0) {
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
-        }
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
 
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在此函数中返回自定义的LayoutId，

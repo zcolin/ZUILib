@@ -16,9 +16,6 @@
         <!--gui库中的组件通用设置 其他属性看gui库中的gui_attr.xml文件-->
         <item name="zkv_key_text_color">@color/red_light</item>
         <item name="zkv_value_text_color">@color/green_light</item>
-        <item name="zkv_height">55dp</item>
-        <item name="zkve_height">55dp</item>
-        <item name="zksv_height">55dp</item>
         <item name="zdivider_color">#99ababab</item>
         <item name="zdivider_height_size">1px</item>
         <item name="zkve_value_background">@color/transparent</item>
