@@ -9,6 +9,7 @@
 
 package com.zcolin.gui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -21,6 +22,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -44,9 +46,10 @@ public class ZPopupMenu {
     private RecyclerView recyclerView;
     private LinearLayout rootLayout;
     private Context      mContext;
-    private int          itemWidth;
     private boolean      isAddDimView;
     private boolean      isDim;
+    private boolean      isFullDim;
+    private int[]        itemPadding;
 
     public static ZPopupMenu instance(Context context) {
         return new ZPopupMenu(context);
@@ -62,7 +65,6 @@ public class ZPopupMenu {
 
     public ZPopupMenu(Context context, int width, int height) {
         this.mContext = context;
-        itemWidth = width;
         popupWindow = new PopupWindow();
         popupWindow.setWidth(width);
         popupWindow.setHeight(height);
@@ -128,7 +130,22 @@ public class ZPopupMenu {
     }
 
     /**
+     * 设置所有item边距
+     */
+    public ZPopupMenu setItemPadding(int left, int top, int right, int bottom) {
+        itemPadding = new int[4];
+        itemPadding[0] = left;
+        itemPadding[1] = top;
+        itemPadding[2] = right;
+        itemPadding[3] = bottom;
+        return this;
+    }
+
+
+    /**
      * 设置分割线
+     * <p>
+     * 参照ZRecyclerViewDivider
      */
     public ZPopupMenu addItemDecoration(RecyclerView.ItemDecoration itemDecoration) {
         recyclerView.addItemDecoration(itemDecoration);
@@ -144,10 +161,15 @@ public class ZPopupMenu {
     }
 
     /**
-     * 设置背景是否变暗
+     * 设置背景是否变暗,一般横向全屏时使用此功能
      */
     public ZPopupMenu setIsDim(boolean isDim) {
         this.isDim = isDim;
+        return this;
+    }
+
+    public ZPopupMenu setIsFullDim(boolean isDim) {
+        this.isFullDim = isDim;
         return this;
     }
 
@@ -169,20 +191,8 @@ public class ZPopupMenu {
      * 显示弹窗列表界面
      */
     public void show(View view, int xoff, int yoff, int gravity) {
-        if (isDim && !isAddDimView) {
-            View dismissView = new View(mContext);
-            ((LinearLayout) popupWindow.getContentView()).addView(dismissView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-            dismissView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    popupWindow.dismiss();
-                }
-            });
-            isAddDimView = true;
-        }
-
+        dealDim(view);
         recyclerView.setAdapter(new MYAdapter());
-
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             popupWindow.showAsDropDown(view, xoff, yoff);
@@ -200,7 +210,25 @@ public class ZPopupMenu {
      * 显示弹窗列表界面
      */
     public void showAtLocation(View view, int xoff, int yoff, int gravity) {
-        if (isDim && !isAddDimView) {
+        dealDim(view);
+
+        recyclerView.setAdapter(new MYAdapter());
+        popupWindow.showAtLocation(view, xoff, yoff, gravity);
+    }
+
+    private void dealDim(View view) {
+        if (isFullDim) {
+            if (view.getContext() instanceof Activity) {
+                final Activity activity = ((Activity) view.getContext());
+                darkenBackground(activity, 0.2f);
+                popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        darkenBackground(activity, 1f);
+                    }
+                });
+            }
+        } else if (isDim && !isAddDimView) {
             View dismissView = new View(mContext);
             ((LinearLayout) popupWindow.getContentView()).addView(dismissView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
             dismissView.setOnClickListener(new View.OnClickListener() {
@@ -211,9 +239,6 @@ public class ZPopupMenu {
             });
             isAddDimView = true;
         }
-
-        recyclerView.setAdapter(new MYAdapter());
-        popupWindow.showAtLocation(view, xoff, yoff, gravity);
     }
 
     /**
@@ -331,9 +356,22 @@ public class ZPopupMenu {
     }
 
     /**
+     * 改变背景颜色
+     */
+    private void darkenBackground(Activity activity, Float dimProgress) {
+        WindowManager.LayoutParams lp = activity.getWindow()
+                                                .getAttributes();
+        lp.alpha = dimProgress;
+        activity.getWindow()
+                .addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        activity.getWindow()
+                .setAttributes(lp);
+    }
+
+    /**
      * 弹窗子类项按钮监听事件
      */
-    public static interface OnItemOnClickListener {
+    public interface OnItemOnClickListener {
 
         /**
          * @return ture 消失，false不消失
@@ -456,7 +494,7 @@ public class ZPopupMenu {
             Item item = listAction.get(position);
 
             Context context = holder.itemView.getContext();
-            holder.textView.setPadding(item.paddingLeft, item.paddingTop, item.paddingRight, item.paddingBottom);
+
             if (item.colorStateList != null) {
                 holder.textView.setTextColor(item.colorStateList);
             } else if (item.textColor == 0) {
@@ -477,6 +515,12 @@ public class ZPopupMenu {
             }
             holder.textView.setCompoundDrawablesWithIntrinsicBounds(item.drawableLeft, null, null, null);
             holder.textView.setSelected(item.isSelected);
+
+            if (itemPadding != null) {
+                holder.textView.setPadding(itemPadding[0], itemPadding[1], itemPadding[2], itemPadding[3]);
+            } else if (item.paddingLeft != 0 || item.paddingRight != 0 || item.paddingTop != 0 || item.paddingBottom != 0) {
+                holder.textView.setPadding(item.paddingLeft, item.paddingTop, item.paddingRight, item.paddingBottom);
+            }
             holder.textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -516,7 +560,7 @@ public class ZPopupMenu {
             public MYViewHolder(View itemView) {
                 super(itemView);
                 textView = (TextView) itemView;
-                textView.setLayoutParams(new RecyclerView.LayoutParams(itemWidth, LayoutParams.WRAP_CONTENT));
+                textView.setLayoutParams(new RecyclerView.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             }
         }
     }

@@ -229,9 +229,11 @@ public class OtherViewActivity extends FragmentActivity {
         item.setBackground(mActivity, R.drawable.gui_listitem_selector);
         item.setText("富强福");
         new ZPopupMenu(mActivity).addAction("和谐福")
-                                 .addAction("有善福")
+                                 .addAction("有善福--长一些")
                                  .addAction("敬业福")
                                  .addAction(item)
+                                 .setBackgroundColor(Color.parseColor("#fafafa"))
+                                 .setIsFullDim(true)
                                  .setOnItemClickListener(new ZPopupMenu.OnItemOnClickListener() {
                                      @Override
                                      public boolean onItemClick(ZPopupMenu.Item item, int position) {
@@ -239,6 +241,6 @@ public class OtherViewActivity extends FragmentActivity {
                                          return true;
                                      }
                                  })
-                                 .show(btn3, -250, 0, Gravity.RIGHT);
+                                 .show(btn3, 0, 0, Gravity.RIGHT);
     }
 }
