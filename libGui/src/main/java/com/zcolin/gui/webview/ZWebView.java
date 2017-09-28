@@ -19,6 +19,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -180,7 +181,8 @@ public class ZWebView extends BridgeWebView {
 
         View videoProgressView = LayoutInflater.from(activity)
                                                .inflate(R.layout.gui_view_webview_video_progress, null);
-        webChromeClientWrapper = new ZVideoFullScreenWebChromeClient(webChromeClientWrapper.getWebChromeClient(), activity, this, flCustomContainer, videoProgressView);
+        webChromeClientWrapper = new ZVideoFullScreenWebChromeClient(webChromeClientWrapper.getWebChromeClient(), activity, this, flCustomContainer, 
+                videoProgressView);
         setWebChromeClient(webChromeClientWrapper.getWebChromeClient());
         return this;
     }
@@ -311,7 +313,8 @@ public class ZWebView extends BridgeWebView {
             public void handler(String data, final CallBackFunction function) {
                 try {
                     Intent intent = new Intent();
-                    ComponentName componentName = new ComponentName(activity.getPackageName(), activity.getPackageName() + "build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/res" + data);
+                    ComponentName componentName = new ComponentName(activity.getPackageName(), activity.getPackageName() +
+                            "build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/res" + data);
                     intent.setComponent(componentName);
                     activity.startActivity(intent);
                 } catch (Exception e) {
@@ -333,5 +336,28 @@ public class ZWebView extends BridgeWebView {
             }
         });
         return this;
+    }
+
+    @Override
+    public void destroy() {
+        // 如果先调用destroy()方法，则会命中if (isDestroyed()) return;这一行代码，需要先onDetachedFromWindow()，再
+        // destory()
+        ViewParent parent = getParent();
+        if (parent != null) {
+            ((ViewGroup) parent).removeView(this);
+        }
+
+        stopLoading();
+        // 退出时调用此方法，移除绑定的服务，否则某些特定系统会报错
+        getSettings().setJavaScriptEnabled(false);
+        clearHistory();
+        clearView();
+        removeAllViews();
+
+        try {
+            super.destroy();
+        } catch (Throwable ex) {
+            ex.printStackTrace();
+        }
     }
 }
