@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/gui_dimens_item_height_small"
+                android:minHeight="@dimen/gui_dimens_item_height_small_small"
                 android:paddingLeft="@dimen/gui_dimens_mid"
                 android:paddingRight="@dimen/gui_dimens_mid">
 
