@@ -13,10 +13,13 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.fosung.ui.R;
 import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.util.DisplayUtil;
+import com.zcolin.gui.ZBadgeView;
 import com.zcolin.gui.ZIndicator;
 import com.zcolin.gui.ZTabView;
 import com.zcolin.gui.ZViewPager;
@@ -68,7 +71,15 @@ public class MainActivity extends AppCompatActivity {
 
         tabView.addZTab(getNewTab("View"));
         tabView.addZTab(getNewTab("View"));
-        tabView.addZTab(getNewTab("View"));
+        
+        ZTabView.ZTab tab2 =getNewTab("View");
+        RelativeLayout rlTab = new RelativeLayout(this);
+        rlTab.addView(tab2, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        ZBadgeView badgeView = new ZBadgeView(this, tab2);
+        badgeView.setText("55");
+        badgeView.show();
+        badgeView.setTextSize(10);
+        tabView.addZTab(rlTab);
     }
 
     /*

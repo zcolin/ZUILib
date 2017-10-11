@@ -22,11 +22,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 
 
 /**
@@ -116,10 +116,40 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
      * 增加tab
      */
     public void addZTab(ZTab tab) {
-        llTabLay.addView(tab);
+        llTabLay.addView(tab, new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f));
+        initTab(tab);
+    }
+
+    /**
+     * 增加tab
+     */
+    public void addZTab(ViewGroup viewGroup) {
+        ZTab tab = getChildZTab(viewGroup);
+        if (tab == null) {
+            throw new IllegalArgumentException("ViewGroup 中没有子控件是ZTab类型");
+        }
+
+        llTabLay.addView(viewGroup, new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f));
+        initTab(tab);
+    }
+
+    private ZTab getChildZTab(ViewGroup viewGroup) {
+        if (viewGroup.getChildCount() > 0) {
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View view = viewGroup.getChildAt(i);
+                if (view instanceof ZTab) {
+                    return (ZTab) view;
+                } else if (view instanceof ViewGroup) {
+                    return getChildZTab((ViewGroup) view);
+                }
+            }
+        }
+        return null;
+    }
+
+    private ZTab initTab(ZTab tab) {
         tab.setOnClickListener(this);
         tab.tabIndex = llTabLay.getChildCount() - 1;
-        tab.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f));
 
         //默认选中第一个
         if (llTabLay.getChildCount() == 1) {
@@ -134,6 +164,7 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
             Bitmap b = Bitmap.createBitmap(tabLineBitmap, 0, 0, width, tabLineBitmap.getHeight());//设置tab的宽度和高度
             tabLine.setImageBitmap(b);
         }
+        return tab;
     }
 
     /**
