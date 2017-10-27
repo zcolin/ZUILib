@@ -91,8 +91,7 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
         tabMode = TAB_MODE_LINE;
         initViewPager(pager);
 
-        LayoutInflater.from(context)
-                      .inflate(R.layout.gui_view_tabview, this);
+        LayoutInflater.from(context).inflate(R.layout.gui_view_tabview, this);
         llTabLay = (LinearLayout) findViewById(R.id.ll_tabview);
         tabLine = (ImageView) findViewById(R.id.iv_tabview);
 
@@ -153,8 +152,7 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
 
         //默认选中第一个
         if (llTabLay.getChildCount() == 1) {
-            llTabLay.getChildAt(0)
-                    .setSelected(true);
+            llTabLay.getChildAt(0).setSelected(true);
         }
 
         if (tabMode == TAB_MODE_LINE && tabLineBitmap != null && tabLine != null) {
@@ -240,11 +238,9 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
 
         for (int i = 0; i < childCount; i++) {
             if (tab != i) {
-                llTabLay.getChildAt(i)
-                        .setSelected(false);
+                llTabLay.getChildAt(i).setSelected(false);
             } else {
-                llTabLay.getChildAt(i)
-                        .setSelected(true);
+                llTabLay.getChildAt(i).setSelected(true);
             }
         }
         curTab = tab;
@@ -280,12 +276,13 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
     @Override
     public void onClick(View v) {
         if (v instanceof ZTab) {
-            if (pager != null) {
-                pager.setCurrentItem(((ZTab) v).tabIndex, isSmoothScroll);
+            boolean isIntercept = false;
+            if (tabListener != null) {
+                isIntercept = tabListener.onTabSelected((ZTab) v, ((ZTab) v).tabIndex);
             }
 
-            if (tabListener != null) {
-                tabListener.onTabSelected((ZTab) v, ((ZTab) v).tabIndex);
+            if (!isIntercept && pager != null) {
+                pager.setCurrentItem(((ZTab) v).tabIndex, isSmoothScroll);
             }
         }
     }
@@ -365,6 +362,6 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
      * Tab选中回调
      */
     public interface ZTabListener {
-        void onTabSelected(ZTab arg0, int index);
+        boolean onTabSelected(ZTab arg0, int index);
     }
 }
