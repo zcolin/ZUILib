@@ -18,13 +18,25 @@ import android.view.WindowManager;
 public class ZUIHelper {
 
     /**
+     * 获取屏幕宽度(较小的宽度，横屏时为屏幕高度)
+     */
+    public static int getSmallScreenWidth(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        int width = outMetrics.widthPixels;
+        int height = outMetrics.heightPixels;
+        return height > width ? width : height;
+    }
+
+
+    /**
      * 获取屏幕宽度
      */
     public static int getScreenWidth(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
-        wm.getDefaultDisplay()
-          .getMetrics(outMetrics);
+        wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.widthPixels;
     }
 
@@ -35,8 +47,7 @@ public class ZUIHelper {
     public static int getScreenHeight(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
-        wm.getDefaultDisplay()
-          .getMetrics(outMetrics);
+        wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.heightPixels;
     }
 
@@ -48,8 +59,7 @@ public class ZUIHelper {
      * @return dp
      */
     public static int px2dip(Context context, float pxValue) {
-        final float scale = context.getResources()
-                                   .getDisplayMetrics().density;
+        final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
@@ -57,8 +67,7 @@ public class ZUIHelper {
      * 将dip或dp值转换为px值，保证尺寸大小不变
      */
     public static int dip2px(Context context, float dipValue) {
-        final float scale = context.getResources()
-                                   .getDisplayMetrics().density;
+        final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }
 }
