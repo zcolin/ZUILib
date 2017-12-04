@@ -395,6 +395,7 @@ public class ZPopupMenu {
         ColorStateList colorStateList;
         boolean        isSelected;
         int            maxEms;
+        int            minEms;
 
         int paddingLeft   = 0;
         int paddingRight  = 0;
@@ -481,6 +482,10 @@ public class ZPopupMenu {
             return this;
         }
 
+        public Item setMinEms(int minEms) {
+            this.minEms = minEms;
+            return this;
+        }
 
         /**
          * 单位sp
@@ -558,6 +563,9 @@ public class ZPopupMenu {
 
             if (item.maxEms > 0) {
                 holder.textView.setMaxEms(item.maxEms);
+            }
+            if (item.minEms > 0) {
+                holder.textView.setMinEms(item.minEms);
             }
             holder.textView.setEllipsize(TextUtils.TruncateAt.END);
 
