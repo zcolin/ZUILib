@@ -18,6 +18,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -359,13 +360,10 @@ public class ZPopupMenu {
      * 改变背景颜色
      */
     private void darkenBackground(Activity activity, Float dimProgress) {
-        WindowManager.LayoutParams lp = activity.getWindow()
-                                                .getAttributes();
+        WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
         lp.alpha = dimProgress;
-        activity.getWindow()
-                .addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        activity.getWindow()
-                .setAttributes(lp);
+        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        activity.getWindow().setAttributes(lp);
     }
 
     /**
@@ -385,6 +383,9 @@ public class ZPopupMenu {
     public static class Item {
         public CharSequence text;
         Drawable       drawableLeft;
+        Drawable       drawableRight;
+        Drawable       drawableBottom;
+        Drawable       drawableTop;
         int            drawablePadding;
         Drawable       background;
         boolean        isSetBackground;//是否用户主动设置了background的标志
@@ -393,6 +394,7 @@ public class ZPopupMenu {
         int            textColor;
         ColorStateList colorStateList;
         boolean        isSelected;
+        int            maxEms;
 
         int paddingLeft   = 0;
         int paddingRight  = 0;
@@ -405,8 +407,37 @@ public class ZPopupMenu {
         }
 
         public Item setDrawableLeft(Context context, int drawableLeft) {
-            this.drawableLeft = context.getResources()
-                                       .getDrawable(drawableLeft);
+            this.drawableLeft = context.getResources().getDrawable(drawableLeft);
+            return this;
+        }
+
+        public Item setDrawableRight(Context context, int drawableRight) {
+            this.drawableRight = context.getResources().getDrawable(drawableRight);
+            return this;
+        }
+
+        public Item setDrawableRight(Drawable drawableRight) {
+            this.drawableRight = drawableRight;
+            return this;
+        }
+
+        public Item setDrawableBottom(Context context, int drawableBottom) {
+            this.drawableBottom = context.getResources().getDrawable(drawableBottom);
+            return this;
+        }
+
+        public Item setDrawableBottom(Drawable drawableBottom) {
+            this.drawableBottom = drawableBottom;
+            return this;
+        }
+
+        public Item setDrawableTop(Context context, int drawableTop) {
+            this.drawableTop = context.getResources().getDrawable(drawableTop);
+            return this;
+        }
+
+        public Item setDrawableTop(Drawable drawableTop) {
+            this.drawableTop = drawableTop;
             return this;
         }
 
@@ -426,8 +457,7 @@ public class ZPopupMenu {
 
         public Item setBackground(Context context, int drawable) {
             isSetBackground = true;
-            this.background = context.getResources()
-                                     .getDrawable(drawable);
+            this.background = context.getResources().getDrawable(drawable);
             return this;
         }
 
@@ -437,8 +467,7 @@ public class ZPopupMenu {
         }
 
         public Item setText(Context context, int title) {
-            this.text = context.getResources()
-                               .getText(title);
+            this.text = context.getResources().getText(title);
             return this;
         }
 
@@ -446,6 +475,12 @@ public class ZPopupMenu {
             this.gravity = gravity;
             return this;
         }
+
+        public Item setMaxEms(int maxEms) {
+            this.maxEms = maxEms;
+            return this;
+        }
+
 
         /**
          * 单位sp
@@ -498,8 +533,7 @@ public class ZPopupMenu {
             if (item.colorStateList != null) {
                 holder.textView.setTextColor(item.colorStateList);
             } else if (item.textColor == 0) {
-                holder.textView.setTextColor(mContext.getResources()
-                                                     .getColorStateList(R.color.gui_listitem_popup_selector));
+                holder.textView.setTextColor(mContext.getResources().getColorStateList(R.color.gui_listitem_popup_selector));
             } else {
                 holder.textView.setTextColor(item.textColor);
             }
@@ -513,7 +547,7 @@ public class ZPopupMenu {
             } else {
                 holder.textView.setBackgroundResource(R.drawable.gui_listitem_popup_selector);
             }
-            holder.textView.setCompoundDrawablesWithIntrinsicBounds(item.drawableLeft, null, null, null);
+            holder.textView.setCompoundDrawablesWithIntrinsicBounds(item.drawableLeft, item.drawableTop, item.drawableRight, item.drawableBottom);
             holder.textView.setSelected(item.isSelected);
 
             if (itemPadding != null) {
@@ -521,6 +555,12 @@ public class ZPopupMenu {
             } else if (item.paddingLeft != 0 || item.paddingRight != 0 || item.paddingTop != 0 || item.paddingBottom != 0) {
                 holder.textView.setPadding(item.paddingLeft, item.paddingTop, item.paddingRight, item.paddingBottom);
             }
+
+            if (item.maxEms > 0) {
+                holder.textView.setMaxEms(item.maxEms);
+            }
+            holder.textView.setEllipsize(TextUtils.TruncateAt.END);
+
             holder.textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
