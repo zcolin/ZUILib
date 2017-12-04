@@ -92,7 +92,6 @@ public class ZPopupMenu {
 
         LinearLayout ll = new LinearLayout(mContext);
         ll.setOrientation(LinearLayout.VERTICAL);
-        ll.setBackgroundColor(Color.parseColor("#55000000"));
         ll.addView(rootLayout, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
         popupWindow.setContentView(ll);
