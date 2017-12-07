@@ -9,6 +9,7 @@
 
 package com.zcolin.gui;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -22,16 +23,17 @@ import java.lang.ref.WeakReference;
  */
 public class ZDialogAsyncProgress extends AsyncTask<Integer, Integer, ZDialogAsyncProgress.ProcessInfo> {
 
-    private ZDialogProgress processBar;
-    private DoInterface     doInter;
-    private MyHandler       handler;
+    private ProgressDialog processBar;
+    private DoInterface    doInter;
+    private MyHandler      handler;
 
     public static ZDialogAsyncProgress instance(Context context) {
         return new ZDialogAsyncProgress(context);
     }
 
     public ZDialogAsyncProgress(Context context) {
-        processBar = new ZDialogProgress(context);
+        processBar = new ProgressDialog(context);
+        processBar.setCancelable(false);
         handler = new MyHandler(this);
     }
 

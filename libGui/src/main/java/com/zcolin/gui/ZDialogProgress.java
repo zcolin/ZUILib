@@ -22,6 +22,8 @@ import android.widget.TextView;
 
 
 /**
+ * @Deprecated 使用系统自带的进行样式设置
+ *
  * 进度条封装类
  */
 public class ZDialogProgress extends ProgressDialog {
