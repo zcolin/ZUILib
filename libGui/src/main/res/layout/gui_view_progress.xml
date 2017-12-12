@@ -16,7 +16,7 @@
 
         <ProgressBar
             android:id="@+id/progressBar_pg"
-            style="@style/gui_style_progressbar"
+            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"/>
