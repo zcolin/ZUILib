@@ -471,7 +471,7 @@ public class ZPopupMenu {
             return this;
         }
 
-        public Item setGravity(Context context, int gravity) {
+        public Item setGravity(int gravity) {
             this.gravity = gravity;
             return this;
         }
