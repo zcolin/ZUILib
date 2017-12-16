@@ -117,8 +117,8 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
      *                         when instantiating items views
      * @param itemTextResource the resource ID for a text view in the item layout
      */
-    protected AbstractWheelTextAdapter(Context context, int itemResource, int itemTextResource, int currentIndex,
-                                       int maxsize, int minsize, int maxcolor, int mincolor) {
+    protected AbstractWheelTextAdapter(Context context, int itemResource, int itemTextResource, int currentIndex, int maxsize, int minsize, int maxcolor,
+            int mincolor) {
         this.context = context;
         itemResourceId = itemResource;
         itemTextResourceId = itemTextResource;

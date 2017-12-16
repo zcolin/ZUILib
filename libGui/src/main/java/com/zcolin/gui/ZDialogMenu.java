@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import com.zcolin.gui.helper.ZUIHelper;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -80,7 +80,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
         return this;
     }
 
-    public ZDialogMenu setDatas(ArrayList<String> listData) {
+    public ZDialogMenu setDatas(List<String> listData) {
         return setDatas(listData, null);
     }
 
@@ -88,7 +88,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
         return setDatas(arrStr, null);
     }
 
-    public ZDialogMenu setDatas(ArrayList<String> listData, String defSelected) {
+    public ZDialogMenu setDatas(List<String> listData, String defSelected) {
         return setDatas(listData.toArray(new String[listData.size()]), defSelected);
     }
 

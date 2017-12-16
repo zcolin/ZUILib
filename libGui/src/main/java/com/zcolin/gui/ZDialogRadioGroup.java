@@ -17,7 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.LayoutParams;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 单选框组合弹出框
@@ -79,7 +79,7 @@ public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements Vie
         return this;
     }
 
-    public ZDialogRadioGroup setDatas(ArrayList<String> listData, String defStr) {
+    public ZDialogRadioGroup setDatas(List<String> listData, String defStr) {
         setDatas(listData.toArray(new String[listData.size()]), defStr);
         return this;
     }

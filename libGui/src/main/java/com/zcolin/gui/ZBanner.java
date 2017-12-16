@@ -60,7 +60,7 @@ public class ZBanner extends FrameLayout {
 
     private ArrayList<Object>    listUrl       = new ArrayList<>();
     private ArrayList<ImageView> listIndicator = new ArrayList<>();
-    private ArrayList<String> listTitle;
+    private List<String> listTitle;
 
     private int     dataSize;
     private int     startPosition;//无限循环，startPosition是MAX_VALUE的中间值
@@ -143,7 +143,7 @@ public class ZBanner extends FrameLayout {
         return this;
     }
 
-    public ZBanner setBannerTitle(ArrayList<String> listTitle) {
+    public ZBanner setBannerTitle(List<String> listTitle) {
         this.listTitle = listTitle;
         if (bannerStyle == CIRCLE_INDICATOR_TITLE || bannerStyle == NUM_INDICATOR_TITLE) {
             if (listTitle != null && listTitle.size() > 0) {

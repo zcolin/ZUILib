@@ -24,6 +24,7 @@ import com.zcolin.gui.wheelview.views.WheelView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * 日期选择对话框
@@ -253,9 +254,9 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
     }
 
     private class CalendarTextAdapter extends AbstractWheelTextAdapter {
-        ArrayList<String> list;
+        List<String> list;
 
-        protected CalendarTextAdapter(Context context, ArrayList<String> list, int currentItem) {
+        protected CalendarTextAdapter(Context context, List<String> list, int currentItem) {
             super(context, R.layout.gui_item_year_date, NO_RESOURCE, currentItem, maxTextSize, minTextSize, maxTextColor, minTextColor);
             this.list = list;
             setItemTextResource(R.id.tempValue);

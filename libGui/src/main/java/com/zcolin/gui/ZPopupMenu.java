@@ -316,7 +316,7 @@ public class ZPopupMenu {
     /**
      * 添加子类项
      */
-    public ZPopupMenu addActions(ArrayList<Item> action) {
+    public ZPopupMenu addActions(List<Item> action) {
         if (action != null) {
             listAction.addAll(action);
         }

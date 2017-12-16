@@ -19,6 +19,7 @@ import android.widget.RadioGroup.LayoutParams;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 多选框组合弹出框
@@ -82,16 +83,14 @@ public class ZDialogCheckBox extends ZDialog<ZDialogCheckBox> implements OnClick
         return this;
     }
 
-    public ZDialogCheckBox setDatas(ArrayList<String> listData, ArrayList<String> arrSelectedStr) {
+    public ZDialogCheckBox setDatas(List<String> listData, List<String> arrSelectedStr) {
         setDatas(listData.toArray(new String[listData.size()]), arrSelectedStr);
         return this;
     }
 
-    public ZDialogCheckBox setDatas(String[] arrStr, ArrayList<String> arrSelectedStr) {
-        int paddingVer = (int) getContext().getResources()
-                                           .getDimension(R.dimen.gui_dimens_mid);
-        int paddingHor = (int) getContext().getResources()
-                                           .getDimension(R.dimen.gui_dimens_big);
+    public ZDialogCheckBox setDatas(String[] arrStr, List<String> arrSelectedStr) {
+        int paddingVer = (int) getContext().getResources().getDimension(R.dimen.gui_dimens_mid);
+        int paddingHor = (int) getContext().getResources().getDimension(R.dimen.gui_dimens_big);
         LayoutParams layout = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         layout.leftMargin = paddingHor;
         layout.rightMargin = paddingHor;
@@ -143,8 +142,7 @@ public class ZDialogCheckBox extends ZDialog<ZDialogCheckBox> implements OnClick
                     ArrayList<String> list = new ArrayList<>();
                     for (CheckBox anArrCheckBox : arrCheckBox) {
                         if (anArrCheckBox.isChecked()) {
-                            list.add(anArrCheckBox.getText()
-                                                  .toString());
+                            list.add(anArrCheckBox.getText().toString());
                         }
                     }
                     valueSubmitInter.submit(list);

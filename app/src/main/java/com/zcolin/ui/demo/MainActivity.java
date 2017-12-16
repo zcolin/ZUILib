@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
     public static final int[] TAB_POSITION = new int[]{0, 1, 2};
 
     private BaseFrameFrag[] arrTabFrag = new BaseFrameFrag[TAB_POSITION.length];
-    private ZViewPager mViewPager;
     private ZTabView   tabView;
+    private ZViewPager mViewPager;
     private ZIndicator indicator;
 
     @Override
@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initRes() {
-        mViewPager = (ZViewPager) findViewById(R.id.view_pager);
         tabView = (ZTabView) findViewById(R.id.view_tabview);
+        mViewPager = (ZViewPager) findViewById(R.id.view_pager);
         indicator = (ZIndicator) findViewById(R.id.indicator);
     }
 

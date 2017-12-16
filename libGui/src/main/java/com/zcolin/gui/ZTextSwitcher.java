@@ -27,6 +27,7 @@ import com.zcolin.gui.helper.ZUIHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * 可以定时滚动的TextSwitcher，自动截取文字
@@ -43,7 +44,7 @@ public class ZTextSwitcher extends TextSwitcher {
     private int  showLine       = 2;    //固定行数
     private long switchInterval = 2000;//切换间隔
     private String            text;         //设置需要自动切割的文字
-    private ArrayList<String> listText;     //设置需要循环的文字
+    private List<String> listText;     //设置需要循环的文字
     private boolean           isNeedCutout;//是否需要截取
     private int               width;        //获取的控件宽度
     private boolean           isStart;      //是否已经开始循环展示
@@ -94,7 +95,7 @@ public class ZTextSwitcher extends TextSwitcher {
     /**
      * 设置循环的text
      */
-    public ZTextSwitcher setText(ArrayList<String> listText) {
+    public ZTextSwitcher setText(List<String> listText) {
         this.listText = listText;
         return this;
     }
