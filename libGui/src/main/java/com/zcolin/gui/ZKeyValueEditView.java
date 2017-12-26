@@ -110,9 +110,9 @@ public class ZKeyValueEditView extends RelativeLayout {
         }
 
         if ("right".equals(valueGravity)) {
-            etValue.setGravity(Gravity.RIGHT);
+            etValue.setGravity(Gravity.RIGHT | Gravity.CENTER);
         } else {
-            etValue.setGravity(Gravity.LEFT);
+            etValue.setGravity(Gravity.LEFT | Gravity.CENTER);
         }
 
         if (keyImg != 0) {
