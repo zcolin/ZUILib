@@ -40,6 +40,7 @@
         <attr name="zkv_value_gravity" format="string"/>
         <attr name="zkv_is_bottomline" format="boolean"/>
         <attr name="zkv_is_arrow" format="boolean"/>
+        <attr name="zkv_is_arrow_margin" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="ZKeyValueEditView">
@@ -62,6 +63,7 @@
         <attr name="zkve_value_gravity" format="string"/>
         <attr name="zkve_is_bottomline" format="boolean"/>
         <attr name="zkve_is_arrow" format="boolean"/>
+        <attr name="zkve_is_arrow_margin" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="ZKeySwitchView">

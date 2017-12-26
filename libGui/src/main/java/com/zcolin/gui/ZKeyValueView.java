@@ -55,8 +55,7 @@ public class ZKeyValueView extends RelativeLayout {
     public ZKeyValueView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         int layoutId = getSelfLayoutId() == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_view_keyvalue : LAYOUT_ID) : getSelfLayoutId();
-        LayoutInflater.from(context)
-                      .inflate(layoutId, this);
+        LayoutInflater.from(context).inflate(layoutId, this);
         tvKey = (TextView) findViewById(R.id.tv_key);
         tvValue = (TextView) findViewById(R.id.tv_value);
         ivArrow = (ImageView) findViewById(R.id.iv_arrow);
@@ -73,6 +72,7 @@ public class ZKeyValueView extends RelativeLayout {
         int keyImageWidth = (int) a.getDimension(R.styleable.ZKeyValueView_zkv_key_img_width, 0);
         int keyImageHeight = (int) a.getDimension(R.styleable.ZKeyValueView_zkv_key_img_height, 0);
         boolean isArrow = a.getBoolean(R.styleable.ZKeyValueView_zkv_is_arrow, true);
+        boolean isArrowMargin = a.getBoolean(R.styleable.ZKeyValueView_zkv_is_arrow_margin, true);
         boolean isBottomLine = a.getBoolean(R.styleable.ZKeyValueView_zkv_is_bottomline, true);
         int keyEms = a.getInteger(R.styleable.ZKeyValueView_zkv_key_ems, 0);
 
@@ -150,15 +150,14 @@ public class ZKeyValueView extends RelativeLayout {
             tvValue.setGravity(Gravity.RIGHT);
         }
         bottomLine.setVisibility(isBottomLine ? View.VISIBLE : View.GONE);
-        ivArrow.setVisibility(isArrow ? View.VISIBLE : View.INVISIBLE);
+        ivArrow.setVisibility(isArrow ? View.VISIBLE : isArrowMargin ? View.INVISIBLE : View.GONE);
     }
 
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在此函数中返回自定义的LayoutId，
      * 但layout中的所有控件Id必须与本xml的Id相同，可以增加控件，不可以删除掉控件, 此函数返回的LayoutId的优先级高于{@link #initLayout(int)}
      */
-    protected
-    @LayoutRes
+    protected @LayoutRes
     int getSelfLayoutId() {
         return 0;
     }
@@ -175,11 +174,8 @@ public class ZKeyValueView extends RelativeLayout {
     public void setKeyImage(String url) {
         if (url != null) {
             ivImg.setVisibility(View.VISIBLE);
-            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources()
-                                                                                     .getDimension(R.dimen.gui_dimens_small);
-            Glide.with(getContext())
-                 .load(url)
-                 .into(ivImg);
+            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources().getDimension(R.dimen.gui_dimens_small);
+            Glide.with(getContext()).load(url).into(ivImg);
         } else {
             ivImg.setVisibility(View.GONE);
             ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;
@@ -187,13 +183,11 @@ public class ZKeyValueView extends RelativeLayout {
     }
 
     public String getKeyText() {
-        return tvKey.getText()
-                    .toString();
+        return tvKey.getText().toString();
     }
 
     public String getValueText() {
-        return tvValue.getText()
-                      .toString();
+        return tvValue.getText().toString();
     }
 
     public TextView getTvKey() {
