@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 
-
 /**
  * 对话框底部按钮通用控件
  */
@@ -36,7 +35,6 @@ public class ZDialogBottomView extends LinearLayout {
 
     public ZDialogBottomView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        LayoutInflater.from(context)
-                      .inflate(LAYOUT_ID == 0 ? R.layout.gui_dlg_bottomitem : LAYOUT_ID, this);
+        LayoutInflater.from(context).inflate(LAYOUT_ID == 0 ? R.layout.gui_dlg_bottomitem : LAYOUT_ID, this);
     }
 }

@@ -33,7 +33,8 @@ public class ZVideoFullScreenWebChromeClient extends ZWebChromeClientWrapper {
     private CustomViewShowStateListener customViewShowStateListener;
     private Activity                    activity;
 
-    ZVideoFullScreenWebChromeClient(WebChromeClient webChromeClient, Activity activity, WebView webView, FrameLayout customViewContainer, View videoProgressView) {
+    ZVideoFullScreenWebChromeClient(WebChromeClient webChromeClient, Activity activity, WebView webView, FrameLayout customViewContainer,
+            View videoProgressView) {
         super(webChromeClient);
         this.webView = webView;
         this.videoProgressView = videoProgressView;
@@ -127,8 +128,7 @@ public class ZVideoFullScreenWebChromeClient extends ZWebChromeClientWrapper {
         }
 
         //设置全屏状态
-        WindowManager.LayoutParams attrs = activity.getWindow()
-                                                   .getAttributes();
+        WindowManager.LayoutParams attrs = activity.getWindow().getAttributes();
         if (isShowCustomView) {
             attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
             attrs.flags |= WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
@@ -136,8 +136,7 @@ public class ZVideoFullScreenWebChromeClient extends ZWebChromeClientWrapper {
             attrs.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
             attrs.flags &= ~WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
         }
-        activity.getWindow()
-                .setAttributes(attrs);
+        activity.getWindow().setAttributes(attrs);
 
         //activity.getWindow()
         //        .getDecorView()

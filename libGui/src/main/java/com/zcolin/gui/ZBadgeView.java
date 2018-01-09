@@ -163,8 +163,7 @@ public class ZBadgeView extends TextView {
             // set target to the relevant tab child container
             target = ((TabWidget) target).getChildTabViewAt(targetTabIndex);
             this.target = target;
-            ((ViewGroup) target).addView(container,
-                    new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            ((ViewGroup) target).addView(container, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
             this.setVisibility(View.GONE);
             container.addView(this);
@@ -343,8 +342,7 @@ public class ZBadgeView extends TextView {
             rr = new RoundRectShape(outerR, null, null);
         }
         ShapeDrawable drawable = new ShapeDrawable(rr);
-        drawable.getPaint()
-                .setColor(badgeColor);
+        drawable.getPaint().setColor(badgeColor);
         return drawable;
 
     }

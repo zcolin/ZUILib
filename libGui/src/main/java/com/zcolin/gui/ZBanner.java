@@ -107,12 +107,11 @@ public class ZBanner extends FrameLayout {
     }
 
     private void initView(Context context, AttributeSet attrs, int defStyle) {
-        View view = LayoutInflater.from(context)
-                                  .inflate(R.layout.gui_view_banner, this, true);
-        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        indicator = (LinearLayout) view.findViewById(R.id.indicator);
-        bannerTitle = (TextView) view.findViewById(R.id.bannerTitle);
-        numIndicator = (TextView) view.findViewById(R.id.numIndicator);
+        View view = LayoutInflater.from(context).inflate(R.layout.gui_view_banner, this, true);
+        viewPager = view.findViewById(R.id.viewpager);
+        indicator = view.findViewById(R.id.indicator);
+        bannerTitle = view.findViewById(R.id.bannerTitle);
+        numIndicator = view.findViewById(R.id.numIndicator);
         handleTypedArray(context, attrs, defStyle);
     }
 
@@ -357,19 +356,14 @@ public class ZBanner extends FrameLayout {
         public Object instantiateItem(ViewGroup container, final int position) {
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(scaleType == null ? ImageView.ScaleType.CENTER_CROP : scaleType);
-            imageView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        listener.OnBannerClick(v, getRealPosition(position));
-                    }
+            imageView.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.OnBannerClick(v, getRealPosition(position));
                 }
             });
             container.addView(imageView);
 
-            Glide.with(context)
-                 .load(listUrl.get(getRealPosition(position)))
-                 .into(imageView);
+            Glide.with(context).load(listUrl.get(getRealPosition(position))).into(imageView);
             return imageView;
         }
 
@@ -416,11 +410,9 @@ public class ZBanner extends FrameLayout {
             if (bannerStyle == CIRCLE_INDICATOR || bannerStyle == CIRCLE_INDICATOR_TITLE) {
                 for (int i = 0; i < listIndicator.size(); i++) {
                     if (realPosition == i) {
-                        listIndicator.get(i)
-                                     .setImageResource(mIndicatorSelectedResId);
+                        listIndicator.get(i).setImageResource(mIndicatorSelectedResId);
                     } else {
-                        listIndicator.get(i)
-                                     .setImageResource(mIndicatorUnselectedResId);
+                        listIndicator.get(i).setImageResource(mIndicatorUnselectedResId);
                     }
                 }
             }

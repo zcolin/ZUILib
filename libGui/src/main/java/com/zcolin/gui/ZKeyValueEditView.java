@@ -59,10 +59,10 @@ public class ZKeyValueEditView extends RelativeLayout {
         setFocusableInTouchMode(true);
         int layoutId = getSelfLayoutId() == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_view_keyvalueedit : LAYOUT_ID) : getSelfLayoutId();
         LayoutInflater.from(context).inflate(layoutId, this);
-        tvKey = (TextView) findViewById(R.id.tv_key);
-        etValue = (EditText) findViewById(R.id.et_value);
-        ivArrow = (ImageView) findViewById(R.id.iv_arrow);
-        ivImg = (ImageView) findViewById(R.id.iv_img);
+        tvKey = findViewById(R.id.tv_key);
+        etValue = findViewById(R.id.et_value);
+        ivArrow = findViewById(R.id.iv_arrow);
+        ivImg = findViewById(R.id.iv_img);
         bottomLine = findViewById(R.id.view_bottomline);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ZKeyValueEditView, defStyle, 0);

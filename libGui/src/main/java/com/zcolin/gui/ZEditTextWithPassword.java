@@ -19,7 +19,6 @@ import android.view.MotionEvent;
 import android.widget.EditText;
 
 
-
 /**
  * 带有密码显示按钮的edittext
  */

@@ -9,12 +9,12 @@
 
 package com.zcolin.ui.demo.app;
 
+import com.fosung.ui.R;
 import com.zcolin.frame.BuildConfig;
 import com.zcolin.frame.app.BaseApp;
 import com.zcolin.frame.util.LogUtil;
 import com.zcolin.gui.ZConfirm;
 import com.zcolin.gui.ZDialogBottomView;
-import com.fosung.ui.R;
 
 /**
  * 程序入口

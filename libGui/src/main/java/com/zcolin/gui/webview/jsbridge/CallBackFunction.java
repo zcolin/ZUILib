@@ -9,7 +9,7 @@
 package com.zcolin.gui.webview.jsbridge;
 
 public interface CallBackFunction {
-	
-	public void onCallBack(String data);
+
+    void onCallBack(String data);
 
 }

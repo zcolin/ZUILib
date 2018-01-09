@@ -175,7 +175,7 @@ public class ZDialog<T> extends Dialog {
     public <E extends View> E getView(int resId) {
         E view = (E) mViews.get(resId);
         if (view == null) {
-            view = (E) findViewById(resId);
+            view = findViewById(resId);
             mViews.put(resId, view);
         }
         return view;

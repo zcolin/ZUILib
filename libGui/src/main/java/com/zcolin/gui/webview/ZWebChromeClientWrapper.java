@@ -8,7 +8,6 @@
  */
 package com.zcolin.gui.webview;
 
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -28,7 +27,6 @@ import android.widget.ProgressBar;
 
 import com.zcolin.gui.ZAlert;
 import com.zcolin.gui.ZConfirm;
-import com.zcolin.gui.ZDialog;
 
 
 /**
@@ -67,12 +65,7 @@ class ZWebChromeClientWrapper extends WebChromeClient {
     public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
         if (!webChromeClient.onJsAlert(view, url, message, result)) {
             ZAlert alert = new ZAlert(view.getContext()).setMessage(message);
-            alert.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialog) {
-                    result.confirm();
-                }
-            });
+            alert.setOnCancelListener(dialog -> result.confirm());
             alert.show();
         }
         return true;
@@ -82,22 +75,13 @@ class ZWebChromeClientWrapper extends WebChromeClient {
     public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
         if (!webChromeClient.onJsConfirm(view, url, message, result)) {
             ZConfirm dlg = new ZConfirm(view.getContext());
-            dlg.setMessage(message)
-               .addSubmitListener(new ZDialog.ZDialogSubmitInterface() {
-                   @Override
-                   public boolean submit() {
-                       result.confirm();
-                       return true;
-                   }
-               })
-               .addCancelListener(new ZDialog.ZDialogCancelInterface() {
-                   @Override
-                   public boolean cancel() {
-                       result.cancel();
-                       return true;
-                   }
-               })
-               .show();
+            dlg.setMessage(message).addSubmitListener(() -> {
+                result.confirm();
+                return true;
+            }).addCancelListener(() -> {
+                result.cancel();
+                return true;
+            }).show();
         }
         return true;
     }
@@ -177,7 +161,8 @@ class ZWebChromeClientWrapper extends WebChromeClient {
     }
 
     @Override
-    public void onExceededDatabaseQuota(String url, String databaseIdentifier, long quota, long estimatedDatabaseSize, long totalQuota, WebStorage.QuotaUpdater quotaUpdater) {
+    public void onExceededDatabaseQuota(String url, String databaseIdentifier, long quota, long estimatedDatabaseSize, long totalQuota,
+            WebStorage.QuotaUpdater quotaUpdater) {
         webChromeClient.onExceededDatabaseQuota(url, databaseIdentifier, quota, estimatedDatabaseSize, totalQuota, quotaUpdater);
     }
 

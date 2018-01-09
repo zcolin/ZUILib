@@ -56,10 +56,10 @@ public class ZKeyValueView extends RelativeLayout {
         super(context, attrs, defStyle);
         int layoutId = getSelfLayoutId() == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_view_keyvalue : LAYOUT_ID) : getSelfLayoutId();
         LayoutInflater.from(context).inflate(layoutId, this);
-        tvKey = (TextView) findViewById(R.id.tv_key);
-        tvValue = (TextView) findViewById(R.id.tv_value);
-        ivArrow = (ImageView) findViewById(R.id.iv_arrow);
-        ivImg = (ImageView) findViewById(R.id.iv_img);
+        tvKey = findViewById(R.id.tv_key);
+        tvValue = findViewById(R.id.tv_value);
+        ivArrow = findViewById(R.id.iv_arrow);
+        ivImg = findViewById(R.id.iv_img);
         bottomLine = findViewById(R.id.view_bottomline);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ZKeyValueView, defStyle, 0);

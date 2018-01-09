@@ -3,7 +3,7 @@
     <declare-styleable name="ZDialog">
         <attr name="zdialog_style" format="reference"/>
     </declare-styleable>
-    
+
     <!--EditText的通用属性，在app模块可以更改-->
     <declare-styleable name="ZEditText">
         <attr name="zedittext_style" format="reference"/>
@@ -92,13 +92,13 @@
     </declare-styleable>
 
     <declare-styleable name="ZTagLayout">
-        <attr name="lineMargin" format="dimension" />
-        <attr name="tagMargin" format="dimension" />
-        <attr name="textPadding" format="dimension" />
-        <attr name="textPaddingLeft" format="dimension" />
-        <attr name="textPaddingRight" format="dimension" />
-        <attr name="textPaddingTop" format="dimension" />
-        <attr name="textPaddingBottom" format="dimension" />
+        <attr name="lineMargin" format="dimension"/>
+        <attr name="tagMargin" format="dimension"/>
+        <attr name="textPadding" format="dimension"/>
+        <attr name="textPaddingLeft" format="dimension"/>
+        <attr name="textPaddingRight" format="dimension"/>
+        <attr name="textPaddingTop" format="dimension"/>
+        <attr name="textPaddingBottom" format="dimension"/>
     </declare-styleable>
 
     <declare-styleable name="ZIndicator">

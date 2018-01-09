@@ -93,17 +93,13 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
     }
 
     public ZDialogMenu setDatas(String[] arrStr, String defSelected) {
-        return setDatas(arrStr, defSelected, getContext().getResources()
-                                                         .getColorStateList(R.color.gui_listitem_dialogmenu_selector));
+        return setDatas(arrStr, defSelected, getContext().getResources().getColorStateList(R.color.gui_listitem_dialogmenu_selector));
     }
 
     public ZDialogMenu setDatas(String[] arrStr, String defSelected, ColorStateList colorStateList) {
-        int padding = (int) context.getResources()
-                                   .getDimension(R.dimen.gui_dimens_big);
-        int paddingLR = (int) context.getResources()
-                                     .getDimension(R.dimen.gui_dimens_mid);
-        float textSize = context.getResources()
-                                .getDimension(R.dimen.gui_textsize_normal);
+        int padding = (int) context.getResources().getDimension(R.dimen.gui_dimens_big);
+        int paddingLR = (int) context.getResources().getDimension(R.dimen.gui_dimens_mid);
+        float textSize = context.getResources().getDimension(R.dimen.gui_textsize_normal);
         LayoutParams layout = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
         llMenu.removeAllViews();
@@ -113,21 +109,17 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
             TextView tv = new TextView(context);
             tv.setText(anAttrStr);
             tv.setBackgroundResource(R.drawable.gui_dlg_menu_selector);
-            tv.setTextSize(getContext().getResources()
-                                       .getDimension(R.dimen.gui_textsize_normal));
+            tv.setTextSize(getContext().getResources().getDimension(R.dimen.gui_textsize_normal));
             tv.setTextColor(colorStateList);
             tv.setPadding(paddingLR, padding, paddingLR, padding);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
             if (anAttrStr != null && anAttrStr.equals(defSelected)) {
                 tv.setSelected(true);
             }
-            tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (submitInter != null) {
-                        submitInter.submit(index);
-                        cancel();
-                    }
+            tv.setOnClickListener(v -> {
+                if (submitInter != null) {
+                    submitInter.submit(index);
+                    cancel();
                 }
             });
             if (i > 0) {

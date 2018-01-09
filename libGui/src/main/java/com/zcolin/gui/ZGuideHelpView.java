@@ -15,7 +15,6 @@ import android.content.SharedPreferences;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -29,9 +28,9 @@ public class ZGuideHelpView {
     private String pageTag;
     private boolean mCancel = false;
 
-    private Activity    activity;
-    private FrameLayout rootLayout;
-    private View        layoutView;
+    private Activity          activity;
+    private FrameLayout       rootLayout;
+    private View              layoutView;
     private SharedPreferences sharedPreferences;
 
     private ZGuideHelpView(Activity activity) {
@@ -75,30 +74,21 @@ public class ZGuideHelpView {
      * 是否忽略已经弹出过的记录强制弹出
      */
     public void show(boolean isForce) {
-        if (isForce ||!sharedPreferences.getBoolean(pageTag, false)) {
+        if (isForce || !sharedPreferences.getBoolean(pageTag, false)) {
             if (TextUtils.isEmpty(this.pageTag)) {
                 throw new RuntimeException("the guide page must set page tag");
             }
 
-            rootLayout = (FrameLayout) activity.findViewById(android.R.id.content);
+            rootLayout = activity.findViewById(android.R.id.content);
             layoutView = View.inflate(activity, layoutId, null);
             if (layoutView != null) {
-                layoutView.findViewById(knowViewId)
-                          .setOnClickListener(new View.OnClickListener() {
-                              @Override
-                              public void onClick(View v) {
-                                  cancel();
-                              }
-                          });
+                layoutView.findViewById(knowViewId).setOnClickListener(v -> cancel());
 
-                layoutView.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        if (mCancel) {
-                            cancel();
-                        }
-                        return true;  //消费事件，不下发
+                layoutView.setOnTouchListener((v, event) -> {
+                    if (mCancel) {
+                        cancel();
                     }
+                    return true;  //消费事件，不下发
                 });
 
                 rootLayout.addView(layoutView);

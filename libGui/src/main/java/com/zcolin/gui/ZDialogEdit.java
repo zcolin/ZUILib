@@ -155,8 +155,7 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
      * 光标移到最后
      */
     public ZDialogEdit setSelectionEnd() {
-        etEdit.setSelection(etEdit.getEditableText()
-                                  .length());
+        etEdit.setSelection(etEdit.getEditableText().length());
         return this;
     }
 
@@ -177,8 +176,7 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
     public void onClick(View v) {
         if (v == tvMakeSure) {
             if (submitInterface != null) {
-                boolean flag = submitInterface.submit(etEdit.getText()
-                                                            .toString());
+                boolean flag = submitInterface.submit(etEdit.getText().toString());
                 if (flag) {
                     cancel();
                 }

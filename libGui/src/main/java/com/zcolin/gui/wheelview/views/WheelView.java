@@ -149,8 +149,7 @@ public class WheelView extends View {
      */
     private void initData(Context context) {
         paint = new Paint();
-        centerLineColor = context.getResources()
-                                 .getColor(R.color.gui_dlg_wheel_val);
+        centerLineColor = context.getResources().getColor(R.color.gui_dlg_wheel_val);
         scroller = new WheelScroller(getContext(), scrollingListener);
     }
 
@@ -326,6 +325,7 @@ public class WheelView extends View {
     public void setCenterLineColor(@ColorInt int color) {
         this.centerLineColor = color;
     }
+
     /**
      * Notifies listeners about starting scrolling
      */
@@ -497,8 +497,7 @@ public class WheelView extends View {
      */
     private int getDesiredHeight(LinearLayout layout) {
         if (layout != null && layout.getChildAt(0) != null) {
-            itemHeight = layout.getChildAt(0)
-                               .getMeasuredHeight();
+            itemHeight = layout.getChildAt(0).getMeasuredHeight();
         }
 
         int desired = itemHeight * visibleItems - itemHeight * ITEM_OFFSET_PERCENT / 50;
@@ -517,8 +516,7 @@ public class WheelView extends View {
         }
 
         if (itemsLayout != null && itemsLayout.getChildAt(0) != null) {
-            itemHeight = itemsLayout.getChildAt(0)
-                                    .getHeight();
+            itemHeight = itemsLayout.getChildAt(0).getHeight();
             return itemHeight;
         }
 
@@ -537,8 +535,7 @@ public class WheelView extends View {
 
         // TODO: make it static
         itemsLayout.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        itemsLayout.measure(MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.UNSPECIFIED),
-                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+        itemsLayout.measure(MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.UNSPECIFIED), MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
         int width = itemsLayout.getMeasuredWidth();
 
         if (mode == MeasureSpec.EXACTLY) {
@@ -554,8 +551,7 @@ public class WheelView extends View {
             }
         }
 
-        itemsLayout.measure(MeasureSpec.makeMeasureSpec(width - 2 * PADDING, MeasureSpec.EXACTLY),
-                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+        itemsLayout.measure(MeasureSpec.makeMeasureSpec(width - 2 * PADDING, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
 
         return width;
     }
@@ -910,8 +906,7 @@ public class WheelView extends View {
      * @return true if item index is not out of bounds or the wheel is cyclic
      */
     private boolean isValidItemIndex(int index) {
-        return viewAdapter != null && viewAdapter.getItemsCount() > 0
-                && (isCyclic || index >= 0 && index < viewAdapter.getItemsCount());
+        return viewAdapter != null && viewAdapter.getItemsCount() > 0 && (isCyclic || index >= 0 && index < viewAdapter.getItemsCount());
     }
 
     /**

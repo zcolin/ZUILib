@@ -59,8 +59,7 @@ public class ZIndicator extends LinearLayout implements ViewPager.OnPageChangeLi
             if (pager.getAdapter() == null) {
                 throw new IllegalStateException("ViewPager does not have adapter instance.");
             }
-            this.count = pager.getAdapter()
-                              .getCount();
+            this.count = pager.getAdapter().getCount();
             setUpWithViewPager(pager, 0, count);
         }
     }

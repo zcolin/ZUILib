@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ **********************************************************
-  ~   author   colin
-  ~   company  fosung
-  ~   email    wanglin2046@126.com
-  ~   date     16-11-1 下午2:39
-  ~ *********************************************************
-  -->
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

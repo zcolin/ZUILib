@@ -97,8 +97,7 @@ public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
      * @param strMsg 要追加的内容
      */
     public ZAlert append(String strMsg) {
-        String str = tvMessage.getText()
-                              .toString();
+        String str = tvMessage.getText().toString();
         if (str.length() > 0) {
             if (!str.contains(strMsg)) {
                 tvMessage.append("\n" + strMsg);
@@ -119,8 +118,7 @@ public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
 
     @Override
     public void show() {
-        if (tvTitle.getText()
-                   .length() == 0) {
+        if (tvTitle.getText().length() == 0) {
             tvTitle.setVisibility(View.GONE);
         } else {
             tvTitle.setVisibility(View.VISIBLE);

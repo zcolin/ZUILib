@@ -85,10 +85,8 @@ public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements Vie
     }
 
     public ZDialogRadioGroup setDatas(String[] attrStr, String defStr) {
-        int paddingVer = (int) getContext().getResources()
-                                           .getDimension(R.dimen.gui_dimens_mid);
-        int paddingHor = (int) getContext().getResources()
-                                           .getDimension(R.dimen.gui_dimens_big);
+        int paddingVer = (int) getContext().getResources().getDimension(R.dimen.gui_dimens_mid);
+        int paddingHor = (int) getContext().getResources().getDimension(R.dimen.gui_dimens_big);
         LayoutParams layout = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         layout.leftMargin = paddingHor;
         layout.rightMargin = paddingHor;

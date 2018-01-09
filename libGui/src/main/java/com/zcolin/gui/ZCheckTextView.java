@@ -16,14 +16,13 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 
-
 /**
  * TextView重写，实现多选框功能
  */
 public class ZCheckTextView extends TextView implements OnClickListener {
 
     private int     bgOn      = R.drawable.gui_checktextview_on;         // 选中的背景
-    private int     bgOff        = R.drawable.gui_checktextview_off;        // 未选中的背景
+    private int     bgOff     = R.drawable.gui_checktextview_off;        // 未选中的背景
     private boolean isChecked = false;
     private CheckedCallBack checkCallBack;                       // 单选选择按键时回调接口
 

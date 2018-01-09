@@ -48,7 +48,7 @@ public class BridgeWebViewClient extends WebViewClient {
                 } else if (url.startsWith(BridgeUtil.YY_OVERRIDE_SCHEMA)) { //
                     webView.flushMessageQueue();
                     return true;
-                } else if (url.startsWith(BridgeUtil.IOS_SCHEME)){
+                } else if (url.startsWith(BridgeUtil.IOS_SCHEME)) {
                     return true;
                 }
             }

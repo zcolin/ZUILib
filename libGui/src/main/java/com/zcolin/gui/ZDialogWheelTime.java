@@ -83,24 +83,22 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
     }
 
     private void init(Context context) {
-        maxTextColor = context.getResources()
-                              .getColor(R.color.gui_dlg_wheel_val);
-        minTextColor = context.getResources()
-                              .getColor(R.color.gui_divider);
+        maxTextColor = context.getResources().getColor(R.color.gui_dlg_wheel_val);
+        minTextColor = context.getResources().getColor(R.color.gui_divider);
         initHours();
         initMinutes();
 
-        wvHour = (WheelView) findViewById(R.id.wv_hour);
-        wvMin = (WheelView) findViewById(R.id.wv_min);
+        wvHour = findViewById(R.id.wv_hour);
+        wvMin = findViewById(R.id.wv_min);
 
         int[] shadowsColors = new int[]{0x00000000, 0x00000000, 0x00000000};
         wvHour.setShadowsColors(shadowsColors);
         wvMin.setShadowsColors(shadowsColors);
 
         vChangeBirthChild = findViewById(R.id.ly_myinfo_changebirth_child);
-        btnSure = (TextView) findViewById(R.id.dialog_okbutton);
-        btnCancel = (TextView) findViewById(R.id.dialog_cancelbutton);
-        tvTitle = (TextView) findViewById(R.id.dialog_tilte);
+        btnSure = findViewById(R.id.dialog_okbutton);
+        btnCancel = findViewById(R.id.dialog_cancelbutton);
+        tvTitle = findViewById(R.id.dialog_tilte);
 
         vChangeBirthChild.setOnClickListener(this);
         btnSure.setOnClickListener(this);
@@ -304,8 +302,7 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
         String currentText;
         for (int i = 0; i < size; i++) {
             TextView textvew = (TextView) arrayList.get(i);
-            currentText = textvew.getText()
-                                 .toString();
+            currentText = textvew.getText().toString();
             if (curriteItemText.equals(currentText)) {
                 textvew.setTextSize(maxTextSize);
                 textvew.setTextColor(maxTextColor);

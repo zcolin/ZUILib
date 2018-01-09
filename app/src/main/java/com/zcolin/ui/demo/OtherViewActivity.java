@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.Button;
 
 import com.fosung.ui.R;
@@ -46,7 +45,6 @@ public class OtherViewActivity extends FragmentActivity {
     private ZTextSwitcher textSwitcher;
     private ZBanner       banner;
     private ZTagLayout    tagLayout;
-    private ZoomImageView zoomImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,35 +52,20 @@ public class OtherViewActivity extends FragmentActivity {
         setContentView(R.layout.activity_otherview);
         mActivity = this;
 
-        ZEditTextWithClear etClear = (ZEditTextWithClear) findViewById(R.id.et_clear);
+        ZEditTextWithClear etClear = findViewById(R.id.et_clear);
         etClear.setHint("这是Hint");
-        ZEditTextWithPassword etPassword = (ZEditTextWithPassword) findViewById(R.id.et_password);
+        ZEditTextWithPassword etPassword = findViewById(R.id.et_password);
         etPassword.setHint("这是ZEditTextWithPassword");
-        textSwitcher = (ZTextSwitcher) findViewById(R.id.view_textswitcher);
-        tagLayout = (ZTagLayout) findViewById(R.id.tagview);
-        banner = (ZBanner) findViewById(R.id.view_banner);
-        zoomImageView = (ZoomImageView) findViewById(R.id.zoomImageView);
-        Button btn1 = (Button) findViewById(R.id.btn_1);
-        Button btn2 = (Button) findViewById(R.id.btn_2);
-        final Button btn3 = (Button) findViewById(R.id.btn_3);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDlgAsyncProgress();
-            }
-        });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDlgProgress();
-            }
-        });
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopupMenu(btn3);
-            }
-        });
+        ZoomImageView zoomImageView = findViewById(R.id.zoomImageView);
+        textSwitcher = findViewById(R.id.view_textswitcher);
+        tagLayout = findViewById(R.id.tagview);
+        banner = findViewById(R.id.view_banner);
+        Button btn1 = findViewById(R.id.btn_1);
+        Button btn2 = findViewById(R.id.btn_2);
+        final Button btn3 = findViewById(R.id.btn_3);
+        btn1.setOnClickListener(v -> showDlgAsyncProgress());
+        btn2.setOnClickListener(v -> showDlgProgress());
+        btn3.setOnClickListener(v -> showPopupMenu(btn3));
         ImageLoaderUtils.displayImage(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=214&gp=0.jpg", zoomImageView);
         setUpTagView();
         startBanner();
@@ -110,13 +93,9 @@ public class OtherViewActivity extends FragmentActivity {
     }
 
     public void startTextSwitcher() {
-        String text = "只要用过mvp这个问题可能很多人都知道。写mvp的时候，presenter会持有view，如果presenter有后台异步的长时间的动作，" +
-                "比如网络请求，这时如果返回退出了Activity，后台异步的动作不会立即停止，这里就会有内存泄漏的隐患，所以会在presenter中加入" +
-                "一个销毁view的方法。现在就在之前的项目中做一下修改";
-        textSwitcher.setTextColor(Color.BLACK)
-                    .setTextSize(20)
-                    .setSwitchInterval(4000)
-                    .setText(text)
+        String text = "只要用过mvp这个问题可能很多人都知道。写mvp的时候，presenter会持有view，如果presenter有后台异步的长时间的动作，" + 
+                "比如网络请求，这时如果返回退出了Activity，后台异步的动作不会立即停止，这里就会有内存泄漏的隐患，所以会在presenter中加入" + "一个销毁view的方法。现在就在之前的项目中做一下修改";
+        textSwitcher.setTextColor(Color.BLACK).setTextSize(20).setSwitchInterval(4000).setText(text)
                     //                    .setOutAnima(mActivity, R.anim.textswitcher_slide_out)
                     //                    .setInAnima(mActivity, R.anim.textswitcher_slide_in)
                     .startSwitcher();
@@ -129,12 +108,7 @@ public class OtherViewActivity extends FragmentActivity {
               .setIndicatorGravity(ZBanner.CENTER)
               .setBannerTitle(listUrl)
               .setDelayTime(4000)
-              .setOnBannerClickListener(new ZBanner.OnBannerClickListener() {
-                  @Override
-                  public void OnBannerClick(View view, int position) {
-                      ToastUtil.toastShort("点击了第" + (position + 1) + "张图片");
-                  }
-              })
+              .setOnBannerClickListener((view, position) -> ToastUtil.toastShort("点击了第" + (position + 1) + "张图片"))
               .setImages(listUrl)
               .startAutoPlay();
     }
@@ -151,12 +125,9 @@ public class OtherViewActivity extends FragmentActivity {
                                           .setIsSelected(i == 5);
             listTag.add(tag);
         }
-        tagLayout.setOnTagClickListener(new ZTagLayout.OnTagClickListener() {
-            @Override
-            public void onTagClick(int position, ZTagLayout.Tag tag) {
-                if (tag.getData() != null) {
-                    ToastUtil.toastShort(String.format("第%d个标签", position));
-                }
+        tagLayout.setOnTagClickListener((position, tag) -> {
+            if (tag.getData() != null) {
+                ToastUtil.toastShort(String.format("第%d个标签", position));
             }
         });
         tagLayout.addTags(listTag);
@@ -234,12 +205,9 @@ public class OtherViewActivity extends FragmentActivity {
                                  .addAction(item)
                                  .setBackgroundColor(Color.parseColor("#fafafa"))
                                  .setIsFullDim(true)
-                                 .setOnItemClickListener(new ZPopupMenu.OnItemOnClickListener() {
-                                     @Override
-                                     public boolean onItemClick(ZPopupMenu.Item item, int position) {
-                                         ToastUtil.toastShort(String.valueOf(item.text));
-                                         return true;
-                                     }
+                                 .setOnItemClickListener((item1, position) -> {
+                                     ToastUtil.toastShort(String.valueOf(item1.text));
+                                     return true;
                                  })
                                  .show(btn3, 0, 0, Gravity.RIGHT);
     }

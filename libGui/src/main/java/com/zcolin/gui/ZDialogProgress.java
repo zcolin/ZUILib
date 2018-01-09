@@ -11,7 +11,6 @@ package com.zcolin.gui;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -67,16 +66,13 @@ public class ZDialogProgress extends ProgressDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_view_progress : LAYOUT_ID) : layoutId);
-        this.setOnShowListener(new OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                tvMessage = (TextView) findViewById(R.id.progressBar_tv);
-                progressBar = (ProgressBar) findViewById(R.id.progressBar_pg);
-                if (indeterminateDrawable != null) {
-                    progressBar.setIndeterminateDrawable(indeterminateDrawable);
-                }
-                setTextMessage(strMessage);
+        this.setOnShowListener(dialog -> {
+            tvMessage = (TextView) findViewById(R.id.progressBar_tv);
+            progressBar = (ProgressBar) findViewById(R.id.progressBar_pg);
+            if (indeterminateDrawable != null) {
+                progressBar.setIndeterminateDrawable(indeterminateDrawable);
             }
+            setTextMessage(strMessage);
         });
     }
 

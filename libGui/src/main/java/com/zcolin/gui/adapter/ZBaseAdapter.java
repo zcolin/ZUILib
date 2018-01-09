@@ -117,8 +117,7 @@ public abstract class ZBaseAdapter<T> extends android.widget.BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (null == convertView) {
-            convertView = LayoutInflater.from(context)
-                                        .inflate(getItemLayoutId(), null);
+            convertView = LayoutInflater.from(context).inflate(getItemLayoutId(), null);
         }
 
         setUpData(parent, convertView, position, getItemViewType(position), listData.get(position));
@@ -153,7 +152,7 @@ public abstract class ZBaseAdapter<T> extends android.widget.BaseAdapter {
             viewHolder = new SparseArray<View>();
             view.setTag(viewHolder);
         }
-        
+
         View childView = viewHolder.get(id);
         if (null == childView) {
             childView = view.findViewById(id);

@@ -231,7 +231,7 @@ public class ZTagLayout extends RelativeLayout {
             final View tagLayout = mInflater.inflate(R.layout.gui_view_tagview, null);
             tagLayout.setId(listIndex);
             tagLayout.setBackgroundDrawable(getSelector(tag));
-            TextView tagView = (TextView) tagLayout.findViewById(R.id.tv_tag_item_contain);
+            TextView tagView = tagLayout.findViewById(R.id.tv_tag_item_contain);
             tagView.setText(tag.text);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tagView.getLayoutParams();
             params.setMargins(textPaddingLeft, textPaddingTop, textPaddingRight, texPaddingBottom);
@@ -248,34 +248,28 @@ public class ZTagLayout extends RelativeLayout {
                 tagView.setMinEms(tag.minEms);
             }
             tagLayout.setSelected(tag.isSelected);
-            tagLayout.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int size = getChildCount();
-                    for (int i = 0; i < size; i++) {
-                        getChildAt(i).setSelected(tagLayout == getChildAt(i));
-                    }
+            tagLayout.setOnClickListener(v -> {
+                int size = getChildCount();
+                for (int i = 0; i < size; i++) {
+                    getChildAt(i).setSelected(tagLayout == getChildAt(i));
+                }
 
-                    if (mClickListener != null) {
-                        mClickListener.onTagClick(position, tag);
-                    }
+                if (mClickListener != null) {
+                    mClickListener.onTagClick(position, tag);
                 }
             });
 
-            TextView deletableView = (TextView) tagLayout.findViewById(R.id.tv_tag_item_delete);
+            TextView deletableView = tagLayout.findViewById(R.id.tv_tag_item_delete);
             if (tag.isDeletable) {
                 deletableView.setVisibility(View.VISIBLE);
                 deletableView.setText(tag.deleteIcon);
                 deletableView.setPadding(0, textPaddingTop, textPaddingRight, texPaddingBottom);
                 deletableView.setTextColor(tag.deleteIndicatorColor);
                 deletableView.setTextSize(TypedValue.COMPLEX_UNIT_SP, tag.deleteIndicatorSize);
-                deletableView.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ZTagLayout.this.remove(position);
-                        if (mDeleteListener != null) {
-                            mDeleteListener.onTagDeleted(position, tag);
-                        }
+                deletableView.setOnClickListener(v -> {
+                    ZTagLayout.this.remove(position);
+                    if (mDeleteListener != null) {
+                        mDeleteListener.onTagDeleted(position, tag);
                     }
                 });
             } else {
@@ -450,8 +444,7 @@ public class ZTagLayout extends RelativeLayout {
         }
 
         public Tag setLayoutDrawable(int drawable) {
-            this.layoutDrawable = getContext().getResources()
-                                              .getDrawable(drawable);
+            this.layoutDrawable = getContext().getResources().getDrawable(drawable);
             return this;
         }
 

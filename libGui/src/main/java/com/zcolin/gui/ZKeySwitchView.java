@@ -52,11 +52,10 @@ public class ZKeySwitchView extends RelativeLayout {
     public ZKeySwitchView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         int layoutId = getSelfLayoutId() == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_view_keyswitch : LAYOUT_ID) : getSelfLayoutId();
-        LayoutInflater.from(context)
-                      .inflate(layoutId, this);
-        switchButton = (ZCheckTextView) findViewById(R.id.switchButton);
-        ivImg = (ImageView) findViewById(R.id.iv_img);
-        tvKey = (TextView) findViewById(R.id.tv_key);
+        LayoutInflater.from(context).inflate(layoutId, this);
+        switchButton = findViewById(R.id.switchButton);
+        ivImg = findViewById(R.id.iv_img);
+        tvKey = findViewById(R.id.tv_key);
         bottomLine = findViewById(R.id.view_bottomline);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ZKeySwitchView, defStyle, 0);
@@ -123,8 +122,7 @@ public class ZKeySwitchView extends RelativeLayout {
      * 如果用户需要自己使用布局替代此xml文件，则需要在此函数中返回自定义的LayoutId，
      * 但layout中的所有控件Id必须与本xml的Id相同，可以增加控件，不可以删除掉控件, 此函数返回的LayoutId的优先级高于{@link #initLayout(int)}
      */
-    protected
-    @LayoutRes
+    protected @LayoutRes
     int getSelfLayoutId() {
         return 0;
     }
@@ -157,11 +155,8 @@ public class ZKeySwitchView extends RelativeLayout {
     public void setKeyImage(String url) {
         if (url != null) {
             ivImg.setVisibility(View.VISIBLE);
-            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources()
-                                                                                     .getDimension(R.dimen.gui_dimens_small);
-            Glide.with(getContext())
-                 .load(url)
-                 .into(ivImg);
+            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources().getDimension(R.dimen.gui_dimens_small);
+            Glide.with(getContext()).load(url).into(ivImg);
         } else {
             ivImg.setVisibility(View.GONE);
             ((LayoutParams) ivImg.getLayoutParams()).rightMargin = 0;
@@ -169,8 +164,7 @@ public class ZKeySwitchView extends RelativeLayout {
     }
 
     public String getKeyText() {
-        return tvKey.getText()
-                    .toString();
+        return tvKey.getText().toString();
     }
 
     public TextView getTvKey() {

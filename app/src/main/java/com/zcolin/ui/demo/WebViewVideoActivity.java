@@ -26,9 +26,9 @@ public class WebViewVideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview_video);
 
-        webView = (ZWebView) findViewById(R.id.webView);
+        webView = findViewById(R.id.webView);
         webView.setSupportVideoFullScreen(this);
-        
+
         webView.loadUrl("http://dyjy.85ido.com:8080/");
     }
 

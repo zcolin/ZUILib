@@ -43,12 +43,12 @@ public class ZTextSwitcher extends TextSwitcher {
     private int  curPosition    = 0;     //当前循环的条数
     private int  showLine       = 2;    //固定行数
     private long switchInterval = 2000;//切换间隔
-    private String            text;         //设置需要自动切割的文字
+    private String       text;         //设置需要自动切割的文字
     private List<String> listText;     //设置需要循环的文字
-    private boolean           isNeedCutout;//是否需要截取
-    private int               width;        //获取的控件宽度
-    private boolean           isStart;      //是否已经开始循环展示
-    private boolean           isSetFactory; //是否已经设置了Factory
+    private boolean      isNeedCutout;//是否需要截取
+    private int          width;        //获取的控件宽度
+    private boolean      isStart;      //是否已经开始循环展示
+    private boolean      isSetFactory; //是否已经设置了Factory
 
     public ZTextSwitcher(Context context) {
         this(context, null);
@@ -174,20 +174,17 @@ public class ZTextSwitcher extends TextSwitcher {
             isStart = true;
             if (!isSetFactory) {
                 isSetFactory = true;
-                setFactory(new ViewFactory() {
-                    @Override
-                    public android.view.View makeView() {
-                        TextView textView = new TextView(getContext());
-                        textView.setMaxLines(showLine);
-                        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-                        textView.setTextColor(textColor);
-                        textView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, textGravity));
-                        //如果设置的不需要截取的ListText，则需要显示...
-                        if (!isNeedCutout) {
-                            textView.setEllipsize(TextUtils.TruncateAt.END);
-                        }
-                        return textView;
+                setFactory(() -> {
+                    TextView textView = new TextView(getContext());
+                    textView.setMaxLines(showLine);
+                    textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+                    textView.setTextColor(textColor);
+                    textView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, textGravity));
+                    //如果设置的不需要截取的ListText，则需要显示...
+                    if (!isNeedCutout) {
+                        textView.setEllipsize(TextUtils.TruncateAt.END);
                     }
+                    return textView;
                 });
             }
             textHandler.post(myRunnable);

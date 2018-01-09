@@ -32,7 +32,7 @@ import android.widget.TextView;
 /**
  * 自定义上有横条动画的TabView
  *
- * @deprecated 建议使用{@link {@link android.support.design.widget.TabLayout} }
+ * 建议使用{@link {@link android.support.design.widget.TabLayout} }
  */
 public class ZTabView extends RelativeLayout implements OnClickListener, OnPageChangeListener {
 
@@ -92,8 +92,8 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
         initViewPager(pager);
 
         LayoutInflater.from(context).inflate(R.layout.gui_view_tabview, this);
-        llTabLay = (LinearLayout) findViewById(R.id.ll_tabview);
-        tabLine = (ImageView) findViewById(R.id.iv_tabview);
+        llTabLay = findViewById(R.id.ll_tabview);
+        tabLine = findViewById(R.id.iv_tabview);
 
         tabLineRes = tabLineRes == 0 ? R.drawable.gui_bg_view_tabline : tabLineRes;
         tabLineBitmap = BitmapFactory.decodeResource(getResources(), tabLineRes);

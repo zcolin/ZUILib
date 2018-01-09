@@ -22,7 +22,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -32,9 +31,7 @@ import android.widget.ProgressBar;
 
 import com.zcolin.gui.R;
 import com.zcolin.gui.helper.ZUIHelper;
-import com.zcolin.gui.webview.jsbridge.BridgeHandler;
 import com.zcolin.gui.webview.jsbridge.BridgeWebView;
-import com.zcolin.gui.webview.jsbridge.CallBackFunction;
 
 
 /**
@@ -181,8 +178,7 @@ public class ZWebView extends BridgeWebView {
         flCustomContainer.setVisibility(View.INVISIBLE);
         container.addView(flCustomContainer, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-        View videoProgressView = LayoutInflater.from(activity)
-                                               .inflate(R.layout.gui_view_webview_video_progress, null);
+        View videoProgressView = LayoutInflater.from(activity).inflate(R.layout.gui_view_webview_video_progress, null);
         webChromeClientWrapper = new ZVideoFullScreenWebChromeClient(webChromeClientWrapper.getWebChromeClient(), activity, this, flCustomContainer, 
                 videoProgressView);
         setWebChromeClient(webChromeClientWrapper.getWebChromeClient());
@@ -205,8 +201,7 @@ public class ZWebView extends BridgeWebView {
         group.removeView(this);
         group.addView(container, index, this.getLayoutParams());
         container.addView(this, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        proBar = (ProgressBar) LayoutInflater.from(getContext())
-                                             .inflate(R.layout.gui_view_webview_progressbar, null);
+        proBar = (ProgressBar) LayoutInflater.from(getContext()).inflate(R.layout.gui_view_webview_progressbar, null);
         container.addView(proBar, new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, ZUIHelper.dip2px(getContext(), 2)));
         webChromeClientWrapper.setProgressBar(proBar);
         webViewClientWrapper.setProgressBar(proBar);
@@ -251,13 +246,10 @@ public class ZWebView extends BridgeWebView {
      * 支持网页下载
      */
     public void setSupportDownLoad() {
-        setDownloadListener(new DownloadListener() {
-            @Override
-            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
-                Uri uri = Uri.parse(url);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                getContext().startActivity(intent);
-            }
+        setDownloadListener((url, userAgent, contentDisposition, mimetype, contentLength) -> {
+            Uri uri = Uri.parse(url);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            getContext().startActivity(intent);
         });
     }
 
@@ -310,18 +302,15 @@ public class ZWebView extends BridgeWebView {
      * 注册启动Activity的web交互
      */
     public ZWebView registerStartActivity(final Activity activity) {
-        registerHandler("startActivity", new BridgeHandler() {
-            @Override
-            public void handler(String data, final CallBackFunction function) {
-                try {
-                    Intent intent = new Intent();
-                    ComponentName componentName = new ComponentName(activity.getPackageName(), activity.getPackageName() +
-                            "build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/res" + data);
-                    intent.setComponent(componentName);
-                    activity.startActivity(intent);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        registerHandler("startActivity", (data, function) -> {
+            try {
+                Intent intent = new Intent();
+                ComponentName componentName = new ComponentName(activity.getPackageName(), activity.getPackageName() + "build/intermediates/exploded-aar/com"
+                        + ".android.support/support-v4/23.2.1/res" + data);
+                intent.setComponent(componentName);
+                activity.startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
         return this;
@@ -331,12 +320,7 @@ public class ZWebView extends BridgeWebView {
      * 注册启动Activity的web交互
      */
     public ZWebView registerFinishActivity(final Activity activity) {
-        registerHandler("finishActivity", new BridgeHandler() {
-            @Override
-            public void handler(String data, final CallBackFunction function) {
-                activity.finish();
-            }
-        });
+        registerHandler("finishActivity", (data, function) -> activity.finish());
         return this;
     }
 

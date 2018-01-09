@@ -221,22 +221,12 @@ public class ZPopupMenu {
             if (view.getContext() instanceof Activity) {
                 final Activity activity = ((Activity) view.getContext());
                 darkenBackground(activity, 0.2f);
-                popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                    @Override
-                    public void onDismiss() {
-                        darkenBackground(activity, 1f);
-                    }
-                });
+                popupWindow.setOnDismissListener(() -> darkenBackground(activity, 1f));
             }
         } else if (isDim && !isAddDimView) {
             View dismissView = new View(mContext);
             ((LinearLayout) popupWindow.getContentView()).addView(dismissView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-            dismissView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    popupWindow.dismiss();
-                }
-            });
+            dismissView.setOnClickListener(v -> popupWindow.dismiss());
             isAddDimView = true;
         }
     }
@@ -373,7 +363,7 @@ public class ZPopupMenu {
         /**
          * @return ture 消失，false不消失
          */
-        public boolean onItemClick(Item item, int position);
+        boolean onItemClick(Item item, int position);
     }
 
     /**
@@ -568,16 +558,13 @@ public class ZPopupMenu {
             }
             holder.textView.setEllipsize(TextUtils.TruncateAt.END);
 
-            holder.textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mItemOnClickListener != null) {
-                        if (mItemOnClickListener.onItemClick(listAction.get(position), position)) {
-                            popupWindow.dismiss();
-                        }
-                    } else {
+            holder.textView.setOnClickListener(v -> {
+                if (mItemOnClickListener != null) {
+                    if (mItemOnClickListener.onItemClick(listAction.get(position), position)) {
                         popupWindow.dismiss();
                     }
+                } else {
+                    popupWindow.dismiss();
                 }
             });
 

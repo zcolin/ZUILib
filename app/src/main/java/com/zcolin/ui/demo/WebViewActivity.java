@@ -19,19 +19,16 @@ import android.widget.Button;
 import com.fosung.ui.R;
 import com.zcolin.frame.util.GsonUtil;
 import com.zcolin.gui.ZAlert;
-import com.zcolin.gui.ZDialog;
 import com.zcolin.gui.webview.ZWebView;
-import com.zcolin.gui.webview.jsbridge.BridgeHandler;
-import com.zcolin.gui.webview.jsbridge.CallBackFunction;
 import com.zcolin.gui.webview.jsbridge.DefaultHandler;
 
 /**
  * 带JsBridge的webview的Demo
  */
 public class WebViewActivity extends FragmentActivity implements OnClickListener {
-    private ZWebView                   webView;
-    private Button                     button;
-    private Activity                   mActivity;
+    private ZWebView webView;
+    private Button   button;
+    private Activity mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +36,8 @@ public class WebViewActivity extends FragmentActivity implements OnClickListener
         setContentView(R.layout.activity_webview);
         mActivity = this;
 
-        webView = (ZWebView) findViewById(R.id.webView);
-        button = (Button) findViewById(R.id.button);
+        webView = findViewById(R.id.webView);
+        button = findViewById(R.id.button);
         button.setOnClickListener(this);
 
         initWebView();
@@ -52,20 +49,10 @@ public class WebViewActivity extends FragmentActivity implements OnClickListener
     public void initWebView() {
         webView.setDefaultHandler(new DefaultHandler());//如果JS调用send方法，会走到DefaultHandler里
         webView.setSupportChooseFile(mActivity);
-        webView.registerHandler("submitFromWeb", new BridgeHandler() {
-            @Override
-            public void handler(String data, final CallBackFunction function) {
-                new ZAlert(mActivity).setMessage("监听到网页传入数据：" + data)
-                                     .addSubmitListener(new ZDialog.ZDialogSubmitInterface() {
-                                         @Override
-                                         public boolean submit() {
-                                             function.onCallBack("java 返回数据！！！");
-                                             return true;
-                                         }
-                                     })
-                                     .show();
-            }
-        });
+        webView.registerHandler("submitFromWeb", (data, function) -> new ZAlert(mActivity).setMessage("监听到网页传入数据：" + data).addSubmitListener(() -> {
+            function.onCallBack("java 返回数据！！！");
+            return true;
+        }).show());
         webView.registerStartActivity(mActivity);
         webView.registerFinishActivity(mActivity);
     }
@@ -75,13 +62,7 @@ public class WebViewActivity extends FragmentActivity implements OnClickListener
     }
 
     public void callJsFunc(String funcName, String strParam) {
-        webView.callHandler(funcName, strParam, new CallBackFunction() {
-            @Override
-            public void onCallBack(String data) {
-                new ZAlert(mActivity).setMessage("网页返回数据：" + data)
-                                     .show();
-            }
-        });
+        webView.callHandler(funcName, strParam, data -> new ZAlert(mActivity).setMessage("网页返回数据：" + data).show());
         //webView.send("hello");
     }
 

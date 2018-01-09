@@ -118,8 +118,7 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
 
     @Override
     public void show() {
-        if (tvTitle.getText()
-                   .length() == 0) {
+        if (tvTitle.getText().length() == 0) {
             tvTitle.setVisibility(View.GONE);
         } else {
             tvTitle.setVisibility(View.VISIBLE);

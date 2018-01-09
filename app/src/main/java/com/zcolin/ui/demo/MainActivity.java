@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initRes() {
-        tabView = (ZTabView) findViewById(R.id.view_tabview);
-        mViewPager = (ZViewPager) findViewById(R.id.view_pager);
-        indicator = (ZIndicator) findViewById(R.id.indicator);
+        tabView = findViewById(R.id.view_tabview);
+        mViewPager = findViewById(R.id.view_pager);
+        indicator = findViewById(R.id.indicator);
     }
 
     private void initData() {
@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
         tabView.addZTab(getNewTab("View"));
         tabView.addZTab(getNewTab("View"));
-        
-        ZTabView.ZTab tab2 =getNewTab("View");
+
+        ZTabView.ZTab tab2 = getNewTab("View");
         RelativeLayout rlTab = new RelativeLayout(this);
         rlTab.addView(tab2, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         ZBadgeView badgeView = new ZBadgeView(this, tab2);

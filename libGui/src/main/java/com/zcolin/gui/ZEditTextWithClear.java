@@ -19,7 +19,6 @@ import android.view.MotionEvent;
 import android.widget.EditText;
 
 
-
 /**
  * 带有清除按钮的edittext
  */
