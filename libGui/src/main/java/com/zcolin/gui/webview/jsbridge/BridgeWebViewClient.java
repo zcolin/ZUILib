@@ -1,9 +1,11 @@
-/***********************************************************
- * author   colin
- * company  fosung
- * email    wanglin2046@126.com
- * date     16-7-15 下午4:41
- **********************************************************/
+/*
+ * *********************************************************
+ *   author   colin
+ *   company  telchina
+ *   email    wanglin2046@126.com
+ *   date     18-1-9 上午8:51
+ * ********************************************************
+ */
 package com.zcolin.gui.webview.jsbridge;
 
 import android.graphics.Bitmap;

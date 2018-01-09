@@ -65,8 +65,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     sourceSets {
         main {
@@ -76,9 +76,9 @@ android {
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile 'com.android.support:cardview-v7:24.2.1'
-    compile 'com.android.support:design:24.2.1'
+    compile "com.android.support:recyclerview-v7:$supprotVersion"
+    compile "com.android.support:cardview-v7:$supprotVersion"
+    compile "com.android.support:design:$supprotVersion"
     compile 'com.github.zcolin:ZFrame:latest.release'//程序框架 
     compile project(path: ':libGui')
 }
