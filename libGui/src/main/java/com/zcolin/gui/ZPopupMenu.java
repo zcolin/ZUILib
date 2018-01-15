@@ -213,7 +213,7 @@ public class ZPopupMenu {
         dealDim(view);
 
         recyclerView.setAdapter(new MYAdapter());
-        popupWindow.showAtLocation(view, xoff, yoff, gravity);
+        popupWindow.showAtLocation(view, gravity, xoff, yoff);
     }
 
     private void dealDim(View view) {
