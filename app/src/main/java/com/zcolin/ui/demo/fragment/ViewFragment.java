@@ -23,8 +23,6 @@ import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.util.ActivityUtil;
 import com.zcolin.ui.demo.DialogActivity;
 import com.zcolin.ui.demo.OtherViewActivity;
-import com.zcolin.ui.demo.WebViewActivity;
-import com.zcolin.ui.demo.WebViewVideoActivity;
 import com.zcolin.ui.demo.ZKVViewActivity;
 
 import java.util.ArrayList;
@@ -58,8 +56,6 @@ public class ViewFragment extends BaseFrameFrag implements View.OnClickListener 
     private void init() {
         llContent = getView(R.id.ll_content);
         listButton.add(addButton("ZKVActivity"));
-        listButton.add(addButton("WebViewDemo"));
-        listButton.add(addButton("WebViewVideoDemo"));
         listButton.add(addButton("DialogDemo"));
         listButton.add(addButton("其他View示例"));
 
@@ -84,12 +80,8 @@ public class ViewFragment extends BaseFrameFrag implements View.OnClickListener 
         if (v == listButton.get(0)) {
             ActivityUtil.startActivity(mActivity, ZKVViewActivity.class);
         } else if (v == listButton.get(1)) {
-            ActivityUtil.startActivity(mActivity, WebViewActivity.class);
-        } else if (v == listButton.get(2)) {
-            ActivityUtil.startActivity(mActivity, WebViewVideoActivity.class);
-        } else if (v == listButton.get(3)) {
             ActivityUtil.startActivity(mActivity, DialogActivity.class);
-        } else if (v == listButton.get(4)) {
+        } else if (v == listButton.get(2)) {
             ActivityUtil.startActivity(mActivity, OtherViewActivity.class);
         }
     }

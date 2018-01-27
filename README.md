@@ -7,7 +7,6 @@
 4. 小红点ZBadgeView。
 5. 带清除按钮，带密码开关的EditText。
 6. wheelView。
-7. WebView, 可以设置支持进度条、视频全屏播放、js通讯、文件选择等。
 
 
 ## Gradle
@@ -92,17 +91,6 @@ ZKeyValueView#getSelfLayoutId()
 ```
 
 
-
-ZWebView：
-```
-webView = (ZWebView) findViewById(R.id.webView);
-webView.setSupportVideoFullScreen(this)
-        .setSupportProgressBar()
-        .setSupportChooeFile(activity)
-        .setSupportVideoFullScreen（activity）
-        .setSupportAutoZoom()
-        .setSupportJsBridge();
-```
 Other
 ```
 //ZTagLayout  标签控件流式布局

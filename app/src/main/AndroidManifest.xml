@@ -63,10 +63,6 @@
             android:name="com.zcolin.ui.demo.MainActivity"
             android:launchMode="singleTask"/>
         <activity android:name="com.zcolin.ui.demo.ZKVViewActivity"/>
-        <activity android:name="com.zcolin.ui.demo.WebViewActivity"/>
-        <activity
-            android:name="com.zcolin.ui.demo.WebViewVideoActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name="com.zcolin.ui.demo.DialogActivity"/>
         <activity android:name="com.zcolin.ui.demo.OtherViewActivity"/>
     </application>
