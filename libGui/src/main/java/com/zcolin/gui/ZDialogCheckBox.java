@@ -27,13 +27,13 @@ import java.util.List;
 public class ZDialogCheckBox extends ZDialog<ZDialogCheckBox> implements OnClickListener {
     private static int LAYOUT_ID;
 
-    protected TextView                                        tvTitle;        //标题
-    protected ZDialogParamSubmitInterface<ArrayList<String>>  valueSubmitInter;    // 点击确定按钮回调接口
-    protected ZDialogParamSubmitInterface<ArrayList<Integer>> positionSubmitInter;    // 点击确定按钮回调接口
-    protected CheckBox[]                                      arrCheckBox;    //CheckBox数组
-    protected LinearLayout                                    llCheckBox;    //CheckBox视图集合
-    protected TextView                                        tvCancel;
-    protected TextView                                        tvSubmit;
+    protected TextView                                       tvTitle;        //标题
+    protected ZDialogParamSubmitListener<ArrayList<String>>  valueSubmitInter;    // 点击确定按钮回调接口
+    protected ZDialogParamSubmitListener<ArrayList<Integer>> positionSubmitInter;    // 点击确定按钮回调接口
+    protected CheckBox[]                                     arrCheckBox;    //CheckBox数组
+    protected LinearLayout                                   llCheckBox;    //CheckBox视图集合
+    protected TextView                                       tvCancel;
+    protected TextView                                       tvSubmit;
 
     public static ZDialogCheckBox instance(Context context) {
         return new ZDialogCheckBox(context);
@@ -121,7 +121,7 @@ public class ZDialogCheckBox extends ZDialog<ZDialogCheckBox> implements OnClick
     /**
      * 添加确定回调接口
      */
-    public ZDialogCheckBox addValueSubmitListener(ZDialogParamSubmitInterface<ArrayList<String>> submitInter) {
+    public ZDialogCheckBox addValueSubmitListener(ZDialogParamSubmitListener<ArrayList<String>> submitInter) {
         this.valueSubmitInter = submitInter;
         return this;
     }
@@ -129,7 +129,7 @@ public class ZDialogCheckBox extends ZDialog<ZDialogCheckBox> implements OnClick
     /**
      * 添加确定回调接口
      */
-    public ZDialogCheckBox addPositionSubmitListener(ZDialogParamSubmitInterface<ArrayList<Integer>> submitInter) {
+    public ZDialogCheckBox addPositionSubmitListener(ZDialogParamSubmitListener<ArrayList<Integer>> submitInter) {
         this.positionSubmitInter = submitInter;
         return this;
     }

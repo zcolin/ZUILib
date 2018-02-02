@@ -25,11 +25,11 @@ import java.util.List;
 public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements View.OnClickListener {
     private static int LAYOUT_ID;
 
-    protected TextView                             tvTitle;        //标题
-    protected ZDialogParamSubmitInterface<Integer> submitInter;    // 点击确定按钮回调接口
-    protected RadioGroup                           rgChoise;
-    protected TextView                             tvCancel;
-    protected TextView                             tvSubmit;
+    protected TextView                            tvTitle;        //标题
+    protected ZDialogParamSubmitListener<Integer> submitInter;    // 点击确定按钮回调接口
+    protected RadioGroup                          rgChoise;
+    protected TextView                            tvCancel;
+    protected TextView                            tvSubmit;
 
     public static ZDialogRadioGroup instance(Context context) {
         return new ZDialogRadioGroup(context);
@@ -110,7 +110,7 @@ public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements Vie
     /**
      * 添加确定回调接口
      */
-    public ZDialogRadioGroup addSubmitListener(ZDialogParamSubmitInterface<Integer> submitInter) {
+    public ZDialogRadioGroup addSubmitListener(ZDialogParamSubmitListener<Integer> submitInter) {
         this.submitInter = submitInter;
         return this;
     }

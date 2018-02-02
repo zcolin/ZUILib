@@ -31,10 +31,10 @@ import java.util.List;
 public class ZDialogMenu extends ZDialog<ZDialogMenu> {
     private static int LAYOUT_ID;
 
-    protected LinearLayout                         llMenu;        //菜单容器布局
-    protected TextView                             tvTitle;        //标题控件
-    protected ZDialogParamSubmitInterface<Integer> submitInter;    // 点击确定按钮回调接口
-    protected Context                              context;
+    protected LinearLayout                        llMenu;        //菜单容器布局
+    protected TextView                            tvTitle;        //标题控件
+    protected ZDialogParamSubmitListener<Integer> submitInter;    // 点击确定按钮回调接口
+    protected Context                             context;
 
     public static ZDialogMenu instance(Context context) {
         return new ZDialogMenu(context);
@@ -145,7 +145,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
     /**
      * 添加点击回调接口
      */
-    public ZDialogMenu addSubmitListener(ZDialogParamSubmitInterface<Integer> submitInter) {
+    public ZDialogMenu addSubmitListener(ZDialogParamSubmitListener<Integer> submitInter) {
         this.submitInter = submitInter;
         return this;
     }

@@ -23,24 +23,31 @@ import android.widget.TextView;
 public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
     private static int LAYOUT_ID;
 
-    protected ZDialogSubmitInterface submitInterface;    // 点击确定按钮回调接口
-    protected ZDialogCancelInterface cancelInterface;    // 点击取消按钮回调接口
-    protected TextView               tvTitle;            // 标题文字
-    protected TextView               tvOK;                // 确定按钮
-    protected TextView               tvCancel;            // 取消按钮
-    protected TextView               tvMessage;            // 消息内容
+    protected ZDialogSubmitListener submitListener;    // 点击确定按钮回调接口
+    protected ZDialogCancelListener cancelListener;    // 点击取消按钮回调接口
+    protected TextView              tvTitle;            // 标题文字
+    protected TextView              tvOK;               // 确定按钮
+    protected TextView              tvCancel;           // 取消按钮
+    protected TextView              tvMessage;           // 消息内容
 
     public static ZConfirm instance(Context context) {
         return new ZConfirm(context);
     }
 
+    /**
+     * 如果用户需要自己使用布局替代此xml文件，单次更改
+     *
+     * @param layoutId 布局id
+     */
     public static ZConfirm instance(Context context, @LayoutRes int layoutId) {
         return new ZConfirm(context, layoutId);
     }
 
     /**
-     * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
+     * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，全局更改
      * 传入自定义的Layout，layout中的所有Id必须与本xml的Id相同
+     *
+     * @param layoutId 布局id
      */
     public static void initLayout(int layoutId) {
         LAYOUT_ID = layoutId;
@@ -93,8 +100,8 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
     /**
      * 添加确定回调接口
      */
-    public ZConfirm addSubmitListener(ZDialogSubmitInterface submitInterface) {
-        this.submitInterface = submitInterface;
+    public ZConfirm addSubmitListener(ZDialogSubmitListener submitInterface) {
+        this.submitListener = submitInterface;
         return this;
     }
 
@@ -102,8 +109,8 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
     /**
      * 添加取消回调接口
      */
-    public ZConfirm addCancelListener(ZDialogCancelInterface cancelInterface) {
-        this.cancelInterface = cancelInterface;
+    public ZConfirm addCancelListener(ZDialogCancelListener cancelInterface) {
+        this.cancelListener = cancelInterface;
         return this;
     }
 
@@ -130,15 +137,15 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == tvOK) {
-            if (submitInterface != null) {
-                boolean flag = submitInterface.submit();
+            if (submitListener != null) {
+                boolean flag = submitListener.submit();
                 if (flag) {
                     cancel();
                 }
             }
         } else if (v == tvCancel) {
-            if (cancelInterface != null) {
-                boolean flag = cancelInterface.cancel();
+            if (cancelListener != null) {
+                boolean flag = cancelListener.cancel();
                 if (flag) {
                     cancel();
                 }

@@ -23,10 +23,10 @@ import android.widget.TextView;
 public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
     private static int LAYOUT_ID;
 
-    protected ZDialogSubmitInterface submitInterface;    // 点击确定按钮回调接口
-    protected TextView               tvOK;            // 确定按钮
-    protected TextView               tvMessage;           // 消息内容
-    protected TextView               tvTitle;
+    protected ZDialogSubmitListener submitInterface;    // 点击确定按钮回调接口
+    protected TextView              tvOK;            // 确定按钮
+    protected TextView              tvMessage;           // 消息内容
+    protected TextView              tvTitle;
 
     public static ZAlert instance(Context context) {
         return new ZAlert(context);
@@ -111,7 +111,7 @@ public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
     /**
      * 添加确定回调接口
      */
-    public ZAlert addSubmitListener(ZDialogSubmitInterface submitInterface) {
+    public ZAlert addSubmitListener(ZDialogSubmitListener submitInterface) {
         this.submitInterface = submitInterface;
         return this;
     }

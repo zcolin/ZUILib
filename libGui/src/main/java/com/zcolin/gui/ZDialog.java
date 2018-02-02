@@ -89,7 +89,7 @@ public class ZDialog<T> extends Dialog {
     /**
      * 设置弹出框背景
      *
-     * @param resBg -1透明， 0纯白， 背景图片资源Id
+     * @param resBg 0 纯白， 背景图片资源Id
      */
     public T setDialogBackground(@DrawableRes int resBg) {
         this.resBg = resBg;
@@ -145,9 +145,9 @@ public class ZDialog<T> extends Dialog {
     public T setLayout(int width, int high) {
         Window window = getWindow();
         WindowManager.LayoutParams wl = window.getAttributes();
-        if (width > 0)
+        if (width != 0)
             wl.width = width;
-        if (high > 0)
+        if (high != 0)
             wl.height = high;
         window.setAttributes(wl);
         return (T) this;
@@ -184,28 +184,28 @@ public class ZDialog<T> extends Dialog {
     /**
      * 确定回调接口
      */
-    public interface ZDialogParamSubmitInterface<E> {
+    public interface ZDialogParamSubmitListener<E> {
         boolean submit(E t);
     }
 
     /**
      * 取消回调接口
      */
-    public interface ZDialogParamCancelInterface<E> {
+    public interface ZDialogParamCancelListener<E> {
         boolean cancel(E t);
     }
 
     /**
      * 确定回调接口
      */
-    public interface ZDialogSubmitInterface {
+    public interface ZDialogSubmitListener {
         boolean submit();
     }
 
     /**
      * 取消回调接口
      */
-    public interface ZDialogCancelInterface {
+    public interface ZDialogCancelListener {
         boolean cancel();
     }
 }

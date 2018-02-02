@@ -28,8 +28,8 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
     protected TextView tvTitle;               // 消息内容
     protected EditText etEdit;                 // 编辑框
 
-    private ZDialogParamSubmitInterface<String> submitInterface;
-    private ZDialogCancelInterface              cancelInterface;
+    private ZDialogParamSubmitListener<String> submitInterface;
+    private ZDialogCancelListener              cancelInterface;
 
     public static ZDialogEdit instance(Context context) {
         return new ZDialogEdit(context);
@@ -138,7 +138,7 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
     /**
      * 添加确定回调接口
      */
-    public ZDialogEdit addSubmitStrListener(ZDialogParamSubmitInterface<String> submitInterface) {
+    public ZDialogEdit addSubmitStrListener(ZDialogParamSubmitListener<String> submitInterface) {
         this.submitInterface = submitInterface;
         return this;
     }
@@ -146,7 +146,7 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
     /**
      * 添加取消回调接口
      */
-    public ZDialogEdit addCancelListener(ZDialogCancelInterface cancelInterface) {
+    public ZDialogEdit addCancelListener(ZDialogCancelListener cancelInterface) {
         this.cancelInterface = cancelInterface;
         return this;
     }
