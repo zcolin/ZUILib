@@ -11,7 +11,6 @@ package com.zcolin.gui;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ScrollView;
 
 /**
@@ -64,13 +63,9 @@ public class ZScrollView extends ScrollView {
         if (fixHeight > 0) {
             height = fixHeight;
         } else if (maxHeight > 0) {
-            View child = getChildAt(0);
-            if (child != null) {
-                child.measure(widthMeasureSpec, heightMeasureSpec);
-                height = Math.min(child.getMeasuredHeight(), maxHeight);
-            }
+            height = Math.min(MeasureSpec.getSize(heightMeasureSpec), maxHeight);
         }
-        
+
         if (height > 0) {
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST);
         }

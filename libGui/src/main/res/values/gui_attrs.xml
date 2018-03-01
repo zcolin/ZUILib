@@ -110,8 +110,18 @@
     </declare-styleable>
 
 
-    <declare-styleable name="ZMaxHeightView">
+    <declare-styleable name="ZGroupView">
         <attr name="zmaxheight_ratio" format="reference|float"/>
         <attr name="zmaxheight" format="reference|dimension"/>
+        <attr name="zmaxwidth_ratio" format="reference|float"/>
+        <attr name="zmaxwidth" format="reference|dimension"/>
+        <attr name="zminheight_ratio" format="reference|float"/>
+        <attr name="zminheight" format="reference|dimension"/>
+        <attr name="zminwidth_ratio" format="reference|float"/>
+        <attr name="zminwidth" format="reference|dimension"/>
+        <attr name="zfixwidth_ratio" format="reference|float"/>
+        <attr name="zfixwidth" format="reference|dimension"/>
+        <attr name="zfixheight_ratio" format="reference|float"/>
+        <attr name="zfixheight" format="reference|dimension"/>
     </declare-styleable>
 </resources>
