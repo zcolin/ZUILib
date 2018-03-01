@@ -11,6 +11,7 @@ package com.zcolin.gui;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ScrollView;
 
 /**
@@ -20,6 +21,7 @@ public class ZScrollView extends ScrollView {
 
     private ScrollViewListener scrollViewListener = null;
     private int maxHeight;
+    private int fixHeight;
 
     public ZScrollView(Context context) {
         super(context);
@@ -48,12 +50,31 @@ public class ZScrollView extends ScrollView {
         requestLayout();
     }
 
+    /**
+     * 设置Scrollview的固定高度
+     */
+    public void setFixHeight(int fixHeight) {
+        this.fixHeight = fixHeight;
+        requestLayout();
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (maxHeight > 0) {
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec(maxHeight, MeasureSpec.AT_MOST);
+        int height = 0;
+        if (fixHeight > 0) {
+            height = fixHeight;
+        } else if (maxHeight > 0) {
+            View child = getChildAt(0);
+            if (child != null) {
+                child.measure(widthMeasureSpec, heightMeasureSpec);
+                int width = child.getMeasuredWidth();
+                height = Math.min(child.getMeasuredHeight(), maxHeight);
+            }
         }
-
+        
+        if (height > 0) {
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST);
+        }
         //重新计算控件高、宽
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
