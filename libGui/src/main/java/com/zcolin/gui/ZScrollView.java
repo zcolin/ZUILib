@@ -67,7 +67,6 @@ public class ZScrollView extends ScrollView {
             View child = getChildAt(0);
             if (child != null) {
                 child.measure(widthMeasureSpec, heightMeasureSpec);
-                int width = child.getMeasuredWidth();
                 height = Math.min(child.getMeasuredHeight(), maxHeight);
             }
         }

@@ -108,4 +108,10 @@
         <attr name="zindicator_drawable_selected" format="reference"/>
         <attr name="zindicator_drawable_unselected" format="reference"/>
     </declare-styleable>
+
+
+    <declare-styleable name="ZMaxHeightView">
+        <attr name="zmaxheight_ratio" format="reference|float"/>
+        <attr name="zmaxheight" format="reference|dimension"/>
+    </declare-styleable>
 </resources>
