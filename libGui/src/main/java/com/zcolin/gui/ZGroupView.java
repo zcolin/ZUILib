@@ -220,7 +220,10 @@ public class ZGroupView extends RelativeLayout {
         } else if (minHeight > 0) {
             height = Math.max(MeasureSpec.getSize(heightMeasureSpec), minHeight);
         }
-        heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, heightMode);
+
+        if (height > 0) {
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, heightMode);
+        }
 
         int width = 0;
         if (fixWidth > 0) {
@@ -233,7 +236,9 @@ public class ZGroupView extends RelativeLayout {
         } else if (minWidth > 0) {
             width = Math.max(MeasureSpec.getSize(widthMeasureSpec), minWidth);
         }
-        widthMeasureSpec = MeasureSpec.makeMeasureSpec(width, widthMode);
+        if (width > 0) {
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec(width, widthMode);
+        }
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
