@@ -10,7 +10,6 @@
 package com.zcolin.ui.demo;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.ViewGroup;
@@ -66,9 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setUpTab() {
-        tabView.initAsTabIcon(mViewPager);
-        tabView.setOnPageChangeListener(new MainPagerListener());
-
+        tabView.setUpViewPager(mViewPager);
         tabView.addZTab(getNewTab("View"));
         tabView.addZTab(getNewTab("View"));
 
@@ -121,28 +118,5 @@ public class MainActivity extends AppCompatActivity {
             frag = ViewFragment.newInstance();
         }
         return frag;
-    }
-
-    /*
-    * ViewPager监听类 
-    */
-    private class MainPagerListener implements ViewPager.OnPageChangeListener {
-
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-        }
-
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-        }
-
-        @Override
-        public void onPageSelected(int arg0) {
-            if (arg0 == TAB_POSITION[1]) {
-
-            } else {
-
-            }
-        }
     }
 }

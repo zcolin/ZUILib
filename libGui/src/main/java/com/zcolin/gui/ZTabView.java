@@ -3,15 +3,12 @@
  *   author   colin
  *   company  telchina
  *   email    wanglin2046@126.com
- *   date     18-1-9 上午8:51
+ *   date     18-3-5 上午11:03
  * ********************************************************
  */
 package com.zcolin.gui;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.v4.view.PagerAdapter;
@@ -19,40 +16,25 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 
 /**
- * 自定义上有横条动画的TabView
- *
+ * 自定义图标的TabView，多用于底部导航栏
+ * <p>
  * 建议使用{@link {@link android.support.design.widget.TabLayout} }
  */
 public class ZTabView extends RelativeLayout implements OnClickListener, OnPageChangeListener {
-
-    public static final int TAB_MODE_LINE = 1;
-    public static final int TAB_MODE_ICON = 2;
-
-    private int     curTab         = 0;                      //当前停留的Tab Index
-    private int     tabMode        = TAB_MODE_LINE;
-    private boolean isSmoothScroll = false;
-
-    private ImageView tabLine;                        //横条View, 如果Mode为TAB_MODE_ICON，tabLine不加载
-    private int       tabWidth;                        //每个Tab的宽度
-    private Bitmap    tabLineBitmap;
-
-    private LinearLayout         llTabLay;                        //盛放TabView的容器
-    private ZTabListener         tabListener;                    //tab切换时回调接口
-    private OnPageChangeListener pagerChangeListener;            //ViewPager切换时回调
-    private ViewPager            pager;                            //盛放内容的ViewPager
-    private Matrix matrix = new Matrix();
-    private Context context;
+    private int curTab = 0;                      //当前停留的Tab Index
+    private LinearLayout llTabLay;                        //盛放TabView的容器
+    private ZTabListener tabListener;                    //tab切换时回调接口
+    private ViewPager    pager;                         //盛放内容的ViewPager
+    private boolean      isSmoothScroll;                //viewpager是否平滑滚动
+    private Context      context;
 
     public ZTabView(Context context) {
         this(context, null);
@@ -61,6 +43,10 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
     public ZTabView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+
+        llTabLay = new LinearLayout(context);
+        llTabLay.setOrientation(LinearLayout.HORIZONTAL);
+        addView(llTabLay, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
     }
 
     /**
@@ -70,53 +56,45 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
         this.tabListener = tabListener;
     }
 
-    /**
-     * 设置ViewPager的回调接口
-     */
-    public void setOnPageChangeListener(OnPageChangeListener listener) {
-        pagerChangeListener = listener;
+    public void setOrientation(int orientation) {
+        if (orientation == LinearLayout.VERTICAL) {
+            llTabLay.setOrientation(orientation);
+            llTabLay.getLayoutParams().width = LayoutParams.WRAP_CONTENT;
+            llTabLay.getLayoutParams().height = LayoutParams.MATCH_PARENT;
+        } else if (orientation == LinearLayout.HORIZONTAL) {
+            llTabLay.setOrientation(orientation);
+            llTabLay.getLayoutParams().width = LayoutParams.MATCH_PARENT;
+            llTabLay.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
+        } else {
+            throw new IllegalArgumentException("orientation 只能为LinearLayout.HORIZONTAL或者LinearLayout.VERTICAL");
+        }
     }
 
-    /**
-     * 初始化为TabLine模式,使用默认图像
-     */
-    public void initAsTabLine(ViewPager pager) {
-        initAsTabLine(pager, 0);
-    }
+    public void setUpViewPager(ViewPager pager) {
+        if (this.pager == pager) {
+            return;
+        }
 
-    /**
-     * 初始化为TabLine模式
-     */
-    public void initAsTabLine(ViewPager pager, int tabLineRes) {
-        tabMode = TAB_MODE_LINE;
-        initViewPager(pager);
-
-        LayoutInflater.from(context).inflate(R.layout.gui_view_tabview, this);
-        llTabLay = findViewById(R.id.ll_tabview);
-        tabLine = findViewById(R.id.iv_tabview);
-
-        tabLineRes = tabLineRes == 0 ? R.drawable.gui_bg_view_tabline : tabLineRes;
-        tabLineBitmap = BitmapFactory.decodeResource(getResources(), tabLineRes);
-    }
-
-    /**
-     * 初始化为TabIcon模式
-     */
-    public void initAsTabIcon(ViewPager pager) {
-        tabMode = TAB_MODE_ICON;
-        initViewPager(pager);
-
-        llTabLay = new LinearLayout(context);
-        llTabLay.setOrientation(LinearLayout.HORIZONTAL);
-        addView(llTabLay, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        this.pager = pager;
+        pager.addOnPageChangeListener(this);
+        PagerAdapter adapter = pager.getAdapter();
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     /**
      * 增加tab
      */
     public void addZTab(ZTab tab) {
-        llTabLay.addView(tab, new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f));
-        initTab(tab);
+        LinearLayout.LayoutParams params;
+        if (llTabLay.getOrientation() == LinearLayout.HORIZONTAL) {
+            params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f);
+        } else {
+            params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        }
+        llTabLay.addView(tab, params);
+        initTabItem(tab);
     }
 
     /**
@@ -128,8 +106,7 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
             throw new IllegalArgumentException("ViewGroup 中没有子控件是ZTab类型");
         }
 
-        llTabLay.addView(viewGroup, new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f));
-        initTab(tab);
+        addZTab(tab);
     }
 
     private ZTab getChildZTab(ViewGroup viewGroup) {
@@ -146,21 +123,13 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
         return null;
     }
 
-    private ZTab initTab(ZTab tab) {
+    private ZTab initTabItem(ZTab tab) {
         tab.setOnClickListener(this);
         tab.tabIndex = llTabLay.getChildCount() - 1;
 
         //默认选中第一个
         if (llTabLay.getChildCount() == 1) {
             llTabLay.getChildAt(0).setSelected(true);
-        }
-
-        if (tabMode == TAB_MODE_LINE && tabLineBitmap != null && tabLine != null) {
-            measure(0, 0);
-            tabWidth = getMeasuredWidth() / llTabLay.getChildCount();
-            int width = tabWidth > tabLineBitmap.getWidth() ? tabLineBitmap.getWidth() : tabWidth;
-            Bitmap b = Bitmap.createBitmap(tabLineBitmap, 0, 0, width, tabLineBitmap.getHeight());//设置tab的宽度和高度
-            tabLine.setImageBitmap(b);
         }
         return tab;
     }
@@ -186,36 +155,16 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
         return new ZTab(context, drawAbleCommon, drawAbleSelected, text);
     }
 
+    public LinearLayout getLlTabLay() {
+        return llTabLay;
+    }
+
     /**
      * 获取新建的Tab对象
      */
     public ZTab getNewIconTab(Drawable drawAbleCommon, Drawable drawAbleSelected, String text) {
         return new ZTab(context, drawAbleCommon, drawAbleSelected, text);
     }
-
-    private void initViewPager(ViewPager pager) {
-        if (this.pager == pager) {
-            return;
-        }
-
-        if (this.pager != null) {
-            this.pager.setOnPageChangeListener(null);
-        }
-
-        final PagerAdapter adapter = pager.getAdapter();
-        if (adapter == null) {
-            throw new IllegalStateException("ViewPager does not have adapter instance.");
-        }
-
-        this.pager = pager;
-        pager.setOnPageChangeListener(this);
-        adapter.notifyDataSetChanged();
-    }
-
-    public void setSmoothScroll(boolean isSmoothScroll) {
-        this.isSmoothScroll = isSmoothScroll;
-    }
-
 
     /**
      * 选中某个Tab 不会调用onTabSelect
@@ -253,25 +202,9 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
         return curTab;
     }
 
-
-    /*
-     * 调用Tab进行滚动，一般是viewpager的onPagerScroll来调用
-     *
-     * @param tabIndex 当前的tabIndex
-     * @param arg1     滚动的百分比
-     */
-    private void tabLineScoller(int tabIndex, float arg1) {
-        if (tabLine != null) {
-            // 平移的目的地
-            matrix.setTranslate(tabWidth * tabIndex, 0);
-            // 在滑动的过程中，计算出激活条应该要滑动的距离
-            float t = (tabWidth) * arg1;
-            // 平移的距离
-            matrix.postTranslate(t, 0);
-            tabLine.setImageMatrix(matrix);
-        }
+    public void setSmoothScroll(boolean isSmoothScroll) {
+        this.isSmoothScroll = isSmoothScroll;
     }
-
 
     @Override
     public void onClick(View v) {
@@ -289,31 +222,21 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
 
     @Override
     public void onPageScrollStateChanged(int arg0) {
-        if (pagerChangeListener != null) {
-            pagerChangeListener.onPageScrollStateChanged(arg0);
-        }
     }
 
     @Override
     public void onPageScrolled(int arg0, float arg1, int arg2) {
-        tabLineScoller(arg0, arg1);
-        if (pagerChangeListener != null) {
-            pagerChangeListener.onPageScrolled(arg0, arg1, arg2);
-        }
     }
 
     @Override
     public void onPageSelected(int arg0) {
         selectTab(arg0);
-        if (pagerChangeListener != null) {
-            pagerChangeListener.onPageSelected(arg0);
-        }
     }
 
     /**
      * 自定义TAB
      */
-    public class ZTab extends TextView {
+    public class ZTab extends android.support.v7.widget.AppCompatTextView {
         int tabIndex;
 
         private ZTab(Context context) {
