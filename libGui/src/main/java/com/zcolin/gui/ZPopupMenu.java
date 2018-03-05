@@ -214,6 +214,32 @@ public class ZPopupMenu {
     }
 
     /**
+     * 获取测量高度
+     */
+    public int getMeasureWidth() {
+        recyclerView.setAdapter(new MYAdapter());
+        View view = popupWindow.getContentView();
+        if (view != null) {
+            view.measure(0, 0);
+            return view.getMeasuredWidth();
+        }
+        return 0;
+    }
+
+    /**
+     * 获取测量宽度
+     */
+    public int getMeasureHeight() {
+        recyclerView.setAdapter(new MYAdapter());
+        View view = popupWindow.getContentView();
+        if (view != null) {
+            view.measure(0, 0);
+            return view.getMeasuredHeight();
+        }
+        return 0;
+    }
+
+    /**
      * 显示弹窗列表界面
      */
     public void showAtLocation(View view, int xoff, int yoff, int gravity) {
