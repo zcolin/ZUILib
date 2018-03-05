@@ -207,6 +207,13 @@ public class ZPopupMenu {
     }
 
     /**
+     * 获取PopupWindow实例
+     */
+    public PopupWindow getPopupWindow() {
+        return popupWindow;
+    }
+
+    /**
      * 显示弹窗列表界面
      */
     public void showAtLocation(View view, int xoff, int yoff, int gravity) {
