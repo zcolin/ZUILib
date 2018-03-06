@@ -9,8 +9,11 @@
 
 package com.zcolin.gui;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StyleRes;
@@ -179,6 +182,19 @@ public class ZDialog<T> extends Dialog {
             mViews.put(resId, view);
         }
         return view;
+    }
+
+    @Override
+    public void dismiss() {
+        if (isShowing()) {
+            Context context = ((ContextWrapper) getContext()).getBaseContext();
+            if (context instanceof Activity) {
+                if (!((Activity) context).isFinishing() && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && !((Activity) context).isDestroyed()))
+                    super.dismiss();
+            } else {
+                super.dismiss();
+            }
+        }
     }
 
     /**

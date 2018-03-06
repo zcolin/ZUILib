@@ -9,9 +9,12 @@
 
 package com.zcolin.gui;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
@@ -79,7 +82,15 @@ public class ZDialogProgress extends ProgressDialog {
 
     @Override
     public void dismiss() {
-        super.dismiss();
+        if (isShowing()) {
+            Context context = ((ContextWrapper) getContext()).getBaseContext();
+            if (context instanceof Activity) {
+                if (!((Activity) context).isFinishing() && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && !((Activity) context).isDestroyed()))
+                    super.dismiss();
+            } else {
+                super.dismiss();
+            }
+        }
     }
 
     @Override
