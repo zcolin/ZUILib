@@ -1,6 +1,6 @@
 # ZUILib
-##公用控件Lib。
-####此项目现在为Alpha版本，Demo和一些需要的控件还需要优化
+## 公用控件Lib。
+
 1. 一系列的Dialog，包括Alert,Confirm, 单选, 多选, Menu, 日期选择，进度条等。 
 2. key-value形式的控件，ZKeyValueView,ZKeyValueEditView,ZKeySwitchView。
 3. ZBanner导航条轮播图。
@@ -19,14 +19,14 @@ dependencies {
 工程的build.gradle中添加
 ```
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
 	}
+}
 ```
 
-##USAGE
+## USAGE
 ZDialog系列：
 ```
 new ZAlert(mActivity)
