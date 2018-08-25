@@ -33,6 +33,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
 
     protected LinearLayout                        llMenu;        //菜单容器布局
     protected TextView                            tvTitle;        //标题控件
+    protected DialogFixHeightScrollView           fixHeightScrollView;
     protected ZDialogParamSubmitListener<Integer> submitInter;    // 点击确定按钮回调接口
     protected Context                             context;
 
@@ -68,6 +69,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
     private void initRes() {
         llMenu = getView(R.id.dialogmenu_ll);
         tvTitle = getView(R.id.dialogmenu_title);
+        fixHeightScrollView = getView(R.id.fixHeightScrollView);
     }
 
     public ZDialogMenu setTitle(String str) {
@@ -77,6 +79,11 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
         } else {
             tvTitle.setVisibility(View.GONE);
         }
+        return this;
+    }
+
+    public ZDialogMenu setMaxHeight(int maxHeight) {
+        fixHeightScrollView.setMaxHeight(maxHeight);
         return this;
     }
 
