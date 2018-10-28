@@ -200,7 +200,6 @@ public class ZTextSwitcher extends TextSwitcher {
         if (isStart) {
             isStart = false;
             textHandler.removeCallbacks(myRunnable);
-            listText = null;
         }
     }
 
