@@ -375,6 +375,13 @@ public class ZBanner extends FrameLayout {
     }
 
     /**
+     * 获取指示器布局
+     */
+    public LinearLayout getIndicatorLayout() {
+        return indicator;
+    }
+
+    /**
      * OnPageChangeListener
      */
     class PageChangedListener implements ViewPager.OnPageChangeListener {
