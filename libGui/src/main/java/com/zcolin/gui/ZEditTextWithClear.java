@@ -11,18 +11,19 @@ package com.zcolin.gui;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.EditText;
 
 
 /**
  * 带有清除按钮的edittext
  */
-public class ZEditTextWithClear extends EditText {
+public class ZEditTextWithClear extends AppCompatEditText {
     private int resDrawAble = R.drawable.gui_icon_edittext_clear;
     private int ableWidth;
 
@@ -65,10 +66,11 @@ public class ZEditTextWithClear extends EditText {
     }
 
     private void setState() {
+        Drawable[] d = getCompoundDrawables();
         if (length() < 1)
-            setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+            setCompoundDrawablesWithIntrinsicBounds(d[0], d[1], null, d[3]);
         else
-            setCompoundDrawablesWithIntrinsicBounds(0, 0, resDrawAble, 0);
+            setCompoundDrawablesWithIntrinsicBounds(d[0], d[1], getContext().getResources().getDrawable(resDrawAble), d[3]);
     }
 
     /**
