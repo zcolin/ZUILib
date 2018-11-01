@@ -49,6 +49,7 @@ public class ZPopupMenu {
     private Context      mContext;
     private boolean      isAddDimView;
     private boolean      isDim;
+    private int          dimColor;
     private boolean      isFullDim;
     private int[]        itemPadding;
 
@@ -168,6 +169,15 @@ public class ZPopupMenu {
         return this;
     }
 
+    /**
+     * 设置背景是否变暗,一般横向全屏时使用此功能
+     */
+    public ZPopupMenu setIsDim(boolean isDim, int dimColor) {
+        this.isDim = isDim;
+        this.dimColor = dimColor;
+        return this;
+    }
+
     public ZPopupMenu setIsFullDim(boolean isDim) {
         this.isFullDim = isDim;
         return this;
@@ -258,6 +268,7 @@ public class ZPopupMenu {
             }
         } else if (isDim && !isAddDimView) {
             View dismissView = new View(mContext);
+            popupWindow.getContentView().setBackgroundColor(dimColor == 0 ? Color.parseColor("#55000000") : dimColor);
             ((LinearLayout) popupWindow.getContentView()).addView(dismissView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
             dismissView.setOnClickListener(v -> popupWindow.dismiss());
             isAddDimView = true;
@@ -360,8 +371,9 @@ public class ZPopupMenu {
      * 根据位置得到子类项
      */
     public Item getAction(int position) {
-        if (position < 0 || position > listAction.size())
+        if (position < 0 || position > listAction.size()) {
             return null;
+        }
         return listAction.get(position);
     }
 
