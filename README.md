@@ -1,12 +1,15 @@
 # ZUILib
 ## 公用控件Lib。
 
-1. 一系列的Dialog，包括Alert,Confirm, 单选, 多选, Menu, 日期选择，进度条等。 
+1. 一系列的Dialog，包括Alert,Confirm, 单选, 多选, Menu, 日期选择，进度条、异步进度条等。 
 2. key-value形式的控件，ZKeyValueView,ZKeyValueEditView,ZKeySwitchView。
 3. ZBanner导航条轮播图。
 4. 小红点ZBadgeView。
-5. 带清除按钮，带密码开关的EditText。
-6. wheelView。
+5. 带清除按钮、带密码开关的EditText。
+6. WheelView（Ios滚轮选择）。
+7. 标签布局ZTagLayout。
+8. 下拉菜单ZPopupMenu、 ZSpiner。
+9. 文字轮播ZTextSwitcher。
 
 
 ## Gradle
@@ -29,12 +32,12 @@ allprojects {
 ## USAGE
 ZDialog系列：
 ```
-new ZAlert(mActivity)
+ZAlert.instance(mActivity)
         .setTitle("ZAlert")
         .setMessage("这是一个Alert")
         .show();
         
-new ZConfirm(mActivity)
+ZConfirm.instance(mActivity)
         .setTitle("ZConfirm")
         .setMessage("这是一个通用对话框")
         .addSubmitListener(new ZDialog.ZDialogSubmitInterface() {
