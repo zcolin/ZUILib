@@ -117,13 +117,17 @@ public abstract class ZBaseAdapter<T> extends android.widget.BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (null == convertView) {
-            convertView = LayoutInflater.from(context).inflate(getItemLayoutId(), null);
+            convertView = getItemLayout();
         }
 
         setUpData(parent, convertView, position, getItemViewType(position), listData.get(position));
         return convertView;
     }
 
+    public View getItemLayout(){
+        return LayoutInflater.from(context).inflate(getItemLayoutId(), null);
+    }
+    
     /**
      * 获取布局ID
      *

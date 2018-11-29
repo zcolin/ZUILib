@@ -16,7 +16,9 @@
 app的build.gradle中添加
 ```
 dependencies {
-    compile 'com.github.zcolin:ZUILib:latest.release'
+    implementation "com.android.support:design:你的版本号"
+    implementation "com.android.support:appcompat-v7:你的版本号"
+    implementation 'com.github.zcolin:ZUILib:latest.release'
 }
 ```
 工程的build.gradle中添加
