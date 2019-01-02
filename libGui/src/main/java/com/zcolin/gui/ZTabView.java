@@ -106,7 +106,14 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
             throw new IllegalArgumentException("ViewGroup 中没有子控件是ZTab类型");
         }
 
-        addZTab(tab);
+        LinearLayout.LayoutParams params;
+        if (llTabLay.getOrientation() == LinearLayout.HORIZONTAL) {
+            params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f);
+        } else {
+            params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        }
+        llTabLay.addView(viewGroup, params);
+        initTabItem(tab);
     }
 
     private ZTab getChildZTab(ViewGroup viewGroup) {

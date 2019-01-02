@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <com.zcolin.gui.ZSlideVerifyView.ValidationSeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/gui_slideverify_bg"
+        android:thumb="@drawable/gui_slideverify_thumb"
+        android:thumbOffset="0dp"/>
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="请按住滑块，拖动到最右边"
+        android:textColor="#888888"
+        android:textSize="14dp"/>
+</RelativeLayout>

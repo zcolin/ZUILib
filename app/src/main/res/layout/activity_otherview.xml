@@ -56,6 +56,11 @@
             android:text="ZPopupMenu"
             android:textAllCaps="false"/>
 
+        <com.zcolin.gui.ZSlideVerifyView
+            android:id="@+id/zverifyview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <!--def  is_bottomline=true, is_arrow=true   -->
         <com.zcolin.gui.ZKeyValueView
             android:id="@+id/zkv_1"

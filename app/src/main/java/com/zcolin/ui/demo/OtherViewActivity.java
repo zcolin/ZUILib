@@ -28,6 +28,7 @@ import com.zcolin.gui.ZDialogProgress;
 import com.zcolin.gui.ZEditTextWithClear;
 import com.zcolin.gui.ZEditTextWithPassword;
 import com.zcolin.gui.ZPopupMenu;
+import com.zcolin.gui.ZSlideVerifyView;
 import com.zcolin.gui.ZTagLayout;
 import com.zcolin.gui.ZTextSwitcher;
 import com.zcolin.gui.ZoomImageView;
@@ -67,6 +68,10 @@ public class OtherViewActivity extends FragmentActivity {
         btn2.setOnClickListener(v -> showDlgProgress());
         btn3.setOnClickListener(v -> showPopupMenu(btn3));
         ImageLoaderUtils.displayImage(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=214&gp=0.jpg", zoomImageView);
+
+        ZSlideVerifyView zverifyview = findViewById(R.id.zverifyview);
+        zverifyview.addSuccessListener(() -> ToastUtil.toastShort("验证成功"));
+
         setUpTagView();
         startBanner();
         startTextSwitcher();
@@ -93,8 +98,7 @@ public class OtherViewActivity extends FragmentActivity {
     }
 
     public void startTextSwitcher() {
-        String text = "只要用过mvp这个问题可能很多人都知道。写mvp的时候，presenter会持有view，如果presenter有后台异步的长时间的动作，" + 
-                "比如网络请求，这时如果返回退出了Activity，后台异步的动作不会立即停止，这里就会有内存泄漏的隐患，所以会在presenter中加入" + "一个销毁view的方法。现在就在之前的项目中做一下修改";
+        String text = "只要用过mvp这个问题可能很多人都知道。写mvp的时候，presenter会持有view，如果presenter有后台异步的长时间的动作，" + "比如网络请求，这时如果返回退出了Activity，后台异步的动作不会立即停止，这里就会有内存泄漏的隐患，所以会在presenter中加入" + "一个销毁view的方法。现在就在之前的项目中做一下修改";
         textSwitcher.setTextColor(Color.BLACK).setTextSize(20).setSwitchInterval(4000).setText(text)
                     //                    .setOutAnima(mActivity, R.anim.textswitcher_slide_out)
                     //                    .setInAnima(mActivity, R.anim.textswitcher_slide_in)

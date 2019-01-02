@@ -115,7 +115,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
             String anAttrStr = arrStr[i];
             TextView tv = new TextView(context);
             tv.setText(anAttrStr);
-            tv.setBackgroundResource(R.drawable.gui_dlg_menu_selector);
+            tv.setBackgroundResource(R.drawable.gui_dialog_menu_selector);
             tv.setTextSize(getContext().getResources().getDimension(R.dimen.gui_textsize_normal));
             tv.setTextColor(colorStateList);
             tv.setPadding(paddingLR, padding, paddingLR, padding);

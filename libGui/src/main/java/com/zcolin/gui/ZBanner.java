@@ -150,7 +150,7 @@ public class ZBanner extends FrameLayout {
                 indicator.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
                 bannerTitle.setText(listTitle.get(0));
             } else {
-                numIndicator.setBackgroundResource(R.drawable.gui_bg_banner_numindicator);
+                numIndicator.setBackgroundResource(R.drawable.gui_banner_numindicator_bg);
             }
         }
         return this;
@@ -173,7 +173,7 @@ public class ZBanner extends FrameLayout {
                 break;
             case NUM_INDICATOR:
                 numIndicator.setVisibility(View.VISIBLE);
-                numIndicator.setBackgroundResource(R.drawable.gui_bg_banner_numindicator);
+                numIndicator.setBackgroundResource(R.drawable.gui_banner_numindicator_bg);
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams
                         .WRAP_CONTENT);
                 layoutParams.setMargins(0, 0, 10, 10);

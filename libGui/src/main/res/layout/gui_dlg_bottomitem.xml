@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginRight="@dimen/gui_dimens_small"
         android:layout_weight="1"
-        android:background="@drawable/gui_btn_dlg_bottom_selector"
+        android:background="@drawable/gui_dialog_bottom_btn_selector"
         android:text="取消"
         android:textColor="@color/gui_dlg_btn_cancel_text"
         android:textSize="@dimen/gui_textsize_normal">
@@ -26,7 +26,7 @@
         android:layout_gravity="center"
         android:layout_marginRight="@dimen/gui_dimens_small"
         android:layout_weight="1"
-        android:background="@drawable/gui_btn_dlg_bottom_selector"
+        android:background="@drawable/gui_dialog_bottom_btn_selector"
         android:text="确定"
         android:textColor="@color/gui_dlg_btn_text"
         android:textSize="@dimen/gui_textsize_normal">
