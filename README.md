@@ -1,5 +1,5 @@
 # ZUILib
-## 公用控件Lib。
+## 控件简介。
 
 1. 一系列的Dialog，包括Alert,Confirm, 单选, 多选, Menu, 日期选择，进度条、异步进度条等。 
 2. key-value形式的控件，ZKeyValueView,ZKeyValueEditView,ZKeySwitchView。
@@ -10,6 +10,11 @@
 7. 标签布局ZTagLayout。
 8. 下拉菜单ZPopupMenu、 ZSpiner。
 9. 文字轮播ZTextSwitcher。
+10. ZEditTextWithClear、ZEditTextWithPassword，附加清除及密码显隐的edittext。
+11. ZSlideVerifyView滑动验证控件。
+12. ZTagLayout便签布局控件。
+13. ZTextSwitcher文字轮播控件。
+14. ZoomImageView手势缩放控件。
 
 
 ## Gradle
@@ -132,3 +137,7 @@ banner.setBannerStyle(ZBanner.NUM_INDICATOR_TITLE)
   .setImages(listUrl)
   .startAutoPlay();
 ```
+
+#### 更多示例参见demo
+
+### MIT
