@@ -1,0 +1,63 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:scaleType="centerCrop"/>
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/gui_imagelayout_delete"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_uploading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
+        <ProgressBar
+            android:id="@+id/iv_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_uploadding"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#88000000"
+            android:gravity="center"
+            android:text="上传中"
+            android:textColor="@android:color/white"
+            android:textSize="10dp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_wait_upload"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:gravity="center"
+        android:text="等待上传"
+        android:textColor="@android:color/white"
+        android:textSize="10dp"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/tv_upload_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:gravity="center"
+        android:src="@drawable/gui_imagelayout_upload_error"
+        android:visibility="invisible"/>
+</RelativeLayout>
