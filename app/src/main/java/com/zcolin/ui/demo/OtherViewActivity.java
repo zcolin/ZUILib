@@ -12,15 +12,18 @@ package com.zcolin.ui.demo;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.widget.Button;
 
 import com.fosung.ui.R;
+import com.zcolin.frame.app.BaseFrameActivity;
 import com.zcolin.frame.imageloader.ImageLoaderUtils;
+import com.zcolin.frame.util.NUriParseUtil;
+import com.zcolin.frame.util.SystemIntentUtil;
 import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.gui.ZBanner;
 import com.zcolin.gui.ZDialogAsyncProgress;
@@ -32,8 +35,11 @@ import com.zcolin.gui.ZSlideVerifyView;
 import com.zcolin.gui.ZTagLayout;
 import com.zcolin.gui.ZTextSwitcher;
 import com.zcolin.gui.ZoomImageView;
+import com.zcolin.gui.imagelayout.ZImageLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static android.R.attr.data;
 
@@ -41,11 +47,12 @@ import static android.R.attr.data;
 /**
  * 其他的一些View的示例
  */
-public class OtherViewActivity extends FragmentActivity {
+public class OtherViewActivity extends BaseFrameActivity {
     private Activity      mActivity;
     private ZTextSwitcher textSwitcher;
     private ZBanner       banner;
     private ZTagLayout    tagLayout;
+    private ZImageLayout  imageLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +68,7 @@ public class OtherViewActivity extends FragmentActivity {
         textSwitcher = findViewById(R.id.view_textswitcher);
         tagLayout = findViewById(R.id.tagview);
         banner = findViewById(R.id.view_banner);
+        imageLayout = findViewById(R.id.imageLayout);
         Button btn1 = findViewById(R.id.btn_1);
         Button btn2 = findViewById(R.id.btn_2);
         final Button btn3 = findViewById(R.id.btn_3);
@@ -75,6 +83,7 @@ public class OtherViewActivity extends FragmentActivity {
         setUpTagView();
         startBanner();
         startTextSwitcher();
+        setImageLayout();
     }
 
 
@@ -214,5 +223,29 @@ public class OtherViewActivity extends FragmentActivity {
                                      return true;
                                  })
                                  .show(btn3, 0, 0, Gravity.RIGHT);
+    }
+
+    private void setImageLayout() {
+        List<String> listNet = new ArrayList<>();
+        listNet.add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3786834040,3404130353&fm=26&gp=0.jpg");
+
+        imageLayout.setMaxCount(10);
+        imageLayout.setImageLayoutUploadProxy((filePath, listener) -> {
+            listener.onSuccess(filePath);
+        });
+        imageLayout.setOnAddClickListener(view -> SystemIntentUtil.selectPhoto(mActivity, new SystemIntentUtil.OnCompleteLisenter() {
+            @Override
+            public void onSelected(Uri fileProviderUri) {
+                imageLayout.compassImagesToLocalList(Arrays.asList(NUriParseUtil.getFilePathFromUri(fileProviderUri)));
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+        }));
+
+        imageLayout.setNetImage(listNet);
+        List<String> list = imageLayout.getUploadSuccessImageUrlList();
     }
 }

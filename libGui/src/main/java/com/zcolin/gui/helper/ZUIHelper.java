@@ -121,6 +121,12 @@ public class ZUIHelper {
         if (file.getParentFile() != null && !file.getParentFile().exists()) {
             file.getParentFile().mkdir();
         }
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         FileOutputStream out = null;
         try {
             out = new FileOutputStream(file);

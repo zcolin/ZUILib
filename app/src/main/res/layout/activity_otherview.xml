@@ -120,5 +120,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimens_big"/>
+
+        <com.zcolin.gui.imagelayout.ZImageLayout
+            android:id="@+id/imageLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/dimens_big"
+            android:paddingLeft="@dimen/dimens_mid"
+            android:paddingRight="@dimen/dimens_mid"
+            android:paddingTop="@dimen/dimens_big"/>
     </LinearLayout>
 </ScrollView>

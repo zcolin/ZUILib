@@ -380,7 +380,7 @@ public class ZImageLayout extends RelativeLayout {
                 final List<String> listTempPath = new ArrayList<>();
                 if (listPath != null && listPath.size() > 0) {
                     for (String s : listPath) {
-                        String tempPath = getContext().getApplicationContext().getExternalCacheDir() + "/img_cache/" + UUID.randomUUID().toString() + ".png ";
+                        String tempPath = getContext().getApplicationContext().getExternalCacheDir() + "/img_cache/" + UUID.randomUUID().toString() + ".png";
                         ZUIHelper.copyPic(s, tempPath, compassResolution[0], compassResolution[1], 300);//压缩图片到缓存路径
                         listTempPath.add(tempPath);
                     }
