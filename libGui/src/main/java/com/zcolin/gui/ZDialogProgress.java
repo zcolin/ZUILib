@@ -85,8 +85,9 @@ public class ZDialogProgress extends ProgressDialog {
         if (isShowing()) {
             Context context = ((ContextWrapper) getContext()).getBaseContext();
             if (context instanceof Activity) {
-                if (!((Activity) context).isFinishing() && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && !((Activity) context).isDestroyed()))
+                if (!((Activity) context).isFinishing() && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && !((Activity) context).isDestroyed())) {
                     super.dismiss();
+                }
             } else {
                 super.dismiss();
             }

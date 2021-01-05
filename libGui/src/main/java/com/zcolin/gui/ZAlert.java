@@ -24,9 +24,9 @@ public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
     private static int LAYOUT_ID;
 
     protected ZDialogSubmitListener submitInterface;    // 点击确定按钮回调接口
-    protected TextView              tvOK;            // 确定按钮
-    protected TextView              tvMessage;           // 消息内容
-    protected TextView              tvTitle;
+    protected TextView tvOk;            // 确定按钮
+    protected TextView tvMessage;           // 消息内容
+    protected TextView tvTitle;
 
     public static ZAlert instance(Context context) {
         return new ZAlert(context);
@@ -79,7 +79,7 @@ public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
      * 设置按钮文字
      */
     public ZAlert setBtnText(String text) {
-        tvOK.setText(text);
+        tvOk.setText(text);
         return this;
     }
 
@@ -129,7 +129,7 @@ public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v == tvOK) {
+        if (v == tvOk) {
             cancel();
             if (submitInterface != null) {
                 submitInterface.submit();
@@ -142,11 +142,11 @@ public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
         TextView tvCancel = getView(R.id.dialog_cancelbutton);
         tvCancel.setVisibility(View.GONE);
 
-        tvOK = getView(R.id.dialog_okbutton);
+        tvOk = getView(R.id.dialog_okbutton);
         tvMessage = getView(R.id.dialog_message);
         tvTitle = getView(R.id.dialog_tilte);
         tvMessage.setMovementMethod(new ScrollingMovementMethod());
 
-        tvOK.setOnClickListener(this);
+        tvOk.setOnClickListener(this);
     }
 }

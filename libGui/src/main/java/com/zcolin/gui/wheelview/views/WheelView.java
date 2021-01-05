@@ -10,7 +10,7 @@
 /*
  *  Android Wheel Control.
  *  https://code.google.com/p/android-wheel/
- *  
+ *
  *  Copyright 2011 Yuri Kanivets
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -59,11 +59,11 @@ public class WheelView extends View {
     /**
      * Top and bottom shadows colors
      */
-    private static       int[] SHADOWS_COLORS      = new int[]{0xeeffffff, 0xeaffffff, 0x33ffffff};
+    private static int[] SHADOWS_COLORS = new int[]{0xeeffffff, 0xeaffffff, 0x33ffffff};
     /**
      * Top and bottom items offset (to hide that)
      */
-    private static final int   ITEM_OFFSET_PERCENT = 10;
+    private static final int ITEM_OFFSET_PERCENT = 10;
 
     /**
      * Left and right padding value
@@ -85,7 +85,7 @@ public class WheelView extends View {
     private int itemHeight = 0;
 
     // Center Line
-    private int   centerLineColor;
+    private int centerLineColor;
     private Paint paint;
 
     // Shadows drawables
@@ -94,8 +94,8 @@ public class WheelView extends View {
 
     // Scrolling
     private WheelScroller scroller;
-    private boolean       isScrollingPerformed;
-    private int           scrollingOffset;
+    private boolean isScrollingPerformed;
+    private int scrollingOffset;
 
     // Cyclic
     boolean isCyclic = false;
@@ -113,9 +113,9 @@ public class WheelView extends View {
     private WheelRecycle recycle = new WheelRecycle(this);
 
     // Listeners
-    private List<OnWheelChangedListener> changingListeners  = new LinkedList<OnWheelChangedListener>();
-    private List<OnWheelScrollListener>  scrollingListeners = new LinkedList<OnWheelScrollListener>();
-    private List<OnWheelClickedListener> clickingListeners  = new LinkedList<OnWheelClickedListener>();
+    private List<OnWheelChangedListener> changingListeners = new LinkedList<OnWheelChangedListener>();
+    private List<OnWheelScrollListener> scrollingListeners = new LinkedList<OnWheelScrollListener>();
+    private List<OnWheelClickedListener> clickingListeners = new LinkedList<OnWheelClickedListener>();
 
 
     /**
@@ -668,7 +668,6 @@ public class WheelView extends View {
                     getParent().requestDisallowInterceptTouchEvent(true);
                 }
                 break;
-
             case MotionEvent.ACTION_UP:
                 if (!isScrollingPerformed) {
                     int distance = (int) event.getY() - getHeight() / 2;
@@ -682,6 +681,8 @@ public class WheelView extends View {
                         notifyClickListenersAboutClick(currentItem + items);
                     }
                 }
+                break;
+            default:
                 break;
         }
 

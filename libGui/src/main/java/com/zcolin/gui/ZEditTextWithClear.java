@@ -67,10 +67,11 @@ public class ZEditTextWithClear extends AppCompatEditText {
 
     private void setState() {
         Drawable[] d = getCompoundDrawables();
-        if (length() < 1)
+        if (length() < 1) {
             setCompoundDrawablesWithIntrinsicBounds(d[0], d[1], null, d[3]);
-        else
+        } else {
             setCompoundDrawablesWithIntrinsicBounds(d[0], d[1], getContext().getResources().getDrawable(resDrawAble), d[3]);
+        }
     }
 
     /**
@@ -91,8 +92,9 @@ public class ZEditTextWithClear extends AppCompatEditText {
             Rect rect = new Rect();
             getGlobalVisibleRect(rect);
             rect.left = rect.right - ableWidth;
-            if (rect.contains(eventX, eventY))
+            if (rect.contains(eventX, eventY)) {
                 setText("");
+            }
         }
         return super.onTouchEvent(event);
     }

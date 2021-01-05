@@ -10,6 +10,7 @@ package com.zcolin.gui.imagelayout;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
@@ -29,17 +30,18 @@ import java.util.UUID;
  * 图片添加布局，调用图片选择，选择完毕后回填显示
  */
 public class ZImageLayout extends RelativeLayout {
-    private int maxCount = 20;
-    private GridLayout gridLayout;
-    private TextView   tvHint;
-    private List<ZImageLayoutItem> listLocalImage    = new ArrayList<>();//本地图片
-    private List<ZImageLayoutItem> listNetImage      = new ArrayList<>();//服务器返回的网络图片
-    private int[]                  compassResolution = new int[2];//图片压缩分辨率
-    private int                    columnCount       = 5;         //横向有多少个view
-    private int columnMargin;                                    //横向view间隔
-    private int itemWidth;
-    private int itemHeight;
-    private boolean isEditable = true;
+
+    private int                                         maxCount          = 20;
+    private GridLayout                                  gridLayout;
+    private TextView                                    tvHint;
+    private List<ZImageLayoutItem>                      listLocalImage    = new ArrayList<>();//本地图片
+    private List<ZImageLayoutItem>                      listNetImage      = new ArrayList<>();//服务器返回的网络图片
+    private int[]                                       compassResolution = new int[2];//图片压缩分辨率
+    private int                                         columnCount       = 5;         //横向有多少个view
+    private int                                         columnMargin;                                    //横向view间隔
+    private int                                         itemWidth;
+    private int                                         itemHeight;
+    private boolean                                     isEditable        = true;
     private OnImageLayoutRefreshListener                listener;
     private OnClickListener                             addClickListener;
     private ZDialog.ZDialogParamSubmitListener<Integer> itemImageClickListener;
@@ -61,7 +63,8 @@ public class ZImageLayout extends RelativeLayout {
 
     private void init(Context context) {
         columnMargin = ZUIHelper.dip2px(context, 5);
-        itemWidth = (ZUIHelper.getScreenWidth(context) - (columnMargin * 2 * (columnCount)) - getPaddingLeft() - getPaddingRight()) / columnCount;
+        itemWidth =
+                (ZUIHelper.getScreenWidth(context) - (columnMargin * 2 * (columnCount)) - getPaddingLeft() - getPaddingRight()) / columnCount;
         itemHeight = itemWidth;
 
         gridLayout = new GridLayout(context);
@@ -70,7 +73,8 @@ public class ZImageLayout extends RelativeLayout {
         //提示字段
         tvHint = new TextView(context);
         tvHint.setHint("格式jpg、png");
-        LayoutParams rlParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LayoutParams rlParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
         rlParams.setMargins(getPaddingLeft() + columnMargin * 3 + itemWidth, itemHeight * 3 / 4, 0, 0);
         addView(tvHint, rlParams);
 
@@ -328,7 +332,7 @@ public class ZImageLayout extends RelativeLayout {
                         ZDialogPhotoDetail.PhotoBean bean = new ZDialogPhotoDetail.PhotoBean();
                         bean.images = list.toArray(new String[list.size()]);
                         bean.index = position;
-                        new ZDialogPhotoDetail(((Activity) getContext()), bean).show();
+                        new ZDialogPhotoDetail(scanForActivity(getContext()), bean).show();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -340,6 +344,20 @@ public class ZImageLayout extends RelativeLayout {
             item.setOnClickListener(addClickListener);
         }
         return item;
+    }
+
+    /**
+     * 用于判断是否可以强制转换context
+     */
+    private Activity scanForActivity(Context context) {
+        if (context == null) {
+            return null;
+        } else if (context instanceof Activity) {
+            return (Activity) context;
+        } else if (context instanceof ContextWrapper) {
+            return scanForActivity(((ContextWrapper) context).getBaseContext());
+        }
+        return null;
     }
 
     /**
@@ -380,7 +398,9 @@ public class ZImageLayout extends RelativeLayout {
                 final List<String> listTempPath = new ArrayList<>();
                 if (listPath != null && listPath.size() > 0) {
                     for (String s : listPath) {
-                        String tempPath = getContext().getApplicationContext().getExternalCacheDir() + "/img_cache/" + UUID.randomUUID().toString() + ".png";
+                        String tempPath = getContext().getApplicationContext()
+                                .getExternalCacheDir() + "/img_cache/" + UUID.randomUUID()
+                                .toString() + ".png";
                         ZUIHelper.copyPic(s, tempPath, compassResolution[0], compassResolution[1], 300);//压缩图片到缓存路径
                         listTempPath.add(tempPath);
                     }

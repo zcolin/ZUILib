@@ -10,7 +10,7 @@
 /*
  *  Android Wheel Control.
  *  https://code.google.com/p/android-wheel/
- *  
+ *
  *  Copyright 2011 Yuri Kanivets
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -86,10 +86,10 @@ public class WheelScroller {
 
     // Scrolling
     private GestureDetector gestureDetector;
-    private Scroller        scroller;
-    private int             lastScrollY;
-    private float           lastTouchedY;
-    private boolean         isScrollingPerformed;
+    private Scroller scroller;
+    private int lastScrollY;
+    private float lastTouchedY;
+    private boolean isScrollingPerformed;
 
     /**
      * Constructor
@@ -153,7 +153,6 @@ public class WheelScroller {
                 scroller.forceFinished(true);
                 clearMessages();
                 break;
-
             case MotionEvent.ACTION_MOVE:
                 // perform scrolling
                 int distanceY = (int) (event.getY() - lastTouchedY);
@@ -162,6 +161,8 @@ public class WheelScroller {
                     listener.onScroll(distanceY);
                     lastTouchedY = event.getY();
                 }
+                break;
+            default:
                 break;
         }
 
@@ -174,6 +175,8 @@ public class WheelScroller {
 
     // gesture listener
     private SimpleOnGestureListener gestureListener = new SimpleOnGestureListener() {
+
+        @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             // Do scrolling in onTouchEvent() since onScroll() are not call
             // immediately
@@ -181,6 +184,7 @@ public class WheelScroller {
             return true;
         }
 
+        @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             lastScrollY = 0;
             final int maxY = 0x7FFFFFFF;
@@ -192,7 +196,7 @@ public class WheelScroller {
     };
 
     // Messages
-    private final int MESSAGE_SCROLL  = 0;
+    private final int MESSAGE_SCROLL = 0;
     private final int MESSAGE_JUSTIFY = 1;
 
     /**
@@ -215,6 +219,8 @@ public class WheelScroller {
 
     // animation handler
     private Handler animationHandler = new Handler() {
+
+        @Override
         public void handleMessage(Message msg) {
             scroller.computeScrollOffset();
             int currY = scroller.getCurrY();

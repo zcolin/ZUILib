@@ -21,12 +21,12 @@ import android.widget.TextView;
  */
 public class ZCheckTextView extends TextView implements OnClickListener {
 
-    private int     bgOn      = R.drawable.gui_checktextview_on;         // 选中的背景
-    private int     bgOff     = R.drawable.gui_checktextview_off;        // 未选中的背景
+    private int bgOn = R.drawable.gui_checktextview_on;         // 选中的背景
+    private int bgOff = R.drawable.gui_checktextview_off;        // 未选中的背景
     private boolean isChecked = false;
     private CheckedCallBack checkCallBack;                       // 单选选择按键时回调接口
 
-    private int    checkTag;                                    // 标识
+    private int checkTag;                                    // 标识
     private String strOn;                                       // 选中的文字
     private String strOff;                                        // 未选中的背景
     private boolean isCanCancel = true;                        // 选中之后是否可以再次点击取消
@@ -80,13 +80,15 @@ public class ZCheckTextView extends TextView implements OnClickListener {
         if (isChecked) {
             setSelected(true);
             setBackgroundResource(bgOn);
-            if (strOn != null)
+            if (strOn != null) {
                 setText(strOn);
+            }
         } else {
             setSelected(false);
             setBackgroundResource(bgOff);
-            if (strOff != null)
+            if (strOff != null) {
                 setText(strOff);
+            }
         }
     }
 

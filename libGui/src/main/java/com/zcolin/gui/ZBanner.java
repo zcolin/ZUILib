@@ -36,46 +36,46 @@ import java.util.List;
  * 如果有很多图片，比如有1000，此类需要再更改
  */
 public class ZBanner extends FrameLayout {
-    public static final int NOT_INDICATOR          = 0;//无指示器
-    public static final int CIRCLE_INDICATOR       = 1;//圆点指示器
-    public static final int NUM_INDICATOR          = 2;//数字指示器
-    public static final int NUM_INDICATOR_TITLE    = 3;//数字和文字
+    public static final int NOT_INDICATOR = 0;//无指示器
+    public static final int CIRCLE_INDICATOR = 1;//圆点指示器
+    public static final int NUM_INDICATOR = 2;//数字指示器
+    public static final int NUM_INDICATOR_TITLE = 3;//数字和文字
     public static final int CIRCLE_INDICATOR_TITLE = 4;//圆点和文字
 
-    public static final int LEFT   = 5;//指示器位置
+    public static final int LEFT = 5;//指示器位置
     public static final int CENTER = 6;//指示器位置
-    public static final int RIGHT  = 7;//指示器位置
+    public static final int RIGHT = 7;//指示器位置
 
     private int mIndicatorMargin = 5;
-    private int mIndicatorWidth  = 8;
+    private int mIndicatorWidth = 8;
     private int mIndicatorHeight = 8;
 
-    private int mIndicatorSelectedResId   = R.drawable.gui_banner_gray_radius;
+    private int mIndicatorSelectedResId = R.drawable.gui_banner_gray_radius;
     private int mIndicatorUnselectedResId = R.drawable.gui_banner_white_radius;
 
-    private long    delayTime   = 2000;
-    private int     gravity     = -1;
-    private int     bannerStyle = CIRCLE_INDICATOR;
-    private Handler handler     = new Handler();
+    private long delayTime = 2000;
+    private int gravity = -1;
+    private int bannerStyle = CIRCLE_INDICATOR;
+    private Handler handler = new Handler();
 
-    private ArrayList<Object>    listUrl       = new ArrayList<>();
+    private ArrayList<Object> listUrl = new ArrayList<>();
     private ArrayList<ImageView> listIndicator = new ArrayList<>();
     private List<String> listTitle;
 
-    private int     dataSize;
-    private int     startPosition;//无限循环，startPosition是MAX_VALUE的中间值
-    private int     currentItem;    //当前的ItemPosition, 真实位置，
+    private int dataSize;
+    private int startPosition;//无限循环，startPosition是MAX_VALUE的中间值
+    private int currentItem;    //当前的ItemPosition, 真实位置，
     private boolean isResumePlay;
     private boolean isAutoPlay;
 
-    private ViewPager                      viewPager;
+    private ViewPager viewPager;
     private ViewPager.OnPageChangeListener onPageChangedListener;
-    private ImageView.ScaleType            scaleType;
-    private LinearLayout                   indicator;
-    private OnBannerClickListener          listener;
-    private TextView                       bannerTitle;
-    private TextView                       numIndicator;
-    private Context                        context;
+    private ImageView.ScaleType scaleType;
+    private LinearLayout indicator;
+    private OnBannerClickListener listener;
+    private TextView bannerTitle;
+    private TextView numIndicator;
+    private Context context;
 
     private int MAX_VALUE = 10000;
 
@@ -138,6 +138,8 @@ public class ZBanner extends FrameLayout {
             case RIGHT:
                 this.gravity = Gravity.RIGHT | Gravity.CENTER_VERTICAL;
                 break;
+            default:
+                break;
         }
         return this;
     }
@@ -186,6 +188,8 @@ public class ZBanner extends FrameLayout {
                 break;
             case CIRCLE_INDICATOR_TITLE:
                 indicator.setVisibility(View.VISIBLE);
+                break;
+            default:
                 break;
         }
         return this;
@@ -304,8 +308,9 @@ public class ZBanner extends FrameLayout {
         viewPager.setFocusable(true);
         viewPager.setCurrentItem(currentItem);
         viewPager.addOnPageChangeListener(new PageChangedListener());
-        if (gravity != -1)
+        if (gravity != -1) {
             indicator.setGravity(gravity);
+        }
     }
 
     /**
@@ -358,7 +363,7 @@ public class ZBanner extends FrameLayout {
             imageView.setScaleType(scaleType == null ? ImageView.ScaleType.CENTER_CROP : scaleType);
             imageView.setOnClickListener(v -> {
                 if (listener != null) {
-                    listener.OnBannerClick(v, getRealPosition(position));
+                    listener.onBannerClick(v, getRealPosition(position));
                 }
             });
             container.addView(imageView);
@@ -396,6 +401,8 @@ public class ZBanner extends FrameLayout {
                         currentItem = viewPager.getCurrentItem();
                         resumePaly();
                     }
+                    break;
+                default:
                     break;
             }
 
@@ -441,6 +448,8 @@ public class ZBanner extends FrameLayout {
                         bannerTitle.setText(listTitle.get(realPosition));
                     }
                     break;
+                default:
+                    break;
             }
 
             if (onPageChangedListener != null) {
@@ -450,6 +459,6 @@ public class ZBanner extends FrameLayout {
     }
 
     public interface OnBannerClickListener {
-        void OnBannerClick(View view, int position);
+        void onBannerClick(View view, int position);
     }
 }

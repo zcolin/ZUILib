@@ -1,12 +1,3 @@
-/*
- * *********************************************************
- *   author   colin
- *   company  telchina
- *   email    wanglin2046@126.com
- *   date     18-1-9 上午8:51
- * ********************************************************
- */
-
 package com.zcolin.gui;
 
 import android.content.Context;
@@ -29,11 +20,12 @@ import java.util.List;
 /**
  * 日期选择对话框
  */
-public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.OnClickListener, OnWheelChangedListener, OnWheelScrollListener {
+public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.OnClickListener,
+        OnWheelChangedListener, OnWheelScrollListener {
     private static int LAYOUT_ID;
 
-    protected int maxTextSize = 18;
-    protected int minTextSize = 12;
+    protected int       maxTextSize = 18;
+    protected int       minTextSize = 12;
     protected WheelView wvHour;
     protected WheelView wvMin;
     protected int       maxTextColor;
@@ -44,8 +36,8 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
     protected TextView btnCancel;
     protected TextView tvTitle;     // 标题文字
 
-    protected ArrayList<String> array_hours = new ArrayList<String>();
-    protected ArrayList<String> arry_mins   = new ArrayList<String>();
+    protected ArrayList<String>   array_hours = new ArrayList<String>();
+    protected ArrayList<String>   arry_mins   = new ArrayList<String>();
     protected CalendarTextAdapter mHourAdapter;
     protected CalendarTextAdapter mMinAdapter;
 
@@ -74,9 +66,6 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
         this(context, 0);
     }
 
-    /**
-     * @param context
-     */
     public ZDialogWheelTime(Context context, @LayoutRes int layoutId) {
         super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_wheel_time : LAYOUT_ID) : layoutId);
         init(context);
@@ -107,8 +96,8 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
 
     private void prepareShow() {
         Calendar c = Calendar.getInstance();
-        this.currentHour = currentHour == -1 ? c.get(Calendar.HOUR) : 0;
-        this.currentMin = currentMin == -1 ? c.get(Calendar.MINUTE) : 0;
+        this.currentHour = currentHour == -1 ? c.get(Calendar.HOUR) : currentHour;
+        this.currentMin = currentMin == -1 ? c.get(Calendar.MINUTE) : currentMin;
         int selectedHour = getHourIndex(currentHour);
         mHourAdapter = new CalendarTextAdapter(getContext(), array_hours, selectedHour);
         wvHour.setVisibleItems(5);
@@ -255,7 +244,14 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
         List<String> list;
 
         protected CalendarTextAdapter(Context context, List<String> list, int currentItem) {
-            super(context, R.layout.gui_item_year_date, NO_RESOURCE, currentItem, maxTextSize, minTextSize, maxTextColor, minTextColor);
+            super(context,
+                  R.layout.gui_item_year_date,
+                  NO_RESOURCE,
+                  currentItem,
+                  maxTextSize,
+                  minTextSize,
+                  maxTextColor,
+                  minTextColor);
             this.list = list;
             setItemTextResource(R.id.tempValue);
         }
@@ -315,7 +311,7 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
 
     private int getHourIndex(int hour) {
         int index = 0;
-        for (int i = 23; i >= 0; i--) {
+        for (int i = 0; i <= 23; i++) {
             if (i == hour) {
                 return index;
             }
@@ -326,7 +322,7 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
 
     private int getMinIndex(int min) {
         int index = 0;
-        for (int i = 59; i >= 0; i--) {
+        for (int i = 0; i <= 59; i++) {
             if (i == min) {
                 return index;
             }

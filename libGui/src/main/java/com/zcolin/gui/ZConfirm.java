@@ -25,10 +25,10 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
 
     protected ZDialogSubmitListener submitListener;    // 点击确定按钮回调接口
     protected ZDialogCancelListener cancelListener;    // 点击取消按钮回调接口
-    protected TextView              tvTitle;            // 标题文字
-    protected TextView              tvOK;               // 确定按钮
-    protected TextView              tvCancel;           // 取消按钮
-    protected TextView              tvMessage;           // 消息内容
+    protected TextView tvTitle;            // 标题文字
+    protected TextView tvOk;               // 确定按钮
+    protected TextView tvCancel;           // 取消按钮
+    protected TextView tvMessage;           // 消息内容
 
     public static ZConfirm instance(Context context) {
         return new ZConfirm(context);
@@ -84,8 +84,8 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
     /**
      * 设置按钮文字
      */
-    public ZConfirm setOKBtnText(String text) {
-        tvOK.setText(text);
+    public ZConfirm setOkBtnText(String text) {
+        tvOk.setText(text);
         return this;
     }
 
@@ -136,7 +136,7 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v == tvOK) {
+        if (v == tvOk) {
             if (submitListener != null) {
                 boolean flag = submitListener.submit();
                 if (flag) {
@@ -157,13 +157,13 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
 
 
     private void initRes() {
-        tvOK = getView(R.id.dialog_okbutton);
+        tvOk = getView(R.id.dialog_okbutton);
         tvCancel = getView(R.id.dialog_cancelbutton);
         tvMessage = getView(R.id.dialog_message);
         tvTitle = getView(R.id.dialog_tilte);
         tvMessage.setMovementMethod(new ScrollingMovementMethod());
 
-        tvOK.setOnClickListener(this);
+        tvOk.setOnClickListener(this);
         tvCancel.setOnClickListener(this);
     }
 }

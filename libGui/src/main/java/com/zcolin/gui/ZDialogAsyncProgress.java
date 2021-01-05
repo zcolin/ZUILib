@@ -55,8 +55,9 @@ public class ZDialogAsyncProgress extends AsyncTask<Integer, Integer, ZDialogAsy
     protected void onPostExecute(ProcessInfo info) {
         super.onPostExecute(info);
         processBar.dismiss();
-        if (doInter != null)
+        if (doInter != null) {
             doInter.onPostExecute(info);
+        }
     }
 
     /**

@@ -36,17 +36,17 @@ import java.util.List;
  * 标签控件流式布局
  */
 public class ZTagLayout extends RelativeLayout {
-    public static final float   DEFAULT_TAG_TEXT_SIZE              = 14f;                       //默认字体大小
-    public static final float   DEFAULT_TAG_DELETE_INDICATOR_SIZE  = 14f;                       //默认删除按钮大小
-    public static final float   DEFAULT_TAG_LAYOUT_BORDER_SIZE     = 0f;                        //默认边框宽度
-    public static final float   DEFAULT_TAG_RADIUS                 = 100;                       //默认圆角角度
-    public static final int     DEFAULT_TAG_LAYOUT_COLOR           = Color.parseColor("#00BFFF");//默认背景颜色
-    public static final int     DEFAULT_TAG_LAYOUT_COLOR_PRESS     = Color.parseColor("#88363636");//默认背景按下颜色
-    public static final int     DEFAULT_TAG_TEXT_COLOR             = Color.parseColor("#ffffff");//默认字体颜色
-    public static final int     DEFAULT_TAG_DELETE_INDICATOR_COLOR = Color.parseColor("#ffffff");//默认删除按钮颜色
-    public static final int     DEFAULT_TAG_LAYOUT_BORDER_COLOR    = Color.parseColor("#ffffff");//默认边框颜色
-    public static final String  DEFAULT_TAG_DELETE_ICON            = "×";                       //删除
-    public static final boolean DEFAULT_TAG_IS_DELETABLE           = false;                     //是否可以删除
+    public static final float DEFAULT_TAG_TEXT_SIZE = 14f;                       //默认字体大小
+    public static final float DEFAULT_TAG_DELETE_INDICATOR_SIZE = 14f;                       //默认删除按钮大小
+    public static final float DEFAULT_TAG_LAYOUT_BORDER_SIZE = 0f;                        //默认边框宽度
+    public static final float DEFAULT_TAG_RADIUS = 100;                       //默认圆角角度
+    public static final int DEFAULT_TAG_LAYOUT_COLOR = Color.parseColor("#00BFFF");//默认背景颜色
+    public static final int DEFAULT_TAG_LAYOUT_COLOR_PRESS = Color.parseColor("#88363636");//默认背景按下颜色
+    public static final int DEFAULT_TAG_TEXT_COLOR = Color.parseColor("#ffffff");//默认字体颜色
+    public static final int DEFAULT_TAG_DELETE_INDICATOR_COLOR = Color.parseColor("#ffffff");//默认删除按钮颜色
+    public static final int DEFAULT_TAG_LAYOUT_BORDER_COLOR = Color.parseColor("#ffffff");//默认边框颜色
+    public static final String DEFAULT_TAG_DELETE_ICON = "×";                       //删除
+    public static final boolean DEFAULT_TAG_IS_DELETABLE = false;                     //是否可以删除
 
     private int mWidth;             //本控件的宽度
     private int lineMargin;         //行纵向margin
@@ -56,8 +56,8 @@ public class ZTagLayout extends RelativeLayout {
     private int textPaddingTop;     //文字padding
     private int texPaddingBottom;   //文字padding
     private List<Tag> mTags = new ArrayList<>(); //tag集合
-    private LayoutInflater      mInflater;
-    private OnTagClickListener  mClickListener;//点击回调
+    private LayoutInflater mInflater;
+    private OnTagClickListener mClickListener;//点击回调
     private OnTagDeleteListener mDeleteListener;//删除回调
 
     public ZTagLayout(Context context) {
@@ -125,8 +125,9 @@ public class ZTagLayout extends RelativeLayout {
      * 批量添加tag
      */
     public void addTags(String[] tags) {
-        if (tags == null || tags.length <= 0)
+        if (tags == null || tags.length <= 0) {
             return;
+        }
         for (String item : tags) {
             Tag tag = new Tag(item);
             mTags.add(tag);
@@ -138,8 +139,9 @@ public class ZTagLayout extends RelativeLayout {
      * 批量添加tag
      */
     public void addTags(List<Tag> tagList) {
-        if (tagList == null || tagList.size() <= 0)
+        if (tagList == null || tagList.size() <= 0) {
             return;
+        }
         mTags.addAll(tagList);
         setUpTags();
     }
@@ -216,8 +218,9 @@ public class ZTagLayout extends RelativeLayout {
 
 
     private void setUpTags() {
-        if (getVisibility() != View.VISIBLE)
+        if (getVisibility() != View.VISIBLE) {
             return;
+        }
         removeAllViews();
         float total = getPaddingLeft() + getPaddingRight();
         int listIndex = 1;   // List Index
@@ -304,8 +307,9 @@ public class ZTagLayout extends RelativeLayout {
     }
 
     private Drawable getSelector(Tag tag) {
-        if (tag.isSetLayoutDrawable || tag.layoutDrawable != null)
+        if (tag.isSetLayoutDrawable || tag.layoutDrawable != null) {
             return tag.layoutDrawable;
+        }
         StateListDrawable states = new StateListDrawable();
         GradientDrawable gd_normal = new GradientDrawable();
         gd_normal.setColor(tag.layoutColor);
@@ -341,24 +345,24 @@ public class ZTagLayout extends RelativeLayout {
     public class Tag {
         public int id = 0;
         public String text;
-        public int     tagTextColor         = DEFAULT_TAG_TEXT_COLOR;
-        public int     tagPressTextColor    = DEFAULT_TAG_TEXT_COLOR;
-        public int     tagSelectTextColor   = DEFAULT_TAG_TEXT_COLOR;
-        public float   tagTextSize          = DEFAULT_TAG_TEXT_SIZE;
-        public int     layoutColor          = DEFAULT_TAG_LAYOUT_COLOR;
-        public int     layoutPressColor     = DEFAULT_TAG_LAYOUT_COLOR_PRESS;
-        public int     layoutSelectColor    = DEFAULT_TAG_LAYOUT_COLOR_PRESS;
-        public boolean isDeletable          = DEFAULT_TAG_IS_DELETABLE;
-        public int     deleteIndicatorColor = DEFAULT_TAG_DELETE_INDICATOR_COLOR;
-        public float   deleteIndicatorSize  = DEFAULT_TAG_DELETE_INDICATOR_SIZE;
-        public float   radius               = DEFAULT_TAG_RADIUS;
-        public String  deleteIcon           = DEFAULT_TAG_DELETE_ICON;
-        public float   layoutBorderSize     = DEFAULT_TAG_LAYOUT_BORDER_SIZE;
-        public int     layoutBorderColor    = DEFAULT_TAG_LAYOUT_BORDER_COLOR;
-        public int      minEms;
-        public int      maxEms;
-        public int      ems;
-        public boolean  isSelected;
+        public int tagTextColor = DEFAULT_TAG_TEXT_COLOR;
+        public int tagPressTextColor = DEFAULT_TAG_TEXT_COLOR;
+        public int tagSelectTextColor = DEFAULT_TAG_TEXT_COLOR;
+        public float tagTextSize = DEFAULT_TAG_TEXT_SIZE;
+        public int layoutColor = DEFAULT_TAG_LAYOUT_COLOR;
+        public int layoutPressColor = DEFAULT_TAG_LAYOUT_COLOR_PRESS;
+        public int layoutSelectColor = DEFAULT_TAG_LAYOUT_COLOR_PRESS;
+        public boolean isDeletable = DEFAULT_TAG_IS_DELETABLE;
+        public int deleteIndicatorColor = DEFAULT_TAG_DELETE_INDICATOR_COLOR;
+        public float deleteIndicatorSize = DEFAULT_TAG_DELETE_INDICATOR_SIZE;
+        public float radius = DEFAULT_TAG_RADIUS;
+        public String deleteIcon = DEFAULT_TAG_DELETE_ICON;
+        public float layoutBorderSize = DEFAULT_TAG_LAYOUT_BORDER_SIZE;
+        public int layoutBorderColor = DEFAULT_TAG_LAYOUT_BORDER_COLOR;
+        public int minEms;
+        public int maxEms;
+        public int ems;
+        public boolean isSelected;
         public Drawable layoutDrawable;
         boolean isSetLayoutDrawable;
         public Object data;

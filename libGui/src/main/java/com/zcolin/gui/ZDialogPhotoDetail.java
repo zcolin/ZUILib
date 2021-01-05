@@ -24,10 +24,10 @@ import com.zcolin.gui.helper.ZUIHelper;
  * 图片详情查看页面，使用viewpager滑动
  */
 public class ZDialogPhotoDetail extends ZDialog<ZDialogPhotoDetail> {
-    private PhotoBean  photoBean;
+    private PhotoBean photoBean;
     private ZViewPager viewPager;
-    private TextView   tvLeft;
-    private TextView   tvNum;
+    private TextView tvLeft;
+    private TextView tvNum;
 
     public ZDialogPhotoDetail(Activity context, PhotoBean photoBean) {
         super(context, R.layout.gui_dlg_photodetail);
@@ -39,14 +39,14 @@ public class ZDialogPhotoDetail extends ZDialog<ZDialogPhotoDetail> {
         tvNum = getView(R.id.tv_num);
         tvLeft = findViewById(R.id.btn_left);
 
-        resizeHeaderLayout();
+        resizeHeaderLayout(context);
         tvLeft.setOnClickListener(v -> dismiss());
         initData();
     }
 
-    private void resizeHeaderLayout() {
+    private void resizeHeaderLayout(Activity context) {
         RelativeLayout rlTab = getView(R.id.rl_header);
-        int statusBarHeight = ZUIHelper.getStatusBarHeight((Activity) getContext());
+        int statusBarHeight = ZUIHelper.getStatusBarHeight(context);
         rlTab.setPadding(0, statusBarHeight, 0, 0);
         rlTab.getLayoutParams().height += statusBarHeight;
     }
@@ -112,7 +112,6 @@ public class ZDialogPhotoDetail extends ZDialog<ZDialogPhotoDetail> {
 
     public static class PhotoBean {
         public String[] images;
-        public int      index;
-
+        public int index;
     }
 }

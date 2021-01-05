@@ -102,14 +102,14 @@ public class ZoomImageView extends ImageView implements View.OnTouchListener, Vi
      */
     private class MultiGestureDetector extends GestureDetector.SimpleOnGestureListener implements OnScaleGestureListener {
         private final ScaleGestureDetector scaleGestureDetector;
-        private final GestureDetector      gestureDetector;
+        private final GestureDetector gestureDetector;
 
         private VelocityTracker velocityTracker;
-        private boolean         isDragging;
+        private boolean isDragging;
 
-        private       float lastTouchX;
-        private       float lastTouchY;
-        private       float lastPointerCount;
+        private float lastTouchX;
+        private float lastTouchY;
+        private float lastPointerCount;
         private final float scaledTouchSlop;
         private final float scaledMinimumFlingVelocity;
 
@@ -173,7 +173,6 @@ public class ZoomImageView extends ImageView implements View.OnTouchListener, Vi
                     lastTouchY = y;
                     isDragging = false;
                     break;
-
                 case MotionEvent.ACTION_MOVE: {
                     final float dx = x - lastTouchX, dy = y - lastTouchY;
 
@@ -247,6 +246,8 @@ public class ZoomImageView extends ImageView implements View.OnTouchListener, Vi
                         velocityTracker.recycle();
                         velocityTracker = null;
                     }
+                    break;
+                default:
                     break;
             }
 
@@ -346,7 +347,7 @@ public class ZoomImageView extends ImageView implements View.OnTouchListener, Vi
     private class ScrollerProxy {
 
         private boolean isOld;
-        private Object  scroller;
+        private Object scroller;
 
         public ScrollerProxy(Context context) {
             if (VERSION.SDK_INT < VERSION_CODES.GINGERBREAD) {
@@ -388,10 +389,10 @@ public class ZoomImageView extends ImageView implements View.OnTouchListener, Vi
         }
     }
 
-    private static final int EDGE_NONE  = -1;
-    private static final int EDGE_LEFT  = 0;
+    private static final int EDGE_NONE = -1;
+    private static final int EDGE_LEFT = 0;
     private static final int EDGE_RIGHT = 1;
-    private static final int EDGE_BOTH  = 2;
+    private static final int EDGE_BOTH = 2;
 
     public static final float DEFAULT_MAX_SCALE = 3.0f;
     public static final float DEFAULT_MID_SCALE = 1.75f;
@@ -406,15 +407,15 @@ public class ZoomImageView extends ImageView implements View.OnTouchListener, Vi
     private MultiGestureDetector multiGestureDetector;
 
     // These are set so we don't keep allocating them on the heap
-    private final Matrix  baseMatrix   = new Matrix();
-    private final Matrix  drawMatrix   = new Matrix();
-    private final Matrix  suppMatrix   = new Matrix();
-    private final RectF   displayRect  = new RectF();
+    private final Matrix baseMatrix = new Matrix();
+    private final Matrix drawMatrix = new Matrix();
+    private final Matrix suppMatrix = new Matrix();
+    private final RectF displayRect = new RectF();
     private final float[] matrixValues = new float[9];
 
     // Listeners
-    private OnPhotoTapListener  photoTapListener;
-    private OnViewTapListener   viewTapListener;
+    private OnPhotoTapListener photoTapListener;
+    private OnViewTapListener viewTapListener;
     private OnLongClickListener longClickListener;
 
     private int top, right, bottom, left;
@@ -686,7 +687,6 @@ public class ZoomImageView extends ImageView implements View.OnTouchListener, Vi
                         currentFlingRunnable = null;
                     }
                     break;
-
                 case MotionEvent.ACTION_CANCEL:
                 case MotionEvent.ACTION_UP:
                     // If the user has zoomed less than min scale, zoom back
@@ -698,6 +698,8 @@ public class ZoomImageView extends ImageView implements View.OnTouchListener, Vi
                             handled = true;
                         }
                     }
+                    break;
+                default:
                     break;
             }
 
@@ -911,7 +913,7 @@ public class ZoomImageView extends ImageView implements View.OnTouchListener, Vi
 
     private class AnimatedZoomRunnable implements Runnable {
         // These are 'postScale' values, means they're compounded each iteration
-        static final float ANIMATION_SCALE_PER_ITERATION_IN  = 1.07f;
+        static final float ANIMATION_SCALE_PER_ITERATION_IN = 1.07f;
         static final float ANIMATION_SCALE_PER_ITERATION_OUT = 0.93f;
 
         private final float focalX, focalY;
@@ -930,6 +932,7 @@ public class ZoomImageView extends ImageView implements View.OnTouchListener, Vi
             }
         }
 
+        @Override
         public void run() {
             suppMatrix.postScale(deltaScale, deltaScale, focalX, focalY);
             checkAndDisplayMatrix();
@@ -953,7 +956,7 @@ public class ZoomImageView extends ImageView implements View.OnTouchListener, Vi
 
     private class FlingRunnable implements Runnable {
         private final ScrollerProxy scroller;
-        private       int           currentX, currentY;
+        private int currentX, currentY;
 
         public FlingRunnable(Context context) {
             scroller = new ScrollerProxy(context);

@@ -148,10 +148,12 @@ public class ZDialog<T> extends Dialog {
     public T setLayout(int width, int high) {
         Window window = getWindow();
         WindowManager.LayoutParams wl = window.getAttributes();
-        if (width != 0)
+        if (width != 0) {
             wl.width = width;
-        if (high != 0)
+        }
+        if (high != 0) {
             wl.height = high;
+        }
         window.setAttributes(wl);
         return (T) this;
     }
@@ -189,8 +191,9 @@ public class ZDialog<T> extends Dialog {
         if (isShowing()) {
             Context context = ((ContextWrapper) getContext()).getBaseContext();
             if (context instanceof Activity) {
-                if (!((Activity) context).isFinishing() && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && !((Activity) context).isDestroyed()))
+                if (!((Activity) context).isFinishing() && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && !((Activity) context).isDestroyed())) {
                     super.dismiss();
+                }
             } else {
                 super.dismiss();
             }
