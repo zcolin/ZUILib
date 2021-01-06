@@ -16,7 +16,7 @@ import android.content.ContextWrapper;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
+import androidx.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;

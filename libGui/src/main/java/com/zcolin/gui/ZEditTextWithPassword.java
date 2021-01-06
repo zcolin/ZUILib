@@ -11,7 +11,7 @@ package com.zcolin.gui;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;

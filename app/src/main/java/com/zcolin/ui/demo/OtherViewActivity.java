@@ -1,12 +1,3 @@
-/*
- * *********************************************************
- *   author   colin
- *   company  telchina
- *   email    wanglin2046@126.com
- *   date     18-1-9 上午8:51
- * ********************************************************
- */
-
 package com.zcolin.ui.demo;
 
 
@@ -21,7 +12,6 @@ import android.widget.Button;
 
 import com.fosung.ui.R;
 import com.zcolin.frame.app.BaseFrameActivity;
-import com.zcolin.frame.imageloader.ImageLoaderUtils;
 import com.zcolin.frame.util.NUriParseUtil;
 import com.zcolin.frame.util.SystemIntentUtil;
 import com.zcolin.frame.util.ToastUtil;
@@ -75,7 +65,9 @@ public class OtherViewActivity extends BaseFrameActivity {
         btn1.setOnClickListener(v -> showDlgAsyncProgress());
         btn2.setOnClickListener(v -> showDlgProgress());
         btn3.setOnClickListener(v -> showPopupMenu(btn3));
-        ImageLoaderUtils.displayImage(this, "http://img1.imgtn.bdimg.com/it/u=1480985633,1206349730&fm=214&gp=0.jpg", zoomImageView);
+//        ImageLoaderUtils.displayImage(this,
+//                                      "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1481883412,1615024343&fm=26&gp=0.jpg",
+//                                      zoomImageView);
 
         ZSlideVerifyView zverifyview = findViewById(R.id.zverifyview);
         zverifyview.addSuccessListener(() -> ToastUtil.toastShort("验证成功"));
@@ -107,7 +99,8 @@ public class OtherViewActivity extends BaseFrameActivity {
     }
 
     public void startTextSwitcher() {
-        String text = "只要用过mvp这个问题可能很多人都知道。写mvp的时候，presenter会持有view，如果presenter有后台异步的长时间的动作，" + "比如网络请求，这时如果返回退出了Activity，后台异步的动作不会立即停止，这里就会有内存泄漏的隐患，所以会在presenter中加入" + "一个销毁view的方法。现在就在之前的项目中做一下修改";
+        String text = "只要用过mvp这个问题可能很多人都知道。写mvp的时候，presenter会持有view，如果presenter有后台异步的长时间的动作，" +
+                "比如网络请求，这时如果返回退出了Activity，后台异步的动作不会立即停止，这里就会有内存泄漏的隐患，所以会在presenter中加入" + "一个销毁view的方法。现在就在之前的项目中做一下修改";
         textSwitcher.setTextColor(Color.BLACK).setTextSize(20).setSwitchInterval(4000).setText(text)
                     //                    .setOutAnima(mActivity, R.anim.textswitcher_slide_out)
                     //                    .setInAnima(mActivity, R.anim.textswitcher_slide_in)
@@ -149,7 +142,7 @@ public class OtherViewActivity extends BaseFrameActivity {
     private ArrayList<String> getListUrl() {
         String url_1 = "http://img.ycwb.com/news/attachement/jpg/site2/20110226/90fba60155890ed3082500.jpg";
         String url_2 = "http://cdn.duitang.com/uploads/item/201112/04/20111204012148_wkT88.jpg";
-        String url_3 = "http://img6.faloo.com/Picture/680x580/0/449/449476.jpg";
+        String url_3 = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3254323780,1983462077&fm=26&gp=0.jpg";
         ArrayList<String> listUrl = new ArrayList<>();
         listUrl.add(url_1);
         listUrl.add(url_2);
@@ -227,23 +220,28 @@ public class OtherViewActivity extends BaseFrameActivity {
 
     private void setImageLayout() {
         List<String> listNet = new ArrayList<>();
-        listNet.add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3786834040,3404130353&fm=26&gp=0.jpg");
+        listNet.add("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1369511624,462595697&fm=26&gp=0.jpg");
 
         imageLayout.setMaxCount(10);
         imageLayout.setImageLayoutUploadProxy((filePath, listener) -> {
             listener.onSuccess(filePath);
         });
-        imageLayout.setOnAddClickListener(view -> SystemIntentUtil.selectPhoto(mActivity, new SystemIntentUtil.OnCompleteLisenter() {
-            @Override
-            public void onSelected(Uri fileProviderUri) {
-                imageLayout.compassImagesToLocalList(Arrays.asList(NUriParseUtil.getFilePathFromUri(fileProviderUri)));
-            }
+        imageLayout.setOnAddClickListener(view -> SystemIntentUtil.selectPhoto(mActivity,
+                                                                               new SystemIntentUtil.OnCompleteLisenter() {
+                                                                                   @Override
+                                                                                   public void onSelected(
+                                                                                           Uri fileProviderUri) {
+                                                                                       imageLayout.compassImagesToLocalList(
+                                                                                               Arrays.asList(
+                                                                                                       NUriParseUtil.getFilePathFromUri(
+                                                                                                               fileProviderUri)));
+                                                                                   }
 
-            @Override
-            public void onCancel() {
+                                                                                   @Override
+                                                                                   public void onCancel() {
 
-            }
-        }));
+                                                                                   }
+                                                                               }));
 
         imageLayout.setNetImage(listNet);
         List<String> list = imageLayout.getUploadSuccessImageUrlList();

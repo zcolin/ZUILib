@@ -9,7 +9,6 @@
 package com.zcolin.gui;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +19,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.LayoutRes;
 
 /**
  * 多选框组合弹出框

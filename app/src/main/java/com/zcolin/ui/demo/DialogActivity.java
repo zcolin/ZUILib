@@ -1,9 +1,7 @@
-
 package com.zcolin.ui.demo;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,12 +23,15 @@ import com.zcolin.gui.ZDialogWheelTime;
 
 import java.util.ArrayList;
 
+import androidx.fragment.app.FragmentActivity;
+
 /**
  * 弹出框类型的View示例
  */
 public class DialogActivity extends FragmentActivity implements OnClickListener {
-    private Activity mActivity;
-    private LinearLayout llContent;
+
+    private Activity          mActivity;
+    private LinearLayout      llContent;
     private ArrayList<Button> listButton = new ArrayList<>();
 
     @Override
@@ -61,7 +62,7 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
 
     private Button addButton(String text) {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
+                                                                         ViewGroup.LayoutParams.WRAP_CONTENT);
         Button button = new Button(mActivity);
         button.setText(text);
         button.setGravity(Gravity.CENTER);
@@ -89,22 +90,22 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
         } else if (v == listButton.get(2)) {
             final String[] arrt = new String[]{"menu1", "menu2", "menu3", "menu4", "menu5"};
             new ZDialogRadioGroup(mActivity).setTitle("ZDialogRadioGroup")
-                    .setDatas(arrt, "menu1")
-                    .addSubmitListener(integer -> {
-                        ToastUtil.toastShort("选择了" + arrt[integer]);
-                        return true;
-                    })
-                    .show();
+                                            .setDatas(arrt, "menu1")
+                                            .addSubmitListener(integer -> {
+                                                ToastUtil.toastShort("选择了" + arrt[integer]);
+                                                return true;
+                                            })
+                                            .show();
         } else if (v == listButton.get(3)) {
             final String[] arrt = new String[]{"menu1", "menu2", "menu3", "menu4", "menu5"};
             new ZDialogMenu(mActivity).setTitle("ZDialogMenu").setDatas(arrt).addSubmitListener(integer -> {
                 ToastUtil.toastShort("选择了" + arrt[integer]);
                 return true;
             })
-                    //                    .setGravity(Gravity.BOTTOM)
-                    //                    .setLayout(ScreenUtil.getScreenWidth(mActivity),0)
-                    //                    .setAnim(R.style.style_anim_dialog_bottom)
-                    .show();
+                                      //                    .setGravity(Gravity.BOTTOM)
+                                      //                    .setLayout(ScreenUtil.getScreenWidth(mActivity),0)
+                                      //                    .setAnim(R.style.style_anim_dialog_bottom)
+                                      .show();
         } else if (v == listButton.get(4)) {
             new ZDialogEdit(mActivity).setTitle("ZDialogEdit").setEditText("回填数据").addSubmitStrListener(s -> {
                 ToastUtil.toastShort("输入框数据" + s);
@@ -113,33 +114,33 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
         } else if (v == listButton.get(5)) {
             final String[] arrStr = new String[]{"menu1", "menu2", "menu3", "menu4", "menu5"};
             new ZDialogCheckBox(mActivity).setTitle("ZDialogCheckbBox")
-                    .setDatas(arrStr, null)
-                    .addValueSubmitListener(s -> {
-                        String str = "";
-                        for (String s1 : s) {
-                            str += s1;
-                            str += ",";
-                        }
-                        ToastUtil.toastShort("选中数据" + str);
-                        return true;
-                    })
-                    .show();
+                                          .setDatas(arrStr, null)
+                                          .addValueSubmitListener(s -> {
+                                              String str = "";
+                                              for (String s1 : s) {
+                                                  str += s1;
+                                                  str += ",";
+                                              }
+                                              ToastUtil.toastShort("选中数据" + str);
+                                              return true;
+                                          })
+                                          .show();
         } else if (v == listButton.get(6)) {
             new ZDialogWheelTime(mActivity).setTitle("ZDialogWheelTime")
-                    .setDataSubmitListener((hour, minute) -> ToastUtil.toastShort(fillInOneZero(
-                            hour) + ":" + fillInOneZero(minute)))
-                    .show();
+                                           .setDataSubmitListener((hour, minute) -> ToastUtil.toastShort(fillInOneZero(
+                                                   hour) + ":" + fillInOneZero(minute)))
+                                           .show();
         } else if (v == listButton.get(7)) {
             new ZDialogWheelDate(mActivity).setTitle("ZDialogWheelDate")
-                    .setDataSubmitListener((year, month, day) -> ToastUtil.toastShort(year + "-" + fillInOneZero(
-                            month) + "-" + fillInOneZero(day)))
-                    .show();
+                                           .setDataSubmitListener((year, month, day) -> ToastUtil.toastShort(year + "-" + fillInOneZero(
+                                                   month) + "-" + fillInOneZero(day)))
+                                           .show();
         } else if (v == listButton.get(8)) {
             new ZDialogWheelDateAndTime(mActivity).setTitle("ZdialogWheelDateAndTime")
-                    .setDataSubmitListener((year, month, day, hour, minute) -> ToastUtil.toastShort(
-                            year + "-" + fillInOneZero(month) + "-" + fillInOneZero(day) + " " + fillInOneZero(
-                                    hour) + ":" + fillInOneZero(minute)))
-                    .show();
+                                                  .setDataSubmitListener((year, month, day, hour, minute) -> ToastUtil.toastShort(
+                                                          year + "-" + fillInOneZero(month) + "-" + fillInOneZero(day) + " " + fillInOneZero(
+                                                                  hour) + ":" + fillInOneZero(minute)))
+                                                  .show();
         }
     }
 }

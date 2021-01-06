@@ -11,7 +11,7 @@ package com.zcolin.gui;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.support.annotation.LayoutRes;
+import androidx.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;

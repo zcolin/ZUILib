@@ -11,9 +11,9 @@ package com.zcolin.gui;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -22,11 +22,13 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.google.android.material.tabs.TabLayout;
+
 
 /**
  * 自定义图标的TabView，多用于底部导航栏
  * <p>
- * 建议使用{@link {@link android.support.design.widget.TabLayout} }
+ * 建议使用{@link {@link TabLayout } }
  */
 public class ZTabView extends RelativeLayout implements OnClickListener, OnPageChangeListener {
     private int curTab = 0;                      //当前停留的Tab Index
@@ -243,7 +245,7 @@ public class ZTabView extends RelativeLayout implements OnClickListener, OnPageC
     /**
      * 自定义TAB
      */
-    public class ZTab extends android.support.v7.widget.AppCompatTextView {
+    public class ZTab extends androidx.appcompat.widget.AppCompatTextView {
         int tabIndex;
 
         private ZTab(Context context) {

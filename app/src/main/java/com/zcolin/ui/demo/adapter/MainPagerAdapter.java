@@ -1,26 +1,10 @@
-/*
- * *********************************************************
- *   author   colin
- *   company  telchina
- *   email    wanglin2046@126.com
- *   date     18-1-9 上午8:51
- * ********************************************************
- */
-
-/*    
- * 
- * @author		: WangLin  
- * @Company: 	：FCBN
- * @date		: 2015年5月13日 
- * @version 	: V1.0
- */
 package com.zcolin.ui.demo.adapter;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-
 import com.zcolin.ui.demo.MainActivity;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 
 /**

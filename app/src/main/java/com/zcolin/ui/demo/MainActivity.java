@@ -1,16 +1,6 @@
-/*
- * *********************************************************
- *   author   colin
- *   company  telchina
- *   email    wanglin2046@126.com
- *   date     18-1-9 上午8:51
- * ********************************************************
- */
-
 package com.zcolin.ui.demo;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -25,6 +15,8 @@ import com.zcolin.gui.ZViewPager;
 import com.zcolin.ui.demo.adapter.MainPagerAdapter;
 import com.zcolin.ui.demo.fragment.ViewFragment;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 
 /**
  * 程序主页面
@@ -33,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
     public static final int[] TAB_POSITION = new int[]{0, 1, 2};
 
     private BaseFrameFrag[] arrTabFrag = new BaseFrameFrag[TAB_POSITION.length];
-    private ZTabView   tabView;
-    private ZViewPager mViewPager;
-    private ZIndicator indicator;
+    private ZTabView        tabView;
+    private ZViewPager      mViewPager;
+    private ZIndicator      indicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
         ZTabView.ZTab tab2 = getNewTab("View");
         RelativeLayout rlTab = new RelativeLayout(this);
-        rlTab.addView(tab2, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        rlTab.addView(tab2,
+                      new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                                 ViewGroup.LayoutParams.WRAP_CONTENT));
         ZBadgeView badgeView = new ZBadgeView(this, tab2);
         badgeView.setText("55");
         badgeView.show();

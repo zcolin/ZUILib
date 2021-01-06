@@ -10,7 +10,7 @@ package com.zcolin.gui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.LayoutRes;
+import androidx.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
