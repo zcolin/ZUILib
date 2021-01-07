@@ -12,8 +12,9 @@ import com.fosung.ui.R;
 import com.zcolin.frame.app.BaseFrameFrag;
 import com.zcolin.frame.util.ActivityUtil;
 import com.zcolin.ui.demo.DialogActivity;
-import com.zcolin.ui.demo.OtherViewActivity;
-import com.zcolin.ui.demo.ZKVViewActivity;
+import com.zcolin.ui.demo.KeyValueViewDemoActivity;
+import com.zcolin.ui.demo.OtherViewDemoActivity;
+import com.zcolin.ui.demo.PopupDemoActivity;
 
 import java.util.ArrayList;
 
@@ -45,12 +46,12 @@ public class ViewFragment extends BaseFrameFrag implements View.OnClickListener 
         return R.layout.activity_common;
     }
 
-
     private void init() {
         llContent = getView(R.id.ll_content);
-        listButton.add(addButton("ZKVActivity"));
+        listButton.add(addButton("ZKVViewDemo"));
         listButton.add(addButton("DialogDemo"));
-        listButton.add(addButton("其他View示例"));
+        listButton.add(addButton("PopupDemo"));
+        listButton.add(addButton("OtherViewDemo"));
 
         for (Button btn : listButton) {
             btn.setOnClickListener(this);
@@ -68,15 +69,16 @@ public class ViewFragment extends BaseFrameFrag implements View.OnClickListener 
         return button;
     }
 
-
     @Override
     public void onClick(View v) {
         if (v == listButton.get(0)) {
-            ActivityUtil.startActivity(mActivity, ZKVViewActivity.class);
+            ActivityUtil.startActivity(mActivity, KeyValueViewDemoActivity.class);
         } else if (v == listButton.get(1)) {
             ActivityUtil.startActivity(mActivity, DialogActivity.class);
         } else if (v == listButton.get(2)) {
-            ActivityUtil.startActivity(mActivity, OtherViewActivity.class);
+            ActivityUtil.startActivity(mActivity, PopupDemoActivity.class);
+        } else if (v == listButton.get(3)) {
+            ActivityUtil.startActivity(mActivity, OtherViewDemoActivity.class);
         }
     }
 }

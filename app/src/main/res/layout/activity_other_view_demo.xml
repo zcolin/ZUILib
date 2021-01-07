@@ -35,6 +35,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimens_big" />
 
+        <com.zcolin.gui.ZVerticalTextView
+            android:id="@+id/verticalTextView"
+            style="@style/TextStyle_BlackLight_Normal"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/dimens_big"
+            android:background="@color/gray_mid"
+            android:lineSpacingExtra="@dimen/dimens_small"
+            android:padding="@dimen/dimens_mid" />
+
         <Button
             android:id="@+id/btn_1"
             android:layout_width="match_parent"
@@ -61,7 +72,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <!--def  is_bottomline=true, is_arrow=true   -->
         <com.zcolin.gui.ZKeyValueView
             android:id="@+id/zkv_1"
             android:layout_width="match_parent"
@@ -78,7 +88,6 @@
             app:zkv_value_text_color="@color/black_dark"
             app:zkv_value_text_size="20dp" />
 
-        <!--def  is_bottomline=true, is_checked=false   -->
         <com.zcolin.gui.ZKeySwitchView
             android:id="@+id/zkv_2"
             android:layout_width="match_parent"
@@ -91,7 +100,6 @@
             app:zksv_key_text_color="@color/black_dark"
             app:zksv_key_text_size="20dp" />
 
-        <!--def  is_bottomline=true, is_arrow=true   -->
         <com.zcolin.gui.ZKeyValueEditView
             android:id="@+id/zkv_3"
             android:layout_width="match_parent"

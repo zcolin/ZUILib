@@ -1,6 +1,7 @@
 package com.zcolin.ui.demo;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.widget.Button;
 
 import com.fosung.ui.R;
 import com.zcolin.frame.app.BaseFrameActivity;
+import com.zcolin.frame.imageloader.ImageLoaderUtils;
 import com.zcolin.frame.util.NUriParseUtil;
 import com.zcolin.frame.util.SystemIntentUtil;
 import com.zcolin.frame.util.ToastUtil;
@@ -24,6 +26,7 @@ import com.zcolin.gui.ZPopupMenu;
 import com.zcolin.gui.ZSlideVerifyView;
 import com.zcolin.gui.ZTagLayout;
 import com.zcolin.gui.ZTextSwitcher;
+import com.zcolin.gui.ZVerticalTextView;
 import com.zcolin.gui.ZoomImageView;
 import com.zcolin.gui.imagelayout.ZImageLayout;
 
@@ -37,17 +40,19 @@ import static android.R.attr.data;
 /**
  * 其他的一些View的示例
  */
-public class OtherViewActivity extends BaseFrameActivity {
-    private Activity      mActivity;
-    private ZTextSwitcher textSwitcher;
-    private ZBanner       banner;
-    private ZTagLayout    tagLayout;
-    private ZImageLayout  imageLayout;
+public class OtherViewDemoActivity extends BaseFrameActivity {
+
+    private Activity          mActivity;
+    private ZTextSwitcher     textSwitcher;
+    private ZVerticalTextView verticalTextView;
+    private ZBanner           banner;
+    private ZTagLayout        tagLayout;
+    private ZImageLayout      imageLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_otherview);
+        setContentView(R.layout.activity_other_view_demo);
         mActivity = this;
 
         ZEditTextWithClear etClear = findViewById(R.id.et_clear);
@@ -59,15 +64,17 @@ public class OtherViewActivity extends BaseFrameActivity {
         tagLayout = findViewById(R.id.tagview);
         banner = findViewById(R.id.view_banner);
         imageLayout = findViewById(R.id.imageLayout);
+        verticalTextView = findViewById(R.id.verticalTextView);
         Button btn1 = findViewById(R.id.btn_1);
         Button btn2 = findViewById(R.id.btn_2);
         final Button btn3 = findViewById(R.id.btn_3);
         btn1.setOnClickListener(v -> showDlgAsyncProgress());
         btn2.setOnClickListener(v -> showDlgProgress());
         btn3.setOnClickListener(v -> showPopupMenu(btn3));
-//        ImageLoaderUtils.displayImage(this,
-//                                      "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1481883412,1615024343&fm=26&gp=0.jpg",
-//                                      zoomImageView);
+        ImageLoaderUtils.displayImage(this,
+                                      "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1481883412," +
+                                              "1615024343&fm=26&gp=0.jpg",
+                                      zoomImageView);
 
         ZSlideVerifyView zverifyview = findViewById(R.id.zverifyview);
         zverifyview.addSuccessListener(() -> ToastUtil.toastShort("验证成功"));
@@ -75,6 +82,7 @@ public class OtherViewActivity extends BaseFrameActivity {
         setUpTagView();
         startBanner();
         startTextSwitcher();
+        setVerticalTextView();
         setImageLayout();
     }
 
@@ -106,6 +114,11 @@ public class OtherViewActivity extends BaseFrameActivity {
                     //                    .setInAnima(mActivity, R.anim.textswitcher_slide_in)
                     .startSwitcher();
 
+    }
+
+    public void setVerticalTextView() {
+        final String defaultText = "实现对文字的垂直排版。并且对非 CJK (中文、日文、韩文)字符做90度旋转排版。可以在下方的输入框中输入文字，体验不同文字垂直排版的效果。";
+        verticalTextView.setText(defaultText);
     }
 
     public void startBanner() {
@@ -178,9 +191,11 @@ public class OtherViewActivity extends BaseFrameActivity {
     /**
      * 异步执行任务，显示ProgressDialog
      */
+    @SuppressLint("StaticFieldLeak")
     private void showDlgProgress() {
         final ZDialogProgress progress = new ZDialogProgress(mActivity);
         new AsyncTask<Integer, Integer, Integer>() {
+
             @Override
             protected Integer doInBackground(Integer... params) {
                 SystemClock.sleep(2000);

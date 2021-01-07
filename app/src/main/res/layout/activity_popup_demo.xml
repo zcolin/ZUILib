@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_popup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="ZPopup"
+                android:textAllCaps="false" />
+
+        </RelativeLayout>
+
+        <com.zcolin.gui.ZDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_list_popup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="ZListPopup"
+                android:textAllCaps="false" />
+
+        </RelativeLayout>
+
+        <TextView
+            style="@style/TextStyle_BlackLight_Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_big"
+            android:lineSpacingMultiplier="1.1"
+            android:padding="@dimen/dimens_mid"
+            android:text="（注意：若设置ZPopup的setPreferredDirection为DIRECTION_TOP，则Popup从控件上方弹出，若控件到Window上方空间不足，则Popup从控件下方弹出。）" />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -9,13 +9,13 @@ import androidx.fragment.app.FragmentActivity;
 
 
 /**
- * 其他的一些View的示例
+ * key-value显示控件的示例
  */
-public class ZKVViewActivity extends FragmentActivity {
+public class KeyValueViewDemoActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zkeyvalue);
+        setContentView(R.layout.activity_key_value_view_demo);
     }
 }
