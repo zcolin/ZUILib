@@ -24,6 +24,7 @@ import com.zcolin.gui.ZEditTextWithClear;
 import com.zcolin.gui.ZEditTextWithPassword;
 import com.zcolin.gui.ZPopupMenu;
 import com.zcolin.gui.ZSlideVerifyView;
+import com.zcolin.gui.ZSwitchGrayImageView;
 import com.zcolin.gui.ZTagLayout;
 import com.zcolin.gui.ZTextSwitcher;
 import com.zcolin.gui.ZVerticalTextView;
@@ -42,12 +43,13 @@ import static android.R.attr.data;
  */
 public class OtherViewDemoActivity extends BaseFrameActivity {
 
-    private Activity          mActivity;
-    private ZTextSwitcher     textSwitcher;
-    private ZVerticalTextView verticalTextView;
-    private ZBanner           banner;
-    private ZTagLayout        tagLayout;
-    private ZImageLayout      imageLayout;
+    private Activity             mActivity;
+    private ZTextSwitcher        textSwitcher;
+    private ZVerticalTextView    verticalTextView;
+    private ZBanner              banner;
+    private ZTagLayout           tagLayout;
+    private ZImageLayout         imageLayout;
+    private ZSwitchGrayImageView switchGrayImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +61,26 @@ public class OtherViewDemoActivity extends BaseFrameActivity {
         etClear.setHint("这是Hint");
         ZEditTextWithPassword etPassword = findViewById(R.id.et_password);
         etPassword.setHint("这是ZEditTextWithPassword");
+
         ZoomImageView zoomImageView = findViewById(R.id.zoomImageView);
         textSwitcher = findViewById(R.id.view_textswitcher);
         tagLayout = findViewById(R.id.tagview);
         banner = findViewById(R.id.view_banner);
+        switchGrayImageView = findViewById(R.id.switch_gray_imageview);
+        Button btnSwitchGray = findViewById(R.id.btn_switch_gray);
         imageLayout = findViewById(R.id.imageLayout);
         verticalTextView = findViewById(R.id.verticalTextView);
         Button btn1 = findViewById(R.id.btn_1);
         Button btn2 = findViewById(R.id.btn_2);
-        final Button btn3 = findViewById(R.id.btn_3);
+        Button btn3 = findViewById(R.id.btn_3);
+
+        btnSwitchGray.setOnClickListener(v -> {
+            if (!switchGrayImageView.getImageViewState()) {
+                switchGrayImageView.switchGray();
+            } else {
+                switchGrayImageView.switchNormal();
+            }
+        });
         btn1.setOnClickListener(v -> showDlgAsyncProgress());
         btn2.setOnClickListener(v -> showDlgProgress());
         btn3.setOnClickListener(v -> showPopupMenu(btn3));
@@ -81,11 +94,11 @@ public class OtherViewDemoActivity extends BaseFrameActivity {
 
         setUpTagView();
         startBanner();
+        startSwitchGrayImageView();
         startTextSwitcher();
         setVerticalTextView();
         setImageLayout();
     }
-
 
     @Override
     public void onResume() {
@@ -114,6 +127,14 @@ public class OtherViewDemoActivity extends BaseFrameActivity {
                     //                    .setInAnima(mActivity, R.anim.textswitcher_slide_in)
                     .startSwitcher();
 
+    }
+
+
+    private void startSwitchGrayImageView() {
+        ImageLoaderUtils.displayImage(mActivity,
+                                      "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1813599092," +
+                                              "3210250796&fm=26&gp=0.jpg",
+                                      switchGrayImageView);
     }
 
     public void setVerticalTextView() {

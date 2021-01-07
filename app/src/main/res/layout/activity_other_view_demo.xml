@@ -16,6 +16,30 @@
             app:indicator_height="@dimen/dimens_small"
             app:indicator_width="@dimen/dimens_small" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.zcolin.gui.ZSwitchGrayImageView
+                android:id="@+id/switch_gray_imageview"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="@dimen/dimens_big"
+                android:layout_toLeftOf="@+id/btn_switch_gray"
+                android:scaleType="fitXY" />
+
+            <Button
+                android:id="@+id/btn_switch_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimens_mid"
+                android:layout_marginRight="@dimen/dimens_mid"
+                android:text="转换图片" />
+
+        </RelativeLayout>
+
         <com.zcolin.gui.ZTextSwitcher
             android:id="@+id/view_textswitcher"
             android:layout_width="match_parent"
