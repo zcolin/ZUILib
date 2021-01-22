@@ -47,4 +47,10 @@
         <item name="android:windowEnterAnimation">@anim/zdialog_bottom_enter</item>
         <item name="android:windowExitAnimation">@anim/zdialog_bottom_exit</item>
     </style>
+
+    <!--Switch文字风格-->
+    <style name="SwitchTheme" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/switch_text_selector</item>
+    </style>
+
 </resources>

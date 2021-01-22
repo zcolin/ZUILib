@@ -137,6 +137,45 @@
             app:zkve_value_hint="这是Edittext"
             app:zkve_value_maxline="1" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_big"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextStyle_BlueMid_Normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimens_mid"
+                android:text="Switch开关示例" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/switch_custom_thumb_selector"
+                android:track="@drawable/switch_custom_track_selector" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:thumb="@drawable/switch_ios_thumb"
+                android:track="@drawable/switch_ios_track_selector" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:showText="true"
+                android:switchTextAppearance="@style/SwitchTheme"
+                android:textOff="禁用"
+                android:textOn="启用"
+                android:thumb="@drawable/switch_rectangle_thumb_selector"
+                android:track="@drawable/switch_rectangle_track" />
+
+        </LinearLayout>
 
         <com.zcolin.gui.ZTagLayout
             android:id="@+id/tagview"
