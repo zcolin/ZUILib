@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="all_type">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+    </array>
+</resources>

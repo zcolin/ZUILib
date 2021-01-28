@@ -6,10 +6,14 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.fosung.ui.R;
 import com.zcolin.frame.app.BaseFrameActivity;
@@ -29,7 +33,9 @@ import com.zcolin.gui.ZTagLayout;
 import com.zcolin.gui.ZTextSwitcher;
 import com.zcolin.gui.ZVerticalTextView;
 import com.zcolin.gui.ZoomImageView;
+import com.zcolin.gui.helper.ZUIHelper;
 import com.zcolin.gui.imagelayout.ZImageLayout;
+import com.zcolin.ui.demo.adapter.SpinnerAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +51,7 @@ public class OtherViewDemoActivity extends BaseFrameActivity {
 
     private Activity             mActivity;
     private ZTextSwitcher        textSwitcher;
+    private Spinner              spinner;
     private ZVerticalTextView    verticalTextView;
     private ZBanner              banner;
     private ZTagLayout           tagLayout;
@@ -69,6 +76,7 @@ public class OtherViewDemoActivity extends BaseFrameActivity {
         switchGrayImageView = findViewById(R.id.switch_gray_imageview);
         Button btnSwitchGray = findViewById(R.id.btn_switch_gray);
         imageLayout = findViewById(R.id.imageLayout);
+        spinner = findViewById(R.id.spinner);
         verticalTextView = findViewById(R.id.verticalTextView);
         Button btn1 = findViewById(R.id.btn_1);
         Button btn2 = findViewById(R.id.btn_2);
@@ -96,6 +104,7 @@ public class OtherViewDemoActivity extends BaseFrameActivity {
         startBanner();
         startSwitchGrayImageView();
         startTextSwitcher();
+        setSpinner();
         setVerticalTextView();
         setImageLayout();
     }
@@ -135,6 +144,29 @@ public class OtherViewDemoActivity extends BaseFrameActivity {
                                       "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1813599092," +
                                               "3210250796&fm=26&gp=0.jpg",
                                       switchGrayImageView);
+    }
+
+    private void setSpinner() {
+        String[] strArray = new String[]{"AAA", "BBB", "CCC"};
+        SpinnerAdapter spinnerAdapter = SpinnerAdapter.createFromResource(this, strArray, R.layout.spinner_layout);
+        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinner.setBackgroundColor(Color.TRANSPARENT);//将spinner背景设为透明，即可屏蔽spinner自带的箭头，正常显示spinner_layout
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            spinner.setPopupBackgroundResource(R.drawable.spinner_item_bg_shape);
+            spinner.setDropDownVerticalOffset(ZUIHelper.dip2px(mActivity, 40));
+        }
+        spinner.setAdapter(spinnerAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spinnerAdapter.setSelectedPostion(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void setVerticalTextView() {

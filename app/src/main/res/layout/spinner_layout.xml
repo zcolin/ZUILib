@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/TextStyle_White_Normal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/blue_light"
+    android:drawableRight="@drawable/gui_popup_arrow_down"
+    android:drawablePadding="@dimen/dimens_mid"
+    android:gravity="center"
+    android:padding="@dimen/dimens_mid" />

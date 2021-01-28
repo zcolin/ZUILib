@@ -59,12 +59,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimens_big" />
 
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_big" />
+
         <com.zcolin.gui.ZVerticalTextView
             android:id="@+id/verticalTextView"
             style="@style/TextStyle_BlackLight_Normal"
             android:layout_width="wrap_content"
             android:layout_height="250dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimens_big"
             android:layout_marginBottom="@dimen/dimens_big"
             android:background="@color/gray_mid"
             android:lineSpacingExtra="@dimen/dimens_small"
