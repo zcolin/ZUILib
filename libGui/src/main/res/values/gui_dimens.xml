@@ -1,4 +1,5 @@
 <resources>
+    <dimen name="gui_dimens_micro">3dp</dimen>
     <dimen name="gui_dimens_small">5dp</dimen>
     <dimen name="gui_dimens_mid">10dp</dimen>
     <dimen name="gui_dimens_big">15dp</dimen>
