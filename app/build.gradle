@@ -25,23 +25,6 @@ android {
         }
     }
 
-//    signingConfigs {
-//        def pFile = file("../key.properties")
-//        def Properties p = new Properties()
-//        p.load(new FileInputStream(pFile))
-//
-//        debug {
-//            storeFile file(p['DEBUG_STORE_FILE'])
-//        }
-//        release {
-//            storeFile file(p['RELEASE_STORE_FILE'])
-//            storePassword p['RELEASE_STORE_PASSWORD']
-//            keyAlias p['RELEASE_KEY_ALIAS']
-//            keyPassword p['RELEASE_KEY_PASSWORD']
-//        }
-//    }
-
-
     buildTypes {
         debug {
 
@@ -84,6 +67,6 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-    implementation 'com.github.zcolin:ZFrame:3.0.0'
+    implementation 'com.github.zcolin:ZFrame:3.0.2'
 }
 
