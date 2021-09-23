@@ -114,7 +114,7 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
             }).show();
         } else if (v == listButton.get(5)) {
             final String[] arrStr = new String[]{"menu1", "menu2", "menu3", "menu4", "menu5"};
-            new ZDialogCheckBox(mActivity).setTitle("ZDialogCheckbBox")
+            new ZDialogCheckBox(mActivity).setTitle("ZDialogCheckBox")
                                           .setDatas(arrStr, null)
                                           .addValueSubmitListener(s -> {
                                               String str = "";
