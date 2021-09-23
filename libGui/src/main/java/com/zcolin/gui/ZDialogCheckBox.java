@@ -26,15 +26,17 @@ import androidx.annotation.LayoutRes;
  * 多选框组合弹出框
  */
 public class ZDialogCheckBox extends ZDialog<ZDialogCheckBox> implements OnClickListener {
+
     private static int LAYOUT_ID;
 
-    protected TextView                                       tvTitle;        //标题
-    protected ZDialogParamSubmitListener<ArrayList<String>>  valueSubmitInter;    // 点击确定按钮回调接口
-    protected ZDialogParamSubmitListener<ArrayList<Integer>> positionSubmitInter;    // 点击确定按钮回调接口
-    protected CheckBox[]                                     arrCheckBox;    //CheckBox数组
-    protected LinearLayout                                   llCheckBox;    //CheckBox视图集合
-    protected TextView                                       tvCancel;
-    protected TextView                                       tvSubmit;
+    protected ZDialogParamSubmitListener<ArrayList<String>>  valueSubmitInter;
+    protected ZDialogParamSubmitListener<ArrayList<Integer>> positionSubmitInter;
+    protected CheckBox[]                                     arrCheckBox;
+
+    protected TextView     tvTitle;
+    protected LinearLayout llCheckBox;
+    protected TextView     tvCancel;
+    protected TextView     tvSubmit;
 
     public static ZDialogCheckBox instance(Context context) {
         return new ZDialogCheckBox(context);
@@ -56,9 +58,6 @@ public class ZDialogCheckBox extends ZDialog<ZDialogCheckBox> implements OnClick
         this(context, 0);
     }
 
-    /**
-     * @param context
-     */
     public ZDialogCheckBox(Context context, @LayoutRes int layoutId) {
         super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_checkboxgroup : LAYOUT_ID) : layoutId);
         initRes();
@@ -103,7 +102,10 @@ public class ZDialogCheckBox extends ZDialog<ZDialogCheckBox> implements OnClick
             arrCheckBox[i].setText(arrStr[i]);
             arrCheckBox[i].setTextAppearance(getContext(), R.style.Gui_TextStyle_GrayDark_Normal);
             arrCheckBox[i].setPadding(0, paddingVer, 0, paddingVer);
-            arrCheckBox[i].setBackgroundResource(R.drawable.gui_dialog_radio_selector);
+            arrCheckBox[i].setButtonDrawable(null);
+            arrCheckBox[i].setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.gui_dialog_checkbox_selector, 0);
+            arrCheckBox[i].setCompoundDrawablePadding(paddingHor);
+            arrCheckBox[i].setBackground(null);
             arrCheckBox[i].setId(i + 100);
 
             if (arrSelectedStr != null && arrSelectedStr.size() > 0) {

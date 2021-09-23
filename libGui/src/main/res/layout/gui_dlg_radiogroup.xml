@@ -1,41 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/dialogradiogroup_l"
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:paddingBottom="8dp"
-              android:paddingTop="24dp">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/gui_dimens_big"
+    app:cardElevation="0px">
 
-    <TextView
-        android:id="@+id/dialogradiogroup_title"
-        style="@style/Gui_TextStyle_BlackLight_Big"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:textColor="@android:color/black"
-        android:visibility="gone">
-    </TextView>
+        android:orientation="vertical"
+        android:paddingTop="24dp">
 
-    <com.zcolin.gui.DialogFixHeightScrollView
-        android:id="@+id/dialogradiogroup_sc"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:scrollbars="none">
+        <TextView
+            android:id="@+id/dialogradiogroup_title"
+            style="@style/Gui_TextStyle_BlackLight_Big"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:textColor="@android:color/black"
+            android:visibility="gone" />
 
-        <RadioGroup
-            android:id="@+id/dialogradiogroup_radiogroup"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
-    </com.zcolin.gui.DialogFixHeightScrollView>
+        <com.zcolin.gui.DialogFixHeightScrollView
+            android:id="@+id/dialogradiogroup_sc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:scrollbars="none">
 
-    <com.zcolin.gui.ZDialogBottomView
-        android:id="@+id/dialogradiogroup_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_gravity="end"
-        android:layout_marginTop="5dp"/>
+            <RadioGroup
+                android:id="@+id/dialogradiogroup_radiogroup"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
 
-</LinearLayout>
+        </com.zcolin.gui.DialogFixHeightScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="10dp"
+            android:background="@color/gui_divider" />
+
+        <com.zcolin.gui.ZDialogBottomView
+            android:id="@+id/dialogradiogroup_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

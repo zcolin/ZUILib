@@ -1,10 +1,13 @@
 <resources>
     <!-- 背景颜色-->
     <color name="gui_bg">#efefef</color>
-    <!-- 浅黑 -->
-    <color name="gui_black_light">#333333</color>
+    <!-- 白 -->
+    <color name="white">#ffffff</color>
+    <!-- 黑 -->
+    <color name="black">#000000</color>
     <!-- 透明 -->
     <color name="gui_transparent">#00000000</color>
+
     <!-- 弹出框信息文字颜色 -->
     <color name="gui_gray_dark">#535353</color>
     <!-- 弹出框信息按钮文字颜色 -->
@@ -19,8 +22,10 @@
     <color name="gui_key_value_view_text">#333333</color>
     <!-- listitem 按下颜色 -->
     <color name="gui_listitem_press">#F7F7F7</color>
-    <!-- 浅白 -->
-    <color name="gui_white_light">#f7f7f7</color>
     <!-- 分割线 -->
     <color name="gui_divider">#d7d7d7</color>
+    <!--选中色-->
+    <color name="gui_selected">#0D000000</color>
+    <!--checkbox颜色-->
+    <color name="gui_checkbox">#3F51B5</color>
 </resources>

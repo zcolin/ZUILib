@@ -55,7 +55,7 @@ public class ZBadgeView extends TextView {
     private static final int DEFAULT_LR_PADDING_DIP    = 5;
     private static final int DEFAULT_CORNER_RADIUS_DIP = 8;
     private static final int DEFAULT_POSITION          = POSITION_TOP_RIGHT;
-    private static final int DEFAULT_BADGE_COLOR       = Color.parseColor("#EEFF0000"); //Color.RED;
+    private static final int DEFAULT_BADGE_COLOR       = Color.parseColor("#EEFF0000");
     private static final int DEFAULT_TEXT_COLOR        = Color.WHITE;
 
     private static Animation fadeIn;
@@ -163,7 +163,8 @@ public class ZBadgeView extends TextView {
             // set target to the relevant tab child container
             target = ((TabWidget) target).getChildTabViewAt(targetTabIndex);
             this.target = target;
-            ((ViewGroup) target).addView(container, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            ((ViewGroup) target).addView(container,
+                                         new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
             this.setVisibility(View.GONE);
             container.addView(this);
@@ -407,7 +408,8 @@ public class ZBadgeView extends TextView {
     /**
      * Set the positioning of this badge.
      *
-     * @param layoutPosition one of POSITION_TOP_LEFT, POSITION_TOP_RIGHT, POSITION_BOTTOM_LEFT, POSITION_BOTTOM_RIGHT, POSTION_CENTER.
+     * @param layoutPosition one of POSITION_TOP_LEFT, POSITION_TOP_RIGHT, POSITION_BOTTOM_LEFT,
+     *                       POSITION_BOTTOM_RIGHT, POSTION_CENTER.
      */
     public void setBadgePosition(int layoutPosition) {
         this.badgePosition = layoutPosition;

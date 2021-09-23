@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 透明背景按压效果样式 -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_enabled="true" android:state_pressed="true">
-        <shape>
-            <solid android:color="#338A8A8A"/>
+    <!-- 按压状态 -->
+    <item android:drawable="@color/gui_selected" android:state_pressed="true" />
 
-            <corners android:radius="2dp"/>
+    <!-- 选中状态 -->
+    <item android:drawable="@color/gui_selected" android:state_selected="true" />
 
-            <padding android:bottom="@dimen/gui_dimens_mid" android:left="@dimen/gui_dimens_big" android:right="@dimen/gui_dimens_big" android:top="@dimen/gui_dimens_mid"/>
-        </shape>
-    </item>
-    <item android:state_enabled="true" android:state_pressed="false">
-        <shape>
-            <solid android:color="#00000000"/>
+    <!-- 焦点状态 -->
+    <item android:drawable="@color/gui_selected" android:state_focused="true" />
 
-            <padding android:bottom="@dimen/gui_dimens_mid" android:left="@dimen/gui_dimens_big" android:right="@dimen/gui_dimens_big" android:top="@dimen/gui_dimens_mid"/>
-        </shape>
-    </item>
+    <!-- 默认状态 -->
+    <item android:drawable="@color/gui_transparent" />
 
 </selector>

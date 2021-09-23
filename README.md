@@ -48,7 +48,7 @@ ZConfirm.instance(mActivity)
         .addSubmitListener(new ZDialog.ZDialogSubmitInterface() {
             @Override
             public boolean submit() {
-                ToastUtil.toastShort("点击了确定");
+                Toast.makeText(mActivity, "点击了确定", Toast.LENGTH_SHORT).show();
                 return true;
             }
         })
@@ -61,7 +61,7 @@ new ZDialogRadioGroup(mActivity)
         .addSubmitListener(new ZDialog.ZDialogParamSubmitInterface<Integer>() {
             @Override
             public boolean submit(Integer integer) {
-                ToastUtil.toastShort("选择了" + arrt[integer]);
+                Toast.makeText(mActivity, "选择了" + arrt[integer], Toast.LENGTH_SHORT).show();
                 return true;
             }
         })

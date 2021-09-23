@@ -9,7 +9,6 @@
 package com.zcolin.gui;
 
 import android.content.Context;
-import androidx.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.RadioButton;
@@ -19,17 +18,21 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.annotation.LayoutRes;
+
 /**
  * 单选框组合弹出框
  */
 public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements View.OnClickListener {
+
     private static int LAYOUT_ID;
 
-    protected TextView                            tvTitle;        //标题
-    protected ZDialogParamSubmitListener<Integer> submitInter;    // 点击确定按钮回调接口
-    protected RadioGroup                          rgChoise;
-    protected TextView                            tvCancel;
-    protected TextView                            tvSubmit;
+    protected ZDialogParamSubmitListener<Integer> submitInter;
+
+    protected TextView   tvTitle;
+    protected RadioGroup rgChoise;
+    protected TextView   tvCancel;
+    protected TextView   tvSubmit;
 
     public static ZDialogRadioGroup instance(Context context) {
         return new ZDialogRadioGroup(context);
@@ -51,9 +54,6 @@ public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements Vie
         this(context, 0);
     }
 
-    /**
-     * @param context
-     */
     public ZDialogRadioGroup(Context context, @LayoutRes int layoutId) {
         super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_radiogroup : LAYOUT_ID) : layoutId);
         initRes();
@@ -97,7 +97,10 @@ public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements Vie
             btn.setText(attrStr[i]);
             btn.setTextAppearance(getContext(), R.style.Gui_TextStyle_GrayDark_Normal);
             btn.setPadding(0, paddingVer, 0, paddingVer);
-            btn.setBackgroundResource(R.drawable.gui_dialog_radio_selector);
+            btn.setButtonDrawable(null);
+            btn.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.gui_dialog_radiogroup_selector, 0);
+            btn.setCompoundDrawablePadding(paddingHor);
+            btn.setBackground(null);
             btn.setId(i + 100);
             if (attrStr[i].equals(defStr)) {
                 btn.setChecked(true);

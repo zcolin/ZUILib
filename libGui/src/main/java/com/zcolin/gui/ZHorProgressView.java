@@ -13,31 +13,43 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import androidx.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.widget.TextView;
 
 import com.zcolin.gui.helper.ZUIHelper;
+
+import androidx.annotation.ColorInt;
 
 /**
  * 自定义的显示百分比的View
  */
-public class ZHorProgressView extends TextView {
+public class ZHorProgressView extends androidx.appcompat.widget.AppCompatTextView {
+
+    /** 文字样式 */
     public static final int TEXTSTYLE_NONE     = 0;
-    public static final int TEXTSTYLE_PROGRESS = 1;//百分比样好似
-    public static final int TEXTSTYLE_NUMBER   = 2;//数字样式
+    /** 百分比样式 */
+    public static final int TEXTSTYLE_PROGRESS = 1;
+    /** 数字样式 */
+    public static final int TEXTSTYLE_NUMBER   = 2;
 
 
-    protected Paint paint = new Paint();
-    private int fullColor;                //底色
-    private int progressColor;            //进度条颜色
-    private int progress;                //进度
-    private int progressHeight;          //进度条的高度
-    private int height;                  //View的高度
-    private int maxProgress = 100;       //最大进度
-    private int textMargin;              // 进度文字margin
-    private int progressTextStyle = TEXTSTYLE_NONE;       // 进度文字样式
+    protected     Paint paint             = new Paint();
+    /** 底色 */
+    private       int   fullColor;
+    /** 进度条颜色 */
+    private       int   progressColor;
+    /** 进度 */
+    private       int   progress;
+    /** 度条的高度 */
+    private       int   progressHeight;
+    /** View的高度 */
+    private       int   height;
+    /** 最大进度 */
+    private       int   maxProgress       = 100;
+    /** 进度文字margin */
+    private final int   textMargin;
+    /** 进度文字样式 */
+    private       int   progressTextStyle = TEXTSTYLE_NONE;
 
     public ZHorProgressView(Context context) {
         this(context, null);
@@ -99,7 +111,6 @@ public class ZHorProgressView extends TextView {
         return this;
     }
 
-
     /**
      * 设置进度
      */
@@ -143,7 +154,9 @@ public class ZHorProgressView extends TextView {
             paint.setStrokeWidth(progressHeight);
             paint.setColor(fullColor);
             float left = (getGravity() & Gravity.LEFT) == Gravity.LEFT ? textWidth + 2 * textMargin : textMargin;
-            float right = (getGravity() & Gravity.RIGHT) == Gravity.RIGHT ? getWidth() - textWidth - 2 * textMargin : getWidth() - textMargin;
+            float right = (getGravity() & Gravity.RIGHT) == Gravity.RIGHT ?
+                          getWidth() - textWidth - 2 * textMargin :
+                          getWidth() - textMargin;
             float h = height / 2;
             if ((getGravity() & Gravity.TOP) == Gravity.TOP) {
                 h = height - progressHeight;

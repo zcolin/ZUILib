@@ -2,8 +2,6 @@ package com.zcolin.gui;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.ColorInt;
-import androidx.annotation.LayoutRes;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,6 +14,9 @@ import com.zcolin.gui.wheelview.views.WheelView;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.LayoutRes;
 
 /**
  * 日期选择对话框
@@ -34,10 +35,10 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
     protected View     vChangeBirthChild;
     protected TextView btnSure;
     protected TextView btnCancel;
-    protected TextView tvTitle;     // 标题文字
+    protected TextView tvTitle;
 
-    protected ArrayList<String>   array_hours = new ArrayList<String>();
-    protected ArrayList<String>   arry_mins   = new ArrayList<String>();
+    protected ArrayList<String>   hourList   = new ArrayList<>();
+    protected ArrayList<String>   minuteList = new ArrayList<>();
     protected CalendarTextAdapter mHourAdapter;
     protected CalendarTextAdapter mMinAdapter;
 
@@ -99,13 +100,13 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
         this.currentHour = currentHour == -1 ? c.get(Calendar.HOUR) : currentHour;
         this.currentMin = currentMin == -1 ? c.get(Calendar.MINUTE) : currentMin;
         int selectedHour = getHourIndex(currentHour);
-        mHourAdapter = new CalendarTextAdapter(getContext(), array_hours, selectedHour);
+        mHourAdapter = new CalendarTextAdapter(getContext(), hourList, selectedHour);
         wvHour.setVisibleItems(5);
         wvHour.setViewAdapter(mHourAdapter);
         wvHour.setCurrentItem(selectedHour);
 
         int selectedMin = getMinIndex(currentMin);
-        mMinAdapter = new CalendarTextAdapter(getContext(), arry_mins, selectedMin);
+        mMinAdapter = new CalendarTextAdapter(getContext(), minuteList, selectedMin);
         wvMin.setVisibleItems(5);
         wvMin.setViewAdapter(mMinAdapter);
         wvMin.setCurrentItem(selectedMin);
@@ -230,13 +231,13 @@ public class ZDialogWheelTime extends ZDialog<ZDialogWheelTime> implements View.
 
     private void initHours() {
         for (int i = 0; i <= 23; i++) {
-            array_hours.add(String.format("%02d", i));
+            hourList.add(String.format("%02d", i));
         }
     }
 
     private void initMinutes() {
         for (int i = 0; i <= 59; i++) {
-            arry_mins.add(String.format("%02d", i));
+            minuteList.add(String.format("%02d", i));
         }
     }
 

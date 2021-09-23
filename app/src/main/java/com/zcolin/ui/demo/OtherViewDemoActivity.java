@@ -14,13 +14,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.fosung.ui.R;
 import com.zcolin.frame.app.BaseFrameActivity;
 import com.zcolin.frame.imageloader.ImageLoaderUtils;
 import com.zcolin.frame.util.NUriParseUtil;
 import com.zcolin.frame.util.SystemIntentUtil;
-import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.gui.ZBanner;
 import com.zcolin.gui.ZDialogAsyncProgress;
 import com.zcolin.gui.ZDialogProgress;
@@ -98,7 +98,7 @@ public class OtherViewDemoActivity extends BaseFrameActivity {
                                       zoomImageView);
 
         ZSlideVerifyView zverifyview = findViewById(R.id.zverifyview);
-        zverifyview.addSuccessListener(() -> ToastUtil.toastShort("验证成功"));
+        zverifyview.addSuccessListener(() -> Toast.makeText(mActivity, "验证成功", Toast.LENGTH_SHORT).show());
 
         setUpTagView();
         startBanner();
@@ -180,7 +180,9 @@ public class OtherViewDemoActivity extends BaseFrameActivity {
               .setIndicatorGravity(ZBanner.CENTER)
               .setBannerTitle(listUrl)
               .setDelayTime(4000)
-              .setOnBannerClickListener((view, position) -> ToastUtil.toastShort("点击了第" + (position + 1) + "张图片"))
+              .setOnBannerClickListener((view, position) -> {
+                  Toast.makeText(mActivity, "点击了第" + (position + 1) + "张图片", Toast.LENGTH_SHORT).show();
+              })
               .setImages(listUrl)
               .startAutoPlay();
     }
@@ -199,7 +201,7 @@ public class OtherViewDemoActivity extends BaseFrameActivity {
         }
         tagLayout.setOnTagClickListener((position, tag) -> {
             if (tag.getData() != null) {
-                ToastUtil.toastShort(String.format("第%d个标签", position));
+                Toast.makeText(mActivity, String.format("第%d个标签", position), Toast.LENGTH_SHORT).show();
             }
         });
         tagLayout.addTags(listTag);
@@ -235,7 +237,7 @@ public class OtherViewDemoActivity extends BaseFrameActivity {
 
             @Override
             public void onPostExecute(ZDialogAsyncProgress.ProcessInfo info) {
-                ToastUtil.toastShort(info.msg);
+                Toast.makeText(mActivity, info.msg, Toast.LENGTH_SHORT).show();
             }
         });
         dlg.execute(0);
@@ -280,7 +282,7 @@ public class OtherViewDemoActivity extends BaseFrameActivity {
                                  .setBackgroundColor(Color.parseColor("#fafafa"))
                                  .setIsFullDim(true)
                                  .setOnItemClickListener((item1, position) -> {
-                                     ToastUtil.toastShort(String.valueOf(item1.text));
+                                     Toast.makeText(mActivity, String.valueOf(item1.text), Toast.LENGTH_SHORT).show();
                                      return true;
                                  })
                                  .show(btn3, 0, 0, Gravity.RIGHT);

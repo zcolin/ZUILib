@@ -11,7 +11,6 @@ package com.zcolin.gui;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import androidx.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -24,18 +23,22 @@ import com.zcolin.gui.helper.ZUIHelper;
 
 import java.util.List;
 
+import androidx.annotation.LayoutRes;
+
 
 /**
  * 菜单弹出框
  */
 public class ZDialogMenu extends ZDialog<ZDialogMenu> {
+
     private static int LAYOUT_ID;
 
-    protected LinearLayout                        llMenu;        //菜单容器布局
-    protected TextView                            tvTitle;        //标题控件
-    protected DialogFixHeightScrollView           fixHeightScrollView;
-    protected ZDialogParamSubmitListener<Integer> submitInter;    // 点击确定按钮回调接口
+    protected ZDialogParamSubmitListener<Integer> submitInter;
     protected Context                             context;
+
+    protected LinearLayout              llMenu;
+    protected TextView                  tvTitle;
+    protected DialogFixHeightScrollView fixHeightScrollView;
 
     public static ZDialogMenu instance(Context context) {
         return new ZDialogMenu(context);
@@ -57,9 +60,6 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
         this(context, 0);
     }
 
-    /**
-     * @param context
-     */
     public ZDialogMenu(Context context, @LayoutRes int layoutId) {
         super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_menu : LAYOUT_ID) : layoutId);
         this.context = context;
@@ -100,7 +100,9 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
     }
 
     public ZDialogMenu setDatas(String[] arrStr, String defSelected) {
-        return setDatas(arrStr, defSelected, getContext().getResources().getColorStateList(R.color.gui_listitem_dialogmenu_selector));
+        return setDatas(arrStr,
+                        defSelected,
+                        getContext().getResources().getColorStateList(R.color.gui_listitem_dialogmenu_selector));
     }
 
     public ZDialogMenu setDatas(String[] arrStr, String defSelected, ColorStateList colorStateList) {

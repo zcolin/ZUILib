@@ -10,22 +10,25 @@
 package com.zcolin.gui;
 
 import android.content.Context;
-import androidx.annotation.LayoutRes;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+
+import androidx.annotation.LayoutRes;
 
 
 /**
  * 普遍对话框，有一个确定按钮
  */
 public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
+
     private static int LAYOUT_ID;
 
-    protected ZDialogSubmitListener submitInterface;    // 点击确定按钮回调接口
-    protected TextView tvOk;            // 确定按钮
-    protected TextView tvMessage;           // 消息内容
+    protected ZDialogSubmitListener submitInterface;
+
+    protected TextView tvOk;
+    protected TextView tvMessage;
     protected TextView tvTitle;
 
     public static ZAlert instance(Context context) {
@@ -44,16 +47,10 @@ public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
         LAYOUT_ID = layoutId;
     }
 
-    /**
-     * @param context
-     */
     public ZAlert(Context context) {
         this(context, 0);
     }
 
-    /**
-     * @param context
-     */
     public ZAlert(Context context, @LayoutRes int layoutId) {
         super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_alert : LAYOUT_ID) : layoutId);
         initRes();
@@ -88,6 +85,16 @@ public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
      */
     public ZAlert setMessageGravity(int gravity) {
         tvMessage.setGravity(gravity);
+        return this;
+    }
+
+    /**
+     * 设置是否自动隐藏
+     */
+    public ZAlert autoDismiss(boolean auto) {
+        if (auto) {
+            postDelayed(this::cancel, 2_000L);
+        }
         return this;
     }
 
@@ -137,10 +144,12 @@ public class ZAlert extends ZDialog<ZAlert> implements OnClickListener {
         }
     }
 
-
     private void initRes() {
         TextView tvCancel = getView(R.id.dialog_cancelbutton);
         tvCancel.setVisibility(View.GONE);
+
+        View divider = getView(R.id.divider);
+        divider.setVisibility(View.GONE);
 
         tvOk = getView(R.id.dialog_okbutton);
         tvMessage = getView(R.id.dialog_message);

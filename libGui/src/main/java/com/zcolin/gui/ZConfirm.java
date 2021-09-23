@@ -10,25 +10,28 @@
 package com.zcolin.gui;
 
 import android.content.Context;
-import androidx.annotation.LayoutRes;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+
+import androidx.annotation.LayoutRes;
 
 
 /**
  * 普通对话框，有确定和取消按钮
  */
 public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
+
     private static int LAYOUT_ID;
 
-    protected ZDialogSubmitListener submitListener;    // 点击确定按钮回调接口
-    protected ZDialogCancelListener cancelListener;    // 点击取消按钮回调接口
-    protected TextView tvTitle;            // 标题文字
-    protected TextView tvOk;               // 确定按钮
-    protected TextView tvCancel;           // 取消按钮
-    protected TextView tvMessage;           // 消息内容
+    protected ZDialogSubmitListener submitListener;
+    protected ZDialogCancelListener cancelListener;
+
+    protected TextView tvTitle;
+    protected TextView tvOk;
+    protected TextView tvCancel;
+    protected TextView tvMessage;
 
     public static ZConfirm instance(Context context) {
         return new ZConfirm(context);
@@ -57,9 +60,6 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
         this(context, 0);
     }
 
-    /**
-     * @param context
-     */
     public ZConfirm(Context context, @LayoutRes int layoutId) {
         super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_confirm : LAYOUT_ID) : layoutId);
         initRes();
@@ -105,7 +105,6 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
         return this;
     }
 
-
     /**
      * 添加取消回调接口
      */
@@ -122,7 +121,6 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
         return this;
     }
 
-
     @Override
     public void show() {
         if (tvTitle.getText().length() == 0) {
@@ -130,7 +128,6 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
         } else {
             tvTitle.setVisibility(View.VISIBLE);
         }
-
         super.show();
     }
 
@@ -154,7 +151,6 @@ public class ZConfirm extends ZDialog<ZConfirm> implements OnClickListener {
             }
         }
     }
-
 
     private void initRes() {
         tvOk = getView(R.id.dialog_okbutton);

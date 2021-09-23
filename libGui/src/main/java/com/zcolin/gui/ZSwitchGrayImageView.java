@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 import androidx.appcompat.widget.AppCompatImageView;
 
 /**
- * 彩色图片、灰色图片幻想转换的图片显示控件（可以用于用户头像的上线下线）
+ * 彩色图片、灰色图片互相转换的图片显示控件（可以用于用户头像的上线下线）
  */
 public class ZSwitchGrayImageView extends AppCompatImageView {
 

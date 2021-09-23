@@ -10,7 +10,6 @@ package com.zcolin.gui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import androidx.annotation.LayoutRes;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -21,6 +20,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import androidx.annotation.LayoutRes;
+
 
 /**
  * 封装的左边为说明右边为选择按钮的控件
@@ -28,10 +29,10 @@ import com.bumptech.glide.Glide;
 public class ZKeySwitchView extends RelativeLayout {
     private static int LAYOUT_ID;
 
-    private ZCheckTextView switchButton;
-    private ImageView      ivImg;
-    private TextView       tvKey;
-    private View           bottomLine;
+    private final ZCheckTextView switchButton;
+    private final ImageView      ivImg;
+    private final TextView       tvKey;
+    private final View           bottomLine;
 
     /**
      * 如果用户需要自己使用布局替代此xml文件，则需要在Application中初始化此函数，
@@ -51,7 +52,9 @@ public class ZKeySwitchView extends RelativeLayout {
 
     public ZKeySwitchView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        int layoutId = getSelfLayoutId() == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_view_keyswitch : LAYOUT_ID) : getSelfLayoutId();
+        int layoutId = getSelfLayoutId() == 0 ?
+                       (LAYOUT_ID == 0 ? R.layout.gui_view_keyswitch : LAYOUT_ID) :
+                       getSelfLayoutId();
         LayoutInflater.from(context).inflate(layoutId, this);
         switchButton = findViewById(R.id.switchButton);
         ivImg = findViewById(R.id.iv_img);
@@ -155,7 +158,8 @@ public class ZKeySwitchView extends RelativeLayout {
     public void setKeyImage(String url) {
         if (url != null) {
             ivImg.setVisibility(View.VISIBLE);
-            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources().getDimension(R.dimen.gui_dimens_small);
+            ((LayoutParams) ivImg.getLayoutParams()).rightMargin = (int) getContext().getResources()
+                                                                                     .getDimension(R.dimen.gui_dimens_small);
             Glide.with(getContext()).load(url).into(ivImg);
         } else {
             ivImg.setVisibility(View.GONE);

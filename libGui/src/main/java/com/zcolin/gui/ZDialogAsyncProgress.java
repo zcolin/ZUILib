@@ -92,7 +92,6 @@ public class ZDialogAsyncProgress extends AsyncTask<Integer, Integer, ZDialogAsy
      * 任务回调接口
      */
     public interface DoInterface {
-
         ProcessInfo onDoInback();
 
         void onPostExecute(ProcessInfo info);

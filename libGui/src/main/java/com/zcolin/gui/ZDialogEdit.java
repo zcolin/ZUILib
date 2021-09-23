@@ -9,24 +9,26 @@
 package com.zcolin.gui;
 
 import android.content.Context;
-import androidx.annotation.LayoutRes;
 import android.text.InputFilter;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.LayoutRes;
+
 
 /**
  * 带有一个输入框的对话框 ，有两个按钮
  */
 public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener {
+
     private static int LAYOUT_ID;
 
-    protected TextView tvMakeSure;            // 确定按钮
-    protected TextView tvCancel;              // 取消按钮
-    protected TextView tvTitle;               // 消息内容
-    protected EditText etEdit;                 // 编辑框
+    protected TextView tvMakesure;
+    protected TextView tvCancel;
+    protected TextView tvTitle;
+    protected EditText etEdit;
 
     private ZDialogParamSubmitListener<String> submitInterface;
     private ZDialogCancelListener              cancelInterface;
@@ -51,21 +53,18 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
         this(context, 0);
     }
 
-    /**
-     * @param context
-     */
     public ZDialogEdit(Context context, @LayoutRes int layoutId) {
         super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_edit : LAYOUT_ID) : layoutId);
         initRes();
     }
 
     private void initRes() {
-        tvMakeSure = getView(R.id.dialog_okbutton);
+        tvMakesure = getView(R.id.dialog_okbutton);
         tvCancel = getView(R.id.dialog_cancelbutton);
         tvTitle = getView(R.id.dlgeditone_title);
         etEdit = getView(R.id.dlgeditone_edit);
         etEdit.requestFocus();
-        tvMakeSure.setOnClickListener(this);
+        tvMakesure.setOnClickListener(this);
         tvCancel.setOnClickListener(this);
     }
 
@@ -81,7 +80,7 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
     }
 
     public ZDialogEdit setOkBtnText(String str) {
-        tvMakeSure.setText(str == null ? "确定" : str);
+        tvMakesure.setText(str == null ? "确定" : str);
         return this;
     }
 
@@ -166,7 +165,6 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
         return etEdit;
     }
 
-
     @Override
     public void show() {
         super.show();
@@ -174,7 +172,7 @@ public class ZDialogEdit extends ZDialog<ZDialogEdit> implements OnClickListener
 
     @Override
     public void onClick(View v) {
-        if (v == tvMakeSure) {
+        if (v == tvMakesure) {
             if (submitInterface != null) {
                 boolean flag = submitInterface.submit(etEdit.getText().toString());
                 if (flag) {

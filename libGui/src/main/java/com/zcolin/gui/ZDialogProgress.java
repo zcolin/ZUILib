@@ -16,11 +16,12 @@ import android.content.ContextWrapper;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.annotation.LayoutRes;
 
 
 /**
@@ -29,11 +30,11 @@ import android.widget.TextView;
 public class ZDialogProgress extends ProgressDialog {
     private static int LAYOUT_ID;
 
-    protected ProgressBar  progressBar;
-    protected TextView     tvMessage;
-    protected CharSequence strMessage;
-    protected Drawable     indeterminateDrawable;
-    private   int          layoutId;
+    protected     ProgressBar  progressBar;
+    protected     TextView     tvMessage;
+    protected     CharSequence strMessage;
+    protected     Drawable     indeterminateDrawable;
+    private final int          layoutId;
 
     public static ZDialogProgress instance(Context context) {
         return new ZDialogProgress(context);
@@ -56,7 +57,7 @@ public class ZDialogProgress extends ProgressDialog {
     }
 
     /**
-     * @param context
+     *
      */
     public ZDialogProgress(Context context, @LayoutRes int layoutId) {
         super(context);
@@ -85,7 +86,8 @@ public class ZDialogProgress extends ProgressDialog {
         if (isShowing()) {
             Context context = ((ContextWrapper) getContext()).getBaseContext();
             if (context instanceof Activity) {
-                if (!((Activity) context).isFinishing() && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && !((Activity) context).isDestroyed())) {
+                if (!((Activity) context).isFinishing() && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && !((Activity) context)
+                        .isDestroyed())) {
                     super.dismiss();
                 }
             } else {

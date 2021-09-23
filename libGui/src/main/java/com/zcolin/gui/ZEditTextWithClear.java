@@ -12,18 +12,20 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.DrawableRes;
-import androidx.appcompat.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import androidx.annotation.DrawableRes;
+import androidx.appcompat.widget.AppCompatEditText;
 
 
 /**
  * 带有清除按钮的edittext
  */
 public class ZEditTextWithClear extends AppCompatEditText {
+
     private int resDrawAble = R.drawable.gui_icon_edittext_clear;
     private int ableWidth;
 
@@ -40,7 +42,6 @@ public class ZEditTextWithClear extends AppCompatEditText {
         super(context, attrs, defStyle);
         init();
     }
-
 
     private void init() {
         BitmapFactory.Options opts = new BitmapFactory.Options();
@@ -70,7 +71,10 @@ public class ZEditTextWithClear extends AppCompatEditText {
         if (length() < 1) {
             setCompoundDrawablesWithIntrinsicBounds(d[0], d[1], null, d[3]);
         } else {
-            setCompoundDrawablesWithIntrinsicBounds(d[0], d[1], getContext().getResources().getDrawable(resDrawAble), d[3]);
+            setCompoundDrawablesWithIntrinsicBounds(d[0],
+                                                    d[1],
+                                                    getContext().getResources().getDrawable(resDrawAble),
+                                                    d[3]);
         }
     }
 
@@ -84,7 +88,6 @@ public class ZEditTextWithClear extends AppCompatEditText {
     }
 
     @Override
-
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
             int eventX = (int) event.getRawX();

@@ -11,8 +11,6 @@ package com.zcolin.gui;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -30,52 +28,65 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 /**
  * 带轮播的vierpager banner
  * 一般来说 banner不会有很多图片，所以imageViews在一开始加载的时候就把所有的imageview加载进来
  * 如果有很多图片，比如有1000，此类需要再更改
  */
 public class ZBanner extends FrameLayout {
-    public static final int NOT_INDICATOR = 0;//无指示器
-    public static final int CIRCLE_INDICATOR = 1;//圆点指示器
-    public static final int NUM_INDICATOR = 2;//数字指示器
-    public static final int NUM_INDICATOR_TITLE = 3;//数字和文字
-    public static final int CIRCLE_INDICATOR_TITLE = 4;//圆点和文字
+    /** 无指示器 */
+    public static final int NOT_INDICATOR          = 0;
+    /** 圆点指示器 */
+    public static final int CIRCLE_INDICATOR       = 1;
+    /** 数字指示器 */
+    public static final int NUM_INDICATOR          = 2;
+    /** 数字和文字 */
+    public static final int NUM_INDICATOR_TITLE    = 3;
+    /** 圆点和文字 */
+    public static final int CIRCLE_INDICATOR_TITLE = 4;
 
-    public static final int LEFT = 5;//指示器位置
-    public static final int CENTER = 6;//指示器位置
-    public static final int RIGHT = 7;//指示器位置
+    /** 指示器位置 ：左 */
+    public static final int LEFT   = 5;
+    /** 指示器位置 ：中 */
+    public static final int CENTER = 6;
+    /** 指示器位置 ：右 */
+    public static final int RIGHT  = 7;
 
     private int mIndicatorMargin = 5;
-    private int mIndicatorWidth = 8;
+    private int mIndicatorWidth  = 8;
     private int mIndicatorHeight = 8;
 
-    private int mIndicatorSelectedResId = R.drawable.gui_banner_gray_radius;
+    private int mIndicatorSelectedResId   = R.drawable.gui_banner_gray_radius;
     private int mIndicatorUnselectedResId = R.drawable.gui_banner_white_radius;
 
-    private long delayTime = 2000;
-    private int gravity = -1;
-    private int bannerStyle = CIRCLE_INDICATOR;
-    private Handler handler = new Handler();
+    private long    delayTime   = 2000;
+    private int     gravity     = -1;
+    private int     bannerStyle = CIRCLE_INDICATOR;
+    private Handler handler     = new Handler();
 
-    private ArrayList<Object> listUrl = new ArrayList<>();
+    private ArrayList<Object>    listUrl       = new ArrayList<>();
     private ArrayList<ImageView> listIndicator = new ArrayList<>();
-    private List<String> listTitle;
+    private List<String>         listTitle;
 
-    private int dataSize;
-    private int startPosition;//无限循环，startPosition是MAX_VALUE的中间值
-    private int currentItem;    //当前的ItemPosition, 真实位置，
+    private int     dataSize;
+    /** 无限循环，startPosition是MAX_VALUE的中间值 */
+    private int     startPosition;
+    /** 当前的ItemPosition, 真实位置 */
+    private int     currentItem;
     private boolean isResumePlay;
     private boolean isAutoPlay;
 
-    private ViewPager viewPager;
+    private ViewPager                      viewPager;
     private ViewPager.OnPageChangeListener onPageChangedListener;
-    private ImageView.ScaleType scaleType;
-    private LinearLayout indicator;
-    private OnBannerClickListener listener;
-    private TextView bannerTitle;
-    private TextView numIndicator;
-    private Context context;
+    private ImageView.ScaleType            scaleType;
+    private LinearLayout                   indicator;
+    private OnBannerClickListener          listener;
+    private TextView                       bannerTitle;
+    private TextView                       numIndicator;
+    private Context                        context;
 
     private int MAX_VALUE = 10000;
 
@@ -101,8 +112,10 @@ public class ZBanner extends FrameLayout {
         mIndicatorWidth = typedArray.getDimensionPixelSize(R.styleable.ZBanner_indicator_width, 8);
         mIndicatorHeight = typedArray.getDimensionPixelSize(R.styleable.ZBanner_indicator_height, 8);
         mIndicatorMargin = typedArray.getDimensionPixelSize(R.styleable.ZBanner_indicator_margin, 5);
-        mIndicatorSelectedResId = typedArray.getResourceId(R.styleable.ZBanner_indicator_drawable_selected, R.drawable.gui_banner_gray_radius);
-        mIndicatorUnselectedResId = typedArray.getResourceId(R.styleable.ZBanner_indicator_drawable_unselected, R.drawable.gui_banner_white_radius);
+        mIndicatorSelectedResId = typedArray.getResourceId(R.styleable.ZBanner_indicator_drawable_selected,
+                                                           R.drawable.gui_banner_gray_radius);
+        mIndicatorUnselectedResId = typedArray.getResourceId(R.styleable.ZBanner_indicator_drawable_unselected,
+                                                             R.drawable.gui_banner_white_radius);
         typedArray.recycle();
     }
 
@@ -176,8 +189,9 @@ public class ZBanner extends FrameLayout {
             case NUM_INDICATOR:
                 numIndicator.setVisibility(View.VISIBLE);
                 numIndicator.setBackgroundResource(R.drawable.gui_banner_numindicator_bg);
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams
-                        .WRAP_CONTENT);
+                RelativeLayout.LayoutParams layoutParams =
+                        new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                                                                                           ViewGroup.LayoutParams.WRAP_CONTENT);
                 layoutParams.setMargins(0, 0, 10, 10);
                 layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 numIndicator.setLayoutParams(layoutParams);

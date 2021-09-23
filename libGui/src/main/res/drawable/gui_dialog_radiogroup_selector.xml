@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 选中状态 -->
+    <item android:drawable="@drawable/gui_checkbox_checked_vector" android:state_checked="true" />
+
+    <!-- 默认状态-->
+    <item android:drawable="@drawable/gui_checkbox_normal_vector" />
+
+</selector>

@@ -1,40 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><!-- 普通的dialog弹出框 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/enter_llhead"
-    android:layout_width="fill_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:paddingTop="24dp"
-    android:paddingBottom="8dp">
+    android:layout_gravity="center"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/gui_dimens_big"
+    app:cardElevation="0px">
 
-    <TextView
-        android:id="@+id/dialog_tilte"
-        style="@style/Gui_TextStyle_BlackLight_Big"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp" />
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="24dp">
 
-    <TextView
-        android:id="@+id/dialog_message"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="24dp"
-        android:gravity="center_vertical"
-        android:maxLines="12"
-        android:minHeight="60dp"
-        android:scrollbars="vertical"
-        android:textColor="@color/red_light"
-        android:textIsSelectable="true" />
+        <TextView
+            android:id="@+id/dialog_tilte"
+            style="@style/Gui_TextStyle_BlackLight_Big"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp" />
 
-    <com.zcolin.gui.ZDialogBottomView
-        android:id="@+id/dialog_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_gravity="end"
-        android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/dialog_message"
+            style="@style/Gui_TextStyle_GrayDark_Normal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:maxLines="12"
+            android:minHeight="25dp"
+            android:scrollbars="vertical"
+            android:textIsSelectable="true" />
 
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="10dp"
+            android:background="@color/gui_divider" />
+
+        <com.zcolin.gui.ZDialogBottomView
+            android:id="@+id/dialog_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

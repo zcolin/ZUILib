@@ -11,8 +11,6 @@ package com.zcolin.gui;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.ColorInt;
-import androidx.annotation.LayoutRes;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -26,32 +24,38 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.LayoutRes;
+
 /**
  * 日期选择对话框
  */
-public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.OnClickListener, OnWheelChangedListener, OnWheelScrollListener {
+public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.OnClickListener,
+        OnWheelChangedListener, OnWheelScrollListener {
     private static int LAYOUT_ID;
 
     protected int maxTextSize = 18;
     protected int minTextSize = 12;
-    protected int maxYear = 2050;
-    protected int minYear = 1950;
-    protected boolean isCurDateMax = false;//是否设置当前时间为最大时间
-    protected int maxTextColor;
-    protected int minTextColor;
+    protected int maxYear     = 2050;
+    protected int minYear     = 1950;
+
+    /** 是否设置当前时间为最大时间 */
+    protected boolean isCurDateMax = false;
+    protected int     maxTextColor;
+    protected int     minTextColor;
 
     protected WheelView wvYear;
     protected WheelView wvMonth;
     protected WheelView wvDay;
 
-    protected View vChangeBirthChild;
+    protected View     vChangeBirthChild;
     protected TextView btnSure;
     protected TextView btnCancel;
-    protected TextView tvTitle;     // 标题文字
+    protected TextView tvTitle;
 
-    protected ArrayList<String> arry_years = new ArrayList<String>();
-    protected ArrayList<String> arry_months = new ArrayList<String>();
-    protected ArrayList<String> arry_days = new ArrayList<String>();
+    protected ArrayList<String>   yearList  = new ArrayList<String>();
+    protected ArrayList<String>   monthList = new ArrayList<String>();
+    protected ArrayList<String>   dayList   = new ArrayList<String>();
     protected CalendarTextAdapter mYearAdapter;
     protected CalendarTextAdapter mMonthAdapter;
     protected CalendarTextAdapter mDaydapter;
@@ -59,9 +63,9 @@ public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.
     protected int month;
     protected int day;
 
-    protected int currentYear = getYear();
+    protected int currentYear  = getYear();
     protected int currentMonth = 1;
-    protected int currentDay = 1;
+    protected int currentDay   = 1;
 
 
     protected boolean issetdata = false;
@@ -88,9 +92,6 @@ public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.
         this(context, 0);
     }
 
-    /**
-     * @param context
-     */
     public ZDialogWheelDate(Context context, @LayoutRes int layoutId) {
         super(context, layoutId == 0 ? (LAYOUT_ID == 0 ? R.layout.gui_dlg_wheel_date : LAYOUT_ID) : layoutId);
         init(context);
@@ -125,21 +126,21 @@ public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.
         }
         initYears(isCurDateMax ? getYear() : maxYear);
         int selectedYear = setYear(currentYear);
-        mYearAdapter = new CalendarTextAdapter(getContext(), arry_years, selectedYear);
+        mYearAdapter = new CalendarTextAdapter(getContext(), yearList, selectedYear);
         wvYear.setVisibleItems(5);
         wvYear.setViewAdapter(mYearAdapter);
         wvYear.setCurrentItem(selectedYear);
 
         initMonths(month);
         int selectedMonth = setMonth(currentMonth);
-        mMonthAdapter = new CalendarTextAdapter(getContext(), arry_months, selectedMonth);
+        mMonthAdapter = new CalendarTextAdapter(getContext(), monthList, selectedMonth);
         wvMonth.setVisibleItems(5);
         wvMonth.setViewAdapter(mMonthAdapter);
         wvMonth.setCurrentItem(selectedMonth);
 
         initDays(day);
         int selectedDay = currentDay - 1;
-        mDaydapter = new CalendarTextAdapter(getContext(), arry_days, selectedDay);
+        mDaydapter = new CalendarTextAdapter(getContext(), dayList, selectedDay);
         wvDay.setVisibleItems(5);
         wvDay.setViewAdapter(mDaydapter);
         wvDay.setCurrentItem(selectedDay);
@@ -268,7 +269,7 @@ public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.
             currentYear = Integer.parseInt(currentText);
             setYear(currentYear);
             initMonths(month);
-            mMonthAdapter = new CalendarTextAdapter(getContext(), arry_months, 0);
+            mMonthAdapter = new CalendarTextAdapter(getContext(), monthList, 0);
             wvMonth.setVisibleItems(5);
             wvMonth.setViewAdapter(mMonthAdapter);
             wvMonth.setCurrentItem(0);
@@ -278,7 +279,7 @@ public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.
             currentMonth = Integer.parseInt(currentText);
             setMonth(currentMonth);
             initDays(day);
-            mDaydapter = new CalendarTextAdapter(getContext(), arry_days, 0);
+            mDaydapter = new CalendarTextAdapter(getContext(), dayList, 0);
             wvDay.setVisibleItems(5);
             wvDay.setViewAdapter(mDaydapter);
             wvDay.setCurrentItem(0);
@@ -310,21 +311,21 @@ public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.
 
     private void initYears(int year) {
         for (int i = year; i > minYear; i--) {
-            arry_years.add(i + "");
+            yearList.add(i + "");
         }
     }
 
     private void initMonths(int months) {
-        arry_months.clear();
+        monthList.clear();
         for (int i = 1; i <= months; i++) {
-            arry_months.add(i + "");
+            monthList.add(i + "");
         }
     }
 
     private void initDays(int days) {
-        arry_days.clear();
+        dayList.clear();
         for (int i = 1; i <= days; i++) {
-            arry_days.add(i + "");
+            dayList.add(i + "");
         }
     }
 
@@ -333,7 +334,14 @@ public class ZDialogWheelDate extends ZDialog<ZDialogWheelDate> implements View.
         List<String> list;
 
         protected CalendarTextAdapter(Context context, List<String> list, int currentItem) {
-            super(context, R.layout.gui_item_year_date, NO_RESOURCE, currentItem, maxTextSize, minTextSize, maxTextColor, minTextColor);
+            super(context,
+                  R.layout.gui_item_year_date,
+                  NO_RESOURCE,
+                  currentItem,
+                  maxTextSize,
+                  minTextSize,
+                  maxTextColor,
+                  minTextColor);
             this.list = list;
             setItemTextResource(R.id.tempValue);
         }

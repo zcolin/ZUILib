@@ -1,12 +1,3 @@
-<!--
-  ~ **********************************************************
-  ~   author   colin
-  ~   company  fosung
-  ~   email    wanglin2046@126.com
-  ~   date     16-11-1 下午2:39
-  ~ *********************************************************
-  -->
-
 <resources>
     <color name="text_yel_color">#ffaf50</color>
     <color name="red_light">#f36765</color>

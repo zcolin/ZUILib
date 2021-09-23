@@ -8,9 +8,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.fosung.ui.R;
-import com.zcolin.frame.util.ToastUtil;
 import com.zcolin.gui.ZAlert;
 import com.zcolin.gui.ZConfirm;
 import com.zcolin.gui.ZDialogCheckBox;
@@ -81,10 +81,10 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
     @Override
     public void onClick(View v) {
         if (v == listButton.get(0)) {
-            new ZAlert(mActivity).setTitle("ZAlert").setMessage("这是一个Alert").show();
+            new ZAlert(mActivity).setTitle("ZAlert").setMessage("这是一个Alert").autoDismiss(false).show();
         } else if (v == listButton.get(1)) {
             new ZConfirm(mActivity).setTitle("ZConfirm").setMessage("这是一个通用对话框").addSubmitListener(() -> {
-                ToastUtil.toastShort("点击了确定");
+                Toast.makeText(mActivity, "点击了确定", Toast.LENGTH_SHORT).show();
                 return true;
             }).show();
         } else if (v == listButton.get(2)) {
@@ -92,14 +92,15 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
             new ZDialogRadioGroup(mActivity).setTitle("ZDialogRadioGroup")
                                             .setDatas(arrt, "menu1")
                                             .addSubmitListener(integer -> {
-                                                ToastUtil.toastShort("选择了" + arrt[integer]);
+                                                Toast.makeText(mActivity, "选择了" + arrt[integer], Toast.LENGTH_SHORT)
+                                                     .show();
                                                 return true;
                                             })
                                             .show();
         } else if (v == listButton.get(3)) {
             final String[] arrt = new String[]{"menu1", "menu2", "menu3", "menu4", "menu5"};
             new ZDialogMenu(mActivity).setTitle("ZDialogMenu").setDatas(arrt).addSubmitListener(integer -> {
-                ToastUtil.toastShort("选择了" + arrt[integer]);
+                Toast.makeText(mActivity, "选择了" + arrt[integer], Toast.LENGTH_SHORT).show();
                 return true;
             })
                                       //                    .setGravity(Gravity.BOTTOM)
@@ -108,7 +109,7 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
                                       .show();
         } else if (v == listButton.get(4)) {
             new ZDialogEdit(mActivity).setTitle("ZDialogEdit").setEditText("回填数据").addSubmitStrListener(s -> {
-                ToastUtil.toastShort("输入框数据" + s);
+                Toast.makeText(mActivity, "输入框数据" + s, Toast.LENGTH_SHORT).show();
                 return true;
             }).show();
         } else if (v == listButton.get(5)) {
@@ -121,25 +122,33 @@ public class DialogActivity extends FragmentActivity implements OnClickListener 
                                                   str += s1;
                                                   str += ",";
                                               }
-                                              ToastUtil.toastShort("选中数据" + str);
+                                              Toast.makeText(mActivity, "选中数据" + str, Toast.LENGTH_SHORT).show();
                                               return true;
                                           })
                                           .show();
         } else if (v == listButton.get(6)) {
             new ZDialogWheelTime(mActivity).setTitle("ZDialogWheelTime")
-                                           .setDataSubmitListener((hour, minute) -> ToastUtil.toastShort(fillInOneZero(
-                                                   hour) + ":" + fillInOneZero(minute)))
+                                           .setDataSubmitListener((int hour, int minute) -> {
+                                               Toast.makeText(mActivity,
+                                                              fillInOneZero(hour) + ":" + fillInOneZero(minute),
+                                                              Toast.LENGTH_SHORT).show();
+                                           })
                                            .show();
         } else if (v == listButton.get(7)) {
-            new ZDialogWheelDate(mActivity).setTitle("ZDialogWheelDate")
-                                           .setDataSubmitListener((year, month, day) -> ToastUtil.toastShort(year + "-" + fillInOneZero(
-                                                   month) + "-" + fillInOneZero(day)))
-                                           .show();
+            new ZDialogWheelDate(mActivity).setTitle("ZDialogWheelDate").setDataSubmitListener((year, month, day) -> {
+                Toast.makeText(mActivity,
+                               year + "-" + fillInOneZero(month) + "-" + fillInOneZero(day),
+                               Toast.LENGTH_SHORT).show();
+            }).show();
         } else if (v == listButton.get(8)) {
             new ZDialogWheelDateAndTime(mActivity).setTitle("ZdialogWheelDateAndTime")
-                                                  .setDataSubmitListener((year, month, day, hour, minute) -> ToastUtil.toastShort(
-                                                          year + "-" + fillInOneZero(month) + "-" + fillInOneZero(day) + " " + fillInOneZero(
-                                                                  hour) + ":" + fillInOneZero(minute)))
+                                                  .setDataSubmitListener((year, month, day, hour, minute) -> {
+                                                      Toast.makeText(mActivity,
+                                                                     year + "-" + fillInOneZero(month) + "-" + fillInOneZero(
+                                                                             day) + " " + fillInOneZero(hour) + ":" + fillInOneZero(
+                                                                             minute),
+                                                                     Toast.LENGTH_SHORT).show();
+                                                  })
                                                   .show();
         }
     }

@@ -11,22 +11,23 @@ package com.zcolin.gui;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
-import androidx.annotation.DrawableRes;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.EditText;
+
+import androidx.annotation.DrawableRes;
 
 
 /**
  * 带有密码显示按钮的edittext
  */
-public class ZEditTextWithPassword extends EditText {
+public class ZEditTextWithPassword extends androidx.appcompat.widget.AppCompatEditText {
+
     private int passwordDrawable = R.drawable.gui_icon_edittext_password;
     private int showDrawable     = R.drawable.gui_icon_edittext_password_s;
 
-    private int drawableWidth;
+    private int     drawableWidth;
     private boolean isShwoAsPossword = true;
 
     public ZEditTextWithPassword(Context context) {
@@ -42,7 +43,6 @@ public class ZEditTextWithPassword extends EditText {
         super(context, attrs, defStyle);
         init();
     }
-
 
     private void init() {
         BitmapFactory.Options opts = new BitmapFactory.Options();
@@ -65,7 +65,6 @@ public class ZEditTextWithPassword extends EditText {
         init();
         return this;
     }
-
 
     /**
      * 设置密码显示状态

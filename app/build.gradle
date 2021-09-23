@@ -4,7 +4,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
-    //lint配置
+    // lint配置
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
@@ -18,7 +18,7 @@ android {
         versionName rootProject.ext.versionName
 
         // dex突破65535的限制
-        //multiDexEnabled true
+        // multiDexEnabled true
 
         ndk {
             abiFilters "armeabi-v7a"  // 指定要ndk需要兼容的架构(这样其他依赖包里mips,x86,armeabi,arm-v8之类的so会被过滤掉)
@@ -29,7 +29,7 @@ android {
         debug {
 
             buildConfigField "boolean", "LOG_DEBUG", "true"// 显示Log
-            buildConfigField "boolean", "LOG_WRITE", "false"//SD中写Log信息
+            buildConfigField "boolean", "LOG_WRITE", "false"// SD中写Log信息
 
             minifyEnabled false
             zipAlignEnabled false
@@ -42,8 +42,8 @@ android {
             buildConfigField "boolean", "LOG_WRITE", "false"//SD中写Log信息
 
             minifyEnabled false
-            shrinkResources false  //移除无用的resource文件（如果使用getIdentifier函数的需要关闭）
-            zipAlignEnabled false  //Zipalign优化
+            shrinkResources false  // 移除无用的resource文件（如果使用getIdentifier函数的需要关闭）
+            zipAlignEnabled false  // Zipalign优化
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
@@ -64,9 +64,9 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':libGui')
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'com.github.zcolin:ZFrame:3.0.2'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.github.zcolin:ZFrame:3.0.5'
 }
 

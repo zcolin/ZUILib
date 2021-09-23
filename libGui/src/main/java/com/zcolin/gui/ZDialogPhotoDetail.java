@@ -9,8 +9,6 @@
 package com.zcolin.gui;
 
 import android.app.Activity;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -19,15 +17,20 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.zcolin.gui.helper.ZUIHelper;
 
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 
 /**
  * 图片详情查看页面，使用viewpager滑动
  */
 public class ZDialogPhotoDetail extends ZDialog<ZDialogPhotoDetail> {
-    private PhotoBean photoBean;
-    private ZViewPager viewPager;
-    private TextView tvLeft;
-    private TextView tvNum;
+
+    private final PhotoBean  photoBean;
+    private final ZViewPager viewPager;
+    private final TextView   tvLeft;
+    private final TextView   tvNum;
 
     public ZDialogPhotoDetail(Activity context, PhotoBean photoBean) {
         super(context, R.layout.gui_dlg_photodetail);
@@ -78,33 +81,37 @@ public class ZDialogPhotoDetail extends ZDialog<ZDialogPhotoDetail> {
         }
     }
 
-    public class PhotoPagerAdapter extends PagerAdapter {
-        private String[] lstData;
+    public static class PhotoPagerAdapter extends PagerAdapter {
+
+        private final String[] dataList;
 
         public PhotoPagerAdapter(String[] lstData) {
-            this.lstData = lstData;
+            this.dataList = lstData;
         }
 
         @Override
         public int getCount() {
-            return lstData.length;
+            return dataList.length;
         }
 
         @Override
-        public boolean isViewFromObject(View arg0, Object arg1) {
+        public boolean isViewFromObject(View arg0, @NonNull Object arg1) {
             return arg0.equals(arg1);
         }
 
+        @NonNull
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             ZoomImageView imageView = new ZoomImageView(container.getContext());
-            container.addView(imageView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            Glide.with(container.getContext()).load(lstData[position]).into(imageView);
+            container.addView(imageView,
+                              new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                                         ViewGroup.LayoutParams.MATCH_PARENT));
+            Glide.with(container.getContext()).load(dataList[position]).into(imageView);
             return imageView;
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
+        public void destroyItem(ViewGroup container, int position, @NonNull Object object) {
             final View view = (View) object;
             container.removeView(view);
         }
@@ -112,6 +119,6 @@ public class ZDialogPhotoDetail extends ZDialog<ZDialogPhotoDetail> {
 
     public static class PhotoBean {
         public String[] images;
-        public int index;
+        public int      index;
     }
 }

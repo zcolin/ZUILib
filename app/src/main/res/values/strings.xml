@@ -1,12 +1,3 @@
-<!--
-  ~ **********************************************************
-  ~   author   colin
-  ~   company  fosung
-  ~   email    wanglin2046@126.com
-  ~   date     16-11-1 下午2:39
-  ~ *********************************************************
-  -->
-
 <resources>
     <string name="app_name">ZUILibDemo</string>
 </resources>

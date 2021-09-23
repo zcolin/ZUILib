@@ -19,6 +19,7 @@ import com.zcolin.gui.helper.ZUIHelper;
  * Dialog使用的固定高度的Scrollview
  */
 class DialogFixHeightScrollView extends ScrollView {
+
     private int maxHeight;
 
     public DialogFixHeightScrollView(Context context) {
