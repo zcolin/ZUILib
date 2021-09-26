@@ -85,21 +85,21 @@ public class ZDialogRadioGroup extends ZDialog<ZDialogRadioGroup> implements Vie
     }
 
     public ZDialogRadioGroup setDatas(String[] attrStr, String defStr) {
-        int paddingVer = (int) getContext().getResources().getDimension(R.dimen.gui_dimens_mid);
-        int paddingHor = (int) getContext().getResources().getDimension(R.dimen.gui_dimens_big);
+        int paddingH = (int) getContext().getResources().getDimension(R.dimen.gui_dimens_big);
+        int paddingV = (int) getContext().getResources().getDimension(R.dimen.gui_dimens_mid);
         LayoutParams layout = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        layout.leftMargin = paddingHor;
-        layout.rightMargin = paddingHor;
+        layout.leftMargin = 0;
+        layout.rightMargin = 0;
 
         rgChoise.removeAllViews();
         for (int i = 0; i < attrStr.length; i++) {
             RadioButton btn = new RadioButton(getContext());
             btn.setText(attrStr[i]);
             btn.setTextAppearance(getContext(), R.style.Gui_TextStyle_GrayDark_Normal);
-            btn.setPadding(0, paddingVer, 0, paddingVer);
+            btn.setPadding(0, paddingV, 0, paddingV);
             btn.setButtonDrawable(null);
             btn.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.gui_dialog_radiogroup_selector, 0);
-            btn.setCompoundDrawablePadding(paddingHor);
+            btn.setCompoundDrawablePadding(paddingH);
             btn.setBackground(null);
             btn.setId(i + 100);
             if (attrStr[i].equals(defStr)) {

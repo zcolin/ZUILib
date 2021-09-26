@@ -19,8 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup.LayoutParams;
 import android.widget.TextView;
 
-import com.zcolin.gui.helper.ZUIHelper;
-
 import java.util.List;
 
 import androidx.annotation.LayoutRes;
@@ -107,7 +105,6 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
 
     public ZDialogMenu setDatas(String[] arrStr, String defSelected, ColorStateList colorStateList) {
         int padding = (int) context.getResources().getDimension(R.dimen.gui_dimens_big);
-        int paddingLR = (int) context.getResources().getDimension(R.dimen.gui_dimens_mid);
         float textSize = context.getResources().getDimension(R.dimen.gui_textsize_normal);
         LayoutParams layout = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
@@ -120,7 +117,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
             tv.setBackgroundResource(R.drawable.gui_dialog_menu_selector);
             tv.setTextSize(getContext().getResources().getDimension(R.dimen.gui_textsize_normal));
             tv.setTextColor(colorStateList);
-            tv.setPadding(paddingLR, padding, paddingLR, padding);
+            tv.setPadding(0, padding, 0, padding);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
             if (anAttrStr != null && anAttrStr.equals(defSelected)) {
                 tv.setSelected(true);
@@ -144,9 +141,7 @@ public class ZDialogMenu extends ZDialog<ZDialogMenu> {
      * 从底部显示对话框
      */
     public void showFromBottom() {
-        tvTitle.setGravity(Gravity.CENTER);
         setGravity(Gravity.BOTTOM);
-        setLayout(ZUIHelper.getScreenWidth(context), 0);
         setAnim(R.style.style_anim_dialog_bottom);
         show();
     }
