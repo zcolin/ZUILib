@@ -28,8 +28,8 @@ android {
     buildTypes {
         debug {
 
-            buildConfigField "boolean", "LOG_DEBUG", "true"// 显示Log
-            buildConfigField "boolean", "LOG_WRITE", "false"// SD中写Log信息
+            buildConfigField "boolean", "LOG_DEBUG", "true"  // 显示Log
+            buildConfigField "boolean", "LOG_WRITE", "false" // SD中写Log信息
 
             minifyEnabled false
             zipAlignEnabled false
@@ -38,8 +38,8 @@ android {
         }
 
         release {
-            buildConfigField "boolean", "LOG_DEBUG", "false"// 显示Log
-            buildConfigField "boolean", "LOG_WRITE", "false"//SD中写Log信息
+            buildConfigField "boolean", "LOG_DEBUG", "false" // 显示Log
+            buildConfigField "boolean", "LOG_WRITE", "false" // SD中写Log信息
 
             minifyEnabled false
             shrinkResources false  // 移除无用的resource文件（如果使用getIdentifier函数的需要关闭）
@@ -67,6 +67,6 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation 'com.github.zcolin:ZFrame:3.0.5'
+    implementation 'com.github.zcolin:ZFrame:3.0.6'
 }
 
